@@ -49,7 +49,7 @@ public class ClaimController {
     public ClaimData save(
         @Valid @NotNull @RequestBody ClaimData claimData,
         @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
-        return claimService.saveClaim(claimData, authorisation);
+        return claimService.createNewCase(claimData, authorisation);
     }
 
 }

@@ -9,6 +9,6 @@ public interface ClaimService {
 
     ClaimData getClaimByReference(String reference, String authorisation);
 
-    ClaimData saveClaim(ClaimData claimData, String authorisation);
+    ClaimData createNewCase(ClaimData claimData, String authorisation);
 
 }
