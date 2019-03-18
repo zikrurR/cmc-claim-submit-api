@@ -2,13 +2,13 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper.defendant;
 
 import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
-import uk.gov.hmcts.cmc.domain.models.ContactDetails;
-import uk.gov.hmcts.cmc.domain.models.Representative;
 import uk.gov.hmcts.cmc.domain.models.claimants.Company;
 import uk.gov.hmcts.cmc.domain.models.claimants.Individual;
 import uk.gov.hmcts.cmc.domain.models.claimants.Organisation;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.cmc.domain.models.claimants.SoleTrader;
+import uk.gov.hmcts.cmc.domain.models.common.ContactDetails;
+import uk.gov.hmcts.cmc.domain.models.common.Representative;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.exception.MappingException;
 

@@ -4,14 +4,6 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleParty;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.AddressMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.ClaimantMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.CompanyMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.ContactDetailsMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.IndividualMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.OrganisationMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.RepresentativeMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.SoleTraderMapper;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

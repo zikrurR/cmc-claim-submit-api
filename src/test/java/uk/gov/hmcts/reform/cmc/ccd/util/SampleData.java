@@ -8,9 +8,6 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CCDInterestDateType;
 import uk.gov.hmcts.cmc.ccd.domain.CCDInterestEndDateType;
 import uk.gov.hmcts.cmc.ccd.domain.CCDInterestType;
-import uk.gov.hmcts.cmc.ccd.domain.CCDPaymentIntention;
-import uk.gov.hmcts.cmc.ccd.domain.CCDPaymentOption;
-import uk.gov.hmcts.cmc.ccd.domain.CCDPaymentSchedule;
 import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
@@ -36,31 +33,6 @@ public class SampleData {
 
     //Utility class
     private SampleData() {
-    }
-
-    public static CCDPaymentIntention getCCDPaymentIntention() {
-        return CCDPaymentIntention.builder()
-            .paymentDate(LocalDate.of(2017, 10, 12))
-            .paymentOption(CCDPaymentOption.INSTALMENTS)
-            .firstPaymentDate(LocalDate.of(2017, 10, 12))
-            .instalmentAmount(BigDecimal.valueOf(123.98))
-            .paymentSchedule(CCDPaymentSchedule.EACH_WEEK)
-            .completionDate(LocalDate.of(2018, 10, 12))
-            .build();
-    }
-
-    private static CCDPaymentIntention getCCDPaymentIntentionImmediately() {
-        return CCDPaymentIntention.builder()
-            .paymentDate(LocalDate.now())
-            .paymentOption(CCDPaymentOption.INSTALMENTS)
-            .build();
-    }
-
-    private static CCDPaymentIntention getCCDPaymentIntentionPayBySetDate() {
-        return CCDPaymentIntention.builder()
-            .paymentDate(LocalDate.now().plusDays(10))
-            .paymentOption(CCDPaymentOption.INSTALMENTS)
-            .build();
     }
 
     public static List<CCDCollectionElement<CCDAmountRow>> getAmountBreakDown() {

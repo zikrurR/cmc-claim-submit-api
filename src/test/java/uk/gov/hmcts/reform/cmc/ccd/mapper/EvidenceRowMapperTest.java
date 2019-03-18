@@ -4,7 +4,6 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceType;
 import uk.gov.hmcts.cmc.domain.models.evidence.EvidenceRow;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.EvidenceRowMapper;
 
 import org.junit.Test;
 

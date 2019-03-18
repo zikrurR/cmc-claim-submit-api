@@ -4,14 +4,6 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTheirDetails;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.AddressMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.CompanyDetailsMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.DefendantContactDetailsMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.DefendantRepresentativeMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.IndividualDetailsMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.OrganisationDetailsMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.SoleTraderDetailsMapper;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.TheirDetailsMapper;
 
 import org.junit.Test;
 

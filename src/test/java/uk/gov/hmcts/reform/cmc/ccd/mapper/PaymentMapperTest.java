@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SamplePayment;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.PaymentMapper;
 import uk.gov.hmcts.reform.cmc.domain.utils.LocalDateTimeFactory;
 
 import org.junit.Test;

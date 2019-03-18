@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
-import uk.gov.hmcts.cmc.domain.models.ContactDetails;
+import uk.gov.hmcts.cmc.domain.models.common.ContactDetails;
 
 import org.springframework.stereotype.Component;
 

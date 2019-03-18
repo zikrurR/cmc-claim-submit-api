@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
-import uk.gov.hmcts.cmc.domain.models.Representative;
+import uk.gov.hmcts.cmc.domain.models.common.Representative;
 import uk.gov.hmcts.cmc.domain.models.defendants.CompanyDetails;
 import uk.gov.hmcts.cmc.domain.models.defendants.IndividualDetails;
 import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;

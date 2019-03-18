@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.ContactDetails;
-import uk.gov.hmcts.cmc.domain.models.ContactDetails.ContactDetailsBuilder;
+import uk.gov.hmcts.cmc.domain.models.common.ContactDetails;
+import uk.gov.hmcts.cmc.domain.models.common.ContactDetails.ContactDetailsBuilder;
 
 public class SampleContactDetails {
 

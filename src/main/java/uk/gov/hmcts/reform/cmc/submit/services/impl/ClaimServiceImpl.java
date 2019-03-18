@@ -19,13 +19,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
-import static uk.gov.hmcts.cmc.ccd.domain.CaseEvent.CREATE_NEW_CASE;
-
 @Service
 public class ClaimServiceImpl implements ClaimService {
 
 
     public static final String JURISDICTION_ID = "CMC";
+    public static final String CREATE_NEW_CASE = "IssueClaim";
     public static final String CASE_TYPE_ID = "MoneyClaimCase";
     public static final String CMC_CASE_CREATE_SUMMARY = "CMC case issue";
     public static final String SUBMITTING_CMC_CASE_ISSUE_DESCRIPTION = "Submitting CMC case issue";
@@ -56,7 +55,7 @@ public class ClaimServiceImpl implements ClaimService {
                 .userId(idamId)
                 .jurisdictionId(JURISDICTION_ID)
                 .caseTypeId(CASE_TYPE_ID)
-                .eventId(CREATE_NEW_CASE.getValue())
+                .eventId(CREATE_NEW_CASE)
                 .ignoreWarning(true)
                 .build();
 

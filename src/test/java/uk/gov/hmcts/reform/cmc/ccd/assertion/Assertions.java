@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
-import uk.gov.hmcts.cmc.domain.models.Address;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
+import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.cmc.domain.models.evidence.EvidenceRow;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
