@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CCDPartyType;
@@ -9,8 +11,6 @@ import uk.gov.hmcts.cmc.domain.models.claimants.Organisation;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.cmc.domain.models.claimants.SoleTrader;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.exception.MappingException;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public class ClaimantMapper {

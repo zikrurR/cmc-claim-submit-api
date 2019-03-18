@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
+import org.assertj.core.api.AbstractAssert;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CCDPartyType;
 import uk.gov.hmcts.cmc.domain.models.claimants.Company;
@@ -8,8 +10,6 @@ import uk.gov.hmcts.cmc.domain.models.claimants.Organisation;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.cmc.domain.models.claimants.SoleTrader;
 import uk.gov.hmcts.cmc.domain.models.common.Representative;
-
-import org.assertj.core.api.AbstractAssert;
 
 import java.util.Objects;
 

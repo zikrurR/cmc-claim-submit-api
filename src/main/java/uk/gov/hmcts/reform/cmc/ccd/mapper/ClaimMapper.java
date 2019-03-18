@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.cmc.domain.models.StatementOfTruth;
@@ -9,9 +12,6 @@ import uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation;
 import uk.gov.hmcts.cmc.domain.models.particulars.HousingDisrepair;
 import uk.gov.hmcts.cmc.domain.models.particulars.PersonalInjury;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.defendant.DefendantMapper;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Objects;
@@ -51,13 +51,13 @@ public class ClaimMapper {
         claim.getExternalReferenceNumber().ifPresent(builder::externalReferenceNumber);
         claim.getPreferredCourt().ifPresent(builder::preferredCourt);
 
-        claim.getStatementOfTruth().ifPresent( statementOfTruth -> {
+        claim.getStatementOfTruth().ifPresent(statementOfTruth -> {
             builder.sotSignerName(statementOfTruth.getSignerName());
             builder.sotSignerRole(statementOfTruth.getSignerRole());
         });
 
 
-        claim.getPersonalInjury().ifPresent( personalInjury ->
+        claim.getPersonalInjury().ifPresent(personalInjury ->
             builder.personalInjuryGeneralDamages(personalInjury.getGeneralDamages().name())
         );
 

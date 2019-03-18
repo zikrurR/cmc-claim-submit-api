@@ -1,20 +1,20 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.junit.Test;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTheirDetails;
 
-import org.junit.Test;
-
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
-import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCCDDefendantCompany;
-import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCCDDefendantIndividual;
-import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCCDDefendantOrganisation;
-import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCCDDefendantSoleTrader;
+import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantCompany;
+import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantIndividual;
+import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantOrganisation;
+import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantSoleTrader;
 
 public class TheirDetailsMapperTest {
 
@@ -25,7 +25,7 @@ public class TheirDetailsMapperTest {
                                                             new SoleTraderDetailsMapper(new AddressMapper(), new DefendantRepresentativeMapper(new AddressMapper(), new DefendantContactDetailsMapper())));
 
     @Test
-    public void shouldMapIndividualToCCD() {
+    public void shouldMapIndividualToCcd() {
         //given
         TheirDetails party = SampleTheirDetails.builder().individualDetails();
 
@@ -38,7 +38,7 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapCompanyToCCD() {
+    public void shouldMapCompanyToCcd() {
         //given
         TheirDetails party = SampleTheirDetails.builder().companyDetails();
 
@@ -51,7 +51,7 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapOrganisationToCCD() {
+    public void shouldMapOrganisationToCcd() {
         //given
         TheirDetails party = SampleTheirDetails.builder().organisationDetails();
 
@@ -64,7 +64,7 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapSoleTraderToCCD() {
+    public void shouldMapSoleTraderToCcd() {
         //given
         TheirDetails party = SampleTheirDetails.builder().soleTraderDetails();
 
@@ -77,9 +77,9 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapIndividualFromCCD() {
+    public void shouldMapIndividualFromCcd() {
         //given
-        CCDDefendant ccdParty = getCCDDefendantIndividual();
+        CCDDefendant ccdParty = getCcdDefendantIndividual();
         String collectionId = UUID.randomUUID().toString();
 
         //when
@@ -94,9 +94,9 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapCompanyFromCCD() {
+    public void shouldMapCompanyFromCcd() {
         //given
-        CCDDefendant ccdParty = getCCDDefendantCompany();
+        CCDDefendant ccdParty = getCcdDefendantCompany();
         String collectionId = UUID.randomUUID().toString();
 
         //when
@@ -111,9 +111,9 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapOrganisationFromCCD() {
+    public void shouldMapOrganisationFromCcd() {
         //given
-        CCDDefendant ccdParty = getCCDDefendantOrganisation();
+        CCDDefendant ccdParty = getCcdDefendantOrganisation();
         String collectionId = UUID.randomUUID().toString();
 
         //when
@@ -128,9 +128,9 @@ public class TheirDetailsMapperTest {
     }
 
     @Test
-    public void shouldMapSoleTraderFromCCD() {
+    public void shouldMapSoleTraderFromCcd() {
         //given
-        CCDDefendant ccdParty = getCCDDefendantSoleTrader();
+        CCDDefendant ccdParty = getCcdDefendantSoleTrader();
         String collectionId = UUID.randomUUID().toString();
 
         //when

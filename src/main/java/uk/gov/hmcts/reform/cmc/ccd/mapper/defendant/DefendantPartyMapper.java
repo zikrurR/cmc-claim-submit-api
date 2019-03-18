@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper.defendant;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.claimants.Company;
@@ -11,9 +14,6 @@ import uk.gov.hmcts.cmc.domain.models.common.ContactDetails;
 import uk.gov.hmcts.cmc.domain.models.common.Representative;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.exception.MappingException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import static java.util.Objects.requireNonNull;
 import static org.apache.commons.lang3.StringUtils.isBlank;

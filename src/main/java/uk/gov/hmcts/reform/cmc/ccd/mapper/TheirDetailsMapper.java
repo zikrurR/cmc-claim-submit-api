@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CCDPartyType;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
@@ -9,9 +12,6 @@ import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;
 import uk.gov.hmcts.cmc.domain.models.defendants.SoleTraderDetails;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.exception.MappingException;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class TheirDetailsMapper {

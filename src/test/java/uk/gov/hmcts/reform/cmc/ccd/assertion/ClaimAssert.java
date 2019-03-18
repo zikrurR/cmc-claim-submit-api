@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
+import org.assertj.core.api.AbstractAssert;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDAmountRow;
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
@@ -8,8 +10,6 @@ import uk.gov.hmcts.cmc.domain.models.amount.AmountBreakDown;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountRange;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountRow;
 import uk.gov.hmcts.cmc.domain.models.amount.NotKnown;
-
-import org.assertj.core.api.AbstractAssert;
 
 import java.time.LocalDate;
 import java.util.Objects;

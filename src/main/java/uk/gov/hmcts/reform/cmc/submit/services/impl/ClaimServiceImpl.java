@@ -1,5 +1,9 @@
 package uk.gov.hmcts.reform.cmc.submit.services.impl;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.springframework.stereotype.Service;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
@@ -12,10 +16,6 @@ import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.ClaimMapper;
 import uk.gov.hmcts.reform.cmc.submit.exception.CoreCaseDataStoreException;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
-
-import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.Map;
 
@@ -36,17 +36,19 @@ public class ClaimServiceImpl implements ClaimService {
     private AuthTokenGenerator authTokenGenerator;
     private ObjectMapper objectMapper;
 
+    @Override
     public ClaimData getClaimByExternalId(String externalId, String authorisation) {
         return null;
     }
 
+    @Override
     public ClaimData getClaimByReference(String reference, String authorisation) {
         return null;
     }
 
+    @Override
     public ClaimData createNewCase(ClaimData claimData, String authorisation) {
 
-        boolean isRepresented = true;
         String idamId = "";//userService.getUserDetails(authorisation);
         CCDCase ccdCase = caseMapper.to(claimData);
 
@@ -59,7 +61,7 @@ public class ClaimServiceImpl implements ClaimService {
                 .ignoreWarning(true)
                 .build();
 
-            StartEventResponse startEventResponse = startCreate(authorisation, eventRequestData, isRepresented);
+            StartEventResponse startEventResponse = startCreate(authorisation, eventRequestData);
 
             CaseDataContent caseDataContent = CaseDataContent.builder()
                 .eventToken(startEventResponse.getToken())
@@ -74,8 +76,7 @@ public class ClaimServiceImpl implements ClaimService {
             CaseDetails caseDetails = submitCreate(
                 authorisation,
                 eventRequestData,
-                caseDataContent,
-                isRepresented
+                caseDataContent
             );
 
             return extractClaim(caseDetails);
@@ -92,23 +93,7 @@ public class ClaimServiceImpl implements ClaimService {
 
     }
 
-    private CaseDetails submitCreate(
-        String authorisation,
-        EventRequestData eventRequestData,
-        CaseDataContent caseDataContent,
-        boolean represented
-    ) {
-        if (represented) {
-            return coreCaseDataApi.submitForCaseworker(
-                authorisation,
-                this.authTokenGenerator.generate(),
-                eventRequestData.getUserId(),
-                eventRequestData.getJurisdictionId(),
-                eventRequestData.getCaseTypeId(),
-                eventRequestData.isIgnoreWarning(),
-                caseDataContent
-            );
-        }
+    private CaseDetails submitCreate(String authorisation, EventRequestData eventRequestData, CaseDataContent caseDataContent) {
 
         return coreCaseDataApi.submitForCitizen(
             authorisation,
@@ -121,17 +106,7 @@ public class ClaimServiceImpl implements ClaimService {
         );
     }
 
-    private StartEventResponse startCreate(String authorisation, EventRequestData eventRequestData, boolean isRepresented) {
-        if (isRepresented) {
-            return coreCaseDataApi.startForCaseworker(
-                authorisation,
-                authTokenGenerator.generate(),
-                eventRequestData.getUserId(),
-                eventRequestData.getJurisdictionId(),
-                eventRequestData.getCaseTypeId(),
-                eventRequestData.getEventId()
-            );
-        }
+    private StartEventResponse startCreate(String authorisation, EventRequestData eventRequestData) {
 
         return coreCaseDataApi.startForCitizen(
             authorisation,

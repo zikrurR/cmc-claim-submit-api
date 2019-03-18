@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.controllers;
 
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
-import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import uk.gov.hmcts.cmc.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;

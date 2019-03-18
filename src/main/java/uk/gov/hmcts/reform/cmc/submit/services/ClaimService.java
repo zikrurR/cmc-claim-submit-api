@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.cmc.submit.services;
 
-
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 
 public interface ClaimService {

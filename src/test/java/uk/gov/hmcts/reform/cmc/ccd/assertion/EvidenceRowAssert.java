@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
+import org.assertj.core.api.AbstractAssert;
+
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
 import uk.gov.hmcts.cmc.domain.models.evidence.EvidenceRow;
-
-import org.assertj.core.api.AbstractAssert;
 
 import java.util.Objects;
 

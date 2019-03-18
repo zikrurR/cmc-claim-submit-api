@@ -1,17 +1,17 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.IndividualDetails;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class IndividualDetailsMapper {
 
     private final AddressMapper addressMapper;
-    private DefendantRepresentativeMapper representativeMapper;
+    private final DefendantRepresentativeMapper representativeMapper;
 
     @Autowired
     public IndividualDetailsMapper(

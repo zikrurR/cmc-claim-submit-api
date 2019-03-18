@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper.exception;
 
 public class MappingException extends RuntimeException {
 
+    private static final long serialVersionUID = 1L;
+
     public MappingException() {
         super("CMC CCD mapping exception!");
     }
@@ -10,7 +12,7 @@ public class MappingException extends RuntimeException {
         super("CMC CCD mapping exception. " + message);
     }
 
-    public MappingException(String message, Throwable e) {
-        super(message, e);
+    public MappingException(String message, Throwable cause) {
+        super(message, cause);
     }
 }

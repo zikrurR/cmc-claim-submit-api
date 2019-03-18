@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
-import uk.gov.hmcts.cmc.domain.models.common.Representative;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.domain.models.common.Representative;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
@@ -13,7 +13,7 @@ public class DefendantRepresentativeMapper
     implements BuilderMapper<CCDDefendant, Representative, CCDDefendant.CCDDefendantBuilder> {
 
     private final AddressMapper addressMapper;
-    private DefendantContactDetailsMapper defendantContactDetailsMapper;
+    private final DefendantContactDetailsMapper defendantContactDetailsMapper;
 
     @Autowired
     public DefendantRepresentativeMapper(

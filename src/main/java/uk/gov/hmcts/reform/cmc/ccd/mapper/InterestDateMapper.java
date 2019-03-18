@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.ccd.domain.CCDInterestDateType;
 import uk.gov.hmcts.cmc.ccd.domain.CCDInterestEndDateType;
 import uk.gov.hmcts.cmc.domain.models.interest.InterestDate;
 import uk.gov.hmcts.cmc.domain.models.interest.InterestDate.InterestEndDateType;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public class InterestDateMapper implements BuilderMapper<CCDCase, InterestDate, CCDCase.CCDCaseBuilder> {

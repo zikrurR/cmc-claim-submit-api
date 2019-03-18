@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public class TimelineEventMapper {

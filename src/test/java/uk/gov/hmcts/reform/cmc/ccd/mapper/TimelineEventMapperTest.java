@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.junit.Test;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
-
-import org.junit.Test;
 
 import java.util.UUID;
 

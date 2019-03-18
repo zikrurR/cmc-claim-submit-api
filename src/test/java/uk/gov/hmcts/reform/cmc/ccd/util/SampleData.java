@@ -42,7 +42,7 @@ public class SampleData {
             .build()).build());
     }
 
-    public static CCDAddress getCCDAddress() {
+    public static CCDAddress getCcdAddress() {
         return CCDAddress.builder()
             .addressLine1("line1")
             .addressLine2("line2")
@@ -52,8 +52,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCCDDefendantIndividual() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDDefendant getCcdDefendantIndividual() {
+        CCDAddress ccdAddress = getCcdAddress();
         return CCDDefendant.builder()
             .claimantProvidedType(INDIVIDUAL)
             .claimantProvidedAddress(ccdAddress)
@@ -68,8 +68,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCCDDefendantOrganisation() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDDefendant getCcdDefendantOrganisation() {
+        CCDAddress ccdAddress = getCcdAddress();
         return CCDDefendant.builder()
             .claimantProvidedType(ORGANISATION)
             .claimantProvidedAddress(ccdAddress)
@@ -85,8 +85,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCCDDefendantCompany() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDDefendant getCcdDefendantCompany() {
+        CCDAddress ccdAddress = getCcdAddress();
         return CCDDefendant.builder()
             .claimantProvidedType(COMPANY)
             .claimantProvidedAddress(ccdAddress)
@@ -102,8 +102,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCCDDefendantSoleTrader() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDDefendant getCcdDefendantSoleTrader() {
+        CCDAddress ccdAddress = getCcdAddress();
         return CCDDefendant.builder()
             .claimantProvidedType(SOLE_TRADER)
             .claimantProvidedAddress(ccdAddress)
@@ -119,8 +119,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCCDClaimantIndividual() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDClaimant getCcdClaimantIndividual() {
+        CCDAddress ccdAddress = getCcdAddress();
         return CCDClaimant.builder()
             .partyType(INDIVIDUAL)
             .partyAddress(ccdAddress)
@@ -136,8 +136,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCCDClaimantCompany() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDClaimant getCcdClaimantCompany() {
+        CCDAddress ccdAddress = getCcdAddress();
 
         return CCDClaimant.builder()
             .partyType(COMPANY)
@@ -154,8 +154,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCCDClaimantOrganisation() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDClaimant getCcdClaimantOrganisation() {
+        CCDAddress ccdAddress = getCcdAddress();
 
         return CCDClaimant.builder()
             .partyType(ORGANISATION)
@@ -173,8 +173,8 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCCDClaimantSoleTrader() {
-        CCDAddress ccdAddress = getCCDAddress();
+    public static CCDClaimant getCcdClaimantSoleTrader() {
+        CCDAddress ccdAddress = getCcdAddress();
 
         return CCDClaimant.builder()
             .partyType(SOLE_TRADER)
@@ -192,11 +192,11 @@ public class SampleData {
             .build();
     }
 
-    public static CCDCase getCCDLegalCase() {
+    public static CCDCase getCcdLegalCase() {
         List<CCDCollectionElement<CCDClaimant>> claimants
-            = singletonList(CCDCollectionElement.<CCDClaimant>builder().value(getCCDClaimantIndividual()).build());
+            = singletonList(CCDCollectionElement.<CCDClaimant>builder().value(getCcdClaimantIndividual()).build());
         List<CCDCollectionElement<CCDDefendant>> defendants
-            = singletonList(CCDCollectionElement.<CCDDefendant>builder().value(getCCDDefendantIndividual()).build());
+            = singletonList(CCDCollectionElement.<CCDDefendant>builder().value(getCcdDefendantIndividual()).build());
         return CCDCase.builder()
             .id(1L)
             .referenceNumber("ref no")
@@ -220,11 +220,11 @@ public class SampleData {
             .build();
     }
 
-    public static CCDCase getCCDCitizenCase(List<CCDCollectionElement<CCDAmountRow>> amountBreakDown) {
+    public static CCDCase getCcdCitizenCase(List<CCDCollectionElement<CCDAmountRow>> amountBreakDown) {
         List<CCDCollectionElement<CCDClaimant>> claimants
-            = singletonList(CCDCollectionElement.<CCDClaimant>builder().value(getCCDClaimantIndividual()).build());
+            = singletonList(CCDCollectionElement.<CCDClaimant>builder().value(getCcdClaimantIndividual()).build());
         List<CCDCollectionElement<CCDDefendant>> defendants
-            = singletonList(CCDCollectionElement.<CCDDefendant>builder().value(getCCDDefendantIndividual()).build());
+            = singletonList(CCDCollectionElement.<CCDDefendant>builder().value(getCcdDefendantIndividual()).build());
 
         return CCDCase.builder()
             .id(1l)

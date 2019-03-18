@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper.defendant;
 
+import org.junit.Test;
+
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.ccd.assertion.defendant.DefendantPartyAssert;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleParty;
 import uk.gov.hmcts.reform.cmc.ccd.mapper.AddressMapper;
-
-import org.junit.Test;
 
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleCCDDefendant.withPartyCompany;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleCCDDefendant.withPartyIndividual;
@@ -45,7 +45,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapCompanyToCCD() {
+    public void shouldMapCompanyToCcd() {
         //given
         Party party = SampleParty.builder().company();
 
@@ -58,7 +58,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapOrganisationToCCD() {
+    public void shouldMapOrganisationToCcd() {
         //given
         Party party = SampleParty.builder().organisation();
 
@@ -70,7 +70,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapSoleTraderToCCD() {
+    public void shouldMapSoleTraderToCcd() {
         //given
         Party party = SampleParty.builder().soleTrader();
 
@@ -82,7 +82,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapIndividualFromCCD() {
+    public void shouldMapIndividualFromCcd() {
         //given
         CCDDefendant ccdDefendant = withPartyIndividual().build();
 
@@ -94,7 +94,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapCompanyFromCCD() {
+    public void shouldMapCompanyFromCcd() {
         //given
         CCDDefendant ccdDefendant = withPartyCompany().build();
 
@@ -106,7 +106,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapSoleTraderFromCCD() {
+    public void shouldMapSoleTraderFromCcd() {
         //given
         CCDDefendant ccdDefendant = withPartySoleTrader().build();
 
@@ -118,7 +118,7 @@ public class DefendantPartyMapperTest {
     }
 
     @Test
-    public void shouldMapOrganisationFromCCD() {
+    public void shouldMapOrganisationFromCcd() {
         //given
         CCDDefendant ccdDefendant = withPartyOrganisation().build();
 

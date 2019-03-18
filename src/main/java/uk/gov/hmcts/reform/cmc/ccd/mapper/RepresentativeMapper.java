@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
-import uk.gov.hmcts.cmc.domain.models.common.Representative;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
+import uk.gov.hmcts.cmc.domain.models.common.Representative;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

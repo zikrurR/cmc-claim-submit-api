@@ -1,10 +1,10 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.junit.Test;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleAddress;
-
-import org.junit.Test;
 
 import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 
@@ -13,7 +13,7 @@ public class AddressMapperTest {
     private AddressMapper mapper = new AddressMapper();
 
     @Test
-    public void shouldMapAddressToCCD() {
+    public void shouldMapAddressToCcd() {
         //given
         Address address = SampleAddress.builder().build();
 
@@ -26,7 +26,7 @@ public class AddressMapperTest {
     }
 
     @Test
-    public void shouldMapAddressToCMC() {
+    public void shouldMapAddressToCmc() {
         //given
         CCDAddress ccdAddress = CCDAddress.builder()
             .addressLine1("line1")

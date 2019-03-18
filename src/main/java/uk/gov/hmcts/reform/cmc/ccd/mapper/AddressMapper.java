@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
+import org.springframework.stereotype.Component;
+
 import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
-
-import org.springframework.stereotype.Component;
 
 @Component
 public class AddressMapper implements Mapper<CCDAddress, Address> {

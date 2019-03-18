@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import static java.time.LocalDate.now;
 import static uk.gov.hmcts.cmc.ccd.domain.CCDPartyType.COMPANY;
 import static uk.gov.hmcts.cmc.ccd.domain.CCDPartyType.INDIVIDUAL;
-import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCCDAddress;
+import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdAddress;
 
 public class SampleCCDDefendant {
 
@@ -32,11 +32,11 @@ public class SampleCCDDefendant {
         return CCDDefendant.builder()
             .partyType(COMPANY)
             .partyName("Mr Norman")
-            .partyAddress(getCCDAddress())
-            .partyCorrespondenceAddress(getCCDAddress())
+            .partyAddress(getCcdAddress())
+            .partyCorrespondenceAddress(getCcdAddress())
             .partyPhone("07123456789")
             .representativeOrganisationName("Trading ltd")
-            .representativeOrganisationAddress(getCCDAddress())
+            .representativeOrganisationAddress(getCcdAddress())
             .representativeOrganisationPhone("07123456789")
             .representativeOrganisationEmail("representative@example.org")
             .representativeOrganisationDxAddress("DX123456");
