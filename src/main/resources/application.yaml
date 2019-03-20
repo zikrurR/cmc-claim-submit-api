@@ -7,6 +7,32 @@ management:
       base-path: /
 
 spring:
+  main:
+    allow-bean-definition-overriding: true  # https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1-Release-Notes#bean-overriding
   application:
     name: Cmc Claim Submit API
 
+idam:
+  api:
+    url: "http://localhost:8080"
+  s2s-auth:
+    url: "http://localhost:4552"
+    totp_secret: "AAAAAAAAAAAAAAAA"
+    microservice: "cmc_claim_submit"
+
+auth:
+  idam:
+    client:
+      baseUrl: "http://localhost:8080"
+  provider:
+    service:
+      client:
+        baseUrl: "http://localhost:4552"
+
+authorization:
+  idam-roles-whitelist: "solicitor,citizen"
+  s2s-names-whitelist: "sscs,divorce,ccd,list_needed"
+
+core_case_data:
+  api:
+    url: "http://localhost:4452"
