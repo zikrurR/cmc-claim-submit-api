@@ -13,13 +13,13 @@ import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.Event;
 import uk.gov.hmcts.reform.ccd.client.model.EventRequestData;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.ClaimMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.ClaimMapper;
 import uk.gov.hmcts.reform.cmc.submit.exception.CoreCaseDataStoreException;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 
 import java.util.Map;
 
-@Service
+@Service("claimService")
 public class ClaimServiceImpl implements ClaimService {
 
 
@@ -30,11 +30,22 @@ public class ClaimServiceImpl implements ClaimService {
     public static final String SUBMITTING_CMC_CASE_ISSUE_DESCRIPTION = "Submitting CMC case issue";
     public static final String CCD_STORING_FAILURE_MESSAGE = "Failed storing claim in CCD store for case id %s on event %s";
 
-    private ClaimMapper caseMapper;
-   // private final UserService userService;
-    private CoreCaseDataApi coreCaseDataApi;
-    private AuthTokenGenerator authTokenGenerator;
-    private ObjectMapper objectMapper;
+    private final ClaimMapper caseMapper;
+    private final CoreCaseDataApi coreCaseDataApi;
+    private final AuthTokenGenerator authTokenGenerator;
+    private final ObjectMapper objectMapper;
+
+    public ClaimServiceImpl(
+            ClaimMapper caseMapper,
+            CoreCaseDataApi coreCaseDataApi,
+            AuthTokenGenerator authTokenGenerator,
+            ObjectMapper objectMapper) {
+
+        this.caseMapper = caseMapper;
+        this.coreCaseDataApi = coreCaseDataApi;
+        this.authTokenGenerator = authTokenGenerator;
+        this.objectMapper = objectMapper;
+    }
 
     @Override
     public ClaimData getClaimByExternalId(String externalId, String authorisation) {
@@ -49,7 +60,7 @@ public class ClaimServiceImpl implements ClaimService {
     @Override
     public ClaimData createNewCase(ClaimData claimData, String authorisation) {
 
-        String idamId = "";//userService.getUserDetails(authorisation);
+        String idamId = ""; // should be not needed as far as we can get it from the start event token
         CCDCase ccdCase = caseMapper.to(claimData);
 
         try {

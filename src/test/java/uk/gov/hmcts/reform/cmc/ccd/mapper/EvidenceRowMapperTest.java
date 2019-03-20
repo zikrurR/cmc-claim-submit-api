@@ -6,6 +6,7 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceType;
 import uk.gov.hmcts.cmc.domain.models.evidence.EvidenceRow;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.EvidenceRowMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.cmc.domain.models.evidence.EvidenceType.CORRESPONDENCE;
@@ -16,7 +17,7 @@ public class EvidenceRowMapperTest {
     private EvidenceRowMapper mapper = new EvidenceRowMapper();
 
     @Test
-    public void shouldMapEvidenceRowToCCD() {
+    public void shouldMapEvidenceRowToCcd() {
         //given
         EvidenceRow evidenceRow = EvidenceRow.builder().type(CORRESPONDENCE).description("description").build();
 
@@ -29,7 +30,7 @@ public class EvidenceRowMapperTest {
     }
 
     @Test
-    public void shouldMapEvidenceRowToCCDWhenNoDescriptionProvided() {
+    public void shouldMapEvidenceRowToCcdWhenNoDescriptionProvided() {
         //given
         EvidenceRow evidenceRow = EvidenceRow.builder().type(CORRESPONDENCE).description(null).build();
 
@@ -42,7 +43,7 @@ public class EvidenceRowMapperTest {
     }
 
     @Test
-    public void shouldMapEvidenceRowFromCCD() {
+    public void shouldMapEvidenceRowFromCcd() {
         //given
         CCDEvidenceRow ccdEvidenceRow = CCDEvidenceRow.builder()
             .description("My description")
@@ -58,7 +59,7 @@ public class EvidenceRowMapperTest {
     }
 
     @Test
-    public void shouldMapEvidenceRowFromCCDWhenNoDescriptionProvided() {
+    public void shouldMapEvidenceRowFromCcdWhenNoDescriptionProvided() {
         //given
         CCDEvidenceRow ccdEvidenceRow = CCDEvidenceRow.builder()
             .type(CCDEvidenceType.EXPERT_WITNESS)

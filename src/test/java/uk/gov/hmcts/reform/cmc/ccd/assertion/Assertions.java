@@ -17,8 +17,8 @@ public class Assertions {
         return new AddressAssert(address);
     }
 
-    public static CCDAddressAssert assertThat(CCDAddress ccdAddress) {
-        return new CCDAddressAssert(ccdAddress);
+    public static CcdAddressAssert assertThat(CCDAddress ccdAddress) {
+        return new CcdAddressAssert(ccdAddress);
     }
 
     public static TimelineEventAssert assertThat(TimelineEvent timelineEvent) {

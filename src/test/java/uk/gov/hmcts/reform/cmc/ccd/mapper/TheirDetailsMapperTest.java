@@ -6,6 +6,14 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTheirDetails;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.CompanyDetailsMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.DefendantContactDetailsMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.DefendantRepresentativeMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.IndividualDetailsMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.OrganisationDetailsMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.SoleTraderDetailsMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.TheirDetailsMapper;
 
 import java.util.UUID;
 

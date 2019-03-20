@@ -25,8 +25,12 @@ import javax.validation.constraints.NotNull;
 @RequestMapping // (produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ClaimController {
 
+    private final ClaimService claimService;
+
     @Autowired
-    private ClaimService claimService;
+    public ClaimController(ClaimService claimService) {
+        this.claimService = claimService;
+    }
 
     @GetMapping("/{externalId}")
     @ApiOperation("Fetch claim for given external id")

@@ -6,7 +6,8 @@ import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.ccd.assertion.defendant.DefendantPartyAssert;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleParty;
-import uk.gov.hmcts.reform.cmc.ccd.mapper.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendant.DefendantPartyMapper;
 
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleCCDDefendant.withPartyCompany;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleCCDDefendant.withPartyIndividual;

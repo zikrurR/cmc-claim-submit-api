@@ -5,6 +5,7 @@ import org.junit.Test;
 import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleAddress;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 
 import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 

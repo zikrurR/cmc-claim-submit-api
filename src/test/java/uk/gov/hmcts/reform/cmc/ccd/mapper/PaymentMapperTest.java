@@ -6,6 +6,7 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SamplePayment;
 import uk.gov.hmcts.reform.cmc.domain.utils.LocalDateTimeFactory;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.PaymentMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

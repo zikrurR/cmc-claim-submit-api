@@ -5,6 +5,7 @@ import org.junit.Test;
 import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.TimelineEventMapper;
 
 import java.util.UUID;
 
