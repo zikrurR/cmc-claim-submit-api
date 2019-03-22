@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.payment.Payment;
