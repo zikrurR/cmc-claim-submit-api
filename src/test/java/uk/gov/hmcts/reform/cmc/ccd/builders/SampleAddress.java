@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
 import uk.gov.hmcts.cmc.domain.models.common.Address;
-import uk.gov.hmcts.cmc.domain.models.common.Address.AddressBuilder;
 
 public class SampleAddress {
 
@@ -9,12 +8,25 @@ public class SampleAddress {
         super();
     }
 
-    public static AddressBuilder builder() {
-        return Address.builder()
-            .line1("52")
-            .line2("Down Street")
-            .line3("Salford")
-            .city("Manchester")
-            .postcode("DF1 3LJ");
+    public static Address validDefaults() {
+        Address address = new Address();
+        address.setLine1("52");
+        address.setLine2("Down Street");
+        address.setLine3("Salford");
+        address.setCity("Manchester");
+        address.setPostcode("DF1 3LJ");
+
+        return address;
+    }
+
+    public static Address invalidDefaults() {
+        Address address = new Address();
+        address.setLine1("52");
+        address.setLine2("Down Street");
+        address.setLine3("Salford");
+        address.setCity("Manchester");
+        address.setPostcode("");
+
+        return address;
     }
 }

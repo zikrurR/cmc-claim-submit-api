@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
 import uk.gov.hmcts.cmc.domain.models.common.ContactDetails;
-import uk.gov.hmcts.cmc.domain.models.common.ContactDetails.ContactDetailsBuilder;
 
 public class SampleContactDetails {
 
@@ -9,10 +8,12 @@ public class SampleContactDetails {
         super();
     }
 
-    public static ContactDetailsBuilder builder() {
-        return ContactDetails.builder()
-            .phone("7873738547")
-            .email("representative@example.org")
-            .dxAddress("DX123456");
+    public static ContactDetails validDefaults() {
+        ContactDetails contactDetails = new ContactDetails();
+        contactDetails.setPhone("7873738547");
+        contactDetails.setEmail("representative@example.org");
+        contactDetails.setDxAddress("DX123456");
+
+        return contactDetails;
     }
 }

@@ -17,17 +17,23 @@ public class SampleParty {
     private String name = "John Rambo";
     private String businessName = "Trading as name";
     private String contactPerson = "Steven Seagal";
-    private Address address = SampleAddress.builder().build();
-    private Address correspondenceAddress = SampleAddress.builder().build();
+    private Address address = SampleAddress.validDefaults();
+    private Address correspondenceAddress = SampleAddress.validDefaults();
     private String title = "Dr.";
     private String mobilePhone = "07873727165";
     private LocalDate dateOfBirth = LocalDate.of(1968, 1, 2);
-    private Representative representative = SampleRepresentative.builder().build();
+    private Representative representative = SampleRepresentative.validDefaults();
     private String companiesHouseNumber;
     private String collectionId = "acd82549-d279-4adc-b38c-d195dd0db0d6";
 
     public static SampleParty builder() {
         return new SampleParty();
+    }
+
+
+    public static SampleParty individualBuilder() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     public SampleParty withName(String name) {
@@ -85,39 +91,80 @@ public class SampleParty {
         return this;
     }
 
-    public Party party() {
-        return new Individual(collectionId, name, address, correspondenceAddress, mobilePhone,
-            representative, dateOfBirth);
+    public static Party party() {
+        return individual();
     }
 
-    public Individual individual() {
-        return new Individual(collectionId, name, address, correspondenceAddress, mobilePhone,
-            representative, dateOfBirth);
-    }
-
-    public List<Party> individualDetails(int count) {
+    public static List<Party> individualDetails(int count) {
         List<Party> individualDetailsList = new ArrayList<>();
         for (int i = 0; i < count; i++) {
             individualDetailsList.add(
-                new Individual(collectionId, name, address, correspondenceAddress, mobilePhone,
-                    representative, dateOfBirth)
+                    individual()
             );
         }
         return individualDetailsList;
     }
 
-    public SoleTrader soleTrader() {
-        return new SoleTrader(collectionId, name, address, correspondenceAddress, mobilePhone,
-            representative, title, businessName);
+    public static Individual individual() {
+        SampleParty builder = builder();
+        Individual individual = new Individual();
+
+        individual.setAddress(builder.address);
+        individual.setCorrespondenceAddress(builder.correspondenceAddress);
+        individual.setDateOfBirth(builder.dateOfBirth);
+        individual.setId(builder.collectionId);
+        individual.setMobilePhone(builder.mobilePhone);
+        individual.setName(builder.name);
+        individual.setRepresentative(builder.representative);
+
+        return individual;
     }
 
-    public Company company() {
-        return new Company(collectionId, name, address, correspondenceAddress, mobilePhone,
-            representative, contactPerson);
+    public static SoleTrader soleTrader() {
+        SampleParty builder = builder();
+        SoleTrader soleTrader = new SoleTrader();
+
+        soleTrader.setAddress(builder.address);
+        soleTrader.setCorrespondenceAddress(builder.correspondenceAddress);
+        soleTrader.setTitle(builder.title);
+        soleTrader.setBusinessName(builder.businessName);
+        soleTrader.setId(builder.collectionId);
+        soleTrader.setMobilePhone(builder.mobilePhone);
+        soleTrader.setName(builder.name);
+        soleTrader.setRepresentative(builder.representative);
+
+        return soleTrader;
     }
 
-    public Organisation organisation() {
-        return new Organisation(collectionId, name, address, correspondenceAddress, mobilePhone,
-            representative, contactPerson, companiesHouseNumber);
+    public static Company company() {
+        SampleParty builder = builder();
+        Company company = new Company();
+
+        company.setAddress(builder.address);
+        company.setCorrespondenceAddress(builder.correspondenceAddress);
+        company.setContactPerson(builder.contactPerson);
+        company.setId(builder.collectionId);
+        company.setMobilePhone(builder.mobilePhone);
+        company.setName(builder.name);
+        company.setRepresentative(builder.representative);
+
+        return company;
     }
+
+    public static Organisation organisation() {
+        SampleParty builder = builder();
+        Organisation company = new Organisation();
+
+        company.setAddress(builder.address);
+        company.setCorrespondenceAddress(builder.correspondenceAddress);
+        company.setContactPerson(builder.contactPerson);
+        company.setCompaniesHouseNumber(builder.companiesHouseNumber);
+        company.setId(builder.collectionId);
+        company.setMobilePhone(builder.mobilePhone);
+        company.setName(builder.name);
+        company.setRepresentative(builder.representative);
+
+        return company;
+    }
+
 }

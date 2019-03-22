@@ -5,7 +5,7 @@ import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
-import uk.gov.hmcts.cmc.domain.models.evidence.EvidenceRow;
+import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
 
 public class Assertions {
@@ -25,8 +25,8 @@ public class Assertions {
         return new TimelineEventAssert(timelineEvent);
     }
 
-    public static EvidenceRowAssert assertThat(EvidenceRow evidenceRow) {
-        return new EvidenceRowAssert(evidenceRow);
+    public static EvidenceAssert assertThat(Evidence evidence) {
+        return new EvidenceAssert(evidence);
     }
 
     public static ClaimAssert assertThat(ClaimData claim) {

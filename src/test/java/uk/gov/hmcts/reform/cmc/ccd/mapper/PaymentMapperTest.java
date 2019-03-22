@@ -6,7 +6,7 @@ import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SamplePayment;
 import uk.gov.hmcts.reform.cmc.domain.utils.LocalDateTimeFactory;
-import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.PaymentMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.payment.PaymentMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -21,7 +21,7 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentToCcd() {
         //given
-        Payment payment = SamplePayment.builder().build();
+        Payment payment = SamplePayment.validDefaults();
 
         //when
         CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();
@@ -40,7 +40,8 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentToCcdWhenNoCreatedDateProvided() {
         //given
-        Payment payment = SamplePayment.builder().dateCreated(null).build();
+        Payment payment = SamplePayment.validDefaults();
+        payment.setDateCreated(null);
 
         //when
         CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();
@@ -58,7 +59,8 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentToCcdWhenLongCreatedDateProvided() {
         //given
-        Payment payment = SamplePayment.builder().dateCreated("1511169381890").build();
+        Payment payment = SamplePayment.validDefaults();
+        payment.setDateCreated("1511169381890");
 
         //when
         CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();

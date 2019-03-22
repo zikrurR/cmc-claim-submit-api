@@ -5,11 +5,15 @@ import org.assertj.core.api.AbstractAssert;
 import uk.gov.hmcts.cmc.ccd.domain.CCDAmountRow;
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
+import uk.gov.hmcts.cmc.domain.models.StatementOfTruth;
 import uk.gov.hmcts.cmc.domain.models.amount.Amount;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountBreakDown;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountRange;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountRow;
 import uk.gov.hmcts.cmc.domain.models.amount.NotKnown;
+import uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation;
+import uk.gov.hmcts.cmc.domain.models.particulars.HousingDisrepair;
+import uk.gov.hmcts.cmc.domain.models.particulars.PersonalInjury;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -65,25 +69,15 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                 ccdCase.getReason(), actual.getReason());
         }
 
-        if (!Objects.equals(actual.getFeeCode().orElse(null), ccdCase.getFeeCode())) {
-            failWithMessage("Expected CCDClaim.feeCode to be <%s> but was <%s>",
-                ccdCase.getFeeCode(), actual.getFeeCode().orElse(null));
-        }
 
-        if (!Objects.equals(actual.getFeeAccountNumber().orElse(null), ccdCase.getFeeAccountNumber())) {
+        if (!Objects.equals(actual.getFeeAccountNumber(), ccdCase.getFeeAccountNumber())) {
             failWithMessage("Expected CCDClaim.feeAccountNumber to be <%s> but was <%s>",
-                ccdCase.getFeeAccountNumber(), actual.getFeeAccountNumber().orElse(null));
+                ccdCase.getFeeAccountNumber(), actual.getFeeAccountNumber());
         }
 
-        if (!Objects.equals(actual.getFeeAmountInPennies(), ccdCase.getFeeAmountInPennies())) {
-            failWithMessage("Expected CCDClaim.feeAmountInPennies to be <%s> but was <%s>",
-                ccdCase.getFeeAmountInPennies(), actual.getFeeAmountInPennies());
-        }
-
-        if (!Objects.equals(actual.getExternalReferenceNumber().orElse(null),
-            ccdCase.getExternalReferenceNumber())) {
+        if (!Objects.equals(actual.getExternalReferenceNumber(), ccdCase.getExternalReferenceNumber())) {
             failWithMessage("Expected CCDClaim.externalReferenceNumber to be <%s> but was <%s>",
-                ccdCase.getExternalReferenceNumber(), actual.getExternalReferenceNumber().orElse(null));
+                ccdCase.getExternalReferenceNumber(), actual.getExternalReferenceNumber());
         }
 
         if (!Objects.equals(actual.getExternalId().toString(), ccdCase.getExternalId())) {
@@ -91,9 +85,9 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                 ccdCase.getExternalId(), actual.getExternalId().toString());
         }
 
-        if (!Objects.equals(actual.getPreferredCourt().orElse(null), ccdCase.getPreferredCourt())) {
+        if (!Objects.equals(actual.getPreferredCourt(), ccdCase.getPreferredCourt())) {
             failWithMessage("Expected CCDClaim.preferredCourt to be <%s> but was <%s>",
-                ccdCase.getPreferredCourt(), actual.getPreferredCourt().orElse(null));
+                ccdCase.getPreferredCourt(), actual.getPreferredCourt());
         }
 
         Amount amount = actual.getAmount();
@@ -122,12 +116,11 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                     ccdCase.getAmountHigherValue(), amountRange.getHigherValue());
             }
 
-            amountRange.getLowerValue().ifPresent(lowerAmount -> {
-                if (!Objects.equals(lowerAmount, ccdCase.getAmountLowerValue())) {
-                    failWithMessage("Expected CCDCase.amountLowerValue to be <%s> but was <%s>",
-                        ccdCase.getAmountLowerValue(), lowerAmount);
-                }
-            });
+            if (!Objects.equals(amountRange.getLowerValue(), ccdCase.getAmountLowerValue())) {
+                failWithMessage("Expected CCDCase.amountLowerValue to be <%s> but was <%s>",
+                    ccdCase.getAmountLowerValue(), amountRange.getLowerValue());
+            }
+
         } else {
             assertThat(amount).isInstanceOf(NotKnown.class);
         }
@@ -145,13 +138,12 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                     failWithMessage("Expected CCDCase.interestReason to be <%s> but was <%s>",
                         ccdCase.getInterestReason(), interest.getRate());
                 }
-                interest.getSpecificDailyAmount().ifPresent(dailyAmount -> {
-                    if (!Objects.equals(dailyAmount, ccdCase.getInterestSpecificDailyAmount())) {
-                        failWithMessage("Expected CCDCase.interestSpecificDailyAmount to be <%s> but was <%s>",
-                            ccdCase.getInterestSpecificDailyAmount(), dailyAmount);
+                if (!Objects.equals(interest.getSpecificDailyAmount(), ccdCase.getInterestSpecificDailyAmount())) {
+                    failWithMessage("Expected CCDCase.interestSpecificDailyAmount to be <%s> but was <%s>",
+                        ccdCase.getInterestSpecificDailyAmount(), interest.getSpecificDailyAmount());
 
-                    }
-                });
+                }
+
                 ofNullable(interest.getInterestDate()).ifPresent(interestDate -> {
                     if (!Objects.equals(interestDate.getDate(), ccdCase.getInterestClaimStartDate())) {
                         failWithMessage("Expected CCDCase.interestClaimStartDate to be <%s> but was <%s>",
@@ -203,31 +195,36 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
             }
         );
 
-        actual.getPersonalInjury().ifPresent(personalInjury -> {
-            if (!Objects.equals(personalInjury.getGeneralDamages().name(),
-                ccdCase.getPersonalInjuryGeneralDamages())) {
+
+        PersonalInjury personalInjury = actual.getPersonalInjury();
+        if (personalInjury != null) {
+            if (!Objects.equals(personalInjury.getGeneralDamages().name(), ccdCase.getPersonalInjuryGeneralDamages())) {
                 failWithMessage("Expected CCDCase.personalInjuryGeneralDamages to be <%s> but was <%s>",
                     ccdCase.getPersonalInjuryGeneralDamages(), personalInjury.getGeneralDamages());
             }
-        });
+        }
 
-        actual.getHousingDisrepair().ifPresent(housingDisrepair -> {
+        if (actual.getHousingDisrepair() != null) {
+            HousingDisrepair housingDisrepair = actual.getHousingDisrepair();
             if (!Objects.equals(housingDisrepair.getCostOfRepairsDamages().name(),
                 ccdCase.getHousingDisrepairCostOfRepairDamages())
             ) {
                 failWithMessage("Expected CCDCase.housingDisrepairCostOfRepairDamages to be <%s> but was <%s>",
                     ccdCase.getHousingDisrepairCostOfRepairDamages(), housingDisrepair.getCostOfRepairsDamages());
             }
-            housingDisrepair.getOtherDamages().ifPresent(damagesExpectation -> {
+
+            if (housingDisrepair.getOtherDamages() != null) {
+                DamagesExpectation damagesExpectation = housingDisrepair.getOtherDamages();
                 if (!Objects.equals(damagesExpectation.name(), ccdCase.getHousingDisrepairOtherDamages())) {
                     failWithMessage("Expected CCDCase.housingDisrepairOtherDamages to be <%s> but was <%s>",
                         ccdCase.getHousingDisrepairOtherDamages(), damagesExpectation.name());
                 }
-            });
+            }
 
-        });
+        }
 
-        actual.getStatementOfTruth().ifPresent(statementOfTruth -> {
+        if (actual.getStatementOfTruth() != null) {
+            StatementOfTruth statementOfTruth = actual.getStatementOfTruth();
             if (!Objects.equals(statementOfTruth.getSignerName(), ccdCase.getSotSignerName())) {
                 failWithMessage("Expected CCDCase.amountLowerValue to be <%s> but was <%s>",
                     ccdCase.getSotSignerName(), statementOfTruth.getSignerName());
@@ -237,7 +234,7 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                 failWithMessage("Expected CCDCase.sotSignerRole to be <%s> but was <%s>",
                     ccdCase.getSotSignerRole(), statementOfTruth.getSignerRole());
             }
-        });
+        }
 
         assertThat(actual.getClaimants().size()).isEqualTo(ccdCase.getClaimants().size());
         assertThat(actual.getDefendants().size()).isEqualTo(ccdCase.getDefendants().size());

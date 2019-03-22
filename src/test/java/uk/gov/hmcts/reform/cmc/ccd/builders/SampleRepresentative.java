@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
 import uk.gov.hmcts.cmc.domain.models.common.Representative;
-import uk.gov.hmcts.cmc.domain.models.common.Representative.RepresentativeBuilder;
 
 public class SampleRepresentative {
 
@@ -9,10 +8,12 @@ public class SampleRepresentative {
         super();
     }
 
-    public static RepresentativeBuilder builder() {
-        return Representative.builder()
-            .organisationName("Trading ltd")
-            .organisationAddress(SampleAddress.builder().build())
-            .organisationContactDetails(SampleContactDetails.builder().build());
+    public static Representative validDefaults() {
+        Representative representative = new Representative();
+        representative.setOrganisationName("Trading ltd");
+        representative.setOrganisationAddress(SampleAddress.validDefaults());
+        representative.setOrganisationContactDetails(SampleContactDetails.validDefaults());
+
+        return representative;
     }
 }
