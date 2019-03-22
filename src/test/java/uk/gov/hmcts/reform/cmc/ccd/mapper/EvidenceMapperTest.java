@@ -10,6 +10,7 @@ import uk.gov.hmcts.reform.cmc.ccd.builders.SampleEvidence;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.evidence.EvidenceMapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 
 public class EvidenceMapperTest {
 

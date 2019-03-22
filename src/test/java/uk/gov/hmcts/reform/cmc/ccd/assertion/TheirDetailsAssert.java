@@ -174,6 +174,9 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
     }
 
     private void assertRepresentativeDetails(Representative representative, CCDDefendant ccdParty) {
+        if (representative == null) representative = new Representative();
+
+
         if (!Objects.equals(representative.getOrganisationName(),
             ccdParty.getClaimantProvidedRepresentativeOrganisationName())
         ) {

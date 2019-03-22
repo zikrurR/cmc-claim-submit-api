@@ -14,7 +14,11 @@ public class AddressAssert extends AbstractAssert<AddressAssert, Address> {
     }
 
     public AddressAssert isEqualTo(CCDAddress ccdAddress) {
-        isNotNull();
+        if (actual == null && ccdAddress == null) return this;
+
+        if (actual == null) {
+            failWithMessage("Expected Address to be not null");
+        }
 
         if (!Objects.equals(actual.getLine1(), ccdAddress.getAddressLine1())) {
             failWithMessage("Expected Address.line1 to be <%s> but was <%s>",

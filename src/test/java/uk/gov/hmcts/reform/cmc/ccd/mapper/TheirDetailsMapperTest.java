@@ -35,7 +35,7 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapIndividualToCcd() {
         //given
-        TheirDetails party = SampleTheirDetails.builder().individualDetails();
+        TheirDetails party = SampleTheirDetails.individualDetails();
 
         //when
         CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
@@ -48,7 +48,7 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapCompanyToCcd() {
         //given
-        TheirDetails party = SampleTheirDetails.builder().companyDetails();
+        TheirDetails party = SampleTheirDetails.companyDetails();
 
         //when
         CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
@@ -61,7 +61,7 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapOrganisationToCcd() {
         //given
-        TheirDetails party = SampleTheirDetails.builder().organisationDetails();
+        TheirDetails party = SampleTheirDetails.organisationDetails();
 
         //when
         CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
@@ -74,7 +74,7 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapSoleTraderToCcd() {
         //given
-        TheirDetails party = SampleTheirDetails.builder().soleTraderDetails();
+        TheirDetails party = SampleTheirDetails.soleTraderDetails();
 
         //when
         CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();

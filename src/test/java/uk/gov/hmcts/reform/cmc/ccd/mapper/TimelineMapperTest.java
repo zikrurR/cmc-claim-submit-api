@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 
 public class TimelineMapperTest {
 
@@ -28,7 +29,8 @@ public class TimelineMapperTest {
 
         //then
         assertThat(ccdTimelineEvent.size()).isEqualTo(1);
-        assertThat(ccdTimelineEvent.get(0).getValue()).isEqualTo(timelineEvent);
+        assertThat(ccdTimelineEvent.get(0).getValue().getDate()).isEqualTo(timelineEvent.getDate());
+        assertThat(ccdTimelineEvent.get(0).getValue().getDescription()).isEqualTo(timelineEvent.getDescription());
         assertThat(ccdTimelineEvent.get(0).getId()).isEqualTo(timelineEvent.getId());
     }
 
@@ -51,7 +53,7 @@ public class TimelineMapperTest {
 
         //then
         assertThat(timelineEvent.size()).isEqualTo(1);
-        assertThat(timelineEvent).isEqualTo(ccdTimelineEvent);
+        assertThat(timelineEvent.get(0)).isEqualTo(ccdTimelineEvent);
         assertThat(timelineEvent.get(0).getId()).isEqualTo(collectionId);
     }
 }

@@ -14,7 +14,12 @@ public class CcdAddressAssert extends AbstractAssert<CcdAddressAssert, CCDAddres
     }
 
     public CcdAddressAssert isEqualTo(Address address) {
-        isNotNull();
+
+        if (actual == null && address == null) return this;
+
+        if (actual == null) {
+            failWithMessage("Expected CCDAddress to be not null");
+        }
 
         if (!Objects.equals(actual.getAddressLine1(), address.getLine1())) {
             failWithMessage("Expected CCDAddress.line1 to be <%s> but was <%s>",
