@@ -169,6 +169,7 @@ dependencies {
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit
   
   integrationTestCompile sourceSets.main.runtimeClasspath
+  integrationTestCompile sourceSets.test.runtimeClasspath
 
   functionalTestCompile sourceSets.main.runtimeClasspath
 
