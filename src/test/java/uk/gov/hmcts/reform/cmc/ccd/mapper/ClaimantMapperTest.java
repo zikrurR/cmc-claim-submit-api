@@ -37,7 +37,7 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapIndividualToCcd() {
         //given
-        Party party = SampleParty.builder().individual();
+        Party party = SampleParty.individual();
 
         //when
         CCDCollectionElement<CCDClaimant> ccdParty = claimantMapper.to(party);
@@ -50,7 +50,7 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapCompanyToCcd() {
         //given
-        Party party = SampleParty.builder().company();
+        Party party = SampleParty.company();
 
         //when
         CCDCollectionElement<CCDClaimant> ccdParty = claimantMapper.to(party);
@@ -63,7 +63,7 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapOrganisationToCcd() {
         //given
-        Party party = SampleParty.builder().organisation();
+        Party party = SampleParty.organisation();
 
         //when
         CCDCollectionElement<CCDClaimant> ccdParty = claimantMapper.to(party);
@@ -76,7 +76,7 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapSoleTraderToCcd() {
         //given
-        Party party = SampleParty.builder().soleTrader();
+        Party party = SampleParty.soleTrader();
 
         //when
         CCDCollectionElement<CCDClaimant> ccdParty = claimantMapper.to(party);
