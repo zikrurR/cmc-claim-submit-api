@@ -19,7 +19,9 @@ public class EvidenceMapper implements Mapper<List<CCDCollectionElement<CCDEvide
 
     @Override
     public List<CCDCollectionElement<CCDEvidenceRow>> to(List<Evidence> evidences) {
-        if (evidences == null) return new ArrayList<>();
+        if (evidences == null) {
+            return new ArrayList<>();
+        }
 
 
         return evidences.stream()
@@ -30,7 +32,9 @@ public class EvidenceMapper implements Mapper<List<CCDCollectionElement<CCDEvide
 
     @Override
     public List<Evidence> from(List<CCDCollectionElement<CCDEvidenceRow>> ccdEvidence) {
-        if (ccdEvidence == null) return new ArrayList<>();
+        if (ccdEvidence == null) {
+            return new ArrayList<>();
+        }
 
         return ccdEvidence.stream()
                 .filter(Objects::nonNull)
@@ -40,7 +44,9 @@ public class EvidenceMapper implements Mapper<List<CCDCollectionElement<CCDEvide
 
 
     public CCDCollectionElement<CCDEvidenceRow> to(Evidence evidence) {
-        if (evidence == null) return null;
+        if (evidence == null) {
+            return null;
+        }
 
         CCDEvidenceRow ccdEvidenceRow = CCDEvidenceRow.builder()
                            .type(CCDEvidenceType.valueOf(evidence.getType().name()))

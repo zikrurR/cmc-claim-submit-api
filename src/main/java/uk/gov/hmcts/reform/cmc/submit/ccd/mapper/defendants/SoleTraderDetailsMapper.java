@@ -21,7 +21,9 @@ public class SoleTraderDetailsMapper {
     }
 
     public void to(SoleTraderDetails soleTrader, CCDDefendant.CCDDefendantBuilder builder) {
-        if (soleTrader == null) return;
+        if (soleTrader == null) {
+            return;
+        }
 
         builder.claimantProvidedTitle(soleTrader.getTitle());
         builder.claimantProvidedBusinessName(soleTrader.getBusinessName());
@@ -36,7 +38,9 @@ public class SoleTraderDetailsMapper {
     }
 
     public SoleTraderDetails from(CCDCollectionElement<CCDDefendant> defendant) {
-        if (defendant == null) return null;
+        if (defendant == null) {
+            return null;
+        }
 
         CCDDefendant value = defendant.getValue();
 

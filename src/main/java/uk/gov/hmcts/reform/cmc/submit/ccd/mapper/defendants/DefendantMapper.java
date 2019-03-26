@@ -27,7 +27,9 @@ public class DefendantMapper implements Mapper<List<CCDCollectionElement<CCDDefe
 
     @Override
     public List<CCDCollectionElement<CCDDefendant>> to(List<TheirDetails> theirDetails) {
-        if (theirDetails == null) return new ArrayList<>();
+        if (theirDetails == null) {
+            return new ArrayList<>();
+        }
 
 
         return theirDetails.stream()
@@ -38,7 +40,9 @@ public class DefendantMapper implements Mapper<List<CCDCollectionElement<CCDDefe
 
     @Override
     public List<TheirDetails> from(List<CCDCollectionElement<CCDDefendant>> defendant) {
-        if (defendant == null) return new ArrayList<>();
+        if (defendant == null) {
+            return new ArrayList<>();
+        }
 
         return defendant.stream()
                 .filter(Objects::nonNull)

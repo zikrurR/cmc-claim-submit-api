@@ -15,7 +15,8 @@ public class IndividualDetailsMapper {
     private final DefendantRepresentativeMapper representativeMapper;
 
     @Autowired
-    public IndividualDetailsMapper(AddressMapper addressMapper, DefendantRepresentativeMapper defendantRepresentativeMapper) {
+    public IndividualDetailsMapper(AddressMapper addressMapper,
+                                   DefendantRepresentativeMapper defendantRepresentativeMapper) {
         this.addressMapper = addressMapper;
         this.representativeMapper = defendantRepresentativeMapper;
     }

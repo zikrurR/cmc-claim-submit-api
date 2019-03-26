@@ -14,10 +14,11 @@ import java.util.stream.Collectors;
 @Component
 public class TimelineMapper implements Mapper<List<CCDCollectionElement<CCDTimelineEvent>>, List<TimelineEvent>> {
 
-
     @Override
-    public List<CCDCollectionElement<CCDTimelineEvent>> to(List<TimelineEvent> timeline ) {
-        if (timeline == null) return new ArrayList<>();
+    public List<CCDCollectionElement<CCDTimelineEvent>> to(List<TimelineEvent> timeline) {
+        if (timeline == null) {
+            return new ArrayList<>();
+        }
 
         return timeline.stream()
                 .map(this::to)
@@ -26,7 +27,9 @@ public class TimelineMapper implements Mapper<List<CCDCollectionElement<CCDTimel
 
     @Override
     public List<TimelineEvent> from(List<CCDCollectionElement<CCDTimelineEvent>> ccdTimeline) {
-        if (ccdTimeline == null) return new ArrayList<>();
+        if (ccdTimeline == null) {
+            return new ArrayList<>();
+        }
 
         return ccdTimeline.stream()
                 .map(this::from)
@@ -35,7 +38,9 @@ public class TimelineMapper implements Mapper<List<CCDCollectionElement<CCDTimel
 
 
     private CCDCollectionElement<CCDTimelineEvent> to(TimelineEvent timelineEvent) {
-        if (timelineEvent == null) return null;
+        if (timelineEvent == null) {
+            return null;
+        }
 
         CCDTimelineEvent ccdTimelineEvent = CCDTimelineEvent.builder()
                                                     .date(timelineEvent.getDate())

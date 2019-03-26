@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Component
 public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreakDown, CCDCase.CCDCaseBuilder> {
 
-
     @Override
     public void to(AmountBreakDown amountBreakDown, CCDCase.CCDCaseBuilder builder) {
         builder.amountBreakDown(amountBreakDown.getRows().stream()
@@ -23,6 +22,17 @@ public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreak
             .filter(Objects::nonNull)
             .collect(Collectors.toList()));
 
+    }
+
+    private CCDCollectionElement<CCDAmountRow> to(AmountRow amountRow) {
+        if (amountRow.getAmount() == null) {
+            return null;
+        }
+
+        return CCDCollectionElement.<CCDAmountRow>builder()
+            .value(CCDAmountRow.builder().reason(amountRow.getReason()).amount(amountRow.getAmount()).build())
+            .id(amountRow.getId())
+            .build();
     }
 
     @Override
@@ -36,19 +46,7 @@ public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreak
         return amountBreakDown;
     }
 
-
-    public CCDCollectionElement<CCDAmountRow> to(AmountRow amountRow) {
-        if (amountRow.getAmount() == null) {
-            return null;
-        }
-
-        return CCDCollectionElement.<CCDAmountRow>builder()
-            .value(CCDAmountRow.builder().reason(amountRow.getReason()).amount(amountRow.getAmount()).build())
-            .id(amountRow.getId())
-            .build();
-    }
-
-    public AmountRow from(CCDCollectionElement<CCDAmountRow> collectionElement) {
+    private AmountRow from(CCDCollectionElement<CCDAmountRow> collectionElement) {
         CCDAmountRow ccdAmountRow = collectionElement.getValue();
 
         AmountRow amountRow = new AmountRow();
@@ -58,4 +56,5 @@ public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreak
 
         return amountRow;
     }
+
 }

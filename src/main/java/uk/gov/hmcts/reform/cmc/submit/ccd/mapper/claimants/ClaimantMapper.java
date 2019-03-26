@@ -39,7 +39,9 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
 
     @Override
     public List<CCDCollectionElement<CCDClaimant>> to(List<Party> evidences) {
-        if (evidences == null) return new ArrayList<>();
+        if (evidences == null) {
+            return new ArrayList<>();
+        }
 
 
         return evidences.stream()
@@ -50,7 +52,9 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
 
     @Override
     public List<Party> from(List<CCDCollectionElement<CCDClaimant>> ccdEvidence) {
-        if (ccdEvidence == null) return new ArrayList<>();
+        if (ccdEvidence == null) {
+            return new ArrayList<>();
+        }
 
         return ccdEvidence.stream()
                 .filter(Objects::nonNull)
@@ -58,9 +62,7 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
                 .collect(Collectors.toList());
     }
 
-
-
-    public CCDCollectionElement<CCDClaimant> to(Party party) {
+    private CCDCollectionElement<CCDClaimant> to(Party party) {
         CCDClaimant.CCDClaimantBuilder builder = CCDClaimant.builder();
 
         if (party instanceof Individual) {
@@ -86,7 +88,7 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
             .build();
     }
 
-    public Party from(CCDCollectionElement<CCDClaimant> ccdClaimant) {
+    private Party from(CCDCollectionElement<CCDClaimant> ccdClaimant) {
         switch (ccdClaimant.getValue().getPartyType()) {
             case COMPANY:
                 return companyMapper.from(ccdClaimant);

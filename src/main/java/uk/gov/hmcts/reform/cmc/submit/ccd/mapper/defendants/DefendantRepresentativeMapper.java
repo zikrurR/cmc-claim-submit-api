@@ -28,7 +28,9 @@ public class DefendantRepresentativeMapper
 
     @Override
     public void to(Representative representative, CCDDefendant.CCDDefendantBuilder builder) {
-        if (representative == null) return;
+        if (representative == null) {
+            return;
+        }
 
         defendantContactDetailsMapper.to(representative.getOrganisationContactDetails(), builder);
 

@@ -21,7 +21,9 @@ public class OrganisationDetailsMapper {
     }
 
     public void to(OrganisationDetails organisation, CCDDefendant.CCDDefendantBuilder builder) {
-        if (organisation == null) return;
+        if (organisation == null) {
+            return;
+        }
 
         builder.claimantProvidedServiceAddress(addressMapper.to(organisation.getServiceAddress()));
         representativeMapper.to(organisation.getRepresentative(), builder);
@@ -35,7 +37,9 @@ public class OrganisationDetailsMapper {
     }
 
     public OrganisationDetails from(CCDCollectionElement<CCDDefendant> defendant) {
-        if (defendant == null) return null;
+        if (defendant == null) {
+            return null;
+        }
 
         CCDDefendant value = defendant.getValue();
 
