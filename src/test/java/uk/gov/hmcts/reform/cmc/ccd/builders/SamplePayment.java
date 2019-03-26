@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.payment.Payment;
+import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
 
 import java.math.BigDecimal;
 
@@ -10,8 +10,8 @@ public class SamplePayment {
         super();
     }
 
-    public static Payment validDefaults() {
-        Payment payment = new Payment();
+    public static ReferencePayment validDefaults() {
+        ReferencePayment payment = new ReferencePayment();
         payment.setReference("RC-1524-6488-1670-7520");
         payment.setAmount(BigDecimal.valueOf(4000));
         payment.setDateCreated("2019-01-01");

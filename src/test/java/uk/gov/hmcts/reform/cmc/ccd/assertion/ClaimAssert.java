@@ -14,6 +14,8 @@ import uk.gov.hmcts.cmc.domain.models.amount.NotKnown;
 import uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation;
 import uk.gov.hmcts.cmc.domain.models.particulars.HousingDisrepair;
 import uk.gov.hmcts.cmc.domain.models.particulars.PersonalInjury;
+import uk.gov.hmcts.cmc.domain.models.payment.AccountPayment;
+import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -69,16 +71,6 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                 ccdCase.getReason(), actual.getReason());
         }
 
-
-        if (!Objects.equals(actual.getFeeAccountNumber(), ccdCase.getFeeAccountNumber())) {
-            failWithMessage("Expected CCDClaim.feeAccountNumber to be <%s> but was <%s>",
-                ccdCase.getFeeAccountNumber(), actual.getFeeAccountNumber());
-        }
-
-        if (!Objects.equals(actual.getExternalReferenceNumber(), ccdCase.getExternalReferenceNumber())) {
-            failWithMessage("Expected CCDClaim.externalReferenceNumber to be <%s> but was <%s>",
-                ccdCase.getExternalReferenceNumber(), actual.getExternalReferenceNumber());
-        }
 
         if (!Objects.equals(actual.getExternalId().toString(), ccdCase.getExternalId())) {
             failWithMessage("Expected CCDClaim.externalId to be <%s> but was <%s>",
@@ -169,7 +161,10 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
             }
         );
 
-        ofNullable(actual.getPayment()).ifPresent(payment -> {
+        ofNullable(actual.getPayment())
+            .filter(ReferencePayment.class::isInstance)
+            .map(obj -> (ReferencePayment) obj)
+            .ifPresent(payment -> {
                 if (!Objects.equals(payment.getId(), ccdCase.getPaymentId())) {
                     failWithMessage("Expected CCDCase.paymentId to be <%s> but was <%s>",
                         ccdCase.getPaymentId(), payment.getId());
@@ -191,6 +186,17 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
                 if (!Objects.equals(payment.getStatus(), ccdCase.getPaymentStatus())) {
                     failWithMessage("Expected CCDCase.paymentStatus to be <%s> but was <%s>",
                         ccdCase.getPaymentStatus(), payment.getStatus());
+                }
+            }
+        );
+
+        ofNullable(actual.getPayment())
+            .filter(AccountPayment.class::isInstance)
+            .map(obj -> (AccountPayment) obj)
+            .ifPresent(payment -> {
+                if (!Objects.equals(payment.getFeeAccountNumber(), ccdCase.getFeeAccountNumber())) {
+                    failWithMessage("Expected CCDCase.feeAccountNumber to be <%s> but was <%s>",
+                        ccdCase.getPaymentId(), payment.getFeeAccountNumber());
                 }
             }
         );

@@ -48,9 +48,8 @@ public class ClaimMapper {
 
 
         builder.externalId(Objects.toString(claim.getExternalId()));
-        builder.feeAccountNumber(claim.getFeeAccountNumber());
+//        builder.feeAccountNumber(claim.getFeeAccountNumber());
 
-        builder.externalReferenceNumber(claim.getExternalReferenceNumber());
         builder.preferredCourt(claim.getPreferredCourt());
         builder.reason(claim.getReason());
 
@@ -113,8 +112,7 @@ public class ClaimMapper {
         claim.setHousingDisrepair(housingDisrepairFrom(ccdCase));
         claim.setReason(ccdCase.getReason());
         claim.setStatementOfTruth(statementOfTruthFrom(ccdCase));
-        claim.setFeeAccountNumber(ccdCase.getFeeAccountNumber());
-        claim.setExternalReferenceNumber(ccdCase.getExternalReferenceNumber());
+//        claim.setExternalReferenceNumber(ccdCase.getExternalReferenceNumber());
         claim.setPreferredCourt(ccdCase.getPreferredCourt());
         claim.setTimeline(timelineMapper.from(ccdCase.getTimeline()));
         claim.setEvidences(evidenceMapper.from(ccdCase.getEvidence()));

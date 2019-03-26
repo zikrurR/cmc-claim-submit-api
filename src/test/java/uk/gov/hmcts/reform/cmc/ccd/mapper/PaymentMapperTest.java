@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
-import uk.gov.hmcts.cmc.domain.models.payment.Payment;
+import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SamplePayment;
 import uk.gov.hmcts.reform.cmc.domain.utils.LocalDateTimeFactory;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.payment.PaymentMapper;
@@ -21,7 +21,7 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentToCcd() {
         //given
-        Payment payment = SamplePayment.validDefaults();
+        ReferencePayment payment = SamplePayment.validDefaults();
 
         //when
         CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();
@@ -40,7 +40,7 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentToCcdWhenNoCreatedDateProvided() {
         //given
-        Payment payment = SamplePayment.validDefaults();
+        ReferencePayment payment = SamplePayment.validDefaults();
         payment.setDateCreated(null);
 
         //when
@@ -59,7 +59,7 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentToCcdWhenLongCreatedDateProvided() {
         //given
-        Payment payment = SamplePayment.validDefaults();
+        ReferencePayment payment = SamplePayment.validDefaults();
         payment.setDateCreated("1511169381890");
 
         //when
@@ -88,7 +88,7 @@ public class PaymentMapperTest {
             .build();
 
         //when
-        Payment payment = mapper.from(ccdCase);
+        ReferencePayment payment = (ReferencePayment)mapper.from(ccdCase);
 
         //then
         assertThat(LocalDate.parse(payment.getDateCreated(), ISO_DATE))
@@ -111,7 +111,7 @@ public class PaymentMapperTest {
             .build();
 
         //when
-        Payment payment = mapper.from(ccdCase);
+        ReferencePayment payment = (ReferencePayment)mapper.from(ccdCase);
 
         //then
         assertThat(payment.getDateCreated()).isBlank();

@@ -32,6 +32,9 @@ public class PostClaimTest {
     @DisplayName("Happy path should create the claim requested with 200 response code")
     @Test
     public void postClaim() throws Exception {
+
+
+
         MvcResult response = mockMvc
                 .perform(post("/")
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
