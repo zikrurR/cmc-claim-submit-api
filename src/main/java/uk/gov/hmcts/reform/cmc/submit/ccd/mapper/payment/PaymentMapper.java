@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.payment;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.payment.AccountPayment;
 import uk.gov.hmcts.cmc.domain.models.payment.Payment;
 import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
@@ -17,10 +17,10 @@ import static java.time.format.DateTimeFormatter.ISO_DATE;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
-public class PaymentMapper implements BuilderMapper<CCDCase, Payment, CCDCase.CCDCaseBuilder> {
+public class PaymentMapper implements BuilderMapper<CcdCase, Payment, CcdCase.CcdCaseBuilder> {
 
     @Override
-    public void to(Payment payment, CCDCase.CCDCaseBuilder builder) {
+    public void to(Payment payment, CcdCase.CcdCaseBuilder builder) {
         if (payment == null) {
             return;
         }
@@ -33,7 +33,7 @@ public class PaymentMapper implements BuilderMapper<CCDCase, Payment, CCDCase.CC
 
     }
 
-    private void toReferencePayment(ReferencePayment payment, CCDCase.CCDCaseBuilder builder) {
+    private void toReferencePayment(ReferencePayment payment, CcdCase.CcdCaseBuilder builder) {
         builder
             .paymentAmount(payment.getAmount())
             .paymentId(payment.getId())
@@ -45,12 +45,12 @@ public class PaymentMapper implements BuilderMapper<CCDCase, Payment, CCDCase.CC
         }
     }
 
-    private void toAccountPayment(AccountPayment payment, CCDCase.CCDCaseBuilder builder) {
+    private void toAccountPayment(AccountPayment payment, CcdCase.CcdCaseBuilder builder) {
         builder.feeAccountNumber(payment.getFeeAccountNumber());
     }
 
     @Override
-    public Payment from(CCDCase ccdCase) {
+    public Payment from(CcdCase ccdCase) {
 
         if (!isBlank(ccdCase.getFeeAccountNumber())) {
             AccountPayment payment = new AccountPayment();

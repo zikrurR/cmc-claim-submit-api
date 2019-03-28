@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.cmc.domain.models.StatementOfTruth;
 import uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation;
@@ -41,10 +41,10 @@ public class ClaimMapper {
     private EvidenceMapper evidenceMapper;
 
 
-    public CCDCase to(ClaimData claim) {
+    public CcdCase to(ClaimData claim) {
         Objects.requireNonNull(claim, "claimData must not be null");
 
-        CCDCase.CCDCaseBuilder builder = CCDCase.builder();
+        CcdCase.CcdCaseBuilder builder = CcdCase.builder();
 
 
         builder.externalId(Objects.toString(claim.getExternalId()));
@@ -92,7 +92,7 @@ public class ClaimMapper {
         return builder.build();
     }
 
-    public ClaimData from(CCDCase ccdCase) {
+    public ClaimData from(CcdCase ccdCase) {
 
         Objects.requireNonNull(ccdCase, "ccdCase must not be null");
 
@@ -125,7 +125,7 @@ public class ClaimMapper {
         return claim;
     }
 
-    private PersonalInjury personalInjuryFrom(CCDCase ccdCase) {
+    private PersonalInjury personalInjuryFrom(CcdCase ccdCase) {
         if (isBlank(ccdCase.getPersonalInjuryGeneralDamages())) {
             return null;
         }
@@ -136,7 +136,7 @@ public class ClaimMapper {
         return personalInjury;
     }
 
-    private HousingDisrepair housingDisrepairFrom(CCDCase ccdCase) {
+    private HousingDisrepair housingDisrepairFrom(CcdCase ccdCase) {
         if (isBlank(ccdCase.getHousingDisrepairCostOfRepairDamages())
             && isBlank(ccdCase.getHousingDisrepairOtherDamages())
         ) {
@@ -153,7 +153,7 @@ public class ClaimMapper {
         return housingDisrepair;
     }
 
-    private StatementOfTruth statementOfTruthFrom(CCDCase ccdCase) {
+    private StatementOfTruth statementOfTruthFrom(CcdCase ccdCase) {
         if (isBlank(ccdCase.getSotSignerName()) && isBlank(ccdCase.getSotSignerRole())) {
             return null;
         }

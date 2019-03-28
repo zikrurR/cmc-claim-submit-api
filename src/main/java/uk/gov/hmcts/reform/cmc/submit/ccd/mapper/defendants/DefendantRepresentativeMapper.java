@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.domain.models.common.Representative;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
@@ -12,7 +12,7 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
 public class DefendantRepresentativeMapper
-    implements BuilderMapper<CCDDefendant, Representative, CCDDefendant.CCDDefendantBuilder> {
+    implements BuilderMapper<CcdDefendant, Representative, CcdDefendant.CcdDefendantBuilder> {
 
     private final AddressMapper addressMapper;
     private final DefendantContactDetailsMapper defendantContactDetailsMapper;
@@ -27,7 +27,7 @@ public class DefendantRepresentativeMapper
     }
 
     @Override
-    public void to(Representative representative, CCDDefendant.CCDDefendantBuilder builder) {
+    public void to(Representative representative, CcdDefendant.CcdDefendantBuilder builder) {
         if (representative == null) {
             return;
         }
@@ -39,7 +39,7 @@ public class DefendantRepresentativeMapper
     }
 
     @Override
-    public Representative from(CCDDefendant ccdDefendant) {
+    public Representative from(CcdDefendant ccdDefendant) {
         if (isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationName())
             && ccdDefendant.getClaimantProvidedRepresentativeOrganisationAddress() == null
             && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationPhone())

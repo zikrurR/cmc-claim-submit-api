@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.timeline;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdTimelineEvent;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.Mapper;
 
@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class TimelineMapper implements Mapper<List<CCDCollectionElement<CCDTimelineEvent>>, List<TimelineEvent>> {
+public class TimelineMapper implements Mapper<List<CcdCollectionElement<CcdTimelineEvent>>, List<TimelineEvent>> {
 
     @Override
-    public List<CCDCollectionElement<CCDTimelineEvent>> to(List<TimelineEvent> timeline) {
+    public List<CcdCollectionElement<CcdTimelineEvent>> to(List<TimelineEvent> timeline) {
         if (timeline == null) {
             return new ArrayList<>();
         }
@@ -26,7 +26,7 @@ public class TimelineMapper implements Mapper<List<CCDCollectionElement<CCDTimel
     }
 
     @Override
-    public List<TimelineEvent> from(List<CCDCollectionElement<CCDTimelineEvent>> ccdTimeline) {
+    public List<TimelineEvent> from(List<CcdCollectionElement<CcdTimelineEvent>> ccdTimeline) {
         if (ccdTimeline == null) {
             return new ArrayList<>();
         }
@@ -37,24 +37,24 @@ public class TimelineMapper implements Mapper<List<CCDCollectionElement<CCDTimel
     }
 
 
-    private CCDCollectionElement<CCDTimelineEvent> to(TimelineEvent timelineEvent) {
+    private CcdCollectionElement<CcdTimelineEvent> to(TimelineEvent timelineEvent) {
         if (timelineEvent == null) {
             return null;
         }
 
-        CCDTimelineEvent ccdTimelineEvent = CCDTimelineEvent.builder()
+        CcdTimelineEvent ccdTimelineEvent = CcdTimelineEvent.builder()
                                                     .date(timelineEvent.getDate())
                                                     .description(timelineEvent.getDescription())
                                                     .build();
 
-        return CCDCollectionElement.<CCDTimelineEvent>builder()
+        return CcdCollectionElement.<CcdTimelineEvent>builder()
             .value(ccdTimelineEvent)
             .id(timelineEvent.getId())
             .build();
     }
 
 
-    private TimelineEvent from(CCDCollectionElement<CCDTimelineEvent> ccdTimelineEvent) {
+    private TimelineEvent from(CcdCollectionElement<CcdTimelineEvent> ccdTimelineEvent) {
         TimelineEvent timelineEvent = new TimelineEvent();
         timelineEvent.setId(ccdTimelineEvent.getId());
         timelineEvent.setDescription(ccdTimelineEvent.getValue().getDescription());

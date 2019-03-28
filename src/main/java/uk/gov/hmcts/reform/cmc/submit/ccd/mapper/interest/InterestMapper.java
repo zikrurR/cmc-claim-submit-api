@@ -3,15 +3,15 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.interest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
-import uk.gov.hmcts.cmc.ccd.domain.CCDInterestType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdInterestType;
 import uk.gov.hmcts.cmc.domain.models.interest.Interest;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
-public class InterestMapper implements BuilderMapper<CCDCase, Interest, CCDCase.CCDCaseBuilder> {
+public class InterestMapper implements BuilderMapper<CcdCase, Interest, CcdCase.CcdCaseBuilder> {
 
     private InterestBreakdownMapper interestBreakdownMapper;
     private InterestDateMapper interestDateMapper;
@@ -26,7 +26,7 @@ public class InterestMapper implements BuilderMapper<CCDCase, Interest, CCDCase.
     }
 
     @Override
-    public void to(Interest interest, CCDCase.CCDCaseBuilder builder) {
+    public void to(Interest interest, CcdCase.CcdCaseBuilder builder) {
         if (interest == null) {
             return;
         }
@@ -36,13 +36,13 @@ public class InterestMapper implements BuilderMapper<CCDCase, Interest, CCDCase.
         interestDateMapper.to(interest.getInterestDate(), builder);
 
         builder
-            .interestType(CCDInterestType.valueOf(interest.getType().name()))
+            .interestType(CcdInterestType.valueOf(interest.getType().name()))
             .interestRate(interest.getRate())
             .interestReason(interest.getReason());
     }
 
     @Override
-    public Interest from(CCDCase ccdCase) {
+    public Interest from(CcdCase ccdCase) {
         if (ccdCase.getInterestType() == null
             && ccdCase.getInterestRate() == null
             && isBlank(ccdCase.getInterestReason())

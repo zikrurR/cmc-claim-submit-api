@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.amount;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.amount.Amount;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountBreakDown;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountRange;
@@ -15,7 +15,7 @@ import static uk.gov.hmcts.cmc.ccd.domain.AmountType.NOT_KNOWN;
 import static uk.gov.hmcts.cmc.ccd.domain.AmountType.RANGE;
 
 @Component
-public class AmountMapper implements BuilderMapper<CCDCase, Amount, CCDCase.CCDCaseBuilder> {
+public class AmountMapper implements BuilderMapper<CcdCase, Amount, CcdCase.CcdCaseBuilder> {
 
     private final AmountRangeMapper amountRangeMapper;
     private final AmountBreakDownMapper amountBreakDownMapper;
@@ -26,7 +26,7 @@ public class AmountMapper implements BuilderMapper<CCDCase, Amount, CCDCase.CCDC
     }
 
     @Override
-    public void to(Amount amount, CCDCase.CCDCaseBuilder builder) {
+    public void to(Amount amount, CcdCase.CcdCaseBuilder builder) {
         if (amount instanceof AmountRange) {
             builder.amountType(RANGE);
             AmountRange amountRange = (AmountRange) amount;
@@ -41,7 +41,7 @@ public class AmountMapper implements BuilderMapper<CCDCase, Amount, CCDCase.CCDC
     }
 
     @Override
-    public Amount from(CCDCase ccdCase) {
+    public Amount from(CcdCase ccdCase) {
 
         switch (ccdCase.getAmountType()) {
             case RANGE:

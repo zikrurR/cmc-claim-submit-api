@@ -2,14 +2,14 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.interest;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.interest.InterestBreakdown;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
 
 @Component
-public class InterestBreakdownMapper implements BuilderMapper<CCDCase, InterestBreakdown, CCDCase.CCDCaseBuilder> {
+public class InterestBreakdownMapper implements BuilderMapper<CcdCase, InterestBreakdown, CcdCase.CcdCaseBuilder> {
     @Override
-    public void to(InterestBreakdown interestBreakdown, CCDCase.CCDCaseBuilder builder) {
+    public void to(InterestBreakdown interestBreakdown, CcdCase.CcdCaseBuilder builder) {
         if (interestBreakdown == null) {
             return;
         }
@@ -20,7 +20,7 @@ public class InterestBreakdownMapper implements BuilderMapper<CCDCase, InterestB
     }
 
     @Override
-    public InterestBreakdown from(CCDCase ccdCase) {
+    public InterestBreakdown from(CcdCase ccdCase) {
         if (ccdCase.getInterestBreakDownAmount() == null && ccdCase.getInterestBreakDownExplanation() == null) {
             return null;
         }

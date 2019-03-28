@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
+import uk.gov.hmcts.cmc.ccd.domain.CcdTimelineEvent;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
 
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class TimelineEventAssert extends AbstractAssert<TimelineEventAssert, Tim
         super(actual, TimelineEventAssert.class);
     }
 
-    public TimelineEventAssert isEqualTo(CCDTimelineEvent ccdTimelineEvent) {
+    public TimelineEventAssert isEqualTo(CcdTimelineEvent ccdTimelineEvent) {
         isNotNull();
 
         if (!Objects.equals(actual.getDate(), ccdTimelineEvent.getDate())) {

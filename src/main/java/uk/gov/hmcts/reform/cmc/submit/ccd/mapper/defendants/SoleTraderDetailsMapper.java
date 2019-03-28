@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.SoleTraderDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
 
@@ -20,7 +20,7 @@ public class SoleTraderDetailsMapper {
         this.representativeMapper = representativeMapper;
     }
 
-    public void to(SoleTraderDetails soleTrader, CCDDefendant.CCDDefendantBuilder builder) {
+    public void to(SoleTraderDetails soleTrader, CcdDefendant.CcdDefendantBuilder builder) {
         if (soleTrader == null) {
             return;
         }
@@ -37,12 +37,12 @@ public class SoleTraderDetailsMapper {
 
     }
 
-    public SoleTraderDetails from(CCDCollectionElement<CCDDefendant> defendant) {
+    public SoleTraderDetails from(CcdCollectionElement<CcdDefendant> defendant) {
         if (defendant == null) {
             return null;
         }
 
-        CCDDefendant value = defendant.getValue();
+        CcdDefendant value = defendant.getValue();
 
         SoleTraderDetails ccdSoleTrader = new SoleTraderDetails();
         ccdSoleTrader.setId(defendant.getId());

@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SamplePayment;
 import uk.gov.hmcts.reform.cmc.domain.utils.LocalDateTimeFactory;
@@ -24,9 +24,9 @@ public class PaymentMapperTest {
         ReferencePayment payment = SamplePayment.validDefaults();
 
         //when
-        CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();
+        CcdCase.CcdCaseBuilder caseBuilder = CcdCase.builder();
         mapper.to(payment, caseBuilder);
-        CCDCase ccdCase = caseBuilder.build();
+        CcdCase ccdCase = caseBuilder.build();
 
         //then
         assertThat(LocalDate.parse(payment.getDateCreated(), ISO_DATE))
@@ -44,9 +44,9 @@ public class PaymentMapperTest {
         payment.setDateCreated(null);
 
         //when
-        CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();
+        CcdCase.CcdCaseBuilder caseBuilder = CcdCase.builder();
         mapper.to(payment, caseBuilder);
-        CCDCase ccdCase = caseBuilder.build();
+        CcdCase ccdCase = caseBuilder.build();
 
         //then
         assertThat(ccdCase.getPaymentDateCreated()).isNull();
@@ -63,9 +63,9 @@ public class PaymentMapperTest {
         payment.setDateCreated("1511169381890");
 
         //when
-        CCDCase.CCDCaseBuilder caseBuilder = CCDCase.builder();
+        CcdCase.CcdCaseBuilder caseBuilder = CcdCase.builder();
         mapper.to(payment, caseBuilder);
-        CCDCase ccdCase = caseBuilder.build();
+        CcdCase ccdCase = caseBuilder.build();
 
         //then
         assertThat(LocalDateTimeFactory.fromLong(Long.valueOf(payment.getDateCreated())))
@@ -79,7 +79,7 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentFromCcd() {
         //given
-        CCDCase ccdCase = CCDCase.builder()
+        CcdCase ccdCase = CcdCase.builder()
             .paymentAmount(BigDecimal.valueOf(4000))
             .paymentReference("RC-1524-6488-1670-7520")
             .paymentId("PaymentId")
@@ -102,7 +102,7 @@ public class PaymentMapperTest {
     @Test
     public void shouldMapPaymentFromCcdWhenNoDateCreatedProvided() {
         //given
-        CCDCase ccdCase = CCDCase.builder()
+        CcdCase ccdCase = CcdCase.builder()
             .paymentAmount(BigDecimal.valueOf(4000))
             .paymentReference("RC-1524-6488-1670-7520")
             .paymentId("PaymentId")

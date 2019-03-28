@@ -2,29 +2,29 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.Mapper;
 
 @Component
-public class AddressMapper implements Mapper<CCDAddress, Address> {
+public class AddressMapper implements Mapper<CcdAddress, Address> {
 
     @Override
-    public CCDAddress to(Address address) {
+    public CcdAddress to(Address address) {
         if (address == null) return null;
 
-        return CCDAddress
-            .builder()
-            .addressLine1(address.getLine1())
-            .addressLine2(address.getLine2())
-            .addressLine3(address.getLine3())
-            .postTown(address.getCity())
-            .postCode(address.getPostcode())
-            .build();
+        CcdAddress ccdAddress = new CcdAddress();
+        ccdAddress.setAddressLine1(address.getLine1());
+        ccdAddress.setAddressLine2(address.getLine2());
+        ccdAddress.setAddressLine3(address.getLine3());
+        ccdAddress.setPostTown(address.getCity());
+        ccdAddress.setPostCode(address.getPostcode());
+
+        return ccdAddress;
     }
 
     @Override
-    public Address from(CCDAddress ccdAddress) {
+    public Address from(CcdAddress ccdAddress) {
         if (ccdAddress == null) return null;
 
         Address address = new Address();

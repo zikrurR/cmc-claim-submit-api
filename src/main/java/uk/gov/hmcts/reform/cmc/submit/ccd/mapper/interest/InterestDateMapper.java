@@ -2,30 +2,30 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.interest;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
-import uk.gov.hmcts.cmc.ccd.domain.CCDInterestDateType;
-import uk.gov.hmcts.cmc.ccd.domain.CCDInterestEndDateType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdInterestDateType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdInterestEndDateType;
 import uk.gov.hmcts.cmc.domain.models.interest.InterestDate;
 import uk.gov.hmcts.cmc.domain.models.interest.InterestDate.InterestEndDateType;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
 
 @Component
-public class InterestDateMapper implements BuilderMapper<CCDCase, InterestDate, CCDCase.CCDCaseBuilder> {
+public class InterestDateMapper implements BuilderMapper<CcdCase, InterestDate, CcdCase.CcdCaseBuilder> {
 
     @Override
-    public void to(InterestDate interestDate, CCDCase.CCDCaseBuilder builder) {
+    public void to(InterestDate interestDate, CcdCase.CcdCaseBuilder builder) {
         if (interestDate == null || interestDate.getType() == null) {
             return;
         }
 
-        builder.interestDateType(CCDInterestDateType.valueOf(interestDate.getType().name()))
+        builder.interestDateType(CcdInterestDateType.valueOf(interestDate.getType().name()))
             .interestClaimStartDate(interestDate.getDate())
             .interestStartDateReason(interestDate.getReason())
-            .interestEndDateType(CCDInterestEndDateType.valueOf(interestDate.getEndDateType().name()));
+            .interestEndDateType(CcdInterestEndDateType.valueOf(interestDate.getEndDateType().name()));
     }
 
     @Override
-    public InterestDate from(CCDCase ccdCase) {
+    public InterestDate from(CcdCase ccdCase) {
         if (ccdCase.getInterestDateType() == null) {
             return null;
         }

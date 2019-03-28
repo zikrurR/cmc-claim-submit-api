@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleParty;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.ClaimantMapper;
@@ -42,8 +42,8 @@ public class ClaimantMapperTest {
         Party party = SampleParty.individual();
 
         //when
-        List<CCDCollectionElement<CCDClaimant>>  ccdParty = claimantMapper.to(asList(party));
-        CCDClaimant ccdClaimant = ccdParty.get(0).getValue();
+        List<CcdCollectionElement<CcdClaimant>>  ccdParty = claimantMapper.to(asList(party));
+        CcdClaimant ccdClaimant = ccdParty.get(0).getValue();
 
         //then
         assertThat(party).isEqualTo(ccdClaimant);
@@ -55,8 +55,8 @@ public class ClaimantMapperTest {
         Party party = SampleParty.company();
 
         //when
-        List<CCDCollectionElement<CCDClaimant>>  ccdParty = claimantMapper.to(asList(party));
-        CCDClaimant ccdClaimant = ccdParty.get(0).getValue();
+        List<CcdCollectionElement<CcdClaimant>>  ccdParty = claimantMapper.to(asList(party));
+        CcdClaimant ccdClaimant = ccdParty.get(0).getValue();
 
         //then
         assertThat(party).isEqualTo(ccdClaimant);
@@ -68,8 +68,8 @@ public class ClaimantMapperTest {
         Party party = SampleParty.organisation();
 
         //when
-        List<CCDCollectionElement<CCDClaimant>> ccdParty = claimantMapper.to(asList(party));
-        CCDClaimant ccdClaimant = ccdParty.get(0).getValue();
+        List<CcdCollectionElement<CcdClaimant>> ccdParty = claimantMapper.to(asList(party));
+        CcdClaimant ccdClaimant = ccdParty.get(0).getValue();
 
         //then
         assertThat(party).isEqualTo(ccdClaimant);
@@ -81,8 +81,8 @@ public class ClaimantMapperTest {
         Party party = SampleParty.soleTrader();
 
         //when
-        List<CCDCollectionElement<CCDClaimant>> ccdParty = claimantMapper.to(asList(party));
-        CCDClaimant ccdClaimant = ccdParty.get(0).getValue();
+        List<CcdCollectionElement<CcdClaimant>> ccdParty = claimantMapper.to(asList(party));
+        CcdClaimant ccdClaimant = ccdParty.get(0).getValue();
 
         //then
         assertThat(party).isEqualTo(ccdClaimant);
@@ -91,12 +91,12 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapIndividualFromCcd() {
         //given
-        CCDClaimant ccdParty = getCcdClaimantIndividual();
+        CcdClaimant ccdParty = getCcdClaimantIndividual();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         List<Party> party = claimantMapper
-            .from(asList(CCDCollectionElement.<CCDClaimant>builder()
+            .from(asList(CcdCollectionElement.<CcdClaimant>builder()
                 .id(collectionId)
                 .value(ccdParty).build()));
 
@@ -108,12 +108,12 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapCompanyFromCcd() {
         //given
-        CCDClaimant ccdParty = getCcdClaimantCompany();
+        CcdClaimant ccdParty = getCcdClaimantCompany();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         List<Party> party = claimantMapper
-            .from(asList(CCDCollectionElement.<CCDClaimant>builder()
+            .from(asList(CcdCollectionElement.<CcdClaimant>builder()
                 .id(collectionId)
                 .value(ccdParty).build()));
 
@@ -125,12 +125,12 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapOrganisationFromCcd() {
         //given
-        CCDClaimant ccdParty = getCcdClaimantOrganisation();
+        CcdClaimant ccdParty = getCcdClaimantOrganisation();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         List<Party> party = claimantMapper
-            .from(asList(CCDCollectionElement.<CCDClaimant>builder()
+            .from(asList(CcdCollectionElement.<CcdClaimant>builder()
                 .id(collectionId)
                 .value(ccdParty).build()));
 
@@ -142,12 +142,12 @@ public class ClaimantMapperTest {
     @Test
     public void shouldMapSoleTraderFromCcd() {
         //given
-        CCDClaimant ccdParty = getCcdClaimantSoleTrader();
+        CcdClaimant ccdParty = getCcdClaimantSoleTrader();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         List<Party> party = claimantMapper
-            .from(asList(CCDCollectionElement.<CCDClaimant>builder()
+            .from(asList(CcdCollectionElement.<CcdClaimant>builder()
                 .id(collectionId)
                 .value(ccdParty).build()));
 

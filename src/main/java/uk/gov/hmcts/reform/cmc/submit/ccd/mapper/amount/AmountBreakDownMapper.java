@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.amount;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAmountRow;
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAmountRow;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountBreakDown;
 import uk.gov.hmcts.cmc.domain.models.amount.AmountRow;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
@@ -13,10 +13,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreakDown, CCDCase.CCDCaseBuilder> {
+public class AmountBreakDownMapper implements BuilderMapper<CcdCase, AmountBreakDown, CcdCase.CcdCaseBuilder> {
 
     @Override
-    public void to(AmountBreakDown amountBreakDown, CCDCase.CCDCaseBuilder builder) {
+    public void to(AmountBreakDown amountBreakDown, CcdCase.CcdCaseBuilder builder) {
         builder.amountBreakDown(amountBreakDown.getRows().stream()
             .map(this::to)
             .filter(Objects::nonNull)
@@ -24,19 +24,19 @@ public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreak
 
     }
 
-    private CCDCollectionElement<CCDAmountRow> to(AmountRow amountRow) {
+    private CcdCollectionElement<CcdAmountRow> to(AmountRow amountRow) {
         if (amountRow.getAmount() == null) {
             return null;
         }
 
-        return CCDCollectionElement.<CCDAmountRow>builder()
-            .value(CCDAmountRow.builder().reason(amountRow.getReason()).amount(amountRow.getAmount()).build())
+        return CcdCollectionElement.<CcdAmountRow>builder()
+            .value(CcdAmountRow.builder().reason(amountRow.getReason()).amount(amountRow.getAmount()).build())
             .id(amountRow.getId())
             .build();
     }
 
     @Override
-    public AmountBreakDown from(CCDCase ccdCase) {
+    public AmountBreakDown from(CcdCase ccdCase) {
 
         AmountBreakDown amountBreakDown = new AmountBreakDown();
         amountBreakDown.setRows(ccdCase.getAmountBreakDown().stream()
@@ -46,8 +46,8 @@ public class AmountBreakDownMapper implements BuilderMapper<CCDCase, AmountBreak
         return amountBreakDown;
     }
 
-    private AmountRow from(CCDCollectionElement<CCDAmountRow> collectionElement) {
-        CCDAmountRow ccdAmountRow = collectionElement.getValue();
+    private AmountRow from(CcdCollectionElement<CcdAmountRow> collectionElement) {
+        CcdAmountRow ccdAmountRow = collectionElement.getValue();
 
         AmountRow amountRow = new AmountRow();
         amountRow.setId(collectionElement.getId());

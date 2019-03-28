@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 
 @Api
 @RestController
-@RequestMapping("/claims")
+@RequestMapping("/claim")
 public class ClaimController {
 
     private final ClaimService claimService;

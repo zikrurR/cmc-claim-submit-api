@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class AddressAssert extends AbstractAssert<AddressAssert, Address> {
         super(actual, AddressAssert.class);
     }
 
-    public AddressAssert isEqualTo(CCDAddress ccdAddress) {
+    public AddressAssert isEqualTo(CcdAddress ccdAddress) {
         if (actual == null && ccdAddress == null) return this;
 
         if (actual == null) {

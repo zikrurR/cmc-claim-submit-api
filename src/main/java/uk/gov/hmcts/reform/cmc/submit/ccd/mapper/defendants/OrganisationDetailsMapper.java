@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
 
@@ -20,7 +20,7 @@ public class OrganisationDetailsMapper {
         this.representativeMapper = representativeMapper;
     }
 
-    public void to(OrganisationDetails organisation, CCDDefendant.CCDDefendantBuilder builder) {
+    public void to(OrganisationDetails organisation, CcdDefendant.CcdDefendantBuilder builder) {
         if (organisation == null) {
             return;
         }
@@ -36,12 +36,12 @@ public class OrganisationDetailsMapper {
 
     }
 
-    public OrganisationDetails from(CCDCollectionElement<CCDDefendant> defendant) {
+    public OrganisationDetails from(CcdCollectionElement<CcdDefendant> defendant) {
         if (defendant == null) {
             return null;
         }
 
-        CCDDefendant value = defendant.getValue();
+        CcdDefendant value = defendant.getValue();
 
         OrganisationDetails organisationDetails = new OrganisationDetails();
         organisationDetails.setId(defendant.getId());

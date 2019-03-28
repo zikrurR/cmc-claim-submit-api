@@ -1,19 +1,18 @@
 package uk.gov.hmcts.reform.cmc.ccd.util;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
-import uk.gov.hmcts.cmc.ccd.domain.CCDAmountRow;
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
-import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CCDInterestDateType;
-import uk.gov.hmcts.cmc.ccd.domain.CCDInterestEndDateType;
-import uk.gov.hmcts.cmc.ccd.domain.CCDInterestType;
-import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAmountRow;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdInterestDateType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdInterestEndDateType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdInterestType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdTimelineEvent;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -21,11 +20,11 @@ import java.util.UUID;
 import static java.util.Collections.singletonList;
 import static uk.gov.hmcts.cmc.ccd.domain.AmountType.BREAK_DOWN;
 import static uk.gov.hmcts.cmc.ccd.domain.AmountType.RANGE;
-import static uk.gov.hmcts.cmc.ccd.domain.CCDPartyType.COMPANY;
-import static uk.gov.hmcts.cmc.ccd.domain.CCDPartyType.INDIVIDUAL;
-import static uk.gov.hmcts.cmc.ccd.domain.CCDPartyType.ORGANISATION;
-import static uk.gov.hmcts.cmc.ccd.domain.CCDPartyType.SOLE_TRADER;
-import static uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceType.EXPERT_WITNESS;
+import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.COMPANY;
+import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.INDIVIDUAL;
+import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.ORGANISATION;
+import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.SOLE_TRADER;
+import static uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceType.EXPERT_WITNESS;
 import static uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation.MORE_THAN_THOUSAND_POUNDS;
 import static uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation.THOUSAND_POUNDS_OR_LESS;
 
@@ -35,15 +34,15 @@ public class SampleData {
     private SampleData() {
     }
 
-    public static List<CCDCollectionElement<CCDAmountRow>> getAmountBreakDown() {
-        return singletonList(CCDCollectionElement.<CCDAmountRow>builder().value(CCDAmountRow.builder()
+    public static List<CcdCollectionElement<CcdAmountRow>> getAmountBreakDown() {
+        return singletonList(CcdCollectionElement.<CcdAmountRow>builder().value(CcdAmountRow.builder()
             .amount(BigDecimal.valueOf(50))
             .reason("payment")
             .build()).build());
     }
 
-    public static CCDAddress getCcdAddress() {
-        return CCDAddress.builder()
+    public static CcdAddress getCcdAddress() {
+        return CcdAddress.builder()
             .addressLine1("line1")
             .addressLine2("line2")
             .addressLine3("line3")
@@ -52,9 +51,9 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCcdDefendantIndividual() {
-        CCDAddress ccdAddress = getCcdAddress();
-        return CCDDefendant.builder()
+    public static CcdDefendant getCcdDefendantIndividual() {
+        CcdAddress ccdAddress = getCcdAddress();
+        return CcdDefendant.builder()
             .claimantProvidedType(INDIVIDUAL)
             .claimantProvidedAddress(ccdAddress)
             .claimantProvidedName("Individual")
@@ -68,9 +67,9 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCcdDefendantOrganisation() {
-        CCDAddress ccdAddress = getCcdAddress();
-        return CCDDefendant.builder()
+    public static CcdDefendant getCcdDefendantOrganisation() {
+        CcdAddress ccdAddress = getCcdAddress();
+        return CcdDefendant.builder()
             .claimantProvidedType(ORGANISATION)
             .claimantProvidedAddress(ccdAddress)
             .claimantProvidedName("Organisation")
@@ -85,9 +84,9 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCcdDefendantCompany() {
-        CCDAddress ccdAddress = getCcdAddress();
-        return CCDDefendant.builder()
+    public static CcdDefendant getCcdDefendantCompany() {
+        CcdAddress ccdAddress = getCcdAddress();
+        return CcdDefendant.builder()
             .claimantProvidedType(COMPANY)
             .claimantProvidedAddress(ccdAddress)
             .claimantProvidedName("Abc Ltd")
@@ -102,9 +101,9 @@ public class SampleData {
             .build();
     }
 
-    public static CCDDefendant getCcdDefendantSoleTrader() {
-        CCDAddress ccdAddress = getCcdAddress();
-        return CCDDefendant.builder()
+    public static CcdDefendant getCcdDefendantSoleTrader() {
+        CcdAddress ccdAddress = getCcdAddress();
+        return CcdDefendant.builder()
             .claimantProvidedType(SOLE_TRADER)
             .claimantProvidedAddress(ccdAddress)
             .claimantProvidedTitle("Mr.")
@@ -119,9 +118,9 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCcdClaimantIndividual() {
-        CCDAddress ccdAddress = getCcdAddress();
-        return CCDClaimant.builder()
+    public static CcdClaimant getCcdClaimantIndividual() {
+        CcdAddress ccdAddress = getCcdAddress();
+        return CcdClaimant.builder()
             .partyType(INDIVIDUAL)
             .partyAddress(ccdAddress)
             .partyName("Individual")
@@ -136,10 +135,10 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCcdClaimantCompany() {
-        CCDAddress ccdAddress = getCcdAddress();
+    public static CcdClaimant getCcdClaimantCompany() {
+        CcdAddress ccdAddress = getCcdAddress();
 
-        return CCDClaimant.builder()
+        return CcdClaimant.builder()
             .partyType(COMPANY)
             .partyName("Abc Ltd")
             .partyAddress(ccdAddress)
@@ -154,10 +153,10 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCcdClaimantOrganisation() {
-        CCDAddress ccdAddress = getCcdAddress();
+    public static CcdClaimant getCcdClaimantOrganisation() {
+        CcdAddress ccdAddress = getCcdAddress();
 
-        return CCDClaimant.builder()
+        return CcdClaimant.builder()
             .partyType(ORGANISATION)
             .partyName("Xyz & Co")
             .partyAddress(ccdAddress)
@@ -173,10 +172,10 @@ public class SampleData {
             .build();
     }
 
-    public static CCDClaimant getCcdClaimantSoleTrader() {
-        CCDAddress ccdAddress = getCcdAddress();
+    public static CcdClaimant getCcdClaimantSoleTrader() {
+        CcdAddress ccdAddress = getCcdAddress();
 
-        return CCDClaimant.builder()
+        return CcdClaimant.builder()
             .partyType(SOLE_TRADER)
             .partyTitle("Mr.")
             .partyName("Individual")
@@ -192,15 +191,12 @@ public class SampleData {
             .build();
     }
 
-    public static CCDCase getCcdLegalCase() {
-        List<CCDCollectionElement<CCDClaimant>> claimants
-            = singletonList(CCDCollectionElement.<CCDClaimant>builder().value(getCcdClaimantIndividual()).build());
-        List<CCDCollectionElement<CCDDefendant>> defendants
-            = singletonList(CCDCollectionElement.<CCDDefendant>builder().value(getCcdDefendantIndividual()).build());
-        return CCDCase.builder()
-            .id(1L)
-            .referenceNumber("ref no")
-            .externalId(UUID.randomUUID().toString())
+    public static CcdCase getCcdLegalCase() {
+        List<CcdCollectionElement<CcdClaimant>> claimants
+            = singletonList(CcdCollectionElement.<CcdClaimant>builder().value(getCcdClaimantIndividual()).build());
+        List<CcdCollectionElement<CcdDefendant>> defendants
+            = singletonList(CcdCollectionElement.<CcdDefendant>builder().value(getCcdDefendantIndividual()).build());
+        return CcdCase.builder()
             .amountType(RANGE)
             .amountLowerValue(BigDecimal.valueOf(50))
             .amountHigherValue(BigDecimal.valueOf(500))
@@ -209,10 +205,8 @@ public class SampleData {
             .personalInjuryGeneralDamages(MORE_THAN_THOUSAND_POUNDS.name())
             .sotSignerName("name")
             .sotSignerRole("role")
-            .externalReferenceNumber("external ref")
             .externalId(UUID.randomUUID().toString())
             .feeAccountNumber("PBA1234567")
-            .feeCode("X1202")
             .reason("Reason for the case")
             .preferredCourt("London Court")
             .claimants(claimants)
@@ -220,15 +214,13 @@ public class SampleData {
             .build();
     }
 
-    public static CCDCase getCcdCitizenCase(List<CCDCollectionElement<CCDAmountRow>> amountBreakDown) {
-        List<CCDCollectionElement<CCDClaimant>> claimants
-            = singletonList(CCDCollectionElement.<CCDClaimant>builder().value(getCcdClaimantIndividual()).build());
-        List<CCDCollectionElement<CCDDefendant>> defendants
-            = singletonList(CCDCollectionElement.<CCDDefendant>builder().value(getCcdDefendantIndividual()).build());
+    public static CcdCase getCcdCitizenCase(List<CcdCollectionElement<CcdAmountRow>> amountBreakDown) {
+        List<CcdCollectionElement<CcdClaimant>> claimants
+            = singletonList(CcdCollectionElement.<CcdClaimant>builder().value(getCcdClaimantIndividual()).build());
+        List<CcdCollectionElement<CcdDefendant>> defendants
+            = singletonList(CcdCollectionElement.<CcdDefendant>builder().value(getCcdDefendantIndividual()).build());
 
-        return CCDCase.builder()
-            .id(1l)
-            .referenceNumber("ref no")
+        return CcdCase.builder()
             .externalId(UUID.randomUUID().toString())
             .amountType(BREAK_DOWN)
             .amountBreakDown(amountBreakDown)
@@ -237,22 +229,18 @@ public class SampleData {
             .personalInjuryGeneralDamages(MORE_THAN_THOUSAND_POUNDS.name())
             .sotSignerName("name")
             .sotSignerRole("role")
-            .externalReferenceNumber("external ref")
-            .externalId(UUID.randomUUID().toString())
-            .feeCode("X1202")
-            .feeAmountInPennies(BigInteger.valueOf(100))
             .reason("Reason for the case")
             .preferredCourt("London Court")
-            .interestType(CCDInterestType.DIFFERENT)
+            .interestType(CcdInterestType.DIFFERENT)
             .interestReason("reason")
             .interestRate(BigDecimal.valueOf(2))
             .interestBreakDownAmount(BigDecimal.valueOf(210))
             .interestBreakDownExplanation("Explanation")
             .interestStartDateReason("start date reason")
-            .interestDateType(CCDInterestDateType.CUSTOM)
+            .interestDateType(CcdInterestDateType.CUSTOM)
             .interestClaimStartDate(LocalDate.now())
             .interestSpecificDailyAmount(BigDecimal.valueOf(10))
-            .interestEndDateType(CCDInterestEndDateType.SUBMISSION)
+            .interestEndDateType(CcdInterestEndDateType.SUBMISSION)
             .paymentStatus("success")
             .paymentDateCreated(LocalDate.of(2019, 01, 01))
             .paymentId("PaymentId")
@@ -260,11 +248,11 @@ public class SampleData {
             .paymentReference("RC-1524-6488-1670-7520")
             .claimants(claimants)
             .defendants(defendants)
-            .timeline(singletonList(CCDCollectionElement.<CCDTimelineEvent>builder()
-                .value(CCDTimelineEvent.builder().date("some Date").description("description of event").build())
+            .timeline(singletonList(CcdCollectionElement.<CcdTimelineEvent>builder()
+                .value(CcdTimelineEvent.builder().date("some Date").description("description of event").build())
                 .build()))
-            .evidence(singletonList(CCDCollectionElement.<CCDEvidenceRow>builder()
-                .value(CCDEvidenceRow.builder().type(EXPERT_WITNESS).description("description of evidence").build())
+            .evidence(singletonList(CcdCollectionElement.<CcdEvidenceRow>builder()
+                .value(CcdEvidenceRow.builder().type(EXPERT_WITNESS).description("description of evidence").build())
                 .build()))
             .build();
     }

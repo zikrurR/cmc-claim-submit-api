@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
+import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
 import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
 
 import java.util.Objects;
@@ -13,7 +13,7 @@ public class EvidenceAssert extends AbstractAssert<EvidenceAssert, Evidence> {
         super(actual, EvidenceAssert.class);
     }
 
-    public EvidenceAssert isEqualTo(CCDEvidenceRow ccdEvidenceRow) {
+    public EvidenceAssert isEqualTo(CcdEvidenceRow ccdEvidenceRow) {
         isNotNull();
 
         if (!Objects.equals(actual.getType().name(), ccdEvidenceRow.getType().name())) {

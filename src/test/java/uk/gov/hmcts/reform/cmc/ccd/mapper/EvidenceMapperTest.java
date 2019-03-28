@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceRow;
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CCDEvidenceType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
+import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceType;
 import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleEvidence;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.evidence.EvidenceMapper;
@@ -22,7 +22,7 @@ public class EvidenceMapperTest {
         Evidence evidence = SampleEvidence.validDefaults();
 
         //when
-        CCDCollectionElement<CCDEvidenceRow> ccdEvidence = mapper.to(evidence);
+        CcdCollectionElement<CcdEvidenceRow> ccdEvidence = mapper.to(evidence);
 
         //then
         assertThat(evidence).isEqualTo(ccdEvidence.getValue());
@@ -35,7 +35,7 @@ public class EvidenceMapperTest {
         Evidence evidence = SampleEvidence.validDefaults();
         evidence.setDescription(null);
         //when
-        CCDCollectionElement<CCDEvidenceRow> ccdEvidence = mapper.to(evidence);
+        CcdCollectionElement<CcdEvidenceRow> ccdEvidence = mapper.to(evidence);
 
         //then
         assertThat(evidence).isEqualTo(ccdEvidence.getValue());
@@ -45,13 +45,13 @@ public class EvidenceMapperTest {
     @Test
     public void shouldMapEvidenceFromCcd() {
         //given
-        CCDEvidenceRow ccdEvidence = CCDEvidenceRow.builder()
+        CcdEvidenceRow ccdEvidence = CcdEvidenceRow.builder()
             .description("My description")
-            .type(CCDEvidenceType.EXPERT_WITNESS)
+            .type(CcdEvidenceType.EXPERT_WITNESS)
             .build();
 
         //when
-        Evidence evidence = mapper.from(CCDCollectionElement.<CCDEvidenceRow>builder()
+        Evidence evidence = mapper.from(CcdCollectionElement.<CcdEvidenceRow>builder()
             .value(ccdEvidence).build());
 
         //then
@@ -61,12 +61,12 @@ public class EvidenceMapperTest {
     @Test
     public void shouldMapEvidenceFromCcdWhenNoDescriptionProvided() {
         //given
-        CCDEvidenceRow ccdEvidence = CCDEvidenceRow.builder()
-            .type(CCDEvidenceType.EXPERT_WITNESS)
+        CcdEvidenceRow ccdEvidence = CcdEvidenceRow.builder()
+            .type(CcdEvidenceType.EXPERT_WITNESS)
             .build();
 
         //when
-        Evidence evidence = mapper.from(CCDCollectionElement.<CCDEvidenceRow>builder()
+        Evidence evidence = mapper.from(CcdCollectionElement.<CcdEvidenceRow>builder()
             .value(ccdEvidence).build());
 
         //then

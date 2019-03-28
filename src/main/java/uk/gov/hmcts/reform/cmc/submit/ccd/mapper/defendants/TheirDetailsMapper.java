@@ -3,9 +3,9 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CCDPartyType;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.CompanyDetails;
 import uk.gov.hmcts.cmc.domain.models.defendants.IndividualDetails;
 import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;
@@ -35,28 +35,28 @@ public class TheirDetailsMapper {
         this.soleTraderDetailsMapper = soleTraderDetailsMapper;
     }
 
-    public void to(CCDDefendant.CCDDefendantBuilder builder, TheirDetails theirDetails) {
+    public void to(CcdDefendant.CcdDefendantBuilder builder, TheirDetails theirDetails) {
 
         if (theirDetails instanceof IndividualDetails) {
-            builder.claimantProvidedType(CCDPartyType.INDIVIDUAL);
+            builder.claimantProvidedType(CcdPartyType.INDIVIDUAL);
             IndividualDetails individual = (IndividualDetails) theirDetails;
             individualDetailsMapper.to(individual, builder);
         } else if (theirDetails instanceof CompanyDetails) {
-            builder.claimantProvidedType(CCDPartyType.COMPANY);
+            builder.claimantProvidedType(CcdPartyType.COMPANY);
             CompanyDetails company = (CompanyDetails) theirDetails;
             companyDetailsMapper.to(company, builder);
         } else if (theirDetails instanceof OrganisationDetails) {
-            builder.claimantProvidedType(CCDPartyType.ORGANISATION);
+            builder.claimantProvidedType(CcdPartyType.ORGANISATION);
             OrganisationDetails organisation = (OrganisationDetails) theirDetails;
             organisationDetailsMapper.to(organisation, builder);
         } else if (theirDetails instanceof SoleTraderDetails) {
-            builder.claimantProvidedType(CCDPartyType.SOLE_TRADER);
+            builder.claimantProvidedType(CcdPartyType.SOLE_TRADER);
             SoleTraderDetails soleTrader = (SoleTraderDetails) theirDetails;
             soleTraderDetailsMapper.to(soleTrader, builder);
         }
     }
 
-    public TheirDetails from(CCDCollectionElement<CCDDefendant> ccdDefendant) {
+    public TheirDetails from(CcdCollectionElement<CcdDefendant> ccdDefendant) {
         switch (ccdDefendant.getValue().getClaimantProvidedType()) {
             case COMPANY:
                 return companyDetailsMapper.from(ccdDefendant);

@@ -2,14 +2,14 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 
 import java.util.Objects;
 
-public class CcdAddressAssert extends AbstractAssert<CcdAddressAssert, CCDAddress> {
+public class CcdAddressAssert extends AbstractAssert<CcdAddressAssert, CcdAddress> {
 
-    public CcdAddressAssert(CCDAddress actual) {
+    public CcdAddressAssert(CcdAddress actual) {
         super(actual, CcdAddressAssert.class);
     }
 

@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CCDTimelineEvent;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdTimelineEvent;
 import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTimelineEvent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.timeline.TimelineMapper;
@@ -20,12 +20,12 @@ public class TimelineMapperTest {
     private TimelineMapper mapper = new TimelineMapper();
 
     @Test
-    public void shouldMapTimelineEventToCCD() {
+    public void shouldMapTimelineEventToCcd() {
         //given
         TimelineEvent timelineEvent = SampleTimelineEvent.validDefaults();
 
         //when
-        List<CCDCollectionElement<CCDTimelineEvent>> ccdTimelineEvent = mapper.to(Arrays.asList(timelineEvent));
+        List<CcdCollectionElement<CcdTimelineEvent>> ccdTimelineEvent = mapper.to(Arrays.asList(timelineEvent));
 
         //then
         assertThat(ccdTimelineEvent.size()).isEqualTo(1);
@@ -35,9 +35,9 @@ public class TimelineMapperTest {
     }
 
     @Test
-    public void shouldTimelineEventFromCCD() {
+    public void shouldTimelineEventFromCcd() {
         //given
-        CCDTimelineEvent ccdTimelineEvent = CCDTimelineEvent.builder()
+        CcdTimelineEvent ccdTimelineEvent = CcdTimelineEvent.builder()
             .date("Last Month")
             .description("My description")
             .build();
@@ -45,7 +45,7 @@ public class TimelineMapperTest {
         String collectionId = UUID.randomUUID().toString();
 
         //when
-        List<TimelineEvent> timelineEvent = mapper.from(Arrays.asList(CCDCollectionElement.<CCDTimelineEvent>builder()
+        List<TimelineEvent> timelineEvent = mapper.from(Arrays.asList(CcdCollectionElement.<CcdTimelineEvent>builder()
             .id(collectionId)
             .value(ccdTimelineEvent)
             .build())

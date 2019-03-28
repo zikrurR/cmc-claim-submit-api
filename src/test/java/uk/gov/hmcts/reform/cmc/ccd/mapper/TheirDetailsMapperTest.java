@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
@@ -38,7 +38,7 @@ public class TheirDetailsMapperTest {
         TheirDetails party = SampleTheirDetails.individualDetails();
 
         //when
-        CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
+        CcdDefendant.CcdDefendantBuilder builder = CcdDefendant.builder();
         theirDetailsMapper.to(builder, party);
 
         //then
@@ -51,7 +51,7 @@ public class TheirDetailsMapperTest {
         TheirDetails party = SampleTheirDetails.companyDetails();
 
         //when
-        CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
+        CcdDefendant.CcdDefendantBuilder builder = CcdDefendant.builder();
         theirDetailsMapper.to(builder, party);
 
         //then
@@ -64,7 +64,7 @@ public class TheirDetailsMapperTest {
         TheirDetails party = SampleTheirDetails.organisationDetails();
 
         //when
-        CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
+        CcdDefendant.CcdDefendantBuilder builder = CcdDefendant.builder();
         theirDetailsMapper.to(builder, party);
 
         //then
@@ -77,7 +77,7 @@ public class TheirDetailsMapperTest {
         TheirDetails party = SampleTheirDetails.soleTraderDetails();
 
         //when
-        CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
+        CcdDefendant.CcdDefendantBuilder builder = CcdDefendant.builder();
         theirDetailsMapper.to(builder, party);
 
         //then
@@ -87,12 +87,12 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapIndividualFromCcd() {
         //given
-        CCDDefendant ccdParty = getCcdDefendantIndividual();
+        CcdDefendant ccdParty = getCcdDefendantIndividual();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         TheirDetails party = theirDetailsMapper
-            .from(CCDCollectionElement.<CCDDefendant>builder()
+            .from(CcdCollectionElement.<CcdDefendant>builder()
                 .id(collectionId)
                 .value(ccdParty).build());
 
@@ -104,12 +104,12 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapCompanyFromCcd() {
         //given
-        CCDDefendant ccdParty = getCcdDefendantCompany();
+        CcdDefendant ccdParty = getCcdDefendantCompany();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         TheirDetails party = theirDetailsMapper
-            .from(CCDCollectionElement.<CCDDefendant>builder()
+            .from(CcdCollectionElement.<CcdDefendant>builder()
                 .id(collectionId)
                 .value(ccdParty).build());
 
@@ -121,12 +121,12 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapOrganisationFromCcd() {
         //given
-        CCDDefendant ccdParty = getCcdDefendantOrganisation();
+        CcdDefendant ccdParty = getCcdDefendantOrganisation();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         TheirDetails party = theirDetailsMapper
-            .from(CCDCollectionElement.<CCDDefendant>builder()
+            .from(CcdCollectionElement.<CcdDefendant>builder()
                 .id(collectionId)
                 .value(ccdParty).build());
 
@@ -138,12 +138,12 @@ public class TheirDetailsMapperTest {
     @Test
     public void shouldMapSoleTraderFromCcd() {
         //given
-        CCDDefendant ccdParty = getCcdDefendantSoleTrader();
+        CcdDefendant ccdParty = getCcdDefendantSoleTrader();
         String collectionId = UUID.randomUUID().toString();
 
         //when
         TheirDetails party = theirDetailsMapper
-            .from(CCDCollectionElement.<CCDDefendant>builder()
+            .from(CcdCollectionElement.<CcdDefendant>builder()
                 .id(collectionId)
                 .value(ccdParty).build());
 

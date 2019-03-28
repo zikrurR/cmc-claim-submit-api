@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CCDDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.Mapper;
 
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 import static java.util.Objects.requireNonNull;
 
 @Component
-public class DefendantMapper implements Mapper<List<CCDCollectionElement<CCDDefendant>>, List<TheirDetails>> {
+public class DefendantMapper implements Mapper<List<CcdCollectionElement<CcdDefendant>>, List<TheirDetails>> {
 
     private final TheirDetailsMapper theirDetailsMapper;
 
@@ -26,7 +26,7 @@ public class DefendantMapper implements Mapper<List<CCDCollectionElement<CCDDefe
     }
 
     @Override
-    public List<CCDCollectionElement<CCDDefendant>> to(List<TheirDetails> theirDetails) {
+    public List<CcdCollectionElement<CcdDefendant>> to(List<TheirDetails> theirDetails) {
         if (theirDetails == null) {
             return new ArrayList<>();
         }
@@ -39,7 +39,7 @@ public class DefendantMapper implements Mapper<List<CCDCollectionElement<CCDDefe
     }
 
     @Override
-    public List<TheirDetails> from(List<CCDCollectionElement<CCDDefendant>> defendant) {
+    public List<TheirDetails> from(List<CcdCollectionElement<CcdDefendant>> defendant) {
         if (defendant == null) {
             return new ArrayList<>();
         }
@@ -51,20 +51,20 @@ public class DefendantMapper implements Mapper<List<CCDCollectionElement<CCDDefe
     }
 
 
-    public CCDCollectionElement<CCDDefendant> to(TheirDetails theirDetails) {
+    public CcdCollectionElement<CcdDefendant> to(TheirDetails theirDetails) {
         requireNonNull(theirDetails, "theirDetails must not be null");
 
-        CCDDefendant.CCDDefendantBuilder builder = CCDDefendant.builder();
+        CcdDefendant.CcdDefendantBuilder builder = CcdDefendant.builder();
 
         theirDetailsMapper.to(builder, theirDetails);
 
-        return CCDCollectionElement.<CCDDefendant>builder()
+        return CcdCollectionElement.<CcdDefendant>builder()
             .value(builder.build())
             .id(theirDetails.getId())
             .build();
     }
 
-    public TheirDetails from(CCDCollectionElement<CCDDefendant> defendant) {
+    public TheirDetails from(CcdCollectionElement<CcdDefendant> defendant) {
 
         return theirDetailsMapper.from(defendant);
     }

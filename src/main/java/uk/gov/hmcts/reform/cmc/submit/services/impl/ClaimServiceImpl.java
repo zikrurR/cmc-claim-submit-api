@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.stereotype.Service;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDCase;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
@@ -61,7 +61,7 @@ public class ClaimServiceImpl implements ClaimService {
     public ClaimData createNewCase(ClaimData claimData, String authorisation) {
 
         String idamId = ""; // should be not needed as far as we can get it from the start event token
-        CCDCase ccdCase = caseMapper.to(claimData);
+        CcdCase ccdCase = caseMapper.to(claimData);
 
         try {
             EventRequestData eventRequestData = EventRequestData.builder()
@@ -96,7 +96,7 @@ public class ClaimServiceImpl implements ClaimService {
             throw new CoreCaseDataStoreException(
                 String.format(
                     CCD_STORING_FAILURE_MESSAGE,
-                    ccdCase.getReferenceNumber(),
+                    ccdCase.getExternalId(),
                     CREATE_NEW_CASE
                 ), exception
             );
@@ -133,10 +133,10 @@ public class ClaimServiceImpl implements ClaimService {
         return caseMapper.from(extractCase(caseDetails));
     }
 
-    private CCDCase extractCase(CaseDetails caseDetails) {
+    private CcdCase extractCase(CaseDetails caseDetails) {
         Map<String, Object> caseData = caseDetails.getData();
         caseData.put("id", caseDetails.getId());
-        return objectMapper.convertValue(caseData, CCDCase.class);
+        return objectMapper.convertValue(caseData, CcdCase.class);
     }
 
 }

@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleAddress;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
@@ -19,7 +19,7 @@ public class AddressMapperTest {
         Address address = SampleAddress.validDefaults();
 
         //when
-        CCDAddress ccdAddress = mapper.to(address);
+        CcdAddress ccdAddress = mapper.to(address);
 
         //then
         assertThat(ccdAddress).isEqualTo(address);
@@ -29,13 +29,12 @@ public class AddressMapperTest {
     @Test
     public void shouldMapAddressToCmc() {
         //given
-        CCDAddress ccdAddress = CCDAddress.builder()
-            .addressLine1("line1")
-            .addressLine3("line2")
-            .addressLine2("line3")
-            .postTown("city")
-            .postCode("postcode")
-            .build();
+        CcdAddress ccdAddress = new CcdAddress();
+        ccdAddress.setAddressLine1("line1");
+        ccdAddress.setAddressLine3("line2");
+        ccdAddress.setAddressLine2("line3");
+        ccdAddress.setPostTown("city");
+        ccdAddress.setPostCode("postcode");
 
         //when
         Address address = mapper.from(ccdAddress);

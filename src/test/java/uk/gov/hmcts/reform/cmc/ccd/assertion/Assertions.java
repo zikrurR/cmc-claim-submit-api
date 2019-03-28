@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDAddress;
+import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.cmc.domain.models.common.Address;
@@ -17,7 +17,7 @@ public class Assertions {
         return new AddressAssert(address);
     }
 
-    public static CcdAddressAssert assertThat(CCDAddress ccdAddress) {
+    public static CcdAddressAssert assertThat(CcdAddress ccdAddress) {
         return new CcdAddressAssert(ccdAddress);
     }
 

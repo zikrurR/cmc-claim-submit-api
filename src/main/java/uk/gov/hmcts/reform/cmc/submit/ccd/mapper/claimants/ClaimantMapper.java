@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CCDClaimant;
-import uk.gov.hmcts.cmc.ccd.domain.CCDCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CCDPartyType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.cmc.domain.models.claimants.Company;
 import uk.gov.hmcts.cmc.domain.models.claimants.Individual;
 import uk.gov.hmcts.cmc.domain.models.claimants.Organisation;
@@ -19,7 +19,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaimant>>, List<Party>> {
+public class ClaimantMapper implements Mapper<List<CcdCollectionElement<CcdClaimant>>, List<Party>> {
 
     private final IndividualMapper individualMapper;
     private final CompanyMapper companyMapper;
@@ -38,7 +38,7 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
     }
 
     @Override
-    public List<CCDCollectionElement<CCDClaimant>> to(List<Party> evidences) {
+    public List<CcdCollectionElement<CcdClaimant>> to(List<Party> evidences) {
         if (evidences == null) {
             return new ArrayList<>();
         }
@@ -51,7 +51,7 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
     }
 
     @Override
-    public List<Party> from(List<CCDCollectionElement<CCDClaimant>> ccdEvidence) {
+    public List<Party> from(List<CcdCollectionElement<CcdClaimant>> ccdEvidence) {
         if (ccdEvidence == null) {
             return new ArrayList<>();
         }
@@ -62,33 +62,33 @@ public class ClaimantMapper implements Mapper<List<CCDCollectionElement<CCDClaim
                 .collect(Collectors.toList());
     }
 
-    private CCDCollectionElement<CCDClaimant> to(Party party) {
-        CCDClaimant.CCDClaimantBuilder builder = CCDClaimant.builder();
+    private CcdCollectionElement<CcdClaimant> to(Party party) {
+        CcdClaimant.CcdClaimantBuilder builder = CcdClaimant.builder();
 
         if (party instanceof Individual) {
-            builder.partyType(CCDPartyType.INDIVIDUAL);
+            builder.partyType(CcdPartyType.INDIVIDUAL);
             Individual individual = (Individual) party;
             individualMapper.to(individual, builder);
         } else if (party instanceof Company) {
-            builder.partyType(CCDPartyType.COMPANY);
+            builder.partyType(CcdPartyType.COMPANY);
             Company company = (Company) party;
             companyMapper.to(company, builder);
         } else if (party instanceof Organisation) {
-            builder.partyType(CCDPartyType.ORGANISATION);
+            builder.partyType(CcdPartyType.ORGANISATION);
             Organisation organisation = (Organisation) party;
             organisationMapper.to(organisation, builder);
         } else if (party instanceof SoleTrader) {
-            builder.partyType(CCDPartyType.SOLE_TRADER);
+            builder.partyType(CcdPartyType.SOLE_TRADER);
             SoleTrader soleTrader = (SoleTrader) party;
             soleTraderMapper.to(soleTrader, builder);
         }
-        return CCDCollectionElement.<CCDClaimant>builder()
+        return CcdCollectionElement.<CcdClaimant>builder()
             .value(builder.build())
             .id(party.getId())
             .build();
     }
 
-    private Party from(CCDCollectionElement<CCDClaimant> ccdClaimant) {
+    private Party from(CcdCollectionElement<CcdClaimant> ccdClaimant) {
         switch (ccdClaimant.getValue().getPartyType()) {
             case COMPANY:
                 return companyMapper.from(ccdClaimant);
