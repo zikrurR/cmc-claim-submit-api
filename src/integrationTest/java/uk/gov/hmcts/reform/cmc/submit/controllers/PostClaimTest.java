@@ -15,6 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import uk.gov.hmcts.cmc.domain.models.ClaimData;
+import uk.gov.hmcts.cmc.domain.models.amount.NotKnown;
 import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
@@ -22,6 +23,10 @@ import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleClaimData;
 
+import java.util.Map;
+import java.util.UUID;
+
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyBoolean;
 import static org.mockito.Mockito.when;
@@ -71,7 +76,11 @@ public class PostClaimTest {
                 .token("token")
                 .build());
 
-        when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any())).thenReturn(CaseDetails.builder().data(Maps.newHashMap()).build());
+        Map<String,Object> mandatoryData = Maps.newHashMap();
+        mandatoryData.put("externalId", UUID.randomUUID().toString());
+        mandatoryData.put("amountType", "NOT_KNOWN");
+
+        when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any())).thenReturn(CaseDetails.builder().data(mandatoryData).build());
 
         when(authTokenGenerator.generate()).thenReturn("aaa");
 
@@ -85,7 +94,7 @@ public class PostClaimTest {
 
         ClaimData claimResponse = objectMapper.readValue(response.getResponse().getContentAsString(), ClaimData.class);
 
-        //assertThat(claimResponse).isEqualTo(ccdCase);
+        assertThat(claimResponse.getAmount().getClass()).isEqualTo(NotKnown.class);
 
     }
 }
