@@ -25,9 +25,9 @@ public class PaymentMapper implements BuilderMapper<CCDCase, Payment, CCDCase.CC
             return;
         }
 
-        if (payment.getClass().isInstance(ReferencePayment.class)){
+        if (payment instanceof ReferencePayment){
             toReferencePayment((ReferencePayment)payment, builder);
-        } else if (payment.getClass().isInstance(AccountPayment.class)){
+        } else if (payment instanceof AccountPayment){
             toAccountPayment((AccountPayment)payment, builder);
         }
 
