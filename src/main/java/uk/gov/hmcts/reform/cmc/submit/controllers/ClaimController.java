@@ -22,7 +22,7 @@ import javax.validation.constraints.NotNull;
 
 @Api
 @RestController
-@RequestMapping // (produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping("/claims")
 public class ClaimController {
 
     private final ClaimService claimService;
