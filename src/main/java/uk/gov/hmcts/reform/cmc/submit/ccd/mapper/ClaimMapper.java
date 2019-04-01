@@ -48,7 +48,6 @@ public class ClaimMapper {
 
 
         builder.externalId(Objects.toString(claim.getExternalId()));
-//        builder.feeAccountNumber(claim.getFeeAccountNumber());
 
         builder.preferredCourt(claim.getPreferredCourt());
         builder.reason(claim.getReason());

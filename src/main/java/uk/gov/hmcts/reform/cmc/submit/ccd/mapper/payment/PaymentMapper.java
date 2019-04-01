@@ -7,8 +7,8 @@ import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.domain.models.payment.AccountPayment;
 import uk.gov.hmcts.cmc.domain.models.payment.Payment;
 import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
-import uk.gov.hmcts.reform.cmc.domain.utils.LocalDateTimeFactory;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.utils.LocalDateTimeFactory;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -34,11 +34,11 @@ public class PaymentMapper implements BuilderMapper<CcdCase, Payment, CcdCase.Cc
     }
 
     private void toReferencePayment(ReferencePayment payment, CcdCase.CcdCaseBuilder builder) {
-        builder
-            .paymentAmount(payment.getAmount())
-            .paymentId(payment.getId())
-            .paymentReference(payment.getReference())
-            .paymentStatus(payment.getStatus());
+
+        builder.paymentAmount(payment.getAmount());
+        builder.paymentId(payment.getId());
+        builder.paymentReference(payment.getReference());
+        builder.paymentStatus(payment.getStatus());
 
         if (StringUtils.isNotBlank(payment.getDateCreated())) {
             builder.paymentDateCreated(parseDate(payment.getDateCreated()));

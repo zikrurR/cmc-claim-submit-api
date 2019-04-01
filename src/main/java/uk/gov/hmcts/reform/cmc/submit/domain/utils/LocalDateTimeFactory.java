@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cmc.domain.utils;
+package uk.gov.hmcts.reform.cmc.submit.domain.utils;
 
 import java.time.Instant;
 import java.time.LocalDate;
