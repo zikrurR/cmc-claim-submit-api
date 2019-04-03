@@ -1,0 +1,26 @@
+#!groovy
+
+@Library("Infrastructure")
+
+def product = "cmc"
+def component = "claim-store"
+
+def secrets = [
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+  [$class     : 'AzureKeyVaultSecret',
+   secretType : 'Secret',
+   name       : secretName,
+   version    : '',
+   envVariable: envVar
+  ]
+}
+
+withPipeline("java", product, component) {
+
+  //loadVaultSecrets(secrets)
+  //enableSlackNotifications('#cmc-tech-notification')
+  enableDockerBuild()
+  installCharts()
+}
