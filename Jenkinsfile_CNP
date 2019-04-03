@@ -2,8 +2,9 @@
 
 @Library("Infrastructure")
 
+def type = "java"
 def product = "cmc"
-def component = "claim-store"
+def component = "claim-submit-api"
 
 def secrets = [
 ]
@@ -17,7 +18,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   ]
 }
 
-withPipeline("java", product, component) {
+withPipeline(type, product, component) {
 
   //loadVaultSecrets(secrets)
   //enableSlackNotifications('#cmc-tech-notification')
