@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.domain.models.serialization;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.reform.cmc.submit.domain.config.JacksonConfiguration;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;

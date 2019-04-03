@@ -1,9 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.interest;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestDate;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterest;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterestBreakdown;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterestDate;

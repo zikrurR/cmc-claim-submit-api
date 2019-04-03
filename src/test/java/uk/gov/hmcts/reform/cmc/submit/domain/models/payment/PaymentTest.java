@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.payment;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SamplePayment;
 
 import java.util.Set;

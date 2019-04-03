@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.defendants;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.SoleTraderDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleTheirDetails;
 
 import java.util.Set;

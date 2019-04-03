@@ -1,8 +1,6 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.evidence;
 
-import org.junit.Test;
-
-import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
+import org.junit.jupiter.api.Test;
 
 import java.util.Set;
 import java.util.UUID;

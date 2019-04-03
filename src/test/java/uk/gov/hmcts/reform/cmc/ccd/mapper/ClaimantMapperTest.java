@@ -21,6 +21,7 @@ import java.util.UUID;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdClaimantCompany;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdClaimantIndividual;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdClaimantOrganisation;

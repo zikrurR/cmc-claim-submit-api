@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;

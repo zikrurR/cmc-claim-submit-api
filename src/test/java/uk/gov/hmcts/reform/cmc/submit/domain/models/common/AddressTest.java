@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.common;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAddress;
 
 import java.util.Set;

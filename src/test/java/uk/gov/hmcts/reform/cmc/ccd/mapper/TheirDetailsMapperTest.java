@@ -18,6 +18,7 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantCompany;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantIndividual;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantOrganisation;

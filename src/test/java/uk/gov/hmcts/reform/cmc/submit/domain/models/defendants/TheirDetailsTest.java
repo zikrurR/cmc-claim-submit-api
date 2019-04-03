@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.defendants;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAddress;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleTheirDetails;
 

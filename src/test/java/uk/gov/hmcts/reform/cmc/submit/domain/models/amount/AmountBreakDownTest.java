@@ -1,8 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.amount;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAmountBreakdown;
 
 import java.util.Set;

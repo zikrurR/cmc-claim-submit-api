@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.utils;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,14 +12,20 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DatesProviderTest {
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void toDateTimeShouldThrowNullPointerWhenGivenNullValue() {
-        DatesProvider.toDateTime(null);
+
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            DatesProvider.toDateTime(null);
+        });
     }
 
-    @Test(expected = DateTimeParseException.class)
+    @Test
     public void toDateTimeShouldThrowParseExceptionWhenGivenInvalidValue() {
-        DatesProvider.toDateTime("I'm not a date time string");
+
+        Assertions.assertThrows(DateTimeParseException.class, () -> {
+            DatesProvider.toDateTime("I'm not a date time string");
+        });
     }
 
     @Test
@@ -31,14 +38,17 @@ public class DatesProviderTest {
         assertThat(dateTime.getMinute()).isEqualTo(34);
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void toDateShouldThrowNullPointerWhenGivenNullValue() {
-        DatesProvider.toDate(null);
+        Assertions.assertThrows(NullPointerException.class, () -> {
+            DatesProvider.toDate(null);
+        });
     }
 
-    @Test(expected = DateTimeParseException.class)
     public void toDateShouldThrowParseExceptionWhenGivenInvalidValue() {
-        DatesProvider.toDateTime("I'm not a date string");
+        Assertions.assertThrows(DateTimeParseException.class, () -> {
+            DatesProvider.toDate("I'm not a date time string");
+        });
     }
 
     @Test

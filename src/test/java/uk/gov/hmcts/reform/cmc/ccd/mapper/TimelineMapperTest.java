@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 
 public class TimelineMapperTest {
 

@@ -1,19 +1,16 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.constraints;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import uk.gov.hmcts.reform.cmc.submit.domain.constraints.PostcodeConstraintValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(MockitoJUnitRunner.class)
-@SuppressWarnings("checkstyle:AbbreviationAsWordInName")
 public class PostcodeConstraintValidatorTest {
 
     @Mock
@@ -21,7 +18,7 @@ public class PostcodeConstraintValidatorTest {
 
     private PostcodeConstraintValidator validator;
 
-    @Before
+    @BeforeEach
     public void beforeEachTest() {
         validator = new PostcodeConstraintValidator();
     }

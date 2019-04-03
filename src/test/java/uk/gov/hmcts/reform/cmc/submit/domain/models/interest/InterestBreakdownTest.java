@@ -1,8 +1,6 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.interest;
 
-import org.junit.Test;
-
-import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestBreakdown;
+import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.Set;

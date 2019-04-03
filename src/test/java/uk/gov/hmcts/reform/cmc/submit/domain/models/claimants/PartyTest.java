@@ -1,9 +1,8 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.claimants;
 
 import org.apache.commons.lang3.StringUtils;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleParty;
 
 import java.util.Set;

@@ -1,12 +1,10 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.constraints;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import uk.gov.hmcts.reform.cmc.submit.domain.constraints.EachNotNullConstraintValidator;
 
 import javax.validation.ConstraintValidatorContext;
 
@@ -22,7 +20,7 @@ public class EachNotNullConstraintValidatorTest {
 
     private EachNotNullConstraintValidator validator;
 
-    @Before
+    @BeforeEach
     public void beforeEachTest() {
         validator = new EachNotNullConstraintValidator();
     }
