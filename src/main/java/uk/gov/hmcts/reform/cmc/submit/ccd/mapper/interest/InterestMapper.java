@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.ccd.domain.CcdInterestType;
-import uk.gov.hmcts.cmc.domain.models.interest.Interest;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

@@ -6,12 +6,12 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
-import uk.gov.hmcts.cmc.domain.models.defendants.CompanyDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.IndividualDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.SoleTraderDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.CompanyDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.OrganisationDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.SoleTraderDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 
 @Component
 public class TheirDetailsMapper {

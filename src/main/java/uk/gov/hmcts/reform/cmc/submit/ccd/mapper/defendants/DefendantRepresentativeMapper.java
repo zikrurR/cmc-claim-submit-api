@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
-import uk.gov.hmcts.cmc.domain.models.common.Representative;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
 
 import static org.apache.commons.lang3.StringUtils.isBlank;
 

@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.interest;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.domain.models.interest.InterestBreakdown;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestBreakdown;
 
 @Component
 public class InterestBreakdownMapper implements BuilderMapper<CcdCase, InterestBreakdown, CcdCase.CcdCaseBuilder> {

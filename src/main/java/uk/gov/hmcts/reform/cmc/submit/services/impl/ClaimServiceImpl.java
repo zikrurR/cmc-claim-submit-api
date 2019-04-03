@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
@@ -14,6 +13,7 @@ import uk.gov.hmcts.reform.ccd.client.model.Event;
 import uk.gov.hmcts.reform.ccd.client.model.EventRequestData;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.ClaimMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
 import uk.gov.hmcts.reform.cmc.submit.exception.CoreCaseDataStoreException;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 

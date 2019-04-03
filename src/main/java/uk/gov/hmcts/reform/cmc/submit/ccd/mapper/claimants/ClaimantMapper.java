@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
-import uk.gov.hmcts.cmc.domain.models.claimants.Company;
-import uk.gov.hmcts.cmc.domain.models.claimants.Individual;
-import uk.gov.hmcts.cmc.domain.models.claimants.Organisation;
-import uk.gov.hmcts.cmc.domain.models.claimants.Party;
-import uk.gov.hmcts.cmc.domain.models.claimants.SoleTrader;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.Mapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.SoleTrader;
 
 import java.util.ArrayList;
 import java.util.List;

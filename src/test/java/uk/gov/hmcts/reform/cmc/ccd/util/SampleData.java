@@ -25,8 +25,8 @@ import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.INDIVIDUAL;
 import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.ORGANISATION;
 import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.SOLE_TRADER;
 import static uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceType.EXPERT_WITNESS;
-import static uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation.MORE_THAN_THOUSAND_POUNDS;
-import static uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation.THOUSAND_POUNDS_OR_LESS;
+import static uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.DamagesExpectation.MORE_THAN_THOUSAND_POUNDS;
+import static uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.DamagesExpectation.THOUSAND_POUNDS_OR_LESS;
 
 public class SampleData {
 

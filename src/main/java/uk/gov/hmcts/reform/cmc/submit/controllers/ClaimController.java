@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 
 import javax.validation.Valid;

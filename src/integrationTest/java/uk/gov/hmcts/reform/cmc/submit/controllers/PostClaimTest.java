@@ -14,14 +14,14 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
-import uk.gov.hmcts.cmc.domain.models.amount.NotKnown;
 import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.NotKnown;
 
 import java.util.Map;
 import java.util.UUID;

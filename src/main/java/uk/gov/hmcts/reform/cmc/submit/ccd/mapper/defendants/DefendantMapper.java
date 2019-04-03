@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.Mapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 
 import java.util.ArrayList;
 import java.util.List;

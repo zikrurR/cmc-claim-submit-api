@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.interest.InterestDate;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestDate;
 import uk.gov.hmcts.reform.cmc.submit.domain.utils.LocalDateTimeFactory;
 
 import java.time.LocalDate;

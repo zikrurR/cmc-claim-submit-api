@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.StatementOfTruth;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
 
 public class SampleStatementOfTruth {
 

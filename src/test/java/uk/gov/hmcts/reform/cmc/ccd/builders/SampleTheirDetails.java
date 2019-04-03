@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.common.Address;
-import uk.gov.hmcts.cmc.domain.models.common.Representative;
-import uk.gov.hmcts.cmc.domain.models.defendants.CompanyDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.IndividualDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.SoleTraderDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.CompanyDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.OrganisationDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.SoleTraderDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

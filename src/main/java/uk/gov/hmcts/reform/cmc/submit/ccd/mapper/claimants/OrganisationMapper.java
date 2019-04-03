@@ -5,8 +5,8 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.domain.models.claimants.Organisation;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;
 
 @Component
 public class OrganisationMapper {

@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 import org.assertj.core.api.AbstractAssert;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
-import uk.gov.hmcts.cmc.domain.models.common.Address;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
 
 import java.util.Objects;
 

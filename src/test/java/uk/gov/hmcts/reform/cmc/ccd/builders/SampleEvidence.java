@@ -1,8 +1,8 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 
-import static uk.gov.hmcts.cmc.domain.models.evidence.EvidenceType.CORRESPONDENCE;
+import static uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.EvidenceType.CORRESPONDENCE;
 
 public class SampleEvidence {
 

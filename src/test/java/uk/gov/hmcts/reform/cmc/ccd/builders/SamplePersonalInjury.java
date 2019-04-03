@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation;
-import uk.gov.hmcts.cmc.domain.models.particulars.PersonalInjury;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.DamagesExpectation;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.PersonalInjury;
 
 public class SamplePersonalInjury {
 

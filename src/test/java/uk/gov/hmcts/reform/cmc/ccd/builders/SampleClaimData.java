@@ -1,16 +1,16 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
-import uk.gov.hmcts.cmc.domain.models.StatementOfTruth;
-import uk.gov.hmcts.cmc.domain.models.amount.Amount;
-import uk.gov.hmcts.cmc.domain.models.claimants.Party;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
-import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
-import uk.gov.hmcts.cmc.domain.models.interest.Interest;
-import uk.gov.hmcts.cmc.domain.models.particulars.HousingDisrepair;
-import uk.gov.hmcts.cmc.domain.models.particulars.PersonalInjury;
-import uk.gov.hmcts.cmc.domain.models.payment.Payment;
-import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.HousingDisrepair;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.PersonalInjury;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.Payment;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -4,11 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
-import uk.gov.hmcts.cmc.domain.models.StatementOfTruth;
-import uk.gov.hmcts.cmc.domain.models.particulars.DamagesExpectation;
-import uk.gov.hmcts.cmc.domain.models.particulars.HousingDisrepair;
-import uk.gov.hmcts.cmc.domain.models.particulars.PersonalInjury;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.amount.AmountMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.ClaimantMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants.DefendantMapper;
@@ -16,6 +11,11 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.evidence.EvidenceMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.interest.InterestMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.payment.PaymentMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.timeline.TimelineMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.DamagesExpectation;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.HousingDisrepair;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.PersonalInjury;
 
 import java.util.Objects;
 import java.util.UUID;

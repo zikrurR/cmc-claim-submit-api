@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
-import uk.gov.hmcts.cmc.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.Mapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
 
 @Component
 public class AddressMapper implements Mapper<CcdAddress, Address> {

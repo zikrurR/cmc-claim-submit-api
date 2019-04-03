@@ -3,13 +3,13 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 import org.assertj.core.api.AbstractAssert;
 
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
-import uk.gov.hmcts.cmc.domain.models.common.ContactDetails;
-import uk.gov.hmcts.cmc.domain.models.common.Representative;
-import uk.gov.hmcts.cmc.domain.models.defendants.CompanyDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.IndividualDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.OrganisationDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.SoleTraderDetails;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.CompanyDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.OrganisationDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.SoleTraderDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 
 import java.util.Objects;
 

@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants.CompanyDetailsMapper;
@@ -14,11 +13,11 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants.IndividualDetailsMap
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants.OrganisationDetailsMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants.SoleTraderDetailsMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.defendants.TheirDetailsMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantCompany;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantIndividual;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdDefendantOrganisation;

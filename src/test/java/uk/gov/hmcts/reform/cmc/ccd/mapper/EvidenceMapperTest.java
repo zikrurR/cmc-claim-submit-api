@@ -5,12 +5,11 @@ import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceType;
-import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleEvidence;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.evidence.EvidenceMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 
 public class EvidenceMapperTest {
 

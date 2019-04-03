@@ -1,12 +1,12 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
-import uk.gov.hmcts.cmc.domain.models.ClaimData;
-import uk.gov.hmcts.cmc.domain.models.claimants.Party;
-import uk.gov.hmcts.cmc.domain.models.common.Address;
-import uk.gov.hmcts.cmc.domain.models.defendants.TheirDetails;
-import uk.gov.hmcts.cmc.domain.models.evidence.Evidence;
-import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
 
 public class Assertions {
 

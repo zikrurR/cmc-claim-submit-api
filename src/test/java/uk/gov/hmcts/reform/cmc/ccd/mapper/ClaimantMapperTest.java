@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleParty;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.ClaimantMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.CompanyMapper;
@@ -15,13 +14,13 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.OrganisationMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.RepresentativeMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.claimants.SoleTraderMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 
 import java.util.List;
 import java.util.UUID;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdClaimantCompany;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdClaimantIndividual;
 import static uk.gov.hmcts.reform.cmc.ccd.util.SampleData.getCcdClaimantOrganisation;

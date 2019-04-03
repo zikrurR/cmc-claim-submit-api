@@ -3,9 +3,9 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.domain.models.payment.ReferencePayment;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SamplePayment;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.payment.PaymentMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.ReferencePayment;
 import uk.gov.hmcts.reform.cmc.submit.domain.utils.LocalDateTimeFactory;
 
 import java.math.BigDecimal;

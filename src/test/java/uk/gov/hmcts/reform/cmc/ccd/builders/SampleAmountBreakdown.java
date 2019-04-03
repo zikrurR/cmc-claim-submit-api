@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.builders;
 
-import uk.gov.hmcts.cmc.domain.models.amount.AmountBreakDown;
-import uk.gov.hmcts.cmc.domain.models.amount.AmountRow;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountRow;
 
 import java.math.BigDecimal;
 

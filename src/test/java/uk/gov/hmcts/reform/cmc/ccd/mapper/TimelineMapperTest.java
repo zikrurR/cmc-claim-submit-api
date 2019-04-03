@@ -4,16 +4,15 @@ import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CcdTimelineEvent;
-import uk.gov.hmcts.cmc.domain.models.timeline.TimelineEvent;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleTimelineEvent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.timeline.TimelineMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 
 public class TimelineMapperTest {
 

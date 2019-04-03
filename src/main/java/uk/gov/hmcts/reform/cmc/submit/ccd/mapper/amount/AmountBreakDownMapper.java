@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.cmc.ccd.domain.CcdAmountRow;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.domain.models.amount.AmountBreakDown;
-import uk.gov.hmcts.cmc.domain.models.amount.AmountRow;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountRow;
 
 import java.util.Objects;
 import java.util.stream.Collectors;

@@ -5,9 +5,9 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.ccd.domain.CcdInterestDateType;
 import uk.gov.hmcts.cmc.ccd.domain.CcdInterestEndDateType;
-import uk.gov.hmcts.cmc.domain.models.interest.InterestDate;
-import uk.gov.hmcts.cmc.domain.models.interest.InterestDate.InterestEndDateType;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.BuilderMapper;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestDate;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestDate.InterestEndDateType;
 
 @Component
 public class InterestDateMapper implements BuilderMapper<CcdCase, InterestDate, CcdCase.CcdCaseBuilder> {
