@@ -1,10 +1,11 @@
 provider "azurerm" {}
 
 locals {
-  local_env   = "${(var.env == "preview" || var.env == "spreview") ? (var.env == "preview" ) ? "aat" : "saat" : var.env}"
-  ase_name    = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
-  s2s_url     = "http://rpe-service-auth-provider-${local.local_env}.service.${local.local_ase}.internal"
-  ccd_url     = "http://ccd-data-store-api-${local.local_env}.service.${local.local_ase}.internal"
+  ase_name       = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
+  s2s_url        = "http://rpe-service-auth-provider-${local.local_env}.service.${local.local_ase}.internal"
+  ccd_url        = "http://ccd-data-store-api-${var.env}.service.${local.local_ase}.internal"
+  cmc_vault_name = "${var.raw_product}-${var.env}"
+  
 }
 
 module "cmc-claim-submit-api" {
@@ -21,6 +22,11 @@ module "cmc-claim-submit-api" {
     LOGBACK_REQUIRE_ALERT_LEVEL = "false"
     LOGBACK_REQUIRE_ERROR_CODE  = "false"
   }
+}
+
+data "azurerm_key_vault" "cmc_key_vault" {
+  name = "${local.cmc_vault_name}"
+  resource_group_name = "${local.cmc_vault_name}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
