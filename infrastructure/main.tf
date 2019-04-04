@@ -2,8 +2,8 @@ provider "azurerm" {}
 
 locals {
   ase_name       = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
-  s2s_url        = "http://rpe-service-auth-provider-${local.local_env}.service.${local.local_ase}.internal"
-  ccd_url        = "http://ccd-data-store-api-${var.env}.service.${local.local_ase}.internal"
+  s2s_url        = "http://rpe-service-auth-provider-${var.env}.service.${local.ase_name}.internal"
+  ccd_url        = "http://ccd-data-store-api-${var.env}.service.${local.ase_name}.internal"
   cmc_vault_name = "${var.raw_product}-${var.env}"
   
 }
