@@ -7,6 +7,12 @@ def product = "cmc"
 def component = "claim-submit-api"
 
 def secrets = [
+  'cmc-${env}':
+    [
+      secret('s2s_url', 'IDAM_S2S_URL'),
+      secret('s2s_secret', 'IDAM_S2S_KEY'),
+      secret('ccd_url', 'CORE_CASE_DATA_API_URL')
+    ]
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -20,8 +26,8 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withPipeline(type, product, component) {
 
-  //loadVaultSecrets(secrets)
+  loadVaultSecrets(secrets)
   //enableSlackNotifications('#cmc-tech-notification')
   enableDockerBuild()
-  installCharts()
+  //installCharts()
 }
