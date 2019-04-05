@@ -35,9 +35,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-//@ImportAutoConfiguration(exclude = {FeignAutoConfiguration.class,
-//                                    HealthAutoConfiguration.class,
-//                                    HealthIndicatorAutoConfiguration.class})
 public class PostClaimTest {
 
     @Autowired
@@ -54,13 +51,6 @@ public class PostClaimTest {
 
     @MockBean
     private ServiceAuthorisationHealthApi serviceAuthorisationHealthApi;
-
-//    @Captor
-//    private ArgumentCaptor<String> senderArgument;
-//
-//    @Captor
-//    private ArgumentCaptor<CaseDataContent> caseDataContentArgument;
-
 
     protected static final String AUTHORISATION_TOKEN = "Bearer token";
 
