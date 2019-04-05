@@ -8,7 +8,7 @@ locals {
 }
 
 module "cmc-claim-submit-api" {
-  source              = "git@github.com:hmcts/moj-module-webapp?ref=master"
+  source              = "git@github.com:hmcts/cnp-module-webapp?ref=master"
   product             = "${var.product}-${var.component}"
   location            = "${var.location_app}"
   env                 = "${var.env}"
@@ -16,8 +16,8 @@ module "cmc-claim-submit-api" {
   subscription        = "${var.subscription}"
   capacity            = "${var.capacity}"
   common_tags         = "${var.common_tags}"
-  asp_rg              = "cmc-${var.env}"
-  asp_name            = "cmc-claim-submit-api"
+  asp_name            = "cmc-${var.env}"
+  asp_rg              = "cmc-claim-submit-api"
 
   app_settings = {
     LOGBACK_REQUIRE_ALERT_LEVEL = "false"
