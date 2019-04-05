@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    propertiesvolume:
+      paths: /mnt/secrets/cmc
+      prefixed: false
+      aliases:
+        claim-store-s2s-secret: IDAM_S2S_KEY

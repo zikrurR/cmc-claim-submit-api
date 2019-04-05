@@ -1,0 +1,20 @@
+tags:
+  cmc-claim-store-postgresql-pod: true
+  cmc-citizen-frontend-pod: true
+  postgresql-pod: false # rpe-feature-toggle-api
+
+java:
+  image: ${IMAGE_NAME}
+  ingressHost: ${SERVICE_FQDN}
+  applicationPort: 4400
+  cpuRequests: 25m
+  keyVaults:
+    cmc:
+      resourceGroup: cmc
+      secrets:
+        - AppInsightsInstrumentationKey
+        - claim-store-s2s-secret
+  environment:
+    IDAM_S2S_AUTH_URL: http://rpe-service-auth-provider-aat.service.core-compute-aat.internal
+    CORE_CASE_DATA_API_URL: false
+    LOG_LEVEL: DEBUG
