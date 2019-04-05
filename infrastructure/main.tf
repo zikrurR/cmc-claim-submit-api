@@ -17,7 +17,7 @@ module "cmc-claim-submit-api" {
   capacity            = "${var.capacity}"
   common_tags         = "${var.common_tags}"
   asp_name            = "cmc-${var.env}"
-  asp_rg              = "cmc-claim-submit-api"
+  asp_rg              = "cmc-${var.env}"
 
   app_settings = {
     LOGBACK_REQUIRE_ALERT_LEVEL = "false"
