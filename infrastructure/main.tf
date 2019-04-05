@@ -5,7 +5,6 @@ locals {
   s2s_url        = "http://rpe-service-auth-provider-${var.env}.service.${local.ase_name}.internal"
   ccd_url        = "http://ccd-data-store-api-${var.env}.service.${local.ase_name}.internal"
   cmc_vault_name = "${var.raw_product}-${var.env}"
-  
 }
 
 module "cmc-claim-submit-api" {
@@ -17,6 +16,8 @@ module "cmc-claim-submit-api" {
   subscription        = "${var.subscription}"
   capacity            = "${var.capacity}"
   common_tags         = "${var.common_tags}"
+  asp_rg              = "cmc-${var.env}"
+  asp_name            = "cmc-claim-submit-api"
 
   app_settings = {
     LOGBACK_REQUIRE_ALERT_LEVEL = "false"
