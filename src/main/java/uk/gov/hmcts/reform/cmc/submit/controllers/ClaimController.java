@@ -34,14 +34,15 @@ public class ClaimController {
 
     @GetMapping("/{externalId}")
     @ApiOperation("Fetch claim for given external id")
-    public ClaimData getByExternalId(@PathVariable("externalId") String externalId,
-                                 @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
+    public ClaimData getByExternalId(
+            @PathVariable("externalId") String externalId,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
 
 //        ClaimData claim;
 //        try {
 //            claim = claimService.getClaimByReference(externalId, authorisation);
 //        } catch (NotFoundException e) {
-//            claim = claimService.getClaimByExternalId(externalId, authorisation)
+//            claim = claimService.getClaimByExternalId(externalId, authorisation);
 //        }
 
         return null;
@@ -51,8 +52,9 @@ public class ClaimController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation("Creates a new claim")
     public ClaimData save(
-        @Valid @NotNull @RequestBody ClaimData claimData,
-        @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
+            @Valid @NotNull @RequestBody ClaimData claimData,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
+
         return claimService.createNewCase(claimData, authorisation);
     }
 
