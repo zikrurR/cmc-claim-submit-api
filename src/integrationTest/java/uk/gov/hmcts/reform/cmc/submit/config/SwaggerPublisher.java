@@ -29,6 +29,6 @@ class SwaggerPublisher {
     void generateDocs() throws Exception {
         mvc.perform(get("/v2/api-docs"))
             .andExpect(status().isOk())
-            .andExpect(jsonPath("swagger").value("1.0"));
+            .andExpect(jsonPath("swagger").value("2.0"));
     }
 }

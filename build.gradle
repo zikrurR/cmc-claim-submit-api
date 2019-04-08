@@ -49,6 +49,11 @@ tasks.withType(JavaCompile) {
   options.compilerArgs << "-Xlint:unchecked" << "-Werror"
 }
 
+test {
+  useJUnitPlatform()
+  failFast = true
+}
+
 task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
   testClassesDirs = sourceSets.functionalTest.output.classesDirs
   classpath = sourceSets.functionalTest.runtimeClasspath
@@ -57,7 +62,7 @@ task functional(type: Test, description: 'Runs the functional tests.', group: 'V
 task integration(type: Test, description: 'Runs the integration tests.', group: 'Verification') {
   testClassesDirs = sourceSets.integrationTest.output.classesDirs
   classpath = sourceSets.integrationTest.runtimeClasspath
-
+  useJUnitPlatform()
   // set your environment variables here
   // environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
 }
@@ -175,11 +180,6 @@ dependencies {
   functionalTestCompile sourceSets.main.runtimeClasspath
 
   smokeTestCompile sourceSets.main.runtimeClasspath
-}
-
-test {
-  useJUnitPlatform()
-  failFast = true
 }
 
 mainClassName = 'uk.gov.hmcts.reform.cmc.submit.Application'
