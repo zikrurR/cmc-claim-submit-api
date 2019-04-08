@@ -35,7 +35,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class PostClaimTest {
+public class PostClaimIT {
 
     @Autowired
     private MockMvc mockMvc;
@@ -56,10 +56,11 @@ public class PostClaimTest {
 
     @DisplayName("Happy path should create the claim requested with 200 response code")
     @Test
-    public void postClaim() throws Exception {
+    public void happyPathPostClaim() throws Exception {
 
         ClaimData claim = SampleClaimData.validDefaults();
 
+        // mock ccd call
         when(coreCaseDataApi.startForCitizen(any(), any(), any(), any(), any(), any())).thenReturn(StartEventResponse.builder()
                 .caseDetails(CaseDetails.builder().data(Maps.newHashMap()).build())
                 .eventId("eventId")
@@ -72,7 +73,9 @@ public class PostClaimTest {
 
         when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any())).thenReturn(CaseDetails.builder().data(mandatoryData).build());
 
+        // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");
+
 
         MvcResult response = mockMvc
                 .perform(post("/claim/")
