@@ -19,6 +19,7 @@ import java.util.List;
 public class CcdCase {
 
     private String externalId;
+    private String referenceNumber;
     private String reason;
 
     private AmountType amountType;

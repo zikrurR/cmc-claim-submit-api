@@ -14,22 +14,8 @@ public class LocalDateTimeFactory {
     private LocalDateTimeFactory() {
     }
 
-    public static LocalDateTime fromNullableUTCtoLocalZone(LocalDateTime input) {
-        return input == null ? null : fromUTC(input);
-    }
-
-    public static LocalDateTime fromUTC(LocalDateTime input) {
-        return input.atZone(UTC_ZONE)
-            .withZoneSameInstant(LOCAL_ZONE)
-            .toLocalDateTime();
-    }
-
     public static LocalDateTime nowInLocalZone() {
         return LocalDateTime.now(LOCAL_ZONE);
-    }
-
-    public static LocalDateTime nowInUTC() {
-        return LocalDateTime.now(UTC_ZONE);
     }
 
     public static LocalDate fromLong(Long input) {

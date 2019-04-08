@@ -8,8 +8,8 @@ import uk.gov.hmcts.reform.cmc.submit.exception.ApplicationException;
 
 public interface ClaimService {
 
-    Claim getClaim(String externalIdentifier, String authorisation) throws ApplicationException;
+    Claim getClaim(String externalIdentifier) throws ApplicationException;
 
-    ClaimOutput createNewCase(ClaimInput claimData, String authorisation) throws ApplicationException;
+    ClaimOutput createNewCase(ClaimInput claimData) throws ApplicationException;
 
 }
