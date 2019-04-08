@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.reform.cmc.submit.domain.config.JacksonConfiguration;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
@@ -30,7 +30,7 @@ public class ClaimDataSerializationTest {
         ObjectMapper mapper = new JacksonConfiguration().objectMapper();
 
         //when
-        ClaimData claimData = mapper.readValue(input, ClaimData.class);
+        ClaimInput claimData = mapper.readValue(input, ClaimInput.class);
 
         //then
         Individual claimant = SampleParty.individual();
@@ -41,7 +41,7 @@ public class ClaimDataSerializationTest {
         defendent.setServiceAddress(null);
         defendent.setDateOfBirth(null);
 
-        ClaimData other = SampleClaimData.builder()
+        ClaimInput other = SampleClaimData.builder()
             .withExternalId(UUID.fromString("9f49d8df-b734-4e86-aeb6-e22f0c2ca78d"))
             .withInterest(
                 standardInterestBuilder()

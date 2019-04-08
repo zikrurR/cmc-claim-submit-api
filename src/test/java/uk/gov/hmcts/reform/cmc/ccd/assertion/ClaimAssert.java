@@ -4,7 +4,7 @@ import org.assertj.core.api.AbstractAssert;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdAmountRow;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;
@@ -24,9 +24,9 @@ import static java.time.format.DateTimeFormatter.ISO_DATE;
 import static java.util.Optional.ofNullable;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimData> {
+public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimInput> {
 
-    public ClaimAssert(ClaimData actual) {
+    public ClaimAssert(ClaimInput actual) {
         super(actual, ClaimAssert.class);
     }
 

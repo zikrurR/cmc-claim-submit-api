@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.submit.domain.BeanValidator.validate;
 import static uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest.InterestType.STANDARD;
 
-public class ClaimDataTest {
+public class ClaimInputTest {
 
     @Test
     public void shouldBeValidWhenGivenInterestIsValid() {
@@ -32,7 +32,7 @@ public class ClaimDataTest {
                 .withInterestDate(SampleInterestDate.validDefaults())
                 .withSpecificDailyAmount(null)
                 .build();
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withInterest(validInterest)
             .build();
         //when
@@ -43,7 +43,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNullDefendants() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withDefendants(null)
             .build();
 
@@ -54,7 +54,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNoDefendants() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .clearDefendants()
             .build();
 
@@ -65,7 +65,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNullDefendant() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withDefendant(null)
             .build();
 
@@ -79,7 +79,7 @@ public class ClaimDataTest {
         IndividualDetails individualDetails = SampleTheirDetails.individualDetails();
         individualDetails.setName("");
 
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withDefendant(individualDetails)
             .build();
 
@@ -91,7 +91,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeValidWhenGivenTwentyDefendants() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .clearDefendants()
             .addDefendants(SampleTheirDetails.individualDetails(20))
             .build();
@@ -103,7 +103,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNullClaimants() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withClaimants(null)
             .build();
 
@@ -114,7 +114,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNoClaimants() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .clearClaimants()
             .build();
 
@@ -125,7 +125,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNullClaimant() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withClaimant(null)
             .build();
 
@@ -139,7 +139,7 @@ public class ClaimDataTest {
         Individual individual = SampleParty.individual();
         individual.setName("");
 
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withClaimant(individual)
             .build();
 
@@ -152,7 +152,7 @@ public class ClaimDataTest {
     public void shouldBeInvalidWhenGivenInvalidClaimantAddress() {
         Individual individual = SampleParty.individual();
         individual.setAddress(null);
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .withClaimant(individual)
             .build();
 
@@ -163,7 +163,7 @@ public class ClaimDataTest {
 
     @Test
     public void shouldBeValidWhenGivenTwentyClaimants() {
-        ClaimData claimData = SampleClaimData.builder()
+        ClaimInput claimData = SampleClaimData.builder()
             .clearClaimants()
             .addClaimants(SampleParty.individualDetails(20))
             .build();

@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
+import uk.gov.hmcts.reform.cmc.submit.exception.ApplicationException;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 
 import javax.validation.Valid;
@@ -32,28 +35,20 @@ public class ClaimController {
         this.claimService = claimService;
     }
 
-    @GetMapping("/{externalId}")
-    @ApiOperation("Fetch claim for given external id")
-    public ClaimData getByExternalId(
-            @PathVariable("externalId") String externalId,
-            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
+    @GetMapping("/{externalIdentifier}")
+    @ApiOperation("Fetch claim for given external id or reference")
+    public Claim getClaim(
+            @PathVariable String externalIdentifier,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) throws ApplicationException {
 
-//        ClaimData claim;
-//        try {
-//            claim = claimService.getClaimByReference(externalId, authorisation);
-//        } catch (NotFoundException e) {
-//            claim = claimService.getClaimByExternalId(externalId, authorisation);
-//        }
-
-        return null;
-
+        return claimService.getClaim(externalIdentifier, authorisation);
     }
 
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ApiOperation("Creates a new claim")
-    public ClaimData save(
-            @Valid @NotNull @RequestBody ClaimData claimData,
-            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) {
+    public ClaimOutput save(
+            @Valid @NotNull @RequestBody ClaimInput claimData,
+            @RequestHeader(HttpHeaders.AUTHORIZATION) String authorisation) throws ApplicationException {
 
         return claimService.createNewCase(claimData, authorisation);
     }

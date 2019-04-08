@@ -13,7 +13,10 @@ import uk.gov.hmcts.reform.ccd.client.model.Event;
 import uk.gov.hmcts.reform.ccd.client.model.EventRequestData;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.ClaimMapper;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
+import uk.gov.hmcts.reform.cmc.submit.exception.ApplicationException;
 import uk.gov.hmcts.reform.cmc.submit.exception.CoreCaseDataStoreException;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 
@@ -48,21 +51,35 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
-    public ClaimData getClaimByExternalId(String externalId, String authorisation) {
+    public Claim getClaim(String externalIdentifier, String authorisation) throws ApplicationException  {
+        Claim claim;
+        try {
+            claim = getClaimByReference(externalIdentifier, authorisation);
+        } catch (CoreCaseDataStoreException e) {
+            claim = getClaimByExternalId(externalIdentifier, authorisation);
+        }
+
+        return claim;
+    }
+
+    private Claim getClaimByReference(String reference, String authorisation) throws CoreCaseDataStoreException {
+        // @TODO
         return null;
     }
 
-    @Override
-    public ClaimData getClaimByReference(String reference, String authorisation) {
+    private Claim getClaimByExternalId(String externalId, String authorisation) throws CoreCaseDataStoreException {
+        // @TODO
         return null;
     }
 
+
     @Override
-    public ClaimData createNewCase(ClaimData claimData, String authorisation) {
+    public ClaimOutput createNewCase(ClaimInput claimData, String authorisation) {
 
         String idamId = ""; // should be not needed as far as we can get it from the start event token
         CcdCase ccdCase = caseMapper.to(claimData);
 
+        StartEventResponse startEventResponse;
         try {
             EventRequestData eventRequestData = EventRequestData.builder()
                 .userId(idamId)
@@ -72,25 +89,7 @@ public class ClaimServiceImpl implements ClaimService {
                 .ignoreWarning(true)
                 .build();
 
-            StartEventResponse startEventResponse = startCreate(authorisation, eventRequestData);
-
-            CaseDataContent caseDataContent = CaseDataContent.builder()
-                .eventToken(startEventResponse.getToken())
-                .event(Event.builder()
-                    .id(startEventResponse.getEventId())
-                    .summary(CMC_CASE_CREATE_SUMMARY)
-                    .description(SUBMITTING_CMC_CASE_ISSUE_DESCRIPTION)
-                    .build())
-                .data(ccdCase)
-                .build();
-
-            CaseDetails caseDetails = submitCreate(
-                authorisation,
-                eventRequestData,
-                caseDataContent
-            );
-
-            return extractClaim(caseDetails);
+            startEventResponse = startCreate(authorisation, eventRequestData);
 
         } catch (Exception exception) {
             throw new CoreCaseDataStoreException(
@@ -102,6 +101,44 @@ public class ClaimServiceImpl implements ClaimService {
             );
         }
 
+        CaseDetails caseDetails;
+        try {
+
+            EventRequestData eventRequestData = EventRequestData.builder()
+                    .userId(idamId)
+                    .jurisdictionId(JURISDICTION_ID)
+                    .caseTypeId(CASE_TYPE_ID)
+                    .eventId(CREATE_NEW_CASE)
+                    .ignoreWarning(true)
+                    .build();
+
+            CaseDataContent caseDataContent = CaseDataContent.builder()
+                .eventToken(startEventResponse.getToken())
+                .event(Event.builder()
+                    .id(startEventResponse.getEventId())
+                    .summary(CMC_CASE_CREATE_SUMMARY)
+                    .description(SUBMITTING_CMC_CASE_ISSUE_DESCRIPTION)
+                    .build())
+                .data(ccdCase)
+                .build();
+
+            caseDetails = submitCreate(
+                authorisation,
+                eventRequestData,
+                caseDataContent
+            );
+
+        } catch (Exception exception) {
+            throw new CoreCaseDataStoreException(
+                String.format(
+                    CCD_STORING_FAILURE_MESSAGE,
+                    ccdCase.getExternalId(),
+                    CREATE_NEW_CASE
+                ), exception
+            );
+        }
+
+        return extractClaimOutput(caseDetails);
     }
 
     private CaseDetails submitCreate(String authorisation, EventRequestData eventRequestData, CaseDataContent caseDataContent) {
@@ -129,8 +166,11 @@ public class ClaimServiceImpl implements ClaimService {
         );
     }
 
-    private ClaimData extractClaim(CaseDetails caseDetails) {
-        return caseMapper.from(extractCase(caseDetails));
+    private ClaimOutput extractClaimOutput(CaseDetails caseDetails) {
+
+        ClaimOutput claimOutput = new ClaimOutput();
+        claimOutput.setReferenceNumber((String)caseDetails.getData().get("referenceNumber"));
+        return claimOutput;
     }
 
     private CcdCase extractCase(CaseDetails caseDetails) {

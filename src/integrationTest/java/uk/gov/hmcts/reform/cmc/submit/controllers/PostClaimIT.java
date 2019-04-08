@@ -20,11 +20,10 @@ import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleClaimData;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.NotKnown;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
 
 import java.util.Map;
-import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -58,7 +57,7 @@ public class PostClaimIT {
     @Test
     public void happyPathPostClaim() throws Exception {
 
-        ClaimData claim = SampleClaimData.validDefaults();
+        ClaimInput claim = SampleClaimData.validDefaults();
 
         // mock ccd call
         when(coreCaseDataApi.startForCitizen(any(), any(), any(), any(), any(), any())).thenReturn(StartEventResponse.builder()
@@ -68,8 +67,7 @@ public class PostClaimIT {
                 .build());
 
         Map<String,Object> mandatoryData = Maps.newHashMap();
-        mandatoryData.put("externalId", UUID.randomUUID().toString());
-        mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("referenceNumber", "ramdom_reference_number");
 
         when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any())).thenReturn(CaseDetails.builder().data(mandatoryData).build());
 
@@ -85,9 +83,9 @@ public class PostClaimIT {
                     .andExpect(status().isOk())
                     .andReturn();
 
-        ClaimData claimResponse = objectMapper.readValue(response.getResponse().getContentAsString(), ClaimData.class);
+        ClaimOutput claimResponse = objectMapper.readValue(response.getResponse().getContentAsString(), ClaimOutput.class);
 
-        assertThat(claimResponse.getAmount().getClass()).isEqualTo(NotKnown.class);
+        assertThat(claimResponse.getReferenceNumber()).isEqualTo("ramdom_reference_number");
 
     }
 }

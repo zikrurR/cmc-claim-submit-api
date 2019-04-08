@@ -11,7 +11,7 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.evidence.EvidenceMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.interest.InterestMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.payment.PaymentMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.timeline.TimelineMapper;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.DamagesExpectation;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.HousingDisrepair;
@@ -41,7 +41,7 @@ public class ClaimMapper {
     private EvidenceMapper evidenceMapper;
 
 
-    public CcdCase to(ClaimData claim) {
+    public CcdCase to(ClaimInput claim) {
         Objects.requireNonNull(claim, "claimData must not be null");
 
         CcdCase.CcdCaseBuilder builder = CcdCase.builder();
@@ -91,7 +91,7 @@ public class ClaimMapper {
         return builder.build();
     }
 
-    public ClaimData from(CcdCase ccdCase) {
+    public ClaimInput from(CcdCase ccdCase) {
 
         Objects.requireNonNull(ccdCase, "ccdCase must not be null");
 
@@ -105,7 +105,7 @@ public class ClaimMapper {
 //        .submitterEmail(ccdCase.getSubmitterEmail());
 
 
-        ClaimData claim = new ClaimData();
+        ClaimInput claim = new ClaimInput();
         claim.setExternalId(UUID.fromString(ccdCase.getExternalId()));
         claim.setPersonalInjury(personalInjuryFrom(ccdCase));
         claim.setHousingDisrepair(housingDisrepairFrom(ccdCase));

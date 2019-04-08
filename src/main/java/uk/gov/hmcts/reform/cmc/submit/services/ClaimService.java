@@ -1,13 +1,15 @@
 package uk.gov.hmcts.reform.cmc.submit.services;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+
+import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
+import uk.gov.hmcts.reform.cmc.submit.exception.ApplicationException;
 
 public interface ClaimService {
 
-    ClaimData getClaimByExternalId(String externalId, String authorisation);
+    Claim getClaim(String externalIdentifier, String authorisation) throws ApplicationException;
 
-    ClaimData getClaimByReference(String reference, String authorisation);
-
-    ClaimData createNewCase(ClaimData claimData, String authorisation);
+    ClaimOutput createNewCase(ClaimInput claimData, String authorisation) throws ApplicationException;
 
 }

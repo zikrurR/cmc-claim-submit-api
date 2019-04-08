@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
@@ -29,7 +29,7 @@ public class Assertions {
         return new EvidenceAssert(evidence);
     }
 
-    public static ClaimAssert assertThat(ClaimData claim) {
+    public static ClaimAssert assertThat(ClaimInput claim) {
         return new ClaimAssert(claim);
     }
 

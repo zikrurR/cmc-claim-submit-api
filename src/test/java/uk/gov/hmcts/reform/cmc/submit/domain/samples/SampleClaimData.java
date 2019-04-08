@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.samples;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
@@ -145,8 +145,8 @@ public class SampleClaimData {
         return this;
     }
 
-    public ClaimData build() {
-        ClaimData claimData = new ClaimData();
+    public ClaimInput build() {
+        ClaimInput claimData = new ClaimInput();
 
         claimData.setExternalId(externalId);
         claimData.setClaimants(claimants);
@@ -165,7 +165,7 @@ public class SampleClaimData {
         return claimData;
     }
 
-    public static ClaimData validDefaults() {
+    public static ClaimInput validDefaults() {
         return builder().build();
     }
 }

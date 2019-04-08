@@ -22,7 +22,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class ClaimData {
+public class ClaimInput {
 
     private UUID externalId;
 
