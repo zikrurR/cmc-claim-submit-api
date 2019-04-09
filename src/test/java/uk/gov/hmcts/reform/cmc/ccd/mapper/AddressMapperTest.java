@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
 import uk.gov.hmcts.reform.cmc.ccd.builders.SampleAddress;
-import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.common.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
 
 import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;

@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.services.impl;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.WebRequest;
 
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
@@ -17,6 +17,8 @@ import uk.gov.hmcts.reform.cmc.submit.services.CoreCaseDataService;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Service
 public class CoreCaseDataServiceImpl implements CoreCaseDataService {
 
@@ -25,12 +27,12 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     public static final String CASE_TYPE_ID = "MoneyClaimCase";
     public static final String CMC_CASE_CREATE_SUMMARY = "CMC case issue";
     public static final String SUBMITTING_CMC_CASE_ISSUE_DESCRIPTION = "Submitting CMC case issue";
-    public static final String  AUTHORISATION_HEADER_NAME = "authorisation";
 
     private final CoreCaseDataApi coreCaseDataApi;
     private final AuthTokenGenerator authTokenGenerator;
 
-    @Autowired private WebRequest webRequest;
+	@Autowired
+    private HttpServletRequest request;
 
     public CoreCaseDataServiceImpl(
             CoreCaseDataApi coreCaseDataApi,
@@ -53,10 +55,9 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
                 .data(ccdCase)
                 .build();
 
-
         String idamId = "1"; // user.getUserDetails().getId();
         return coreCaseDataApi.submitForCitizen(
-            webRequest.getHeader(AUTHORISATION_HEADER_NAME),
+            getAuthorisationHeader(),
             this.authTokenGenerator.generate(),
             idamId,
             JURISDICTION_ID,
@@ -66,12 +67,13 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
         );
     }
 
+
     @Override
     public StartEventResponse startCase() {
 
         String idamId = "12"; // user.getUserDetails().getId();
         return coreCaseDataApi.startForCitizen(
-            webRequest.getHeader(AUTHORISATION_HEADER_NAME),
+            getAuthorisationHeader(),
             authTokenGenerator.generate(),
             idamId,
             JURISDICTION_ID,
@@ -85,7 +87,7 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
 
         String idamId = "123"; // user.getUserDetails().getId();
         return coreCaseDataApi.searchForCitizen(
-            webRequest.getHeader(AUTHORISATION_HEADER_NAME),
+            getAuthorisationHeader(),
             authTokenGenerator.generate(),
             idamId,
             JURISDICTION_ID,
@@ -94,4 +96,8 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
         );
     }
 
+
+    private String getAuthorisationHeader() {
+        return request.getHeader(HttpHeaders.AUTHORIZATION);
+    }
 }
