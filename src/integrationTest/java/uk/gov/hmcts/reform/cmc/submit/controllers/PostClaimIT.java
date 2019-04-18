@@ -3,6 +3,9 @@ package uk.gov.hmcts.reform.cmc.submit.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Maps;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -25,7 +28,11 @@ import uk.gov.hmcts.reform.cmc.ccd.builders.SampleClaimData;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
 
+import java.util.Date;
 import java.util.Map;
+
+import javax.crypto.spec.SecretKeySpec;
+import javax.xml.bind.DatatypeConverter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -76,10 +83,17 @@ public class PostClaimIT {
         ClaimInput claim = SampleClaimData.validDefaults();
 
         // mock ccd call
+        String compact = Jwts.builder()
+                .setId("1")
+                .setSubject("1")
+                .setIssuedAt(new Date())
+                .signWith(SignatureAlgorithm.HS256, new SecretKeySpec(DatatypeConverter.parseBase64Binary("AAAAAAAAAA"), SignatureAlgorithm.HS256.getJcaName()))
+                .compact();
+
         when(coreCaseDataApi.startForCitizen(any(), any(), any(), any(), any(), any())).thenReturn(StartEventResponse.builder()
                 .caseDetails(CaseDetails.builder().data(Maps.newHashMap()).build())
                 .eventId("eventId")
-                .token("token")
+                .token(compact)
                 .build());
 
         Map<String,Object> mandatoryData = Maps.newHashMap();

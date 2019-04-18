@@ -2,6 +2,11 @@ package uk.gov.hmcts.reform.cmc.submit.services.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+import io.jsonwebtoken.Jwt;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.impl.DefaultClaims;
+import io.jsonwebtoken.impl.DefaultJwt;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
@@ -55,11 +60,10 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
                 .data(ccdCase)
                 .build();
 
-        String idamId = "1"; // user.getUserDetails().getId();
         return coreCaseDataApi.submitForCitizen(
             getAuthorisationHeader(),
             this.authTokenGenerator.generate(),
-            idamId,
+            getIdamIdFormCcdToken(caseDataContent.getEventToken()),
             JURISDICTION_ID,
             CASE_TYPE_ID,
             true,
@@ -96,8 +100,14 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
         );
     }
 
-
     private String getAuthorisationHeader() {
         return request.getHeader(HttpHeaders.AUTHORIZATION);
+    }
+
+    private String getIdamIdFormCcdToken(final String token) {
+        String[] splitToken = token.split("\\.");
+        Jwt parsedToken = Jwts.parser().parse(splitToken[0] + "." + splitToken[1] + ".");
+        DefaultClaims body = (DefaultClaims)((DefaultJwt)parsedToken).getBody();
+        return body.getSubject();
     }
 }
