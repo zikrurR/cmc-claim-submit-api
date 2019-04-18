@@ -8,6 +8,7 @@ plugins {
   id 'org.owasp.dependencycheck' version '3.3.4'
   id 'com.github.ben-manes.versions' version '0.20.0'
   id 'org.sonarqube' version '2.6.2'
+  id 'org.unbroken-dome.test-sets' version '2.1.1'
 }
 
 group = 'uk.gov.hmcts.reform.cmc'
@@ -16,61 +17,41 @@ version = '0.0.1'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
+testSets {
+    integrationTest
+}
+
 sourceSets {
-  functionalTest {
-    java {
-      compileClasspath += main.output
-      runtimeClasspath += main.output
-      srcDir file('src/functionalTest/java')
-    }
-    resources.srcDir file('src/functionalTest/resources')
-  }
+    functionalTest
+    smokeTest
+}
 
-  integrationTest {
-    java {
-      compileClasspath += main.output
-      runtimeClasspath += main.output
-      srcDir file('src/integrationTest/java')
-    }
-    resources.srcDir file('src/integrationTest/resources')
-  }
-
-  smokeTest {
-    java {
-      compileClasspath += main.output
-      runtimeClasspath += main.output
-      srcDir file('src/smokeTest/java')
-    }
-    resources.srcDir file('src/smokeTest/resources')
-  }
+tasks.withType(Test) {
+    useJUnitPlatform()
 }
 
 tasks.withType(JavaCompile) {
   options.compilerArgs << "-Xlint:unchecked" << "-Werror"
 }
 
-test {
-  useJUnitPlatform()
-  failFast = true
-}
+task integration {}
+integration.dependsOn integrationTest
 
 task functional(type: Test, description: 'Runs the functional tests.', group: 'Verification') {
   testClassesDirs = sourceSets.functionalTest.output.classesDirs
   classpath = sourceSets.functionalTest.runtimeClasspath
 }
 
-task integration(type: Test, description: 'Runs the integration tests.', group: 'Verification') {
-  testClassesDirs = sourceSets.integrationTest.output.classesDirs
-  classpath = sourceSets.integrationTest.runtimeClasspath
-  useJUnitPlatform()
-  // set your environment variables here
-  // environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
-}
-
-task smoke(type: Test) {
-  description = "Runs Smoke Tests"
+task smoke(type: Test, description: 'Runs the smoke Tests.', group: 'Verification') {
   testClassesDirs = sourceSets.smokeTest.output.classesDirs
   classpath = sourceSets.smokeTest.runtimeClasspath
+}
+
+
+configurations {
+    functionalTestCompile.extendsFrom(smokeTest)
+    functionalTestCompileOnly.extendsFrom(smokeTest)    
+    functionalAnnotationProcessor.extendsFrom(smokeTest)
 }
 
 checkstyle {
@@ -160,9 +141,11 @@ dependencies {
   compile group: 'io.springfox', name: 'springfox-swagger-ui', version: versions.springfoxSwagger
 
   compile group: 'uk.gov.hmcts.reform', name: 'java-logging', version: versions.reformLogging
-  compile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '2.0.0'
+  compile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '3.0.0'
   compile group: 'uk.gov.hmcts.reform', name: 'core-case-data-store-client', version: '4.3.1'
   
+
+  compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'  
   compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
   
   annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.6'
@@ -173,13 +156,17 @@ dependencies {
   testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit
   testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junit
   testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit
-  
-  integrationTestCompile sourceSets.main.runtimeClasspath
   integrationTestCompile sourceSets.test.runtimeClasspath
 
-  functionalTestCompile sourceSets.main.runtimeClasspath
-
-  smokeTestCompile sourceSets.main.runtimeClasspath
+  smokeTestCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
+  smokeTestCompile group: 'org.springframework.boot', name: 'spring-boot-starter-json'  
+  smokeTestCompile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '3.0.0'
+  smokeTestCompile group: 'uk.gov.hmcts.reform', name: 'idam-client', version: '1.0.2'  
+  smokeTestCompile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
+  smokeTestImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit
+  smokeTestCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junit
+  smokeTestRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit
+  
 }
 
 mainClassName = 'uk.gov.hmcts.reform.cmc.submit.Application'
