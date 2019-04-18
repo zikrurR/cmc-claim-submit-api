@@ -26,6 +26,13 @@ sourceSets {
     smokeTest
 }
 
+configurations {
+    functionalTestCompile.extendsFrom(smokeTestCompile)
+    functionalTestCompileOnly.extendsFrom(smokeTestCompileOnly)    
+    functionalTestImplementation.extendsFrom(smokeTestImplementation)
+    functionalTestRuntimeOnly.extendsFrom(smokeTestRuntimeOnly)
+}
+
 tasks.withType(Test) {
     useJUnitPlatform()
 }
@@ -47,12 +54,6 @@ task smoke(type: Test, description: 'Runs the smoke Tests.', group: 'Verificatio
   classpath = sourceSets.smokeTest.runtimeClasspath
 }
 
-
-configurations {
-    functionalTestCompile.extendsFrom(smokeTest)
-    functionalTestCompileOnly.extendsFrom(smokeTest)    
-    functionalAnnotationProcessor.extendsFrom(smokeTest)
-}
 
 checkstyle {
   maxWarnings = 50
@@ -166,8 +167,8 @@ dependencies {
   smokeTestImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit
   smokeTestCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junit
   smokeTestRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: versions.junit
-  
 }
+
 
 mainClassName = 'uk.gov.hmcts.reform.cmc.submit.Application'
 
