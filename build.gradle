@@ -27,10 +27,10 @@ sourceSets {
 }
 
 configurations {
-    functionalTestCompile.extendsFrom(smokeTestCompile)
-    functionalTestCompileOnly.extendsFrom(smokeTestCompileOnly)    
-    functionalTestImplementation.extendsFrom(smokeTestImplementation)
-    functionalTestRuntimeOnly.extendsFrom(smokeTestRuntimeOnly)
+    functionalTestCompile.extendsFrom smokeTestCompile
+    functionalTestCompileOnly.extendsFrom smokeTestCompileOnly
+    functionalTestImplementation.extendsFrom smokeTestImplementation
+    functionalTestRuntimeOnly.extendsFrom smokeTestRuntimeOnly
 }
 
 tasks.withType(Test) {
