@@ -15,7 +15,7 @@ spring:
 idam:
   s2s-auth:
     url: ${IDAM_S2S_URL:http://localhost:4552}
-    totp_secret: ${IDAM_S2S_KEY:AAAAAAAAAAAAAAAB}
+    totp_secret: ${IDAM_S2S_KEY:AAAAAAAAAAAAAAAA}
     microservice: ${IDAM_S2S_MICROSERVICE:cmc_claim_submit_api}
 
 core_case_data:
