@@ -1,0 +1,39 @@
+package uk.gov.hmcts.reform.cmc.submit.acceptance;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
+
+import uk.gov.hmcts.reform.cmc.submit.BaseTest;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class GetClaimHappyPath extends BaseTest {
+
+    RestTemplate restTemplate = new RestTemplate();
+
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @DisplayName("Happy path should return the claim requested in CCD")
+    @Test
+    public void getClaimHappyPath() {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
+
+        HttpEntity<String> entity = new HttpEntity<>(headers);
+        ResponseEntity<String> claimOutput = restTemplate.postForEntity(getClaimEndPoint, entity, String.class);
+
+        assertThat(claimOutput.getStatusCodeValue()).isEqualTo(HttpStatus.CREATED);
+    }
+}
