@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.util;
 
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
 
 import java.time.LocalDate;
 
@@ -15,8 +15,8 @@ public class SampleCcdDefendant {
         //Utility class
     }
 
-    public static CcdDefendant.CcdDefendantBuilder withDefault() {
-        return CcdDefendant.builder()
+    public static CcdRespondent.CcdRespondentBuilder withDefault() {
+        return CcdRespondent.builder()
             .claimantProvidedType(INDIVIDUAL)
             .defendantId("defendantId")
             .letterHolderId("JCJEDU")
@@ -24,12 +24,12 @@ public class SampleCcdDefendant {
             .partyEmail("defendant@Ididabadjob.com");
     }
 
-    public static CcdDefendant.CcdDefendantBuilder withResponseMoreTimeNeededOption() {
+    public static CcdRespondent.CcdRespondentBuilder withResponseMoreTimeNeededOption() {
         return withDefault();
     }
 
-    private static CcdDefendant.CcdDefendantBuilder withParty() {
-        return CcdDefendant.builder()
+    private static CcdRespondent.CcdRespondentBuilder withParty() {
+        return CcdRespondent.builder()
             .partyType(COMPANY)
             .partyName("Mr Norman")
             .partyAddress(getCcdAddress())
@@ -42,23 +42,23 @@ public class SampleCcdDefendant {
             .representativeOrganisationDxAddress("DX123456");
     }
 
-    public static CcdDefendant.CcdDefendantBuilder withPartyIndividual() {
+    public static CcdRespondent.CcdRespondentBuilder withPartyIndividual() {
         return withParty()
             .partyDateOfBirth(LocalDate.of(1980, 1, 1));
     }
 
-    public static CcdDefendant.CcdDefendantBuilder withPartyCompany() {
+    public static CcdRespondent.CcdRespondentBuilder withPartyCompany() {
         return withParty()
             .partyContactPerson("Mr Steven");
     }
 
-    public static CcdDefendant.CcdDefendantBuilder withPartySoleTrader() {
+    public static CcdRespondent.CcdRespondentBuilder withPartySoleTrader() {
         return withParty()
             .partyTitle("Mr")
             .partyBusinessName("Trading as name");
     }
 
-    public static CcdDefendant.CcdDefendantBuilder withPartyOrganisation() {
+    public static CcdRespondent.CcdRespondentBuilder withPartyOrganisation() {
         return withParty()
             .partyContactPerson("Mr Steven")
             .partyCompaniesHouseNumber("12345");

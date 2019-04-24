@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
@@ -32,7 +32,7 @@ class DefendantConverter {
         this.addressMapper = addressMapper;
     }
 
-    public List<TheirDetails> from(List<CcdCollectionElement<CcdDefendant>> defendant) {
+    public List<TheirDetails> from(List<CcdCollectionElement<CcdRespondent>> defendant) {
         if (defendant == null) {
             return new ArrayList<>();
         }
@@ -41,7 +41,7 @@ class DefendantConverter {
     }
 
 
-    private TheirDetails from(CcdCollectionElement<CcdDefendant> ccdDefendant) {
+    private TheirDetails from(CcdCollectionElement<CcdRespondent> ccdDefendant) {
         switch (ccdDefendant.getValue().getClaimantProvidedType()) {
             case COMPANY:
                 return companyDetailsFrom(ccdDefendant);
@@ -57,8 +57,8 @@ class DefendantConverter {
         }
     }
 
-    private CompanyDetails companyDetailsFrom(CcdCollectionElement<CcdDefendant> collectionElement) {
-        CcdDefendant ccdDefendant = collectionElement.getValue();
+    private CompanyDetails companyDetailsFrom(CcdCollectionElement<CcdRespondent> collectionElement) {
+        CcdRespondent ccdDefendant = collectionElement.getValue();
 
         CompanyDetails companyDetails = new CompanyDetails();
         companyDetails.setId(collectionElement.getId());
@@ -72,8 +72,8 @@ class DefendantConverter {
         return companyDetails;
     }
 
-    private IndividualDetails individualDetailsFrom(CcdCollectionElement<CcdDefendant> defendant) {
-        CcdDefendant value = defendant.getValue();
+    private IndividualDetails individualDetailsFrom(CcdCollectionElement<CcdRespondent> defendant) {
+        CcdRespondent value = defendant.getValue();
 
         IndividualDetails individualDetails = new IndividualDetails();
         individualDetails.setId(defendant.getId());
@@ -87,12 +87,12 @@ class DefendantConverter {
         return individualDetails;
     }
 
-    private SoleTraderDetails soleTraderDetailsFrom(CcdCollectionElement<CcdDefendant> defendant) {
+    private SoleTraderDetails soleTraderDetailsFrom(CcdCollectionElement<CcdRespondent> defendant) {
         if (defendant == null) {
             return null;
         }
 
-        CcdDefendant value = defendant.getValue();
+        CcdRespondent value = defendant.getValue();
 
         SoleTraderDetails ccdSoleTrader = new SoleTraderDetails();
         ccdSoleTrader.setId(defendant.getId());
@@ -107,12 +107,12 @@ class DefendantConverter {
         return ccdSoleTrader;
     }
 
-    private OrganisationDetails organisationDetailsFrom(CcdCollectionElement<CcdDefendant> defendant) {
+    private OrganisationDetails organisationDetailsFrom(CcdCollectionElement<CcdRespondent> defendant) {
         if (defendant == null) {
             return null;
         }
 
-        CcdDefendant value = defendant.getValue();
+        CcdRespondent value = defendant.getValue();
 
         OrganisationDetails organisationDetails = new OrganisationDetails();
         organisationDetails.setId(defendant.getId());
@@ -127,7 +127,7 @@ class DefendantConverter {
         return organisationDetails;
     }
 
-    private Representative representativeFrom(CcdDefendant ccdDefendant) {
+    private Representative representativeFrom(CcdRespondent ccdDefendant) {
         if (isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationName())
             && ccdDefendant.getClaimantProvidedRepresentativeOrganisationAddress() == null
             && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationPhone())
@@ -145,7 +145,7 @@ class DefendantConverter {
         return representative;
     }
 
-    private ContactDetails contactDetailsFrom(CcdDefendant ccdDefendant) {
+    private ContactDetails contactDetailsFrom(CcdRespondent ccdDefendant) {
         if (isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationPhone())
             && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationEmail())
             && ccdDefendant.getClaimantProvidedRepresentativeOrganisationDxAddress() == null

@@ -20,7 +20,7 @@ public class MergeCaseData implements MergeCaseDataDecorator {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    private MergeCaseDataClaimants claimantsDecorator;
+    private MergeCaseDataApplicants claimantsDecorator;
     @Autowired
     private MergeCaseDataDefendants defendantsDecorator;
     @Autowired
@@ -34,8 +34,8 @@ public class MergeCaseData implements MergeCaseDataDecorator {
     @Autowired
     private MergeCaseDataEvidence evidenceDecorator;
 
-    public MergeCaseData(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
+    public MergeCaseData(ObjectMapper mergerObjectMapper) {
+        this.objectMapper = mergerObjectMapper;
     }
 
     public Map<String, JsonNode> merge(Map<String, Object> data, ClaimInput claim) {

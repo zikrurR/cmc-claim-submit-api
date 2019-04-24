@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
@@ -37,11 +37,11 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
     @Override
     public void merge(CcdCase ccdCase, ClaimInput claim) {
 
-        ccdCase.setDefendants(to(claim.getDefendants()));
+        ccdCase.setRespondents(to(claim.getDefendants()));
 
     }
 
-    private List<CcdCollectionElement<CcdDefendant>> to(List<TheirDetails> theirDetails) {
+    private List<CcdCollectionElement<CcdRespondent>> to(List<TheirDetails> theirDetails) {
         if (theirDetails == null) {
             return new ArrayList<>();
         }
@@ -52,20 +52,20 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
                 .collect(Collectors.toList());
     }
 
-    public CcdCollectionElement<CcdDefendant> to(TheirDetails theirDetails) {
+    public CcdCollectionElement<CcdRespondent> to(TheirDetails theirDetails) {
         requireNonNull(theirDetails, "theirDetails must not be null");
 
-        CcdDefendant.CcdDefendantBuilder builder = CcdDefendant.builder();
+        CcdRespondent.CcdRespondentBuilder builder = CcdRespondent.builder();
 
         theirDetails(builder, theirDetails);
 
-        return CcdCollectionElement.<CcdDefendant>builder()
+        return CcdCollectionElement.<CcdRespondent>builder()
             .value(builder.build())
             .id(theirDetails.getId())
             .build();
     }
 
-    public void theirDetails(CcdDefendant.CcdDefendantBuilder builder, TheirDetails theirDetails) {
+    public void theirDetails(CcdRespondent.CcdRespondentBuilder builder, TheirDetails theirDetails) {
 
         if (theirDetails instanceof IndividualDetails) {
             builder.claimantProvidedType(CcdPartyType.INDIVIDUAL);
@@ -86,7 +86,7 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
         }
     }
 
-    public void individualDetails(IndividualDetails individual, CcdDefendant.CcdDefendantBuilder builder) {
+    public void individualDetails(IndividualDetails individual, CcdRespondent.CcdRespondentBuilder builder) {
 
         builder.claimantProvidedServiceAddress(addressMapper.to(individual.getServiceAddress()));
         builder.claimantProvidedDateOfBirth(individual.getDateOfBirth());
@@ -97,7 +97,7 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
         representative(individual.getRepresentative(), builder);
     }
 
-    public void companyDetails(CompanyDetails company, CcdDefendant.CcdDefendantBuilder builder) {
+    public void companyDetails(CompanyDetails company, CcdRespondent.CcdRespondentBuilder builder) {
 
         builder.claimantProvidedEmail(company.getEmail());
         builder.claimantProvidedContactPerson(company.getContactPerson());
@@ -109,7 +109,7 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
 
     }
 
-    public void organisationDetails(OrganisationDetails organisation, CcdDefendant.CcdDefendantBuilder builder) {
+    public void organisationDetails(OrganisationDetails organisation, CcdRespondent.CcdRespondentBuilder builder) {
         if (organisation == null) {
             return;
         }
@@ -125,7 +125,7 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
 
     }
 
-    public void soleTraderDetails(SoleTraderDetails soleTrader, CcdDefendant.CcdDefendantBuilder builder) {
+    public void soleTraderDetails(SoleTraderDetails soleTrader, CcdRespondent.CcdRespondentBuilder builder) {
         if (soleTrader == null) {
             return;
         }
@@ -142,7 +142,7 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
 
     }
 
-    public void representative(Representative representative, CcdDefendant.CcdDefendantBuilder builder) {
+    public void representative(Representative representative, CcdRespondent.CcdRespondentBuilder builder) {
         if (representative == null) {
             return;
         }
@@ -153,7 +153,7 @@ class MergeCaseDataDefendants implements MergeCaseDataDecorator {
         builder.claimantProvidedRepresentativeOrganisationAddress(addressMapper.to(representative.getOrganisationAddress()));
     }
 
-    public void defendantContactDetails(ContactDetails contactDetails, CcdDefendant.CcdDefendantBuilder builder) {
+    public void defendantContactDetails(ContactDetails contactDetails, CcdRespondent.CcdRespondentBuilder builder) {
 
         builder.claimantProvidedRepresentativeOrganisationEmail(contactDetails.getEmail());
         builder.claimantProvidedRepresentativeOrganisationPhone(contactDetails.getPhone());

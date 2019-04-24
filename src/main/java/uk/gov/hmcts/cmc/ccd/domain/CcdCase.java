@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
 
 import java.math.BigDecimal;
@@ -27,7 +26,6 @@ public class CcdCase {
     private BigDecimal amountHigherValue;
     private List<CcdCollectionElement<CcdAmountRow>> amountBreakDown;
     private BigDecimal totalAmount;
-    private CcdNotKnown notKnown;
 
     private CcdInterestType interestType;
     private BigDecimal interestBreakDownAmount;
@@ -54,8 +52,8 @@ public class CcdCase {
     private String sotSignerName;
     private String sotSignerRole;
 
-    private List<CcdCollectionElement<CcdClaimant>> claimants;
-    private List<CcdCollectionElement<CcdDefendant>> defendants;
+    private List<CcdCollectionElement<CcdApplicant>> applicants;
+    private List<CcdCollectionElement<CcdRespondent>> respondents;
     private List<CcdCollectionElement<CcdTimelineEvent>> timeline;
     private List<CcdCollectionElement<CcdEvidenceRow>> evidence;
 }

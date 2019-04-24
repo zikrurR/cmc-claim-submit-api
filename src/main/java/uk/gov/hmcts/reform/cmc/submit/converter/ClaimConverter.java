@@ -60,8 +60,8 @@ public class ClaimConverter {
         claim.setPreferredCourt(ccdCase.getPreferredCourt());
         claim.setTimeline(timelineConverter.from(ccdCase.getTimeline()));
         claim.setEvidences(evidenceConverter.from(ccdCase.getEvidence()));
-        claim.setClaimants(claimantConverter.from(ccdCase.getClaimants()));
-        claim.setDefendants(defendantConverter.from(ccdCase.getDefendants()));
+        claim.setClaimants(claimantConverter.from(ccdCase.getApplicants()));
+        claim.setDefendants(defendantConverter.from(ccdCase.getRespondents()));
         claim.setPayment(paymentConverter.from(ccdCase));
         claim.setAmount(amountConverter.from(ccdCase));
         claim.setInterest(interestConverter.from(ccdCase));

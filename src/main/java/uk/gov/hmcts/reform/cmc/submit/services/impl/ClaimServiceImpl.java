@@ -42,8 +42,8 @@ public class ClaimServiceImpl implements ClaimService {
             CoreCaseDataService coreCaseDataService) {
 
         this.claimConverter = claimConverter;
-        this.mergeCaseData = mergeCaseData;
         this.coreCaseDataService = coreCaseDataService;
+        this.mergeCaseData = mergeCaseData;
     }
 
     @Override
@@ -80,7 +80,8 @@ public class ClaimServiceImpl implements ClaimService {
 
         StartEventResponse startEventResponse = coreCaseDataService.startCase();
 
-        Map<String, JsonNode> caseData = mergeCaseData.merge(startEventResponse.getCaseDetails().getData(), claimData);
+        Map<String, Object> data = startEventResponse.getCaseDetails().getData();
+        Map<String, JsonNode> caseData = mergeCaseData.merge(data, claimData);
 
         CaseDetails caseDetails = coreCaseDataService.submitCase(startEventResponse, caseData);
 

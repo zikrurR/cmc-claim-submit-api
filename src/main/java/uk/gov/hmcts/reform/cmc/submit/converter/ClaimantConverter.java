@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.converter;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdApplicant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
@@ -30,7 +30,7 @@ class ClaimantConverter {
         this.addressMapper = addressMapper;
     }
 
-    public List<Party> from(List<CcdCollectionElement<CcdClaimant>> ccdEvidence) {
+    public List<Party> from(List<CcdCollectionElement<CcdApplicant>> ccdEvidence) {
         if (ccdEvidence == null) {
             return new ArrayList<>();
         }
@@ -41,7 +41,7 @@ class ClaimantConverter {
                 .collect(Collectors.toList());
     }
 
-    private Party from(CcdCollectionElement<CcdClaimant> ccdClaimant) {
+    private Party from(CcdCollectionElement<CcdApplicant> ccdClaimant) {
         switch (ccdClaimant.getValue().getPartyType()) {
             case COMPANY:
                 return companyFrom(ccdClaimant);
@@ -56,8 +56,8 @@ class ClaimantConverter {
         }
     }
 
-    public Company companyFrom(CcdCollectionElement<CcdClaimant> claimant) {
-        CcdClaimant value = claimant.getValue();
+    public Company companyFrom(CcdCollectionElement<CcdApplicant> claimant) {
+        CcdApplicant value = claimant.getValue();
         Company company = new Company();
 
         company.setId(claimant.getId());
@@ -71,8 +71,8 @@ class ClaimantConverter {
         return company;
     }
 
-    public Individual individualFrom(CcdCollectionElement<CcdClaimant> claimant) {
-        CcdClaimant value = claimant.getValue();
+    public Individual individualFrom(CcdCollectionElement<CcdApplicant> claimant) {
+        CcdApplicant value = claimant.getValue();
 
         Individual individual = new Individual();
         individual.setId(claimant.getId());
@@ -86,8 +86,8 @@ class ClaimantConverter {
         return individual;
     }
 
-    public SoleTrader soleTraderFrom(CcdCollectionElement<CcdClaimant> claimant) {
-        CcdClaimant value = claimant.getValue();
+    public SoleTrader soleTraderFrom(CcdCollectionElement<CcdApplicant> claimant) {
+        CcdApplicant value = claimant.getValue();
         SoleTrader soletrader = new SoleTrader();
 
         soletrader.setId(claimant.getId());
@@ -102,10 +102,10 @@ class ClaimantConverter {
         return soletrader;
     }
 
-    public Organisation organisationFrom(CcdCollectionElement<CcdClaimant> claimant) {
+    public Organisation organisationFrom(CcdCollectionElement<CcdApplicant> claimant) {
         if (claimant == null) return null;
 
-        CcdClaimant value = claimant.getValue();
+        CcdApplicant value = claimant.getValue();
 
         Organisation organisation = new Organisation();
 
@@ -121,7 +121,7 @@ class ClaimantConverter {
         return organisation;
     }
 
-    public Representative representativeFrom(CcdClaimant ccdClaimant) {
+    public Representative representativeFrom(CcdApplicant ccdClaimant) {
         if (isBlank(ccdClaimant.getRepresentativeOrganisationName())
             && ccdClaimant.getRepresentativeOrganisationAddress() == null
             && isBlank(ccdClaimant.getRepresentativeOrganisationEmail())
@@ -140,7 +140,7 @@ class ClaimantConverter {
 
     }
 
-    public ContactDetails contactDetailsFrom(CcdClaimant ccdClaimant) {
+    public ContactDetails contactDetailsFrom(CcdApplicant ccdClaimant) {
         if (isBlank(ccdClaimant.getRepresentativeOrganisationPhone())
             && isBlank(ccdClaimant.getRepresentativeOrganisationEmail())
             && ccdClaimant.getRepresentativeOrganisationDxAddress() == null

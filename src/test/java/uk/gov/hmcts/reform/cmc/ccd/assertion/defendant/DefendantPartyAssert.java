@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion.defendant;
 import org.assertj.core.api.AbstractAssert;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
-import uk.gov.hmcts.cmc.ccd.domain.defendant.CcdDefendant;
+import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;
@@ -26,7 +26,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         super(party, DefendantPartyAssert.class);
     }
 
-    public DefendantPartyAssert isEqualTo(CcdDefendant ccdDefendant) {
+    public DefendantPartyAssert isEqualTo(CcdRespondent ccdDefendant) {
         isNotNull();
 
         if (this.actual instanceof Individual) {
@@ -68,7 +68,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         return this;
     }
 
-    private void assertParty(CcdDefendant ccdDefendant) {
+    private void assertParty(CcdRespondent ccdDefendant) {
         if (!Objects.equals(actual.getName(), ccdDefendant.getPartyName())) {
             failWithMessage("Expected CcdDefendant.partyName to be <%s> but was <%s>",
                 ccdDefendant.getPartyName(), actual.getName());
@@ -85,7 +85,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         assertRepresentativeDetails(actual.getRepresentative(), ccdDefendant);
     }
 
-    private void assertSoleTrader(CcdDefendant ccdDefendant) {
+    private void assertSoleTrader(CcdRespondent ccdDefendant) {
         assertParty(ccdDefendant);
 
         SoleTrader actual = (SoleTrader) this.actual;
@@ -97,7 +97,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         }
     }
 
-    private void assertCompany(CcdDefendant ccdDefendant) {
+    private void assertCompany(CcdRespondent ccdDefendant) {
         assertParty(ccdDefendant);
         Company actual = (Company) this.actual;
 
@@ -107,7 +107,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         }
     }
 
-    private void assertOrganisation(CcdDefendant ccdDefendant) {
+    private void assertOrganisation(CcdRespondent ccdDefendant) {
         assertParty(ccdDefendant);
         Organisation actual = (Organisation) this.actual;
 
@@ -124,7 +124,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         }
     }
 
-    private void assertIndividual(CcdDefendant ccdDefendant) {
+    private void assertIndividual(CcdRespondent ccdDefendant) {
         assertParty(ccdDefendant);
         Individual actual = (Individual) this.actual;
 
@@ -135,7 +135,7 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         }
     }
 
-    private void assertRepresentativeDetails(Representative representative, CcdDefendant ccdParty) {
+    private void assertRepresentativeDetails(Representative representative, CcdRespondent ccdParty) {
         if (!Objects.equals(representative.getOrganisationName(), ccdParty.getRepresentativeOrganisationName())) {
             failWithMessage("Expected CcdDefendant.representativeOrganisationName to be <%s> but was <%s>",
                 ccdParty.getRepresentativeOrganisationName(), representative.getOrganisationName());

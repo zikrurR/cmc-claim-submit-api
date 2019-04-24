@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CcdClaimant {
+public class CcdApplicant {
     private CcdPartyType partyType;
     private String partyEmail;
     private String partyName;

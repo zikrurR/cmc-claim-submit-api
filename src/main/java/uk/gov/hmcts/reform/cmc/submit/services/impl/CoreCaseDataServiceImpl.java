@@ -75,7 +75,7 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     @Override
     public StartEventResponse startCase() {
 
-        String idamId = "12"; // user.getUserDetails().getId();
+        String idamId = "25"; // user.getUserDetails().getId();
         return coreCaseDataApi.startForCitizen(
             getAuthorisationHeader(),
             authTokenGenerator.generate(),
@@ -89,7 +89,7 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     @Override
     public List<CaseDetails> searchCase(Map<String, String> searchCriteria) {
 
-        String idamId = "123"; // user.getUserDetails().getId();
+        String idamId = "25"; // user.getUserDetails().getId();
         return coreCaseDataApi.searchForCitizen(
             getAuthorisationHeader(),
             authTokenGenerator.generate(),

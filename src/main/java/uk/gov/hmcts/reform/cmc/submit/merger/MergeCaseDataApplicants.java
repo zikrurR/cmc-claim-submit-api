@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import uk.gov.hmcts.cmc.ccd.domain.CcdApplicant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.ccd.domain.CcdClaimant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
@@ -23,21 +23,21 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-class MergeCaseDataClaimants implements MergeCaseDataDecorator {
+class MergeCaseDataApplicants implements MergeCaseDataDecorator {
 
     private final AddressMapper addressMapper;
 
     @Autowired
-    public MergeCaseDataClaimants(AddressMapper addressMapper) {
+    public MergeCaseDataApplicants(AddressMapper addressMapper) {
         this.addressMapper = addressMapper;
     }
 
     @Override
     public void merge(CcdCase ccdCase, ClaimInput claim) {
-        ccdCase.setClaimants(to(claim.getClaimants()));
+        ccdCase.setApplicants(to(claim.getClaimants()));
     }
 
-    private List<CcdCollectionElement<CcdClaimant>> to(List<Party> evidences) {
+    private List<CcdCollectionElement<CcdApplicant>> to(List<Party> evidences) {
         if (evidences == null) {
             return new ArrayList<>();
         }
@@ -49,8 +49,8 @@ class MergeCaseDataClaimants implements MergeCaseDataDecorator {
                 .collect(Collectors.toList());
     }
 
-    private CcdCollectionElement<CcdClaimant> to(Party party) {
-        CcdClaimant.CcdClaimantBuilder builder = CcdClaimant.builder();
+    private CcdCollectionElement<CcdApplicant> to(Party party) {
+        CcdApplicant.CcdApplicantBuilder builder = CcdApplicant.builder();
 
         if (party instanceof Individual) {
             builder.partyType(CcdPartyType.INDIVIDUAL);
@@ -69,14 +69,14 @@ class MergeCaseDataClaimants implements MergeCaseDataDecorator {
             SoleTrader soleTrader = (SoleTrader) party;
             soleTrader(soleTrader, builder);
         }
-        return CcdCollectionElement.<CcdClaimant>builder()
+        return CcdCollectionElement.<CcdApplicant>builder()
             .value(builder.build())
             .id(party.getId())
             .build();
     }
 
 
-    private void individual(Individual individual, CcdClaimant.CcdClaimantBuilder builder) {
+    private void individual(Individual individual, CcdApplicant.CcdApplicantBuilder builder) {
 
         builder.partyPhone(individual.getMobilePhone());
 
@@ -90,7 +90,7 @@ class MergeCaseDataClaimants implements MergeCaseDataDecorator {
 
     }
 
-    private void company(Company company, CcdClaimant.CcdClaimantBuilder builder) {
+    private void company(Company company, CcdApplicant.CcdApplicantBuilder builder) {
 
         builder.partyPhone(company.getMobilePhone());
         builder.partyContactPerson(company.getContactPerson());
@@ -103,7 +103,7 @@ class MergeCaseDataClaimants implements MergeCaseDataDecorator {
 
     }
 
-    private void organisation(Organisation organisation, CcdClaimant.CcdClaimantBuilder builder) {
+    private void organisation(Organisation organisation, CcdApplicant.CcdApplicantBuilder builder) {
         if (organisation == null) return;
 
         builder.partyCorrespondenceAddress(addressMapper.to(organisation.getCorrespondenceAddress()));
@@ -118,7 +118,7 @@ class MergeCaseDataClaimants implements MergeCaseDataDecorator {
 
     }
 
-    private void soleTrader(SoleTrader soleTrader, CcdClaimant.CcdClaimantBuilder builder) {
+    private void soleTrader(SoleTrader soleTrader, CcdApplicant.CcdApplicantBuilder builder) {
 
         builder.partyTitle(soleTrader.getTitle());
         builder.partyPhone(soleTrader.getMobilePhone());
@@ -131,7 +131,7 @@ class MergeCaseDataClaimants implements MergeCaseDataDecorator {
 
     }
 
-    private void representative(Representative representative, CcdClaimant.CcdClaimantBuilder builder) {
+    private void representative(Representative representative, CcdApplicant.CcdApplicantBuilder builder) {
         if (representative == null) return;
         ContactDetails contactDetails = representative.getOrganisationContactDetails();
 
