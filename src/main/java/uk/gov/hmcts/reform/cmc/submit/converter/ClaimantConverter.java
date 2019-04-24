@@ -41,18 +41,18 @@ class ClaimantConverter {
                 .collect(Collectors.toList());
     }
 
-    private Party from(CcdCollectionElement<CcdApplicant> ccdClaimant) {
-        switch (ccdClaimant.getValue().getPartyType()) {
+    private Party from(CcdCollectionElement<CcdApplicant> ccdApplicant) {
+        switch (ccdApplicant.getValue().getPartyDetail().getType()) {
             case COMPANY:
-                return companyFrom(ccdClaimant);
+                return companyFrom(ccdApplicant);
             case INDIVIDUAL:
-                return individualFrom(ccdClaimant);
+                return individualFrom(ccdApplicant);
             case SOLE_TRADER:
-                return soleTraderFrom(ccdClaimant);
+                return soleTraderFrom(ccdApplicant);
             case ORGANISATION:
-                return organisationFrom(ccdClaimant);
+                return organisationFrom(ccdApplicant);
             default:
-                throw new MappingException("Invalid claimant type, " + ccdClaimant.getValue().getPartyType());
+                throw new MappingException("Invalid claimant type, " + ccdApplicant.getValue().getPartyDetail().getType());
         }
     }
 
@@ -62,11 +62,11 @@ class ClaimantConverter {
 
         company.setId(claimant.getId());
         company.setName(value.getPartyName());
-        company.setAddress(addressMapper.from(value.getPartyAddress()));
-        company.setCorrespondenceAddress(addressMapper.from(value.getPartyCorrespondenceAddress()));
-        company.setMobilePhone(value.getPartyPhone());
+        company.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
+        company.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
+        company.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
         company.setRepresentative(representativeFrom(value));
-        company.setContactPerson(value.getPartyContactPerson());
+        company.setContactPerson(value.getPartyDetail().getContactPerson());
 
         return company;
     }
@@ -77,11 +77,11 @@ class ClaimantConverter {
         Individual individual = new Individual();
         individual.setId(claimant.getId());
         individual.setName(value.getPartyName());
-        individual.setAddress(addressMapper.from(value.getPartyAddress()));
-        individual.setCorrespondenceAddress(addressMapper.from(value.getPartyCorrespondenceAddress()));
-        individual.setMobilePhone(value.getPartyPhone());
+        individual.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
+        individual.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
+        individual.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
         individual.setRepresentative(representativeFrom(value));
-        individual.setDateOfBirth(value.getPartyDateOfBirth());
+        individual.setDateOfBirth(value.getPartyDetail().getDateOfBirth());
 
         return individual;
     }
@@ -92,12 +92,12 @@ class ClaimantConverter {
 
         soletrader.setId(claimant.getId());
         soletrader.setName(value.getPartyName());
-        soletrader.setAddress(addressMapper.from(value.getPartyAddress()));
-        soletrader.setCorrespondenceAddress(addressMapper.from(value.getPartyCorrespondenceAddress()));
-        soletrader.setMobilePhone(value.getPartyPhone());
+        soletrader.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
+        soletrader.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
+        soletrader.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
         soletrader.setRepresentative(representativeFrom(value));
-        soletrader.setTitle(value.getPartyTitle());
-        soletrader.setBusinessName(value.getPartyBusinessName());
+        soletrader.setTitle(value.getPartyDetail().getTitle());
+        soletrader.setBusinessName(value.getPartyDetail().getBusinessName());
 
         return soletrader;
     }
@@ -111,12 +111,12 @@ class ClaimantConverter {
 
         organisation.setId(claimant.getId());
         organisation.setName(value.getPartyName());
-        organisation.setAddress(addressMapper.from(value.getPartyAddress()));
-        organisation.setCorrespondenceAddress(addressMapper.from(value.getPartyCorrespondenceAddress()));
-        organisation.setMobilePhone(value.getPartyPhone());
+        organisation.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
+        organisation.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
+        organisation.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
         organisation.setRepresentative(representativeFrom(value));
-        organisation.setContactPerson(value.getPartyContactPerson());
-        organisation.setCompaniesHouseNumber(value.getPartyCompaniesHouseNumber());
+        organisation.setContactPerson(value.getPartyDetail().getContactPerson());
+        organisation.setCompaniesHouseNumber(value.getPartyDetail().getCompaniesHouseNumber());
 
         return organisation;
     }

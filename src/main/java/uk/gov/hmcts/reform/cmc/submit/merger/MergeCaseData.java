@@ -20,9 +20,9 @@ public class MergeCaseData implements MergeCaseDataDecorator {
     private final ObjectMapper objectMapper;
 
     @Autowired
-    private MergeCaseDataApplicants claimantsDecorator;
+    private MergeCaseDataApplicants applicantsDecorator;
     @Autowired
-    private MergeCaseDataDefendants defendantsDecorator;
+    private MergeCaseDataRespondents respondentsDecorator;
     @Autowired
     private MergeCaseDataAmount amountDecorator;
     @Autowired
@@ -71,9 +71,9 @@ public class MergeCaseData implements MergeCaseDataDecorator {
             }
         }
 
-        claimantsDecorator.merge(ccdCase, claim);
+        applicantsDecorator.merge(ccdCase, claim);
 
-        defendantsDecorator.merge(ccdCase, claim);
+        respondentsDecorator.merge(ccdCase, claim);
 
         timelineDecorator.merge(ccdCase, claim);
 

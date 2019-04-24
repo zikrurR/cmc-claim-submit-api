@@ -6,7 +6,9 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.cmc.ccd.domain.CcdApplicant;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdParty;
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdTelephone;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
@@ -53,19 +55,15 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
         CcdApplicant.CcdApplicantBuilder builder = CcdApplicant.builder();
 
         if (party instanceof Individual) {
-            builder.partyType(CcdPartyType.INDIVIDUAL);
             Individual individual = (Individual) party;
             individual(individual, builder);
         } else if (party instanceof Company) {
-            builder.partyType(CcdPartyType.COMPANY);
             Company company = (Company) party;
             company(company, builder);
         } else if (party instanceof Organisation) {
-            builder.partyType(CcdPartyType.ORGANISATION);
             Organisation organisation = (Organisation) party;
             organisation(organisation, builder);
         } else if (party instanceof SoleTrader) {
-            builder.partyType(CcdPartyType.SOLE_TRADER);
             SoleTrader soleTrader = (SoleTrader) party;
             soleTrader(soleTrader, builder);
         }
@@ -78,13 +76,19 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
 
     private void individual(Individual individual, CcdApplicant.CcdApplicantBuilder builder) {
 
-        builder.partyPhone(individual.getMobilePhone());
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.INDIVIDUAL);
+        CcdTelephone.CcdTelephoneBuilder telephone = CcdTelephone.builder()
+                                                        .telephoneNumber(individual.getMobilePhone());
 
-        builder.partyDateOfBirth(individual.getDateOfBirth());
+        partyDetailBuilder.telephoneNumber(telephone.build());
+
+        partyDetailBuilder.dateOfBirth(individual.getDateOfBirth());
+        partyDetailBuilder.primaryAddress(addressMapper.to(individual.getAddress()));
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(individual.getCorrespondenceAddress()));
+
+        builder.partyDetail(partyDetailBuilder.build());
         builder.partyName(individual.getName());
-        builder.partyAddress(addressMapper.to(individual.getAddress()));
-        builder.partyCorrespondenceAddress(addressMapper.to(individual.getCorrespondenceAddress()));
-
 
         representative(individual.getRepresentative(), builder);
 
@@ -92,12 +96,19 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
 
     private void company(Company company, CcdApplicant.CcdApplicantBuilder builder) {
 
-        builder.partyPhone(company.getMobilePhone());
-        builder.partyContactPerson(company.getContactPerson());
-        builder.partyCorrespondenceAddress(addressMapper.to(company.getCorrespondenceAddress()));
-        builder.partyName(company.getName());
-        builder.partyAddress(addressMapper.to(company.getAddress()));
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.COMPANY);
+        CcdTelephone.CcdTelephoneBuilder telephone = CcdTelephone.builder()
+                                                        .telephoneNumber(company.getMobilePhone());
 
+        partyDetailBuilder.telephoneNumber(telephone.build());
+
+        partyDetailBuilder.contactPerson(company.getContactPerson());
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(company.getCorrespondenceAddress()));
+        partyDetailBuilder.primaryAddress(addressMapper.to(company.getAddress()));
+
+        builder.partyName(company.getName());
+        builder.partyDetail(partyDetailBuilder.build());
 
        representative(company.getRepresentative(), builder);
 
@@ -106,29 +117,42 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
     private void organisation(Organisation organisation, CcdApplicant.CcdApplicantBuilder builder) {
         if (organisation == null) return;
 
-        builder.partyCorrespondenceAddress(addressMapper.to(organisation.getCorrespondenceAddress()));
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.ORGANISATION);
+        CcdTelephone.CcdTelephoneBuilder telephone = CcdTelephone.builder()
+                                                        .telephoneNumber(organisation.getMobilePhone());
+
+        partyDetailBuilder.telephoneNumber(telephone.build());
+
+        partyDetailBuilder.contactPerson(organisation.getContactPerson());
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(organisation.getCorrespondenceAddress()));
+        partyDetailBuilder.companiesHouseNumber(organisation.getCompaniesHouseNumber());
+        partyDetailBuilder.primaryAddress(addressMapper.to(organisation.getAddress()));
+
+        builder.partyName(organisation.getName());
+        builder.partyDetail(partyDetailBuilder.build());
 
         representative(organisation.getRepresentative(), builder);
-
-        builder.partyPhone(organisation.getMobilePhone());
-        builder.partyContactPerson(organisation.getContactPerson());
-        builder.partyCompaniesHouseNumber(organisation.getCompaniesHouseNumber());
-        builder.partyName(organisation.getName());
-        builder.partyAddress(addressMapper.to(organisation.getAddress()));
-
     }
 
     private void soleTrader(SoleTrader soleTrader, CcdApplicant.CcdApplicantBuilder builder) {
 
-        builder.partyTitle(soleTrader.getTitle());
-        builder.partyPhone(soleTrader.getMobilePhone());
-        builder.partyBusinessName(soleTrader.getBusinessName());
-        builder.partyCorrespondenceAddress(addressMapper.to(soleTrader.getCorrespondenceAddress()));
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.SOLE_TRADER);
+        CcdTelephone.CcdTelephoneBuilder telephone = CcdTelephone.builder()
+                                                        .telephoneNumber(soleTrader.getMobilePhone());
+
+        partyDetailBuilder.telephoneNumber(telephone.build());
+
+        partyDetailBuilder.title(soleTrader.getTitle());
+        partyDetailBuilder.businessName(soleTrader.getBusinessName());
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(soleTrader.getCorrespondenceAddress()));
+        partyDetailBuilder.primaryAddress(addressMapper.to(soleTrader.getAddress()));
+
         builder.partyName(soleTrader.getName());
-        builder.partyAddress(addressMapper.to(soleTrader.getAddress()));
+        builder.partyDetail(partyDetailBuilder.build());
 
         representative(soleTrader.getRepresentative(), builder);
-
     }
 
     private void representative(Representative representative, CcdApplicant.CcdApplicantBuilder builder) {

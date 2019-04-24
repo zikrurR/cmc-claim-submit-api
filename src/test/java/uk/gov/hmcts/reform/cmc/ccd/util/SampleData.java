@@ -8,7 +8,9 @@ import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.cmc.ccd.domain.CcdInterestDateType;
 import uk.gov.hmcts.cmc.ccd.domain.CcdInterestEndDateType;
 import uk.gov.hmcts.cmc.ccd.domain.CcdInterestType;
+import uk.gov.hmcts.cmc.ccd.domain.CcdParty;
 import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
+import uk.gov.hmcts.cmc.ccd.domain.CcdTelephone;
 import uk.gov.hmcts.cmc.ccd.domain.CcdTimelineEvent;
 import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
 
@@ -121,12 +123,13 @@ public class SampleData {
     public static CcdApplicant getCcdClaimantIndividual() {
         CcdAddress ccdAddress = getCcdAddress();
         return CcdApplicant.builder()
-            .partyType(INDIVIDUAL)
-            .partyAddress(ccdAddress)
             .partyName("Individual")
-            .partyPhone("07987654321")
-            .partyDateOfBirth(LocalDate.of(1950, 01, 01))
-            .partyCorrespondenceAddress(ccdAddress)
+            .partyDetail(CcdParty.builder()
+                    .type(INDIVIDUAL)
+                    .primaryAddress(ccdAddress)
+                    .telephoneNumber(CcdTelephone.builder().telephoneNumber("07987654321").build())
+                    .dateOfBirth(LocalDate.of(1950, 01, 01))
+                    .correspondenceAddress(ccdAddress).build())
             .representativeOrganisationAddress(ccdAddress)
             .representativeOrganisationName("My Org")
             .representativeOrganisationPhone("07987654321")
@@ -139,17 +142,18 @@ public class SampleData {
         CcdAddress ccdAddress = getCcdAddress();
 
         return CcdApplicant.builder()
-            .partyType(COMPANY)
             .partyName("Abc Ltd")
-            .partyAddress(ccdAddress)
-            .partyPhone("07987654321")
-            .partyCorrespondenceAddress(ccdAddress)
+            .partyDetail(CcdParty.builder()
+                    .type(COMPANY)
+                    .primaryAddress(ccdAddress)
+                    .telephoneNumber(CcdTelephone.builder().telephoneNumber("07987654321").build())
+                    .correspondenceAddress(ccdAddress)
+                    .contactPerson("MR. Hyde").build())
             .representativeOrganisationAddress(ccdAddress)
             .representativeOrganisationName("My Org")
             .representativeOrganisationPhone("07987654321")
             .representativeOrganisationEmail("my@email.com")
             .representativeOrganisationDxAddress("dx123")
-            .partyContactPerson("MR. Hyde")
             .build();
     }
 
@@ -157,18 +161,19 @@ public class SampleData {
         CcdAddress ccdAddress = getCcdAddress();
 
         return CcdApplicant.builder()
-            .partyType(ORGANISATION)
             .partyName("Xyz & Co")
-            .partyAddress(ccdAddress)
-            .partyPhone("07987654321")
-            .partyCorrespondenceAddress(ccdAddress)
+            .partyDetail(CcdParty.builder()
+                    .type(ORGANISATION)
+                    .primaryAddress(ccdAddress)
+                    .telephoneNumber(CcdTelephone.builder().telephoneNumber("07987654321").build())
+                    .correspondenceAddress(ccdAddress)
+                    .contactPerson("MR. Hyde")
+                    .companiesHouseNumber("12345678").build())
             .representativeOrganisationAddress(ccdAddress)
             .representativeOrganisationName("My Org")
             .representativeOrganisationPhone("07987654321")
             .representativeOrganisationEmail("my@email.com")
             .representativeOrganisationDxAddress("dx123")
-            .partyContactPerson("MR. Hyde")
-            .partyCompaniesHouseNumber("12345678")
             .build();
     }
 
@@ -176,13 +181,14 @@ public class SampleData {
         CcdAddress ccdAddress = getCcdAddress();
 
         return CcdApplicant.builder()
-            .partyType(SOLE_TRADER)
-            .partyTitle("Mr.")
             .partyName("Individual")
-            .partyBusinessName("My Trade")
-            .partyPhone("07987654321")
-            .partyAddress(ccdAddress)
-            .partyCorrespondenceAddress(ccdAddress)
+            .partyDetail(CcdParty.builder()
+                    .type(SOLE_TRADER)
+                    .title("Mr.")
+                    .businessName("My Trade")
+                    .telephoneNumber(CcdTelephone.builder().telephoneNumber("07987654321").build())
+                    .primaryAddress(ccdAddress)
+                    .correspondenceAddress(ccdAddress).build())
             .representativeOrganisationAddress(ccdAddress)
             .representativeOrganisationName("My Org")
             .representativeOrganisationPhone("07987654321")

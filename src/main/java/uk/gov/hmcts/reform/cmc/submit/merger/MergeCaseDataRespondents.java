@@ -25,12 +25,12 @@ import java.util.stream.Collectors;
 import static java.util.Objects.requireNonNull;
 
 @Component
-class MergeCaseDataDefendants implements MergeCaseDataDecorator {
+class MergeCaseDataRespondents implements MergeCaseDataDecorator {
 
     private final AddressMapper addressMapper;
 
     @Autowired
-    public MergeCaseDataDefendants(AddressMapper addressMapper) {
+    public MergeCaseDataRespondents(AddressMapper addressMapper) {
         this.addressMapper = addressMapper;
     }
 
