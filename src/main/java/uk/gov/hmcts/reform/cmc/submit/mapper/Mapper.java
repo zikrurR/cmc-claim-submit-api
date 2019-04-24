@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cmc.submit.ccd.mapper;
+package uk.gov.hmcts.reform.cmc.submit.mapper;
 
 public interface Mapper<K, V> {
 

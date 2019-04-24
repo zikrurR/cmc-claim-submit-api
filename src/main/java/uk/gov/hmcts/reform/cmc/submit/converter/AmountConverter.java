@@ -5,12 +5,12 @@ import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAmountRow;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountRange;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountRow;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.NotKnown;
+import uk.gov.hmcts.reform.cmc.submit.mapper.exception.MappingException;
 
 import java.util.stream.Collectors;
 

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception;
+package uk.gov.hmcts.reform.cmc.submit.mapper.exception;
 
 public class MappingException extends RuntimeException {
 

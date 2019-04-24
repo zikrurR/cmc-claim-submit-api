@@ -4,8 +4,6 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdApplicant;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
-import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;
@@ -13,6 +11,8 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.SoleTrader;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
+import uk.gov.hmcts.reform.cmc.submit.mapper.AddressMapper;
+import uk.gov.hmcts.reform.cmc.submit.mapper.exception.MappingException;
 
 import java.util.ArrayList;
 import java.util.List;

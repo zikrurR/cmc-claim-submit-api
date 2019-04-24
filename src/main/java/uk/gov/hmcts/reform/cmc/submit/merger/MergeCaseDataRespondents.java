@@ -8,7 +8,6 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdParty;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdRespondent;
-import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
@@ -17,6 +16,7 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.OrganisationDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.SoleTraderDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
+import uk.gov.hmcts.reform.cmc.submit.mapper.AddressMapper;
 
 import java.util.ArrayList;
 import java.util.List;
