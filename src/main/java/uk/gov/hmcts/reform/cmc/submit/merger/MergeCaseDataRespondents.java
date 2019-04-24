@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
 import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.cmc.ccd.domain.CcdParty;
 import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
@@ -68,19 +69,15 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
     public void theirDetails(CcdRespondent.CcdRespondentBuilder builder, TheirDetails theirDetails) {
 
         if (theirDetails instanceof IndividualDetails) {
-            builder.claimantProvidedType(CcdPartyType.INDIVIDUAL);
             IndividualDetails individual = (IndividualDetails) theirDetails;
             individualDetails(individual, builder);
         } else if (theirDetails instanceof CompanyDetails) {
-            builder.claimantProvidedType(CcdPartyType.COMPANY);
             CompanyDetails company = (CompanyDetails) theirDetails;
             companyDetails(company, builder);
         } else if (theirDetails instanceof OrganisationDetails) {
-            builder.claimantProvidedType(CcdPartyType.ORGANISATION);
             OrganisationDetails organisation = (OrganisationDetails) theirDetails;
             organisationDetails(organisation, builder);
         } else if (theirDetails instanceof SoleTraderDetails) {
-            builder.claimantProvidedType(CcdPartyType.SOLE_TRADER);
             SoleTraderDetails soleTrader = (SoleTraderDetails) theirDetails;
             soleTraderDetails(soleTrader, builder);
         }
@@ -88,25 +85,34 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
 
     public void individualDetails(IndividualDetails individual, CcdRespondent.CcdRespondentBuilder builder) {
 
-        builder.claimantProvidedServiceAddress(addressMapper.to(individual.getServiceAddress()));
-        builder.claimantProvidedDateOfBirth(individual.getDateOfBirth());
-        builder.claimantProvidedEmail(individual.getEmail());
-        builder.claimantProvidedName(individual.getName());
-        builder.claimantProvidedAddress(addressMapper.to(individual.getAddress()));
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.INDIVIDUAL);
+
+        partyDetailBuilder.dateOfBirth(individual.getDateOfBirth());
+        partyDetailBuilder.emailAddress(individual.getEmail());
+        partyDetailBuilder.primaryAddress(addressMapper.to(individual.getAddress()));
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(individual.getServiceAddress()));
+
+        builder.claimantProvidedDetail(partyDetailBuilder.build());
+        builder.claimantProvidedPartyName(individual.getName());
 
         representative(individual.getRepresentative(), builder);
     }
 
     public void companyDetails(CompanyDetails company, CcdRespondent.CcdRespondentBuilder builder) {
 
-        builder.claimantProvidedEmail(company.getEmail());
-        builder.claimantProvidedContactPerson(company.getContactPerson());
-        builder.claimantProvidedServiceAddress(addressMapper.to(company.getServiceAddress()));
-        builder.claimantProvidedName(company.getName());
-        builder.claimantProvidedAddress(addressMapper.to(company.getAddress()));
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.COMPANY);
+
+        partyDetailBuilder.emailAddress(company.getEmail());
+        partyDetailBuilder.contactPerson(company.getContactPerson());
+        partyDetailBuilder.primaryAddress(addressMapper.to(company.getAddress()));
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(company.getServiceAddress()));
+
+        builder.claimantProvidedDetail(partyDetailBuilder.build());
+        builder.claimantProvidedPartyName(company.getName());
 
         representative(company.getRepresentative(), builder);
-
     }
 
     public void organisationDetails(OrganisationDetails organisation, CcdRespondent.CcdRespondentBuilder builder) {
@@ -114,15 +120,19 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
             return;
         }
 
-        builder.claimantProvidedServiceAddress(addressMapper.to(organisation.getServiceAddress()));
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.ORGANISATION);
+
+        partyDetailBuilder.emailAddress(organisation.getEmail());
+        partyDetailBuilder.contactPerson(organisation.getContactPerson());
+        partyDetailBuilder.companiesHouseNumber(organisation.getCompaniesHouseNumber());
+        partyDetailBuilder.primaryAddress(addressMapper.to(organisation.getAddress()));
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(organisation.getServiceAddress()));
+
+        builder.claimantProvidedDetail(partyDetailBuilder.build());
+        builder.claimantProvidedPartyName(organisation.getName());
+
         representative(organisation.getRepresentative(), builder);
-
-        builder.claimantProvidedContactPerson(organisation.getContactPerson());
-        builder.claimantProvidedCompaniesHouseNumber(organisation.getCompaniesHouseNumber());
-        builder.claimantProvidedEmail(organisation.getEmail());
-        builder.claimantProvidedName(organisation.getName());
-        builder.claimantProvidedAddress(addressMapper.to(organisation.getAddress()));
-
     }
 
     public void soleTraderDetails(SoleTraderDetails soleTrader, CcdRespondent.CcdRespondentBuilder builder) {
@@ -130,16 +140,19 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
             return;
         }
 
-        builder.claimantProvidedTitle(soleTrader.getTitle());
-        builder.claimantProvidedBusinessName(soleTrader.getBusinessName());
+        CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
+        partyDetailBuilder.type(CcdPartyType.SOLE_TRADER);
+
+        partyDetailBuilder.emailAddress(soleTrader.getEmail());
+        partyDetailBuilder.title(soleTrader.getTitle());
+        partyDetailBuilder.businessName(soleTrader.getBusinessName());
+        partyDetailBuilder.primaryAddress(addressMapper.to(soleTrader.getAddress()));
+        partyDetailBuilder.correspondenceAddress(addressMapper.to(soleTrader.getServiceAddress()));
+
+        builder.claimantProvidedDetail(partyDetailBuilder.build());
+        builder.claimantProvidedPartyName(soleTrader.getName());
 
         representative(soleTrader.getRepresentative(), builder);
-        builder.claimantProvidedEmail(soleTrader.getEmail());
-        builder.claimantProvidedServiceAddress(addressMapper.to(soleTrader.getServiceAddress()));
-
-        builder.claimantProvidedName(soleTrader.getName());
-        builder.claimantProvidedAddress(addressMapper.to(soleTrader.getAddress()));
-
     }
 
     public void representative(Representative representative, CcdRespondent.CcdRespondentBuilder builder) {

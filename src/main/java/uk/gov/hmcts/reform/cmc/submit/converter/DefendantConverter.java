@@ -42,7 +42,7 @@ class DefendantConverter {
 
 
     private TheirDetails from(CcdCollectionElement<CcdRespondent> ccdDefendant) {
-        switch (ccdDefendant.getValue().getClaimantProvidedType()) {
+        switch (ccdDefendant.getValue().getClaimantProvidedDetail().getType()) {
             case COMPANY:
                 return companyDetailsFrom(ccdDefendant);
             case INDIVIDUAL:
@@ -53,7 +53,7 @@ class DefendantConverter {
                 return organisationDetailsFrom(ccdDefendant);
             default:
                 throw new MappingException("Invalid defendant type, "
-                    + ccdDefendant.getValue().getClaimantProvidedType());
+                    + ccdDefendant.getValue().getClaimantProvidedDetail().getType());
         }
     }
 
@@ -62,67 +62,69 @@ class DefendantConverter {
 
         CompanyDetails companyDetails = new CompanyDetails();
         companyDetails.setId(collectionElement.getId());
-        companyDetails.setName(ccdDefendant.getClaimantProvidedName());
-        companyDetails.setAddress(addressMapper.from(ccdDefendant.getClaimantProvidedAddress()));
-        companyDetails.setEmail(ccdDefendant.getClaimantProvidedEmail());
+        companyDetails.setName(ccdDefendant.getClaimantProvidedPartyName());
+        companyDetails.setAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getPrimaryAddress()));
+        companyDetails.setEmail(ccdDefendant.getClaimantProvidedDetail().getEmailAddress());
         companyDetails.setRepresentative(representativeFrom(ccdDefendant));
-        companyDetails.setServiceAddress(addressMapper.from(ccdDefendant.getClaimantProvidedServiceAddress()));
-        companyDetails.setContactPerson(ccdDefendant.getClaimantProvidedContactPerson());
+        companyDetails.setServiceAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getCorrespondenceAddress()));
+        companyDetails.setContactPerson(ccdDefendant.getClaimantProvidedDetail().getContactPerson());
 
         return companyDetails;
     }
 
-    private IndividualDetails individualDetailsFrom(CcdCollectionElement<CcdRespondent> defendant) {
-        CcdRespondent value = defendant.getValue();
+    private IndividualDetails individualDetailsFrom(CcdCollectionElement<CcdRespondent> collectionElement) {
+        CcdRespondent ccdDefendant = collectionElement.getValue();
 
         IndividualDetails individualDetails = new IndividualDetails();
-        individualDetails.setId(defendant.getId());
-        individualDetails.setName(value.getClaimantProvidedName());
-        individualDetails.setAddress(addressMapper.from(value.getClaimantProvidedAddress()));
-        individualDetails.setEmail(value.getClaimantProvidedEmail());
-        individualDetails.setRepresentative(representativeFrom(value));
-        individualDetails.setServiceAddress(addressMapper.from(value.getClaimantProvidedServiceAddress()));
-        individualDetails.setDateOfBirth(value.getClaimantProvidedDateOfBirth());
+        individualDetails.setId(collectionElement.getId());
+        individualDetails.setName(ccdDefendant.getClaimantProvidedPartyName());
+        individualDetails.setAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getPrimaryAddress()));
+        individualDetails.setEmail(ccdDefendant.getClaimantProvidedDetail().getEmailAddress());
+        individualDetails.setRepresentative(representativeFrom(ccdDefendant));
+        individualDetails.setServiceAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getCorrespondenceAddress()));
+        individualDetails.setDateOfBirth(ccdDefendant.getClaimantProvidedDetail().getDateOfBirth());
 
         return individualDetails;
     }
 
-    private SoleTraderDetails soleTraderDetailsFrom(CcdCollectionElement<CcdRespondent> defendant) {
-        if (defendant == null) {
+    private SoleTraderDetails soleTraderDetailsFrom(CcdCollectionElement<CcdRespondent> collectionElement) {
+        if (collectionElement == null) {
             return null;
         }
 
-        CcdRespondent value = defendant.getValue();
+        CcdRespondent ccdDefendant = collectionElement.getValue();
 
         SoleTraderDetails ccdSoleTrader = new SoleTraderDetails();
-        ccdSoleTrader.setId(defendant.getId());
-        ccdSoleTrader.setName(value.getClaimantProvidedName());
-        ccdSoleTrader.setAddress(addressMapper.from(value.getClaimantProvidedAddress()));
-        ccdSoleTrader.setEmail(value.getClaimantProvidedEmail());
-        ccdSoleTrader.setRepresentative(representativeFrom(value));
-        ccdSoleTrader.setServiceAddress(addressMapper.from(value.getClaimantProvidedServiceAddress()));
-        ccdSoleTrader.setTitle(value.getClaimantProvidedTitle());
-        ccdSoleTrader.setBusinessName(value.getClaimantProvidedBusinessName());
+        ccdSoleTrader.setId(collectionElement.getId());
+        ccdSoleTrader.setName(ccdDefendant.getClaimantProvidedPartyName());
+        ccdSoleTrader.setAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getPrimaryAddress()));
+        ccdSoleTrader.setEmail(ccdDefendant.getClaimantProvidedDetail().getEmailAddress());
+        ccdSoleTrader.setRepresentative(representativeFrom(ccdDefendant));
+        ccdSoleTrader.setServiceAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getCorrespondenceAddress()));
+
+        ccdSoleTrader.setTitle(ccdDefendant.getClaimantProvidedDetail().getTitle());
+        ccdSoleTrader.setBusinessName(ccdDefendant.getClaimantProvidedDetail().getBusinessName());
 
         return ccdSoleTrader;
     }
 
-    private OrganisationDetails organisationDetailsFrom(CcdCollectionElement<CcdRespondent> defendant) {
-        if (defendant == null) {
+    private OrganisationDetails organisationDetailsFrom(CcdCollectionElement<CcdRespondent> collectionElement) {
+        if (collectionElement == null) {
             return null;
         }
 
-        CcdRespondent value = defendant.getValue();
+        CcdRespondent ccdDefendant = collectionElement.getValue();
 
         OrganisationDetails organisationDetails = new OrganisationDetails();
-        organisationDetails.setId(defendant.getId());
-        organisationDetails.setName(value.getClaimantProvidedName());
-        organisationDetails.setAddress(addressMapper.from(value.getClaimantProvidedAddress()));
-        organisationDetails.setEmail(value.getClaimantProvidedEmail());
-        organisationDetails.setRepresentative(representativeFrom(value));
-        organisationDetails.setServiceAddress(addressMapper.from(value.getClaimantProvidedServiceAddress()));
-        organisationDetails.setContactPerson(value.getClaimantProvidedContactPerson());
-        organisationDetails.setCompaniesHouseNumber(value.getClaimantProvidedCompaniesHouseNumber());
+        organisationDetails.setId(collectionElement.getId());
+        organisationDetails.setName(ccdDefendant.getClaimantProvidedPartyName());
+        organisationDetails.setAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getPrimaryAddress()));
+        organisationDetails.setEmail(ccdDefendant.getClaimantProvidedDetail().getEmailAddress());
+        organisationDetails.setRepresentative(representativeFrom(ccdDefendant));
+        organisationDetails.setServiceAddress(addressMapper.from(ccdDefendant.getClaimantProvidedDetail().getCorrespondenceAddress()));
+
+        organisationDetails.setContactPerson(ccdDefendant.getClaimantProvidedDetail().getContactPerson());
+        organisationDetails.setCompaniesHouseNumber(ccdDefendant.getClaimantProvidedDetail().getCompaniesHouseNumber());
 
         return organisationDetails;
     }

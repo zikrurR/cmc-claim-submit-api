@@ -36,6 +36,6 @@ public class PostClaimHappyPath extends BaseTest {
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
         ResponseEntity<String> claimOutput = restTemplate.postForEntity(postClaimEndPoint, entity, String.class);
 
-        assertThat(claimOutput.getStatusCodeValue()).isEqualTo(HttpStatus.CREATED);
+        assertThat(claimOutput.getStatusCode()).isEqualTo(HttpStatus.CREATED);
     }
 }
