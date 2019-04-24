@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.converter;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.AccountPayment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.ReferencePayment;

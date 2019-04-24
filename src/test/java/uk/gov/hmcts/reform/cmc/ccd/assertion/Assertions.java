@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAddress;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;

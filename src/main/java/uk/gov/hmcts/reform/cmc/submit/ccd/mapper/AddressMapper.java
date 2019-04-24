@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.mapper;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAddress;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
 
 @Component

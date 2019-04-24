@@ -2,10 +2,10 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdEvidenceRow;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdEvidenceType;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 

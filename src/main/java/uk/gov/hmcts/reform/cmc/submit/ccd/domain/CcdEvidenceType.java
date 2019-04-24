@@ -1,4 +1,4 @@
-package uk.gov.hmcts.cmc.ccd.domain.evidence;
+package uk.gov.hmcts.reform.cmc.submit.ccd.domain;
 
 public enum CcdEvidenceType {
     CONTRACTS_AND_AGREEMENTS("Contracts and agreements"),

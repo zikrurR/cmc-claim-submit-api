@@ -2,10 +2,10 @@ package uk.gov.hmcts.reform.cmc.ccd.mapper;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdAddress;
-import uk.gov.hmcts.reform.cmc.ccd.builders.SampleAddress;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAddress;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAddress;
 
 import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
 

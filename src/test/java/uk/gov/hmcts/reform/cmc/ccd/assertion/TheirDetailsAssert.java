@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.CompanyDetails;
@@ -14,11 +14,11 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.COMPANY;
-import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.INDIVIDUAL;
-import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.ORGANISATION;
-import static uk.gov.hmcts.cmc.ccd.domain.CcdPartyType.SOLE_TRADER;
 import static uk.gov.hmcts.reform.cmc.ccd.assertion.Assertions.assertThat;
+import static uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType.COMPANY;
+import static uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType.INDIVIDUAL;
+import static uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType.ORGANISATION;
+import static uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType.SOLE_TRADER;
 
 public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, TheirDetails> {
 

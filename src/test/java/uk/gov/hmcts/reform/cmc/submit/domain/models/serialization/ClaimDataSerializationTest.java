@@ -1,10 +1,14 @@
 package uk.gov.hmcts.reform.cmc.submit.domain.models.serialization;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.config.JacksonConfiguration;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
@@ -23,11 +27,19 @@ import static uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterest.stand
 
 public class ClaimDataSerializationTest {
 
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper()
+            .registerModule(new Jdk8Module())
+            .registerModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES))
+            .registerModule(new JavaTimeModule()).disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+            .disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+    }
+
     @Test
     public void shouldConvertJsonToJava() throws IOException {
         //given
         String input = new ResourceReader().read("/claim-application.json");
-        ObjectMapper mapper = new JacksonConfiguration().objectMapper();
+        ObjectMapper mapper = objectMapper();
 
         //when
         ClaimInput claimData = mapper.readValue(input, ClaimInput.class);

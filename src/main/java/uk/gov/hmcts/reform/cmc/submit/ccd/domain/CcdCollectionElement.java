@@ -1,4 +1,4 @@
-package uk.gov.hmcts.cmc.ccd.domain.evidence;
+package uk.gov.hmcts.reform.cmc.submit.ccd.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CcdEvidenceRow {
-    private CcdEvidenceType type;
-    private String description;
+public class CcdCollectionElement<T> {
+    private String id;
+    private T value;
 }

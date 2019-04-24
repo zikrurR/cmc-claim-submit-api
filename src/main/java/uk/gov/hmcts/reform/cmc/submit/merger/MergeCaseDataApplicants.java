@@ -3,12 +3,12 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdApplicant;
-import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CcdParty;
-import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
-import uk.gov.hmcts.cmc.ccd.domain.CcdTelephone;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdApplicant;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdParty;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdTelephone;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;

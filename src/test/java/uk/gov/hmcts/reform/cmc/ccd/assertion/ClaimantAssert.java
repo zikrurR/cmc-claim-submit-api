@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdApplicant;
-import uk.gov.hmcts.cmc.ccd.domain.CcdPartyType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdApplicant;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;

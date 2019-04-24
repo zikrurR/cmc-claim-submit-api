@@ -2,8 +2,8 @@ package uk.gov.hmcts.reform.cmc.submit.converter;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdEvidenceRow;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.EvidenceType;
 

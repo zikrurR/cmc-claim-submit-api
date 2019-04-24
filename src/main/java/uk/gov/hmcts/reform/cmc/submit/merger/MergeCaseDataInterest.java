@@ -2,10 +2,10 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.ccd.domain.CcdInterestDateType;
-import uk.gov.hmcts.cmc.ccd.domain.CcdInterestEndDateType;
-import uk.gov.hmcts.cmc.ccd.domain.CcdInterestType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdInterestDateType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdInterestEndDateType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdInterestType;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.InterestBreakdown;

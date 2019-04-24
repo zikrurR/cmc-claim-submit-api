@@ -15,8 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
-import uk.gov.hmcts.reform.cmc.ccd.builders.SampleClaimData;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;

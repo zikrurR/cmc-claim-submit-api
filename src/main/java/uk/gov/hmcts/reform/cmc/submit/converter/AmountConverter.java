@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.cmc.submit.converter;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdAmountRow;
-import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
-import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAmountRow;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;

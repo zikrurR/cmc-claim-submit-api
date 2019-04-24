@@ -3,8 +3,8 @@ package uk.gov.hmcts.reform.cmc.submit.converter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdCollectionElement;
-import uk.gov.hmcts.cmc.ccd.domain.CcdRespondent;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.ccd.mapper.exception.MappingException;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;

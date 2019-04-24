@@ -1,11 +1,9 @@
-package uk.gov.hmcts.cmc.ccd.domain;
+package uk.gov.hmcts.reform.cmc.submit.ccd.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import uk.gov.hmcts.cmc.ccd.domain.evidence.CcdEvidenceRow;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.cmc.ccd.domain;
+package uk.gov.hmcts.reform.cmc.submit.ccd.domain;
 
 public enum CcdPartyType {
     INDIVIDUAL("Individual"),

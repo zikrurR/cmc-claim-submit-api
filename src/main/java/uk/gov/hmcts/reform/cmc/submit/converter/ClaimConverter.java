@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.cmc.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.StatementOfTruth;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.DamagesExpectation;
