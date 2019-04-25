@@ -10,7 +10,9 @@ public class AddressMapper implements Mapper<CcdAddress, Address> {
 
     @Override
     public CcdAddress to(Address address) {
-        if (address == null) return null;
+        if (address == null) {
+            return null;
+        }
 
         CcdAddress ccdAddress = new CcdAddress();
         ccdAddress.setAddressLine1(address.getLine1());
@@ -24,7 +26,9 @@ public class AddressMapper implements Mapper<CcdAddress, Address> {
 
     @Override
     public Address from(CcdAddress ccdAddress) {
-        if (ccdAddress == null) return null;
+        if (ccdAddress == null) {
+            return null;
+        }
 
         Address address = new Address();
         address.setLine1(ccdAddress.getAddressLine1());

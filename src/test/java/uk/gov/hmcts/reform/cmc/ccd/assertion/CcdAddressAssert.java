@@ -14,8 +14,9 @@ public class CcdAddressAssert extends AbstractAssert<CcdAddressAssert, CcdAddres
     }
 
     public CcdAddressAssert isEqualTo(Address address) {
-
-        if (actual == null && address == null) return this;
+        if (actual == null && address == null) {
+            return this;
+        }
 
         if (actual == null) {
             failWithMessage("Expected CCDAddress to be not null");

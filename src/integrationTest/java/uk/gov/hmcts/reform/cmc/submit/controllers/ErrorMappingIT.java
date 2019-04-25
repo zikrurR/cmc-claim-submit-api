@@ -7,14 +7,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
-import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
-import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
 
@@ -31,15 +27,6 @@ public class ErrorMappingIT {
 
     @Autowired
     private ObjectMapper objectMapper;
-
-    @MockBean
-    private CoreCaseDataApi coreCaseDataApi;
-
-    @MockBean
-    private AuthTokenGenerator authTokenGenerator;
-
-    @MockBean
-    private ServiceAuthorisationHealthApi serviceAuthorisationHealthApi;
 
     protected static final String AUTHORISATION_TOKEN = "Bearer token";
 
@@ -60,6 +47,5 @@ public class ErrorMappingIT {
                     .andExpect(status().isBadRequest())
                     .andExpect(jsonPath("[0].rejectedValue").value(""));
 
-        // format not define yet
     }
 }

@@ -103,7 +103,9 @@ class ClaimantConverter {
     }
 
     public Organisation organisationFrom(CcdCollectionElement<CcdApplicant> claimant) {
-        if (claimant == null) return null;
+        if (claimant == null) {
+            return null;
+        }
 
         CcdApplicant value = claimant.getValue();
 

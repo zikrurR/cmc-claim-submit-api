@@ -65,12 +65,12 @@ public class ClaimServiceImpl implements ClaimService {
 
         SearchResult result = coreCaseDataService.searchCase(searchBuilder.toString());
 
-        if (result.getTotal() <1) {
+        if (result.getTotal() < 1) {
             throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
         }
 
-        if (result.getTotal() >1) {
-            throw new ApplicationException(ApplicationErrorCode.MORE_THAN_ONE_CASE_FOR_THAT_ID);
+        if (result.getTotal() > 1) {
+            throw new ApplicationException(ApplicationErrorCode.MORE_THAN_ONE_CASES_FOR_THE_REFERENCE);
         }
 
         return claimConverter.convert(result.getCases().get(0).getData());
@@ -83,12 +83,12 @@ public class ClaimServiceImpl implements ClaimService {
 
         SearchResult result = coreCaseDataService.searchCase(searchBuilder.toString());
 
-        if (result.getTotal() <1) {
+        if (result.getTotal() < 1) {
             throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
         }
 
-        if (result.getTotal() >1) {
-            throw new ApplicationException(ApplicationErrorCode.MORE_THAN_ONE_CASE_FOR_THAT_ID);
+        if (result.getTotal() > 1) {
+            throw new ApplicationException(ApplicationErrorCode.MORE_THAN_ONE_CASES_FOR_THE_REFERENCE);
         }
         return claimConverter.convert(result.getCases().get(0).getData());
     }
