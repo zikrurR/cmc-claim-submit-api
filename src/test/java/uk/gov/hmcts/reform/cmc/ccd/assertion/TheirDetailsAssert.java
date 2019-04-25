@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdParty;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
@@ -70,27 +71,28 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
 
     private void assertSoleTraderDetails(CcdRespondent ccdParty) {
         SoleTraderDetails actual = (SoleTraderDetails) this.actual;
-        assertThat(actual.getAddress()).isEqualTo(ccdParty.getClaimantProvidedDetail().getPrimaryAddress());
-        assertThat(ccdParty.getClaimantProvidedDetail().getTitle()).isEqualTo(actual.getTitle());
+        CcdParty claimantProvidedDetail = ccdParty.getClaimantProvidedDetail();
+        assertThat(actual.getAddress()).isEqualTo(claimantProvidedDetail.getPrimaryAddress());
+        assertThat(claimantProvidedDetail.getTitle()).isEqualTo(actual.getTitle());
 
         if (!Objects.equals(actual.getName(), ccdParty.getClaimantProvidedPartyName())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedName to be <%s> but was <%s>",
                 ccdParty.getClaimantProvidedPartyName(), this.actual.getName());
         }
 
-        if (!Objects.equals(actual.getEmail(), ccdParty.getClaimantProvidedDetail().getEmailAddress())) {
+        if (!Objects.equals(actual.getEmail(), claimantProvidedDetail.getEmailAddress())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedEmail to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getEmailAddress(), this.actual.getEmail());
+                claimantProvidedDetail.getEmailAddress(), this.actual.getEmail());
         }
 
         if (!Objects.equals(actual.getBusinessName(),
-            ccdParty.getClaimantProvidedDetail().getBusinessName())
+            claimantProvidedDetail.getBusinessName())
         ) {
             failWithMessage("Expected CcdDefendant.claimantProvideBusinessName to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getBusinessName(), actual.getBusinessName());
+                claimantProvidedDetail.getBusinessName(), actual.getBusinessName());
         }
 
-        assertThat(ccdParty.getClaimantProvidedDetail().getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
+        assertThat(claimantProvidedDetail.getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
         assertRepresentativeDetails(actual.getRepresentative(), ccdParty);
 
     }
@@ -98,25 +100,26 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
     private void assertCompanyDetails(CcdRespondent ccdParty) {
         CompanyDetails actual = (CompanyDetails) this.actual;
 
-        assertThat(actual.getAddress()).isEqualTo(ccdParty.getClaimantProvidedDetail().getPrimaryAddress());
+        CcdParty claimantProvidedDetail = ccdParty.getClaimantProvidedDetail();
+        assertThat(actual.getAddress()).isEqualTo(claimantProvidedDetail.getPrimaryAddress());
         if (!Objects.equals(actual.getName(), ccdParty.getClaimantProvidedPartyName())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedName to be <%s> but was <%s>",
                 ccdParty.getClaimantProvidedPartyName(), this.actual.getName());
         }
 
-        if (!Objects.equals(actual.getEmail(), ccdParty.getClaimantProvidedDetail().getEmailAddress())) {
+        if (!Objects.equals(actual.getEmail(), claimantProvidedDetail.getEmailAddress())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedEmail to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getEmailAddress(), actual.getEmail());
+                claimantProvidedDetail.getEmailAddress(), actual.getEmail());
         }
 
         if (!Objects.equals(actual.getContactPerson(),
-            ccdParty.getClaimantProvidedDetail().getContactPerson())
+            claimantProvidedDetail.getContactPerson())
         ) {
             failWithMessage("Expected CcdDefendant.claimantProvidedContactPerson to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getContactPerson(), actual.getContactPerson());
+                claimantProvidedDetail.getContactPerson(), actual.getContactPerson());
         }
 
-        assertThat(ccdParty.getClaimantProvidedDetail().getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
+        assertThat(claimantProvidedDetail.getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
         assertRepresentativeDetails(actual.getRepresentative(), ccdParty);
 
     }
@@ -124,32 +127,33 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
     private void assertOrganisationDetails(CcdRespondent ccdParty) {
         OrganisationDetails actual = (OrganisationDetails) this.actual;
 
-        assertThat(actual.getAddress()).isEqualTo(ccdParty.getClaimantProvidedDetail().getPrimaryAddress());
+        CcdParty claimantProvidedDetail = ccdParty.getClaimantProvidedDetail();
+        assertThat(actual.getAddress()).isEqualTo(claimantProvidedDetail.getPrimaryAddress());
         if (!Objects.equals(actual.getName(), ccdParty.getClaimantProvidedPartyName())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedName to be <%s> but was <%s>",
                 ccdParty.getClaimantProvidedPartyName(), this.actual.getName());
         }
 
-        if (!Objects.equals(actual.getEmail(), ccdParty.getClaimantProvidedDetail().getEmailAddress())) {
+        if (!Objects.equals(actual.getEmail(), claimantProvidedDetail.getEmailAddress())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedEmail to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getEmailAddress(), actual.getEmail());
+                claimantProvidedDetail.getEmailAddress(), actual.getEmail());
         }
 
         String contactPerson = actual.getContactPerson();
-        if (!Objects.equals(contactPerson, ccdParty.getClaimantProvidedDetail().getContactPerson())) {
+        if (!Objects.equals(contactPerson, claimantProvidedDetail.getContactPerson())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedContactPerson to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getContactPerson(), contactPerson);
+                claimantProvidedDetail.getContactPerson(), contactPerson);
         }
 
         String companyHouseNumber = actual.getCompaniesHouseNumber();
 
-        if (!Objects.equals(companyHouseNumber, ccdParty.getClaimantProvidedDetail().getCompaniesHouseNumber())) {
+        if (!Objects.equals(companyHouseNumber, claimantProvidedDetail.getCompaniesHouseNumber())) {
             failWithMessage(
                 "Expected CcdDefendant.claimantProvidedCompaniesHouseNumber to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getCompaniesHouseNumber(), companyHouseNumber);
+                claimantProvidedDetail.getCompaniesHouseNumber(), companyHouseNumber);
         }
 
-        assertThat(ccdParty.getClaimantProvidedDetail().getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
+        assertThat(claimantProvidedDetail.getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
         assertRepresentativeDetails(actual.getRepresentative(), ccdParty);
 
     }
@@ -157,24 +161,27 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
     private void assertIndividualDetails(CcdRespondent ccdParty) {
         IndividualDetails actual = (IndividualDetails) this.actual;
 
-        assertThat(actual.getAddress()).isEqualTo(ccdParty.getClaimantProvidedDetail().getPrimaryAddress());
+        CcdParty claimantProvidedDetail = ccdParty.getClaimantProvidedDetail();
+        assertThat(actual.getAddress()).isEqualTo(claimantProvidedDetail.getPrimaryAddress());
         if (!Objects.equals(actual.getName(), ccdParty.getClaimantProvidedPartyName())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedName to be <%s> but was <%s>",
                 ccdParty.getClaimantProvidedPartyName(), actual.getName());
         }
 
-        if (!Objects.equals(actual.getEmail(), ccdParty.getClaimantProvidedDetail().getEmailAddress())) {
+        if (!Objects.equals(actual.getEmail(), claimantProvidedDetail.getEmailAddress())) {
             failWithMessage("Expected CcdDefendant.claimantProvidedEmail to be <%s> but was <%s>",
-                ccdParty.getClaimantProvidedDetail().getEmailAddress(), actual.getEmail());
+                claimantProvidedDetail.getEmailAddress(), actual.getEmail());
         }
-        assertThat(actual.getDateOfBirth()).isEqualTo(ccdParty.getClaimantProvidedDetail().getDateOfBirth());
+        assertThat(actual.getDateOfBirth()).isEqualTo(claimantProvidedDetail.getDateOfBirth());
 
-        assertThat(ccdParty.getClaimantProvidedDetail().getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
+        assertThat(claimantProvidedDetail.getCorrespondenceAddress()).isEqualTo(actual.getServiceAddress());
         assertRepresentativeDetails(actual.getRepresentative(), ccdParty);
     }
 
     private void assertRepresentativeDetails(Representative representative, CcdRespondent ccdParty) {
-        if (representative == null) representative = new Representative();
+        if (representative == null) {
+            representative = new Representative();
+        }
 
 
         if (!Objects.equals(representative.getOrganisationName(),
@@ -187,7 +194,7 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
         assertThat(representative.getOrganisationAddress())
             .isEqualTo(ccdParty.getClaimantProvidedRepresentativeOrganisationAddress());
 
-        if(representative.getOrganisationContactDetails()!= null) {
+        if (representative.getOrganisationContactDetails() != null) {
             ContactDetails contactDetails = representative.getOrganisationContactDetails();
 
             if (!Objects.equals(contactDetails.getDxAddress(), ccdParty.getClaimantProvidedRepresentativeOrganisationDxAddress())) {

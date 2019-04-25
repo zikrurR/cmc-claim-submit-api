@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
@@ -49,9 +48,6 @@ public class GetClaimIT {
 
     @MockBean
     private AuthTokenGenerator authTokenGenerator;
-
-    @MockBean
-    private ServiceAuthorisationHealthApi serviceAuthorisationHealthApi;
 
     protected static final String AUTHORISATION_TOKEN = "Bearer token";
 

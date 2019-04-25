@@ -115,7 +115,9 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
     }
 
     private void organisation(Organisation organisation, CcdApplicant.CcdApplicantBuilder builder) {
-        if (organisation == null) return;
+        if (organisation == null) {
+            return;
+        }
 
         CcdParty.CcdPartyBuilder partyDetailBuilder = CcdParty.builder();
         partyDetailBuilder.type(CcdPartyType.ORGANISATION);
@@ -156,7 +158,9 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
     }
 
     private void representative(Representative representative, CcdApplicant.CcdApplicantBuilder builder) {
-        if (representative == null) return;
+        if (representative == null) {
+            return;
+        }
         ContactDetails contactDetails = representative.getOrganisationContactDetails();
 
         builder.representativeOrganisationEmail(contactDetails.getEmail());

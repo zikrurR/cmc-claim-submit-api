@@ -16,12 +16,15 @@ public class User {
     public String getAuthToken() {
         return authToken;
     }
+
     public void setAuthToken(String authToken) {
         this.authToken = authToken;
     }
+
     public UserDetails getUserDetails() {
         return userDetails;
     }
+
     public void setUserDetails(UserDetails userDetails) {
         this.userDetails = userDetails;
     }

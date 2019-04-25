@@ -44,32 +44,32 @@ public class PostcodeConstraintValidatorTest {
     }
 
     @Test
-    public void shouldBeValidWhenGivenValidFormatOfANNAA() {
+    public void shouldBeValidWhenGivenValidFormatOfAnnaa() {
         assertThat(validator.isValid("M1 1AA", context)).isTrue();
     }
 
     @Test
-    public void shouldBeValidWhenGivenValidFormatOfANNNAA() {
+    public void shouldBeValidWhenGivenValidFormatOfAnnnaa() {
         assertThat(validator.isValid("M60 1NW", context)).isTrue();
     }
 
     @Test
-    public void shouldBeValidWhenGivenValidFormatOfAANNAA() {
+    public void shouldBeValidWhenGivenValidFormatOfAannaa() {
         assertThat(validator.isValid("CR2 6HX", context)).isTrue();
     }
 
     @Test
-    public void shouldBeValidWhenGivenValidFormatOfAANNNAA() {
+    public void shouldBeValidWhenGivenValidFormatOfAannnaa() {
         assertThat(validator.isValid("DN55 1PT", context)).isTrue();
     }
 
     @Test
-    public void shouldBeValidWhenGivenValidFormatOfANANAA() {
+    public void shouldBeValidWhenGivenValidFormatOfAnanaa() {
         assertThat(validator.isValid("W1P 1HQ", context)).isTrue();
     }
 
     @Test
-    public void shouldBeValidWhenGivenValidFormatOfAANANAA() {
+    public void shouldBeValidWhenGivenValidFormatOfAananaa() {
         assertThat(validator.isValid("EC1A 1BB", context)).isTrue();
     }
 

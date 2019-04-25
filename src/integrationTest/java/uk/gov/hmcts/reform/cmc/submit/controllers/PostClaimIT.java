@@ -19,7 +19,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
@@ -67,11 +66,9 @@ public class PostClaimIT {
     @Captor
     private ArgumentCaptor<String> eventId;
 
-    @MockBean
-    private ServiceAuthorisationHealthApi serviceAuthorisationHealthApi;
-
     protected static final String AUTHORIZATION_TOKEN = "Bearer token";
     protected static final String SERVICE_AUTHORIZATION_TOKEN = "aaa";
+
     @DisplayName("Happy path should create the claim requested with 200 response code")
     @Test
     public void happyPathPostClaim() throws Exception {
