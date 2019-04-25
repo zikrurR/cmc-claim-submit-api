@@ -143,9 +143,9 @@ dependencies {
 
   compile group: 'uk.gov.hmcts.reform', name: 'java-logging', version: versions.reformLogging
   compile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '3.0.0'
-  compile group: 'uk.gov.hmcts.reform', name: 'core-case-data-store-client', version: '4.3.1'
+  compile group: 'uk.gov.hmcts.reform', name: 'core-case-data-store-client', version: '4.6.3'
   
-
+  compile group: 'org.elasticsearch', name: 'elasticsearch', version: '6.4.2'
   compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'  
   compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
   
@@ -162,7 +162,7 @@ dependencies {
   smokeTestCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test'
   smokeTestCompile group: 'org.springframework.boot', name: 'spring-boot-starter-json'  
   smokeTestCompile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '3.0.0'
-  smokeTestCompile group: 'uk.gov.hmcts.reform', name: 'idam-client', version: '1.0.2'  
+  smokeTestCompile group: 'uk.gov.hmcts.reform', name: 'idam-client', version: '1.0.2'
   smokeTestCompile group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign'
   smokeTestImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: versions.junit
   smokeTestCompile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: versions.junit
