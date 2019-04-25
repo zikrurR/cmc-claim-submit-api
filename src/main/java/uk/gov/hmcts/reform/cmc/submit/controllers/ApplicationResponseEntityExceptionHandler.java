@@ -20,6 +20,7 @@ public class ApplicationResponseEntityExceptionHandler extends ResponseEntityExc
     MessageSource messageSource;
 
     public ApplicationResponseEntityExceptionHandler(MessageSource messageSource) {
+        super();
         this.messageSource = messageSource;
     }
 

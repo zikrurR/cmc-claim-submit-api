@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.cmc.ccd.assertion;
 
 import org.assertj.core.api.AbstractAssert;
 
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdParty;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
@@ -71,13 +72,14 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
             failWithMessage("Expected ccdRespondent.partyName to be <%s> but was <%s>",
                 ccdRespondent.getClaimantProvidedPartyName(), actual.getName());
         }
-        assertThat(actual.getAddress()).isEqualTo(ccdRespondent.getClaimantProvidedDetail().getPrimaryAddress());
-        assertThat(ccdRespondent.getClaimantProvidedDetail().getCorrespondenceAddress()).isEqualTo(actual.getCorrespondenceAddress());
+        CcdParty claimantProvidedDetail = ccdRespondent.getClaimantProvidedDetail();
+        assertThat(actual.getAddress()).isEqualTo(claimantProvidedDetail.getPrimaryAddress());
+        assertThat(claimantProvidedDetail.getCorrespondenceAddress()).isEqualTo(actual.getCorrespondenceAddress());
 
         String mobilePhone = actual.getMobilePhone();
-        if (!Objects.equals(mobilePhone, ccdRespondent.getClaimantProvidedDetail().getTelephoneNumber().getTelephoneNumber())) {
+        if (!Objects.equals(mobilePhone, claimantProvidedDetail.getTelephoneNumber().getTelephoneNumber())) {
             failWithMessage("Expected ccdRespondent.partyPhone to be <%s> but was <%s>",
-                ccdRespondent.getClaimantProvidedDetail().getTelephoneNumber().getTelephoneNumber(), mobilePhone);
+                claimantProvidedDetail.getTelephoneNumber().getTelephoneNumber(), mobilePhone);
         }
     }
 
@@ -85,11 +87,12 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         assertParty(ccdRespondent);
 
         SoleTrader actual = (SoleTrader) this.actual;
-        assertThat(ccdRespondent.getClaimantProvidedDetail().getTitle()).isEqualTo(actual.getTitle());
+        CcdParty claimantProvidedDetail = ccdRespondent.getClaimantProvidedDetail();
+        assertThat(claimantProvidedDetail.getTitle()).isEqualTo(actual.getTitle());
 
-        if (!Objects.equals(actual.getBusinessName(), ccdRespondent.getClaimantProvidedDetail().getBusinessName())) {
+        if (!Objects.equals(actual.getBusinessName(), claimantProvidedDetail.getBusinessName())) {
             failWithMessage("Expected ccdRespondent.partyBusinessName to be <%s> but was <%s>",
-                ccdRespondent.getClaimantProvidedDetail().getBusinessName(), actual.getBusinessName());
+                claimantProvidedDetail.getBusinessName(), actual.getBusinessName());
         }
     }
 
@@ -97,9 +100,10 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         assertParty(ccdRespondent);
         Company actual = (Company) this.actual;
 
-        if (!Objects.equals(actual.getContactPerson(), ccdRespondent.getClaimantProvidedDetail().getContactPerson())) {
+        CcdParty claimantProvidedDetail = ccdRespondent.getClaimantProvidedDetail();
+        if (!Objects.equals(actual.getContactPerson(), claimantProvidedDetail.getContactPerson())) {
             failWithMessage("Expected ccdRespondent.partyContactPerson to be <%s> but was <%s>",
-                ccdRespondent.getClaimantProvidedDetail().getContactPerson(), actual.getContactPerson());
+                claimantProvidedDetail.getContactPerson(), actual.getContactPerson());
         }
     }
 
@@ -108,15 +112,16 @@ public class DefendantPartyAssert extends AbstractAssert<DefendantPartyAssert, P
         Organisation actual = (Organisation) this.actual;
 
         String contactPerson = actual.getContactPerson();
-        if (!Objects.equals(contactPerson, ccdRespondent.getClaimantProvidedDetail().getContactPerson())) {
+        CcdParty claimantProvidedDetail = ccdRespondent.getClaimantProvidedDetail();
+        if (!Objects.equals(contactPerson, claimantProvidedDetail.getContactPerson())) {
             failWithMessage("Expected ccdRespondent.partyContactPerson to be <%s> but was <%s>",
-                ccdRespondent.getClaimantProvidedDetail().getContactPerson(), contactPerson);
+                claimantProvidedDetail.getContactPerson(), contactPerson);
         }
 
         String companyHouseNumber = actual.getCompaniesHouseNumber();
-        if (!Objects.equals(companyHouseNumber, ccdRespondent.getClaimantProvidedDetail().getCompaniesHouseNumber())) {
-            failWithMessage("Expected ccdRespondent.claimantProvidedDetail.companiesHouseNumber to be <%s> but was <%s>",
-                ccdRespondent.getClaimantProvidedDetail().getCompaniesHouseNumber(), companyHouseNumber);
+        if (!Objects.equals(companyHouseNumber, claimantProvidedDetail.getCompaniesHouseNumber())) {
+            failWithMessage("Expected ccdR*.claimantProvidedDetail.companiesHouseNumber to be <%s> but was <%s>",
+                claimantProvidedDetail.getCompaniesHouseNumber(), companyHouseNumber);
         }
     }
 
