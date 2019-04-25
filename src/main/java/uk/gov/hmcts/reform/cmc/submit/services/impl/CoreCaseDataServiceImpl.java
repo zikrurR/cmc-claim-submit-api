@@ -75,12 +75,9 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     @Override
     public StartEventResponse startCase() {
 
-        String idamId = "25"; // user.getUserDetails().getId();
-        return coreCaseDataApi.startForCitizen(
+        return coreCaseDataApi.startCase(
             getAuthorisationHeader(),
             authTokenGenerator.generate(),
-            idamId,
-            JURISDICTION_ID,
             CASE_TYPE_ID,
             CREATE_NEW_CASE
         );

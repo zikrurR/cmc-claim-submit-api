@@ -90,7 +90,7 @@ public class PostClaimIT {
                 .signWith(SignatureAlgorithm.HS256, new SecretKeySpec(DatatypeConverter.parseBase64Binary("AAAAAAAAAA"), SignatureAlgorithm.HS256.getJcaName()))
                 .compact();
 
-        when(coreCaseDataApi.startForCitizen(any(), any(), any(), any(), any(), any())).thenReturn(StartEventResponse.builder()
+        when(coreCaseDataApi.startCase(any(), any(), any(), any())).thenReturn(StartEventResponse.builder()
                 .caseDetails(CaseDetails.builder().data(Maps.newHashMap()).build())
                 .eventId("eventId")
                 .token(compact)
@@ -109,7 +109,7 @@ public class PostClaimIT {
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_TOKEN)
                         .content(objectMapper.writeValueAsString(claim)))
-                    .andExpect(status().isOk())
+                    .andExpect(status().isCreated())
                     .andReturn();
 
         ClaimOutput claimResponse = objectMapper.readValue(response.getResponse().getContentAsString(), ClaimOutput.class);
