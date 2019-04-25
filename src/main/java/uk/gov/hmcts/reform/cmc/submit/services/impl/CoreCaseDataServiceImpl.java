@@ -16,10 +16,10 @@ import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDataContent;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.Event;
+import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.submit.services.CoreCaseDataService;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,14 +84,11 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     }
 
     @Override
-    public List<CaseDetails> searchCase(Map<String, String> searchCriteria) {
+    public SearchResult searchCase(String searchCriteria) {
 
-        String idamId = "25"; // user.getUserDetails().getId();
-        return coreCaseDataApi.searchForCitizen(
+        return coreCaseDataApi.searchCases(
             getAuthorisationHeader(),
             authTokenGenerator.generate(),
-            idamId,
-            JURISDICTION_ID,
             CASE_TYPE_ID,
             searchCriteria
         );

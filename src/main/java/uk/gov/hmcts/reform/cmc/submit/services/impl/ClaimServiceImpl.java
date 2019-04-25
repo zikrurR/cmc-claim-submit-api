@@ -1,24 +1,24 @@
 package uk.gov.hmcts.reform.cmc.submit.services.impl;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.google.common.collect.ImmutableMap;
 
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.stereotype.Service;
 
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.submit.converter.ClaimConverter;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
 import uk.gov.hmcts.reform.cmc.submit.exception.ApplicationException;
-import uk.gov.hmcts.reform.cmc.submit.exception.CoreCaseDataStoreException;
+import uk.gov.hmcts.reform.cmc.submit.exception.ApplicationException.ApplicationErrorCode;
 import uk.gov.hmcts.reform.cmc.submit.merger.MergeCaseData;
 import uk.gov.hmcts.reform.cmc.submit.services.ClaimService;
 import uk.gov.hmcts.reform.cmc.submit.services.CoreCaseDataService;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service("claimService")
@@ -47,31 +47,50 @@ public class ClaimServiceImpl implements ClaimService {
     }
 
     @Override
-    public Claim getClaim(String externalIdentifier) throws ApplicationException  {
+    public Claim getClaim(String externalIdentifier) throws ApplicationException {
         Claim claim;
         try {
             claim = getClaimByReference(externalIdentifier);
-        } catch (CoreCaseDataStoreException e) {
+        } catch (ApplicationException e) {
             claim = getClaimByExternalId(externalIdentifier);
         }
 
         return claim;
     }
 
-    private Claim getClaimByReference(String reference) throws CoreCaseDataStoreException {
+    private Claim getClaimByReference(String reference) throws ApplicationException {
 
-        Map<String, String> searchCriteria = new HashMap<>(ImmutableMap.of("case.referenceNumber", reference));
-        List<CaseDetails> result = coreCaseDataService.searchCase(searchCriteria);
+        SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
+        searchBuilder.query(QueryBuilders.matchQuery("referenceNumber", reference));
 
-        return claimConverter.convert(result.get(0).getData());
+        SearchResult result = coreCaseDataService.searchCase(searchBuilder.toString());
+
+        if (result.getTotal() <1) {
+            throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
+        }
+
+        if (result.getTotal() >1) {
+            throw new ApplicationException(ApplicationErrorCode.MORE_THAN_ONE_CASE_FOR_THAT_ID);
+        }
+
+        return claimConverter.convert(result.getCases().get(0).getData());
     }
 
-    private Claim getClaimByExternalId(String externalId) throws CoreCaseDataStoreException {
+    private Claim getClaimByExternalId(String externalId) throws ApplicationException {
 
-        Map<String, String> searchCriteria = new HashMap<>(ImmutableMap.of("case.externalId", externalId));
-        List<CaseDetails> result = coreCaseDataService.searchCase(searchCriteria);
+        SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
+        searchBuilder.query(QueryBuilders.matchQuery("case.externalId", externalId));
 
-        return claimConverter.convert(result.get(0).getData());
+        SearchResult result = coreCaseDataService.searchCase(searchBuilder.toString());
+
+        if (result.getTotal() <1) {
+            throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
+        }
+
+        if (result.getTotal() >1) {
+            throw new ApplicationException(ApplicationErrorCode.MORE_THAN_ONE_CASE_FOR_THAT_ID);
+        }
+        return claimConverter.convert(result.getCases().get(0).getData());
     }
 
 

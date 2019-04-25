@@ -40,7 +40,7 @@ public abstract class BaseTest {
     @PostConstruct
     public void init() {
         postClaimEndPoint = baseUrl + "/claim";
-        getClaimEndPoint = baseUrl + "/claim";
+        getClaimEndPoint = baseUrl + "/claim/{externalIdentifier}";
     }
 
     public User citizen() {

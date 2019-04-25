@@ -18,6 +18,7 @@ import uk.gov.hmcts.reform.authorisation.ServiceAuthorisationHealthApi;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
+import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.NotKnown;
@@ -67,7 +68,7 @@ public class GetClaimIT {
         mandatoryData.put("amountType", "NOT_KNOWN");
         mandatoryData.put("referenceNumber", "random_reference_number");
 
-        when(coreCaseDataApi.searchForCitizen(any(), any(), any(), any(), any(), any())).thenReturn(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()));
+        when(coreCaseDataApi.searchCases(any(), any(), any(), any())).thenReturn(SearchResult.builder().total(1).cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build())).build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");

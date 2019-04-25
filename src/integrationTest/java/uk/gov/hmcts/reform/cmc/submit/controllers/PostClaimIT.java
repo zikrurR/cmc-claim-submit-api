@@ -63,10 +63,6 @@ public class PostClaimIT {
     @Captor
     private ArgumentCaptor<String> serviceAuthorization;
     @Captor
-    private ArgumentCaptor<String> userId;
-    @Captor
-    private ArgumentCaptor<String> jurisdictionId;
-    @Captor
     private ArgumentCaptor<String> caseType;
     @Captor
     private ArgumentCaptor<String> eventId;
@@ -114,15 +110,12 @@ public class PostClaimIT {
 
         ClaimOutput claimResponse = objectMapper.readValue(response.getResponse().getContentAsString(), ClaimOutput.class);
 
-        verify(coreCaseDataApi).startForCitizen(authorizationToken.capture(), serviceAuthorization.capture(), userId.capture(), jurisdictionId.capture(), caseType.capture(), eventId.capture());
+        verify(coreCaseDataApi).startCase(authorizationToken.capture(), serviceAuthorization.capture(), caseType.capture(), eventId.capture());
 
         assertThat(claimResponse.getReferenceNumber()).isEqualTo("ramdom_reference_number");
 
         assertThat(authorizationToken.getValue()).isEqualTo(AUTHORIZATION_TOKEN);
         assertThat(serviceAuthorization.getValue()).isEqualTo(SERVICE_AUTHORIZATION_TOKEN);
-        //assertThat(userId.getValue()).isEqualTo(SERVICE_AUTHORIZATION_TOKEN);
-        // TODO need to refactor the ccd client
-
 
     }
 }
