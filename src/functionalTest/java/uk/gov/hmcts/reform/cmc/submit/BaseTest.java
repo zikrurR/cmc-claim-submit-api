@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.cmc.submit;
 
+import feign.FeignException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,6 @@ import uk.gov.hmcts.reform.idam.client.models.test.CreateUserRequest;
 import uk.gov.hmcts.reform.idam.client.models.test.UserGroup;
 
 import javax.annotation.PostConstruct;
-
-import feign.FeignException;
 
 @SpringBootTest
 public abstract class BaseTest {

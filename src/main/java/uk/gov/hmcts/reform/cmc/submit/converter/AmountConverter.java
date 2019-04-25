@@ -44,13 +44,13 @@ class AmountConverter {
 
         AmountBreakDown amountBreakDown = new AmountBreakDown();
         amountBreakDown.setRows(ccdCase.getAmountBreakDown().stream()
-                .map(this::from)
+                .map(this::fromCcdAmountRow)
                 .collect(Collectors.toList())
         );
         return amountBreakDown;
     }
 
-    private AmountRow from(CcdCollectionElement<CcdAmountRow> collectionElement) {
+    private AmountRow fromCcdAmountRow(CcdCollectionElement<CcdAmountRow> collectionElement) {
         CcdAmountRow ccdAmountRow = collectionElement.getValue();
 
         AmountRow amountRow = new AmountRow();

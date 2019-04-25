@@ -197,23 +197,24 @@ public class TheirDetailsAssert extends AbstractAssert<TheirDetailsAssert, Their
         if (representative.getOrganisationContactDetails() != null) {
             ContactDetails contactDetails = representative.getOrganisationContactDetails();
 
-            if (!Objects.equals(contactDetails.getDxAddress(), ccdParty.getClaimantProvidedRepresentativeOrganisationDxAddress())) {
+            String claimantProvidedRepOrgDxAddress = ccdParty.getClaimantProvidedRepresentativeOrganisationDxAddress();
+            if (!Objects.equals(contactDetails.getDxAddress(), claimantProvidedRepOrgDxAddress)) {
                 failWithMessage("Expected Representative.organisationDxAddress to be <%s> but was <%s>",
-                    ccdParty.getClaimantProvidedRepresentativeOrganisationDxAddress(),
+                    claimantProvidedRepOrgDxAddress,
                     contactDetails.getDxAddress()
                 );
             }
 
-
-
-            if (!Objects.equals(contactDetails.getEmail(), ccdParty.getClaimantProvidedRepresentativeOrganisationEmail())) {
+            String claimantProvidedRepOrgEmail = ccdParty.getClaimantProvidedRepresentativeOrganisationEmail();
+            if (!Objects.equals(contactDetails.getEmail(), claimantProvidedRepOrgEmail)) {
                 failWithMessage("Expected Representative.organisationEmail to be <%s> but was <%s>",
-                    ccdParty.getClaimantProvidedRepresentativeOrganisationEmail(), contactDetails.getEmail());
+                    claimantProvidedRepOrgEmail, contactDetails.getEmail());
             }
 
-            if (!Objects.equals(contactDetails.getPhone(), ccdParty.getClaimantProvidedRepresentativeOrganisationPhone())) {
+            String claimantProvidedRepOrgPhone = ccdParty.getClaimantProvidedRepresentativeOrganisationPhone();
+            if (!Objects.equals(contactDetails.getPhone(), claimantProvidedRepOrgPhone)) {
                 failWithMessage("Expected Representative.organisationPhone to be <%s> but was <%s>",
-                    ccdParty.getClaimantProvidedRepresentativeOrganisationPhone(), contactDetails.getPhone());
+                    claimantProvidedRepOrgPhone, contactDetails.getPhone());
             }
 
         }

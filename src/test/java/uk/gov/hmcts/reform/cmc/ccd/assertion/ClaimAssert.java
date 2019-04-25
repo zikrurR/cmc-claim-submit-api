@@ -33,39 +33,6 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimInput> {
     public ClaimAssert isEqualTo(CcdCase ccdCase) {
         isNotNull();
 
-//////////
-//    NEED TO DECIDED WHTA TO DO WHIT THAT FIELD
-//////////
-//        if (!Objects.equals(actual.getReferenceNumber(), ccdCase.getReferenceNumber())) {
-//            failWithMessage("Expected CcdCase.referenceNumber to be <%s> but was <%s>",
-//                ccdCase.getReferenceNumber(), actual.getReferenceNumber());
-//        }
-//
-//        if (!Objects.equals(actual.getSubmitterId(), ccdCase.getSubmitterId())) {
-//            failWithMessage("Expected CcdCase.submitterId to be <%s> but was <%s>",
-//                ccdCase.getSubmitterId(), actual.getSubmitterId());
-//        }
-//
-//        if (!Objects.equals(actual.getCreatedAt(), ccdCase.getSubmittedOn())) {
-//            failWithMessage("Expected CcdCase.submittedOn to be <%s> but was <%s>",
-//                ccdCase.getSubmittedOn(), actual.getCreatedAt());
-//        }
-//
-//        if (!Objects.equals(actual.getExternalId(), ccdCase.getExternalId())) {
-//            failWithMessage("Expected CcdCase.externalId to be <%s> but was <%s>",
-//                ccdCase.getExternalId(), actual.getExternalId());
-//        }
-//
-//        if (!Objects.equals(actual.getIssuedOn(), ccdCase.getIssuedOn())) {
-//            failWithMessage("Expected CcdCase.issuedOn to be <%s> but was <%s>",
-//                ccdCase.getIssuedOn(), actual.getIssuedOn());
-//        }
-//
-//        if (!Objects.equals(actual.getSubmitterEmail(), ccdCase.getSubmitterEmail())) {
-//            failWithMessage("Expected CcdCase.submitterEmail to be <%s> but was <%s>",
-//                ccdCase.getSubmitterEmail(), actual.getSubmitterEmail());
-//        }
-
         if (!Objects.equals(actual.getReason(), ccdCase.getReason())) {
             failWithMessage("Expected CcdClaim.reason to be <%s> but was <%s>",
                 ccdCase.getReason(), actual.getReason());

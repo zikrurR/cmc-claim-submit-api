@@ -32,7 +32,9 @@ public class ApplicationResponseEntityExceptionHandler extends ResponseEntityExc
     @ExceptionHandler(ApplicationException.class)
     public ResponseEntity<Object> handleAccessDeniedException(Exception ex, WebRequest request) {
 
-        return new ResponseEntity<>(((ApplicationException) ex).getMessage(), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(((ApplicationException) ex).getMessage(),
+                                    new HttpHeaders(),
+                                    HttpStatus.BAD_REQUEST);
     }
 
 }

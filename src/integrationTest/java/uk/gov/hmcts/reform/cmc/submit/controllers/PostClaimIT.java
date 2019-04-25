@@ -80,7 +80,9 @@ public class PostClaimIT {
                 .setId("1")
                 .setSubject("1")
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256, new SecretKeySpec(DatatypeConverter.parseBase64Binary("AAAAAAAAAA"), SignatureAlgorithm.HS256.getJcaName()))
+                .signWith(SignatureAlgorithm.HS256,
+                          new SecretKeySpec(DatatypeConverter.parseBase64Binary("AAAAAAAAAA"),
+                                            SignatureAlgorithm.HS256.getJcaName()))
                 .compact();
 
         when(coreCaseDataApi.startCase(any(), any(), any(), any())).thenReturn(StartEventResponse.builder()
@@ -92,7 +94,8 @@ public class PostClaimIT {
         Map<String,Object> mandatoryData = Maps.newHashMap();
         mandatoryData.put("referenceNumber", "ramdom_reference_number");
 
-        when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any())).thenReturn(CaseDetails.builder().data(mandatoryData).build());
+        when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any()))
+            .thenReturn(CaseDetails.builder().data(mandatoryData).build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn(SERVICE_AUTHORIZATION_TOKEN);
@@ -105,9 +108,13 @@ public class PostClaimIT {
                     .andExpect(status().isCreated())
                     .andReturn();
 
-        ClaimOutput claimResponse = objectMapper.readValue(response.getResponse().getContentAsString(), ClaimOutput.class);
+        String contentAsString = response.getResponse().getContentAsString();
+        ClaimOutput claimResponse = objectMapper.readValue(contentAsString, ClaimOutput.class);
 
-        verify(coreCaseDataApi).startCase(authorizationToken.capture(), serviceAuthorization.capture(), caseType.capture(), eventId.capture());
+        verify(coreCaseDataApi).startCase(authorizationToken.capture(),
+                                          serviceAuthorization.capture(),
+                                          caseType.capture(),
+                                          eventId.capture());
 
         assertThat(claimResponse.getReferenceNumber()).isEqualTo("ramdom_reference_number");
 

@@ -33,7 +33,11 @@ public class GetClaimHappyPath extends BaseTest {
         headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> claimOutput = restTemplate.exchange(getClaimEndPoint, HttpMethod.GET, entity, String.class, "test");
+        ResponseEntity<String> claimOutput = restTemplate.exchange(getClaimEndPoint,
+                                                                   HttpMethod.GET,
+                                                                   entity,
+                                                                   String.class,
+                                                                   "test");
 
         assertThat(claimOutput.getStatusCodeValue()).isEqualTo(HttpStatus.CREATED);
     }
