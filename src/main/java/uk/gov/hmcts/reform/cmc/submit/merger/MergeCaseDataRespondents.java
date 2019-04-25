@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAddress;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdParty;
@@ -163,7 +164,8 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
         defendantContactDetails(representative.getOrganisationContactDetails(), builder);
 
         builder.claimantProvidedRepresentativeOrganisationName(representative.getOrganisationName());
-        builder.claimantProvidedRepresentativeOrganisationAddress(addressMapper.to(representative.getOrganisationAddress()));
+        CcdAddress orgAddress = addressMapper.to(representative.getOrganisationAddress());
+        builder.claimantProvidedRepresentativeOrganisationAddress(orgAddress);
     }
 
     public void defendantContactDetails(ContactDetails contactDetails, CcdRespondent.CcdRespondentBuilder builder) {

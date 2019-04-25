@@ -30,7 +30,8 @@ public class ErrorMappingIT {
 
     protected static final String AUTHORISATION_TOKEN = "Bearer token";
 
-    @DisplayName("Happy path to generate an error during the claim creation. it should return an json error with 400 response code")
+    @DisplayName("Happy path to generate an error during the claim creation."
+               + " it should return an json error with 400 response code")
     @Test
     public void happyPathPostClaim() throws Exception {
 

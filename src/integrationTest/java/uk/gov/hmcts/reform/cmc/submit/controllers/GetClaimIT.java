@@ -61,7 +61,10 @@ public class GetClaimIT {
         mandatoryData.put("amountType", "NOT_KNOWN");
         mandatoryData.put("referenceNumber", "random_reference_number");
 
-        when(coreCaseDataApi.searchCases(any(), any(), any(), any())).thenReturn(SearchResult.builder().total(1).cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build())).build());
+        when(coreCaseDataApi.searchCases(any(), any(), any(), any()))
+             .thenReturn(SearchResult.builder().total(1)
+                                               .cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()))
+                                               .build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");

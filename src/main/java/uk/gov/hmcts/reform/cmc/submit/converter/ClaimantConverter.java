@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdApplicant;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;
@@ -42,7 +43,8 @@ class ClaimantConverter {
     }
 
     private Party from(CcdCollectionElement<CcdApplicant> ccdApplicant) {
-        switch (ccdApplicant.getValue().getPartyDetail().getType()) {
+        CcdPartyType type = ccdApplicant.getValue().getPartyDetail().getType();
+        switch (type) {
             case COMPANY:
                 return companyFrom(ccdApplicant);
             case INDIVIDUAL:
@@ -52,7 +54,7 @@ class ClaimantConverter {
             case ORGANISATION:
                 return organisationFrom(ccdApplicant);
             default:
-                throw new MappingException("Invalid claimant type, " + ccdApplicant.getValue().getPartyDetail().getType());
+                throw new MappingException("Invalid claimant type, " + type);
         }
     }
 

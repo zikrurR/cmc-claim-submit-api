@@ -23,7 +23,6 @@ import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
 
