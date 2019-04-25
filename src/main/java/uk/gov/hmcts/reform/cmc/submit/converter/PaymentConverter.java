@@ -11,7 +11,7 @@ import static java.time.format.DateTimeFormatter.ISO_DATE;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
-class PaymentConverter{
+class PaymentConverter {
 
     public Payment from(CcdCase ccdCase) {
 
@@ -21,11 +21,10 @@ class PaymentConverter{
 
             return payment;
         } else if (!(isBlank(ccdCase.getPaymentId())
-            && ccdCase.getPaymentAmount() == null
-            && isBlank(ccdCase.getPaymentReference())
-            && ccdCase.getPaymentDateCreated() == null
-            && isBlank(ccdCase.getPaymentStatus())
-        )) {
+                    && ccdCase.getPaymentAmount() == null
+                    && isBlank(ccdCase.getPaymentReference())
+                    && ccdCase.getPaymentDateCreated() == null
+                    && isBlank(ccdCase.getPaymentStatus()))) {
 
             ReferencePayment payment = new ReferencePayment();
 

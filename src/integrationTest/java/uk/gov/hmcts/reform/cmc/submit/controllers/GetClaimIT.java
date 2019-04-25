@@ -19,7 +19,6 @@ import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.SearchResult;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.NotKnown;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
 
@@ -55,8 +54,6 @@ public class GetClaimIT {
     @Test
     public void happyPathGetClaim() throws Exception {
 
-        ClaimInput claimImput = SampleClaimData.validDefaults();
-
         // mock ccd call
         Map<String,Object> mandatoryData = Maps.newHashMap();
         String externalId = UUID.randomUUID().toString();
@@ -70,11 +67,12 @@ public class GetClaimIT {
         when(authTokenGenerator.generate()).thenReturn("aaa");
 
 
+        String claimData = objectMapper.writeValueAsString(SampleClaimData.validDefaults());
         MvcResult response = mockMvc
                 .perform(get("/claim/{externalId}",externalId)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN)
-                        .content(objectMapper.writeValueAsString(claimImput)))
+                        .content(claimData))
                     .andExpect(status().isOk())
                     .andReturn();
 

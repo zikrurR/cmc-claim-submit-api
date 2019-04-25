@@ -154,8 +154,7 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimInput> {
                     failWithMessage("Expected CcdCase.paymentStatus to be <%s> but was <%s>",
                         ccdCase.getPaymentStatus(), payment.getStatus());
                 }
-            }
-        );
+            });
 
         ofNullable(actual.getPayment())
             .filter(AccountPayment.class::isInstance)
@@ -165,8 +164,7 @@ public class ClaimAssert extends AbstractAssert<ClaimAssert, ClaimInput> {
                     failWithMessage("Expected CcdCase.feeAccountNumber to be <%s> but was <%s>",
                         ccdCase.getPaymentId(), payment.getFeeAccountNumber());
                 }
-            }
-        );
+            });
 
 
         PersonalInjury personalInjury = actual.getPersonalInjury();

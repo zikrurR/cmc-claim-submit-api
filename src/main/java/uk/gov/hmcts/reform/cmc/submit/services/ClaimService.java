@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.cmc.submit.services;
 
-
 import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;

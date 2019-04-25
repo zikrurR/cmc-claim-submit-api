@@ -13,7 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class SwaggerPublisherIT {
+class SwaggerGeneratorIT {
 
     @Autowired
     private MockMvc mvc;

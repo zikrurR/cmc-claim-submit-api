@@ -36,7 +36,7 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     private final CoreCaseDataApi coreCaseDataApi;
     private final AuthTokenGenerator authTokenGenerator;
 
-	@Autowired
+    @Autowired
     private HttpServletRequest request;
 
     public CoreCaseDataServiceImpl(

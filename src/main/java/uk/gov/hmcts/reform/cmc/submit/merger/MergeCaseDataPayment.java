@@ -25,9 +25,9 @@ class MergeCaseDataPayment implements MergeCaseDataDecorator {
             return;
         }
 
-        if (payment instanceof ReferencePayment){
+        if (payment instanceof ReferencePayment) {
             toReferencePayment((ReferencePayment)payment, ccdCase);
-        } else if (payment instanceof AccountPayment){
+        } else if (payment instanceof AccountPayment) {
             toAccountPayment((AccountPayment)payment, ccdCase);
         }
 

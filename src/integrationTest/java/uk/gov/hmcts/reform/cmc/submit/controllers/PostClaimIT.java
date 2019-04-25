@@ -73,8 +73,6 @@ public class PostClaimIT {
     @Test
     public void happyPathPostClaim() throws Exception {
 
-        ClaimInput claim = SampleClaimData.validDefaults();
-
         // mock ccd call
         String compact = Jwts.builder()
                 .setId("1")
@@ -100,11 +98,12 @@ public class PostClaimIT {
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn(SERVICE_AUTHORIZATION_TOKEN);
 
+        String claimData = objectMapper.writeValueAsString(SampleClaimData.validDefaults());
         MvcResult response = mockMvc
                 .perform(post("/claim/")
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORIZATION_TOKEN)
-                        .content(objectMapper.writeValueAsString(claim)))
+                        .content(claimData))
                     .andExpect(status().isCreated())
                     .andReturn();
 

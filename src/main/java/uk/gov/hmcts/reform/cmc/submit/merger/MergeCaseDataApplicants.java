@@ -110,8 +110,7 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
         builder.partyName(company.getName());
         builder.partyDetail(partyDetailBuilder.build());
 
-       representative(company.getRepresentative(), builder);
-
+        representative(company.getRepresentative(), builder);
     }
 
     private void organisation(Organisation organisation, CcdApplicant.CcdApplicantBuilder builder) {
