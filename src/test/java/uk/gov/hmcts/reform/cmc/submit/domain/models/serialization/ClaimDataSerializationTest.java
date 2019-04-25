@@ -37,14 +37,7 @@ public class ClaimDataSerializationTest {
 
     @Test
     public void shouldConvertJsonToJava() throws IOException {
-        //given
-        String input = new ResourceReader().read("/claim-application.json");
-        ObjectMapper mapper = objectMapper();
 
-        //when
-        ClaimInput claimData = mapper.readValue(input, ClaimInput.class);
-
-        //then
         Individual claimant = SampleParty.individual();
         claimant.setRepresentative(null);
 
@@ -71,6 +64,11 @@ public class ClaimDataSerializationTest {
             .clearDefendants()
             .addDefendant(defendent)
             .build();
+
+        String input = new ResourceReader().read("/claim-application.json");
+        ObjectMapper mapper = objectMapper();
+
+        ClaimInput claimData = mapper.readValue(input, ClaimInput.class);
 
         assertThat(claimData).isEqualTo(other);
     }
