@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.cmc.submit.converter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
@@ -23,23 +22,31 @@ public class ClaimConverter {
 
     private final ObjectMapper objectMapper;
 
-    @Autowired
     private ClaimantConverter claimantConverter;
-    @Autowired
     private DefendantConverter defendantConverter;
-    @Autowired
     private AmountConverter amountConverter;
-    @Autowired
     private PaymentConverter paymentConverter;
-    @Autowired
     private InterestConverter interestConverter;
-    @Autowired
     private TimelineConverter timelineConverter;
-    @Autowired
     private EvidenceConverter evidenceConverter;
 
-    public ClaimConverter(ObjectMapper objectMapper) {
+    public ClaimConverter(ObjectMapper objectMapper,
+            ClaimantConverter claimantConverter,
+            DefendantConverter defendantConverter,
+            AmountConverter amountConverter,
+            PaymentConverter paymentConverter,
+            InterestConverter interestConverter,
+            TimelineConverter timelineConverter,
+            EvidenceConverter evidenceConverter) {
         this.objectMapper = objectMapper;
+
+        this.claimantConverter = claimantConverter;
+        this.defendantConverter = defendantConverter;
+        this.amountConverter = amountConverter;
+        this.paymentConverter = paymentConverter;
+        this.interestConverter = interestConverter;
+        this.timelineConverter = timelineConverter;
+        this.evidenceConverter = evidenceConverter;
     }
 
     public Claim convert(Map<String, Object> caseData) {

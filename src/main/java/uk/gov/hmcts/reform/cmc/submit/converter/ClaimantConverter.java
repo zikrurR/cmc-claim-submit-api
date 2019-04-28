@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdApplicant;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdParty;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdPartyType;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Company;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
@@ -31,96 +32,79 @@ class ClaimantConverter {
         this.addressMapper = addressMapper;
     }
 
-    public List<Party> from(List<CcdCollectionElement<CcdApplicant>> ccdEvidence) {
-        if (ccdEvidence == null) {
+    public List<Party> from(List<CcdCollectionElement<CcdApplicant>> ccdApplicants) {
+        if (ccdApplicants == null) {
             return new ArrayList<>();
         }
 
-        return ccdEvidence.stream()
+        return ccdApplicants.stream()
                 .filter(Objects::nonNull)
                 .map(this::from)
                 .collect(Collectors.toList());
     }
 
-    private Party from(CcdCollectionElement<CcdApplicant> ccdApplicant) {
-        CcdPartyType type = ccdApplicant.getValue().getPartyDetail().getType();
+    private Party from(CcdCollectionElement<CcdApplicant> ccdApplicantCollection) {
+        CcdApplicant ccdApplicant = ccdApplicantCollection.getValue();
+        CcdParty partyDetail = ccdApplicant.getPartyDetail();
+        CcdPartyType type = partyDetail.getType();
+
+        Party party;
         switch (type) {
             case COMPANY:
-                return companyFrom(ccdApplicant);
+                party = companyFrom(partyDetail);
+                break;
             case INDIVIDUAL:
-                return individualFrom(ccdApplicant);
+                party = individualFrom(partyDetail);
+                break;
             case SOLE_TRADER:
-                return soleTraderFrom(ccdApplicant);
+                party = soleTraderFrom(partyDetail);
+                break;
             case ORGANISATION:
-                return organisationFrom(ccdApplicant);
+                party = organisationFrom(partyDetail);
+                break;
             default:
                 throw new MappingException("Invalid claimant type, " + type);
         }
+
+        party.setId(ccdApplicantCollection.getId());
+        party.setName(ccdApplicant.getPartyName());
+        party.setRepresentative(representativeFrom(ccdApplicant));
+
+        party.setAddress(addressMapper.from(partyDetail.getPrimaryAddress()));
+        party.setCorrespondenceAddress(addressMapper.from(partyDetail.getCorrespondenceAddress()));
+        if (partyDetail.getTelephoneNumber() != null) {
+            party.setMobilePhone(partyDetail.getTelephoneNumber().getTelephoneNumber());
+        }
+
+        return party;
     }
 
-    public Company companyFrom(CcdCollectionElement<CcdApplicant> claimant) {
-        CcdApplicant value = claimant.getValue();
+    public Company companyFrom(CcdParty party) {
         Company company = new Company();
-
-        company.setId(claimant.getId());
-        company.setName(value.getPartyName());
-        company.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
-        company.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
-        company.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
-        company.setRepresentative(representativeFrom(value));
-        company.setContactPerson(value.getPartyDetail().getContactPerson());
+        company.setContactPerson(party.getContactPerson());
 
         return company;
     }
 
-    public Individual individualFrom(CcdCollectionElement<CcdApplicant> claimant) {
-        CcdApplicant value = claimant.getValue();
-
+    public Individual individualFrom(CcdParty party) {
         Individual individual = new Individual();
-        individual.setId(claimant.getId());
-        individual.setName(value.getPartyName());
-        individual.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
-        individual.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
-        individual.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
-        individual.setRepresentative(representativeFrom(value));
-        individual.setDateOfBirth(value.getPartyDetail().getDateOfBirth());
+        individual.setDateOfBirth(party.getDateOfBirth());
 
         return individual;
     }
 
-    public SoleTrader soleTraderFrom(CcdCollectionElement<CcdApplicant> claimant) {
-        CcdApplicant value = claimant.getValue();
+    public SoleTrader soleTraderFrom(CcdParty party) {
         SoleTrader soletrader = new SoleTrader();
-
-        soletrader.setId(claimant.getId());
-        soletrader.setName(value.getPartyName());
-        soletrader.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
-        soletrader.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
-        soletrader.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
-        soletrader.setRepresentative(representativeFrom(value));
-        soletrader.setTitle(value.getPartyDetail().getTitle());
-        soletrader.setBusinessName(value.getPartyDetail().getBusinessName());
+        soletrader.setTitle(party.getTitle());
+        soletrader.setBusinessName(party.getBusinessName());
 
         return soletrader;
     }
 
-    public Organisation organisationFrom(CcdCollectionElement<CcdApplicant> claimant) {
-        if (claimant == null) {
-            return null;
-        }
-
-        CcdApplicant value = claimant.getValue();
-
+    public Organisation organisationFrom(CcdParty party) {
         Organisation organisation = new Organisation();
-
-        organisation.setId(claimant.getId());
-        organisation.setName(value.getPartyName());
-        organisation.setAddress(addressMapper.from(value.getPartyDetail().getPrimaryAddress()));
-        organisation.setCorrespondenceAddress(addressMapper.from(value.getPartyDetail().getCorrespondenceAddress()));
-        organisation.setMobilePhone(value.getPartyDetail().getTelephoneNumber().getTelephoneNumber());
-        organisation.setRepresentative(representativeFrom(value));
-        organisation.setContactPerson(value.getPartyDetail().getContactPerson());
-        organisation.setCompaniesHouseNumber(value.getPartyDetail().getCompaniesHouseNumber());
+        organisation.setContactPerson(party.getContactPerson());
+        organisation.setCompaniesHouseNumber(party.getCompaniesHouseNumber());
 
         return organisation;
     }

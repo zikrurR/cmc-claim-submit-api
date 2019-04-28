@@ -1,12 +1,16 @@
 package uk.gov.hmcts.reform.cmc.submit.ccd.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
-@Getter
 public class CcdParty {
     private String partyId;
     private String idamId;
