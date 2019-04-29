@@ -34,28 +34,28 @@ class DefendantConverter {
         this.addressMapper = addressMapper;
     }
 
-    public List<TheirDetails> from(List<CcdCollectionElement<CcdRespondent>> defendant) {
-        if (defendant == null) {
+    public List<TheirDetails> from(List<CcdCollectionElement<CcdRespondent>> ccdRespondent) {
+        if (ccdRespondent == null) {
             return new ArrayList<>();
         }
 
-        return defendant.stream().filter(Objects::nonNull).map(this::from).collect(Collectors.toList());
+        return ccdRespondent.stream().filter(Objects::nonNull).map(this::from).collect(Collectors.toList());
     }
 
 
-    private TheirDetails from(CcdCollectionElement<CcdRespondent> ccdDefendant) {
-        switch (ccdDefendant.getValue().getClaimantProvidedDetail().getType()) {
+    private TheirDetails from(CcdCollectionElement<CcdRespondent> ccdRespondent) {
+        switch (ccdRespondent.getValue().getClaimantProvidedDetail().getType()) {
             case COMPANY:
-                return companyDetailsFrom(ccdDefendant);
+                return companyDetailsFrom(ccdRespondent);
             case INDIVIDUAL:
-                return individualDetailsFrom(ccdDefendant);
+                return individualDetailsFrom(ccdRespondent);
             case SOLE_TRADER:
-                return soleTraderDetailsFrom(ccdDefendant);
+                return soleTraderDetailsFrom(ccdRespondent);
             case ORGANISATION:
-                return organisationDetailsFrom(ccdDefendant);
+                return organisationDetailsFrom(ccdRespondent);
             default:
                 throw new MappingException("Invalid defendant type, "
-                    + ccdDefendant.getValue().getClaimantProvidedDetail().getType());
+                    + ccdRespondent.getValue().getClaimantProvidedDetail().getType());
         }
     }
 
