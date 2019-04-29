@@ -13,30 +13,6 @@ import static uk.gov.hmcts.reform.cmc.submit.domain.BeanValidator.validate;
 public class TheirDetailsTest {
 
     @Test
-    public void shouldBeInvalidWhenGivenNullName() {
-        TheirDetails theirDetails = SampleTheirDetails.partyDetails();
-        theirDetails.setName(null);
-
-        Set<String> validationErrors = validate(theirDetails);
-
-        assertThat(validationErrors)
-            .hasSize(1)
-            .contains("name : must not be blank");
-    }
-
-    @Test
-    public void shouldBeInvalidWhenGivenEmptyName() {
-        TheirDetails theirDetails = SampleTheirDetails.partyDetails();
-        theirDetails.setName("");
-
-        Set<String> validationErrors = validate(theirDetails);
-
-        assertThat(validationErrors)
-            .hasSize(1)
-            .contains("name : must not be blank");
-    }
-
-    @Test
     public void shouldBeInvalidWhenGivenNullAddress() {
         TheirDetails theirDetails = SampleTheirDetails.partyDetails();
         theirDetails.setAddress(null);

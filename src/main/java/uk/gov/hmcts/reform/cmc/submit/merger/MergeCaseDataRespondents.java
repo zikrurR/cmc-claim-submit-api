@@ -93,9 +93,10 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
         partyDetailBuilder.emailAddress(individual.getEmail());
         partyDetailBuilder.primaryAddress(addressMapper.to(individual.getAddress()));
         partyDetailBuilder.correspondenceAddress(addressMapper.to(individual.getServiceAddress()));
-
+        partyDetailBuilder.title(individual.getTitle());
+        partyDetailBuilder.firstName(individual.getFirstName());
+        partyDetailBuilder.lastName(individual.getLastName());
         builder.claimantProvidedDetail(partyDetailBuilder.build());
-        builder.claimantProvidedPartyName(individual.getName());
 
         representative(individual.getRepresentative(), builder);
     }
@@ -151,7 +152,9 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
         partyDetailBuilder.correspondenceAddress(addressMapper.to(soleTrader.getServiceAddress()));
 
         builder.claimantProvidedDetail(partyDetailBuilder.build());
-        builder.claimantProvidedPartyName(soleTrader.getName());
+        partyDetailBuilder.title(soleTrader.getTitle());
+        partyDetailBuilder.firstName(soleTrader.getFirstName());
+        partyDetailBuilder.lastName(soleTrader.getLastName());
 
         representative(soleTrader.getRepresentative(), builder);
     }

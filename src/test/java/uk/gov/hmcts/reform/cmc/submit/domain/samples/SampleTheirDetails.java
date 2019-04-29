@@ -101,7 +101,8 @@ public class SampleTheirDetails {
         individualDetails.setDateOfBirth(builder.dateOfBirth);
         individualDetails.setEmail(builder.email);
         individualDetails.setId(builder.collectionId);
-        individualDetails.setName(builder.name);
+        individualDetails.setFirstName(builder.name);
+        individualDetails.setLastName(builder.name);
         individualDetails.setRepresentative(builder.representative);
         individualDetails.setServiceAddress(builder.serviceAddress);
 
@@ -162,7 +163,8 @@ public class SampleTheirDetails {
         soleTraderDetails.setBusinessName(builder.businessName);
         soleTraderDetails.setEmail(builder.email);
         soleTraderDetails.setId(builder.collectionId);
-        soleTraderDetails.setName(builder.name);
+        soleTraderDetails.setFirstName(builder.name);
+        soleTraderDetails.setLastName(builder.name);
         soleTraderDetails.setRepresentative(builder.representative);
         soleTraderDetails.setServiceAddress(builder.serviceAddress);
 

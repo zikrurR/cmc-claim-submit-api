@@ -77,7 +77,7 @@ public class ClaimInputTest {
     @Test
     public void shouldBeInvalidWhenGivenInvalidDefendant() {
         IndividualDetails individualDetails = SampleTheirDetails.individualDetails();
-        individualDetails.setName("");
+        individualDetails.setFirstName("");
 
         ClaimInput claimData = SampleClaimData.builder()
             .withDefendant(individualDetails)

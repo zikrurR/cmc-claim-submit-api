@@ -82,7 +82,9 @@ class DefendantConverter {
 
         IndividualDetails individualDetails = new IndividualDetails();
         individualDetails.setId(collectionElement.getId());
-        individualDetails.setName(ccdDefendant.getClaimantProvidedPartyName());
+        individualDetails.setTitle(claimantProvidedDetail.getTitle());
+        individualDetails.setFirstName(claimantProvidedDetail.getFirstName());
+        individualDetails.setLastName(claimantProvidedDetail.getLastName());
         individualDetails.setAddress(addressMapper.from(claimantProvidedDetail.getPrimaryAddress()));
         individualDetails.setEmail(claimantProvidedDetail.getEmailAddress());
         individualDetails.setRepresentative(representativeFrom(ccdDefendant));
@@ -102,7 +104,9 @@ class DefendantConverter {
 
         SoleTraderDetails ccdSoleTrader = new SoleTraderDetails();
         ccdSoleTrader.setId(collectionElement.getId());
-        ccdSoleTrader.setName(ccdDefendant.getClaimantProvidedPartyName());
+        ccdSoleTrader.setTitle(claimantProvidedDetail.getTitle());
+        ccdSoleTrader.setFirstName(claimantProvidedDetail.getFirstName());
+        ccdSoleTrader.setLastName(claimantProvidedDetail.getLastName());
         ccdSoleTrader.setAddress(addressMapper.from(claimantProvidedDetail.getPrimaryAddress()));
         ccdSoleTrader.setEmail(claimantProvidedDetail.getEmailAddress());
         ccdSoleTrader.setRepresentative(representativeFrom(ccdDefendant));
