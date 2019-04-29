@@ -2,9 +2,10 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdTimelineEvent;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCaseBuilder;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCollectionElementBuilder;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdTimelineEventBuilder;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
 
@@ -16,13 +17,13 @@ import java.util.stream.Collectors;
 class MergeCaseDataTimeline implements MergeCaseDataDecorator {
 
     @Override
-    public void merge(CcdCase ccdCase, ClaimInput claim) {
+    public void merge(CcdCaseBuilder ccdCase, ClaimInput claim) {
 
-        ccdCase.setTimeline(to(claim.getTimeline()));
+        ccdCase.timeline(to(claim.getTimeline()));
 
     }
 
-    private List<CcdCollectionElement<CcdTimelineEvent>> to(List<TimelineEvent> timeline) {
+    private List<CcdCollectionElementBuilder<CcdTimelineEvent>> to(List<TimelineEvent> timeline) {
         if (timeline == null) {
             return new ArrayList<>();
         }
@@ -32,20 +33,18 @@ class MergeCaseDataTimeline implements MergeCaseDataDecorator {
                 .collect(Collectors.toList());
     }
 
-    private CcdCollectionElement<CcdTimelineEvent> to(TimelineEvent timelineEvent) {
+    private CcdCollectionElementBuilder<CcdTimelineEvent> to(TimelineEvent timelineEvent) {
         if (timelineEvent == null) {
             return null;
         }
 
-        CcdTimelineEvent ccdTimelineEvent = CcdTimelineEvent.builder()
+        CcdTimelineEventBuilder ccdTimelineEvent = CcdTimelineEventBuilder.builder()
                                                     .date(timelineEvent.getDate())
-                                                    .description(timelineEvent.getDescription())
-                                                    .build();
+                                                    .description(timelineEvent.getDescription());
 
-        return CcdCollectionElement.<CcdTimelineEvent>builder()
+        return CcdCollectionElementBuilder.<CcdTimelineEvent>builder()
             .value(ccdTimelineEvent)
-            .id(timelineEvent.getId())
-            .build();
+            .id(timelineEvent.getId());
     }
 
 

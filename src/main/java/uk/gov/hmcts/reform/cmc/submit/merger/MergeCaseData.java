@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCaseBuilder;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.particulars.HousingDisrepair;
 
@@ -39,51 +39,51 @@ public class MergeCaseData implements MergeCaseDataDecorator {
     }
 
     public Map<String, JsonNode> merge(Map<String, Object> data, ClaimInput claim) {
-        CcdCase ccdCase = objectMapper.convertValue(data, CcdCase.class);
+        CcdCaseBuilder ccdCaseBuilder = objectMapper.convertValue(data, CcdCaseBuilder.class);
 
-        merge(ccdCase, claim);
+        merge(ccdCaseBuilder, claim);
 
-        return objectMapper.convertValue(ccdCase, new TypeReference<Map<String, JsonNode>>() {});
+        return objectMapper.convertValue(ccdCaseBuilder, new TypeReference<Map<String, JsonNode>>() {});
     }
 
     @Override
-    public void merge(CcdCase ccdCase, ClaimInput claim) {
+    public void merge(CcdCaseBuilder ccdCaseBuilder, ClaimInput claim) {
         Objects.requireNonNull(claim, "claimData must not be null");
 
-        ccdCase.setExternalId(Objects.toString(claim.getExternalId()));
-        ccdCase.setPreferredCourt(claim.getPreferredCourt());
-        ccdCase.setReason(claim.getReason());
+        ccdCaseBuilder.externalId(Objects.toString(claim.getExternalId()));
+        ccdCaseBuilder.preferredCourt(claim.getPreferredCourt());
+        ccdCaseBuilder.reason(claim.getReason());
 
         if (claim.getStatementOfTruth() != null) {
-            ccdCase.setSotSignerName(claim.getStatementOfTruth().getSignerName());
-            ccdCase.setSotSignerRole(claim.getStatementOfTruth().getSignerRole());
+            ccdCaseBuilder.sotSignerName(claim.getStatementOfTruth().getSignerName());
+            ccdCaseBuilder.sotSignerRole(claim.getStatementOfTruth().getSignerRole());
         }
 
         if (claim.getPersonalInjury() != null) {
-            ccdCase.setPersonalInjuryGeneralDamages(claim.getPersonalInjury().getGeneralDamages().name());
+            ccdCaseBuilder.personalInjuryGeneralDamages(claim.getPersonalInjury().getGeneralDamages().name());
         }
 
         HousingDisrepair housingDisrepair = claim.getHousingDisrepair();
         if (housingDisrepair != null) {
-            ccdCase.setHousingDisrepairCostOfRepairDamages(housingDisrepair.getCostOfRepairsDamages().name());
+            ccdCaseBuilder.housingDisrepairCostOfRepairDamages(housingDisrepair.getCostOfRepairsDamages().name());
             if (housingDisrepair.getOtherDamages() != null) {
-                ccdCase.setHousingDisrepairOtherDamages(housingDisrepair.getOtherDamages().name());
+                ccdCaseBuilder.housingDisrepairOtherDamages(housingDisrepair.getOtherDamages().name());
             }
         }
 
-        applicantsDecorator.merge(ccdCase, claim);
+        applicantsDecorator.merge(ccdCaseBuilder, claim);
 
-        respondentsDecorator.merge(ccdCase, claim);
+        respondentsDecorator.merge(ccdCaseBuilder, claim);
 
-        timelineDecorator.merge(ccdCase, claim);
+        timelineDecorator.merge(ccdCaseBuilder, claim);
 
-        evidenceDecorator.merge(ccdCase, claim);
+        evidenceDecorator.merge(ccdCaseBuilder, claim);
 
-        paymentDecorator.merge(ccdCase, claim);
+        paymentDecorator.merge(ccdCaseBuilder, claim);
 
-        interestDecorator.merge(ccdCase, claim);
+        interestDecorator.merge(ccdCaseBuilder, claim);
 
-        amountDecorator.merge(ccdCase, claim);
+        amountDecorator.merge(ccdCaseBuilder, claim);
     }
 
 

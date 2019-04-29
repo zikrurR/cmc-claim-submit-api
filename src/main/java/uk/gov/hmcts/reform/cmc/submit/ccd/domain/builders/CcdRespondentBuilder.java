@@ -28,13 +28,17 @@ public class CcdRespondentBuilder implements Builder<CcdRespondent> {
 
     @Override
     public CcdRespondent build() {
-        return new CcdRespondent(claimantProvidedDetail.build(),
-                                 claimantProvidedPartyName,
-                                 claimantProvidedRepresentativeOrganisationName,
-                                 claimantProvidedRepresentativeOrganisationAddress.build(),
-                                 claimantProvidedRepresentativeOrganisationPhone,
-                                 claimantProvidedRepresentativeOrganisationEmail,
-                                 claimantProvidedRepresentativeOrganisationDxAddress);
+        CcdRespondent ccdRespondent = new CcdRespondent();
+
+        ccdRespondent.setClaimantProvidedDetail(claimantProvidedDetail.build());
+        ccdRespondent.setClaimantProvidedPartyName(claimantProvidedPartyName);
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationName(claimantProvidedRepresentativeOrganisationName);
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationAddress(claimantProvidedRepresentativeOrganisationAddress.build());
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationPhone(claimantProvidedRepresentativeOrganisationPhone);
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationEmail(claimantProvidedRepresentativeOrganisationEmail);
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationDxAddress(claimantProvidedRepresentativeOrganisationDxAddress);
+
+        return ccdRespondent;
     }
 
     public Map<String, Object> buildMap() {

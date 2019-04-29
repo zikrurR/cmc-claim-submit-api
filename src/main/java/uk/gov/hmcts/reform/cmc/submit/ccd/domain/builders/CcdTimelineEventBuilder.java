@@ -20,7 +20,10 @@ public class CcdTimelineEventBuilder implements Builder<CcdTimelineEvent> {
 
     @Override
     public CcdTimelineEvent build() {
-        return new CcdTimelineEvent(date, description);
+        CcdTimelineEvent ccdTimelineEvent = new CcdTimelineEvent();
+        ccdTimelineEvent.setDate(date);
+        ccdTimelineEvent.setDescription(description);
+        return ccdTimelineEvent;
     }
 
     public Map<String, Object> buildMap() {

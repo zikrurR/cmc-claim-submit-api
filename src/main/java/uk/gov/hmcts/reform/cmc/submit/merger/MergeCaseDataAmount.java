@@ -3,8 +3,9 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 import org.springframework.stereotype.Component;
 
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAmountRow;
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdAmountRowBuilder;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCaseBuilder;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCollectionElementBuilder;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountBreakDown;
@@ -23,46 +24,47 @@ import static uk.gov.hmcts.reform.cmc.submit.ccd.domain.AmountType.RANGE;
 class MergeCaseDataAmount implements MergeCaseDataDecorator {
 
     @Override
-    public void merge(CcdCase ccdCase, ClaimInput claim) {
+    public void merge(CcdCaseBuilder ccdCaseBuilder, ClaimInput claim) {
 
         Amount amount = claim.getAmount();
 
         if (amount instanceof AmountRange) {
-            ccdCase.setAmountType(RANGE);
+            ccdCaseBuilder.amountType(RANGE);
             AmountRange amountRange = (AmountRange) amount;
-            amountRange(amountRange, ccdCase);
+            amountRange(amountRange, ccdCaseBuilder);
         } else if (amount instanceof AmountBreakDown) {
-            ccdCase.setAmountType(BREAK_DOWN);
+            ccdCaseBuilder.amountType(BREAK_DOWN);
             AmountBreakDown amountBreakDown = (AmountBreakDown) amount;
-            amountBreakDown(amountBreakDown, ccdCase);
+            amountBreakDown(amountBreakDown, ccdCaseBuilder);
         } else if (amount instanceof NotKnown) {
-            ccdCase.setAmountType(NOT_KNOWN);
+            ccdCaseBuilder.amountType(NOT_KNOWN);
         }
 
     }
 
-    private void amountBreakDown(AmountBreakDown amountBreakDown, CcdCase ccdCase) {
-        ccdCase.setAmountBreakDown(amountBreakDown.getRows().stream()
+    private void amountBreakDown(AmountBreakDown amountBreakDown, CcdCaseBuilder ccdCaseBuilder) {
+        ccdCaseBuilder.amountBreakDown(amountBreakDown.getRows().stream()
             .map(this::amountRange)
             .filter(Objects::nonNull)
             .collect(Collectors.toList()));
 
     }
 
-    private CcdCollectionElement<CcdAmountRow> amountRange(AmountRow amountRow) {
+    private CcdCollectionElementBuilder<CcdAmountRow> amountRange(AmountRow amountRow) {
         if (amountRow.getAmount() == null) {
             return null;
         }
 
-        return CcdCollectionElement.<CcdAmountRow>builder()
-            .value(CcdAmountRow.builder().reason(amountRow.getReason()).amount(amountRow.getAmount()).build())
-            .id(amountRow.getId())
-            .build();
+        return CcdCollectionElementBuilder.<CcdAmountRow>builder()
+                .id(amountRow.getId())
+                .value(CcdAmountRowBuilder.builder()
+                        .reason(amountRow.getReason())
+                        .amount(amountRow.getAmount()));
     }
 
-    public void amountRange(AmountRange amountRange, CcdCase ccdCase) {
-        ccdCase.setAmountLowerValue(amountRange.getLowerValue());
-        ccdCase.setAmountHigherValue(amountRange.getHigherValue());
+    public void amountRange(AmountRange amountRange, CcdCaseBuilder ccdCaseBuilder) {
+        ccdCaseBuilder.amountLowerValue(amountRange.getLowerValue());
+        ccdCaseBuilder.amountHigherValue(amountRange.getHigherValue());
     }
 
 }

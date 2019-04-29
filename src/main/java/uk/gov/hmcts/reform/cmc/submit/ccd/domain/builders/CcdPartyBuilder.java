@@ -36,20 +36,24 @@ public class CcdPartyBuilder implements Builder<CcdParty> {
 
     @Override
     public CcdParty build() {
-        return new CcdParty(partyId,
-                            idamId,
-                            type,
-                            title,
-                            firstName,
-                            lastName,
-                            dateOfBirth,
-                            primaryAddress.build(),
-                            emailAddress,
-                            telephoneNumber.build(),
-                            correspondenceAddress.build(),
-                            businessName,
-                            contactPerson,
-                            companiesHouseNumber);
+        CcdParty ccdParty = new CcdParty();
+
+        ccdParty.setPartyId(partyId);
+        ccdParty.setIdamId(idamId);
+        ccdParty.setType(type);
+        ccdParty.setTitle(title);
+        ccdParty.setFirstName(firstName);
+        ccdParty.setLastName(lastName);
+        ccdParty.setDateOfBirth(dateOfBirth);
+        ccdParty.setPrimaryAddress(primaryAddress.build());
+        ccdParty.setEmailAddress(emailAddress);
+        ccdParty.setTelephoneNumber(telephoneNumber.build());
+        ccdParty.setCorrespondenceAddress(correspondenceAddress.build());
+        ccdParty.setBusinessName(businessName);
+        ccdParty.setContactPerson(contactPerson);
+        ccdParty.setCompaniesHouseNumber(companiesHouseNumber);
+
+        return ccdParty;
     }
 
     public Map<String, Object> buildMap() {

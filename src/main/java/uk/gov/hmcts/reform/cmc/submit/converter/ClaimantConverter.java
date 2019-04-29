@@ -13,7 +13,6 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.SoleTrader;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.ContactDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
-import uk.gov.hmcts.reform.cmc.submit.mapper.AddressMapper;
 import uk.gov.hmcts.reform.cmc.submit.mapper.exception.MappingException;
 
 import java.util.ArrayList;
@@ -26,10 +25,10 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 @Component
 class ClaimantConverter {
 
-    private final AddressMapper addressMapper;
+    private final CommonAddressConverter addressConverter;
 
-    public ClaimantConverter(AddressMapper addressMapper) {
-        this.addressMapper = addressMapper;
+    public ClaimantConverter(CommonAddressConverter addressConverter) {
+        this.addressConverter = addressConverter;
     }
 
     public List<Party> from(List<CcdCollectionElement<CcdApplicant>> ccdApplicants) {
@@ -70,8 +69,8 @@ class ClaimantConverter {
         party.setName(ccdApplicant.getPartyName());
         party.setRepresentative(representativeFrom(ccdApplicant));
 
-        party.setAddress(addressMapper.from(partyDetail.getPrimaryAddress()));
-        party.setCorrespondenceAddress(addressMapper.from(partyDetail.getCorrespondenceAddress()));
+        party.setAddress(addressConverter.from(partyDetail.getPrimaryAddress()));
+        party.setCorrespondenceAddress(addressConverter.from(partyDetail.getCorrespondenceAddress()));
         if (partyDetail.getTelephoneNumber() != null) {
             party.setMobilePhone(partyDetail.getTelephoneNumber().getTelephoneNumber());
         }
@@ -121,7 +120,7 @@ class ClaimantConverter {
 
         Representative representative = new Representative();
         representative.setOrganisationName(ccdClaimant.getRepresentativeOrganisationName());
-        representative.setOrganisationAddress(addressMapper.from(ccdClaimant.getRepresentativeOrganisationAddress()));
+        representative.setOrganisationAddress(addressConverter.from(ccdClaimant.getRepresentativeOrganisationAddress()));
         representative.setOrganisationContactDetails(contactDetailsFrom(ccdClaimant));
 
         return representative;

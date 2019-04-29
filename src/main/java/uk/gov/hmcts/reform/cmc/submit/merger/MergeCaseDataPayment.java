@@ -3,7 +3,7 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCaseBuilder;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.AccountPayment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.Payment;
@@ -19,34 +19,34 @@ import static java.time.format.DateTimeFormatter.ISO_DATE;
 class MergeCaseDataPayment implements MergeCaseDataDecorator {
 
     @Override
-    public void merge(CcdCase ccdCase, ClaimInput claim) {
+    public void merge(CcdCaseBuilder ccdCaseBuilder, ClaimInput claim) {
         Payment payment = claim.getPayment();
         if (payment == null) {
             return;
         }
 
         if (payment instanceof ReferencePayment) {
-            toReferencePayment((ReferencePayment)payment, ccdCase);
+            toReferencePayment((ReferencePayment)payment, ccdCaseBuilder);
         } else if (payment instanceof AccountPayment) {
-            toAccountPayment((AccountPayment)payment, ccdCase);
+            toAccountPayment((AccountPayment)payment, ccdCaseBuilder);
         }
 
     }
 
-    private void toReferencePayment(ReferencePayment payment, CcdCase ccdCase) {
+    private void toReferencePayment(ReferencePayment payment, CcdCaseBuilder ccdCaseBuilder) {
 
-        ccdCase.setPaymentAmount(payment.getAmount());
-        ccdCase.setPaymentId(payment.getId());
-        ccdCase.setPaymentReference(payment.getReference());
-        ccdCase.setPaymentStatus(payment.getStatus());
+        ccdCaseBuilder.paymentAmount(payment.getAmount());
+        ccdCaseBuilder.paymentId(payment.getId());
+        ccdCaseBuilder.paymentReference(payment.getReference());
+        ccdCaseBuilder.paymentStatus(payment.getStatus());
 
         if (StringUtils.isNotBlank(payment.getDateCreated())) {
-            ccdCase.setPaymentDateCreated(parseDate(payment.getDateCreated()));
+            ccdCaseBuilder.paymentDateCreated(parseDate(payment.getDateCreated()));
         }
     }
 
-    private void toAccountPayment(AccountPayment payment, CcdCase builder) {
-        builder.setFeeAccountNumber(payment.getFeeAccountNumber());
+    private void toAccountPayment(AccountPayment payment, CcdCaseBuilder ccdCaseBuilder) {
+        ccdCaseBuilder.feeAccountNumber(payment.getFeeAccountNumber());
     }
 
     private LocalDate parseDate(String input) {

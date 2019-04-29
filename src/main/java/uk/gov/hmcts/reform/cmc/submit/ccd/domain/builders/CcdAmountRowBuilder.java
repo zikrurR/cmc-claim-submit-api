@@ -22,7 +22,11 @@ public class CcdAmountRowBuilder implements Builder<CcdAmountRow> {
 
     @Override
     public CcdAmountRow build() {
-        return new CcdAmountRow(reason, amount);
+
+        CcdAmountRow ccdAmountRow = new CcdAmountRow();
+        ccdAmountRow.setReason(reason);
+        ccdAmountRow.setAmount(amount);
+        return ccdAmountRow;
     }
 
     public Map<String, Object> buildMap() {

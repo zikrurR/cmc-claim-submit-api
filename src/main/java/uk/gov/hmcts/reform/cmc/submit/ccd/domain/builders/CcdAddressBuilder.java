@@ -24,7 +24,14 @@ public class CcdAddressBuilder implements Builder<CcdAddress> {
 
     @Override
     public CcdAddress build() {
-        return new CcdAddress(addressLine1, addressLine2, addressLine3, postTown, postCode);
+        CcdAddress ccdAddress = new CcdAddress();
+        ccdAddress.setAddressLine1(addressLine1);
+        ccdAddress.setAddressLine2(addressLine2);
+        ccdAddress.setAddressLine3(addressLine3);
+        ccdAddress.setPostCode(postCode);
+        ccdAddress.setPostTown(postTown);
+
+        return ccdAddress;
     }
 
     public Map<String, Object> buildMap() {

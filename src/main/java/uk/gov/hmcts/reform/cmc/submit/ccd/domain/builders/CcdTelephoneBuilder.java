@@ -21,7 +21,12 @@ public class CcdTelephoneBuilder implements Builder<CcdTelephone> {
 
     @Override
     public CcdTelephone build() {
-        return new CcdTelephone(telephoneNumber, telephoneUsageType, contactDirection);
+        CcdTelephone ccdTelephone = new CcdTelephone();
+        ccdTelephone.setTelephoneNumber(telephoneNumber);
+        ccdTelephone.setTelephoneUsageType(telephoneUsageType);
+        ccdTelephone.setContactDirection(contactDirection);
+
+        return ccdTelephone;
     }
 
     public Map<String, Object> buildMap() {

@@ -26,7 +26,17 @@ public class CcdApplicantBuilder implements Builder<CcdApplicant> {
 
     @Override
     public CcdApplicant build() {
-        return new CcdApplicant(partyDetail.build(), partyName, representativeOrganisationName, representativeOrganisationAddress.build(), representativeOrganisationPhone, representativeOrganisationEmail, representativeOrganisationDxAddress);
+
+        CcdApplicant ccdApplicant = new CcdApplicant();
+        ccdApplicant.setPartyDetail(partyDetail.build());
+        ccdApplicant.setPartyName(partyName);
+        ccdApplicant.setRepresentativeOrganisationName(representativeOrganisationName);
+        ccdApplicant.setRepresentativeOrganisationAddress(representativeOrganisationAddress.build());
+        ccdApplicant.setRepresentativeOrganisationPhone(representativeOrganisationPhone);
+        ccdApplicant.setRepresentativeOrganisationEmail(representativeOrganisationEmail);
+        ccdApplicant.setRepresentativeOrganisationDxAddress(representativeOrganisationDxAddress);
+
+        return ccdApplicant;
     }
 
     public Map<String, Object> buildMap() {

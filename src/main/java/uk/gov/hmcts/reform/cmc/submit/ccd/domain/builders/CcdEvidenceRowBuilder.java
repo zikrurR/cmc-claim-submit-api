@@ -21,11 +21,14 @@ public class CcdEvidenceRowBuilder implements Builder<CcdEvidenceRow> {
 
     @Override
     public CcdEvidenceRow build() {
-        return new CcdEvidenceRow(type, description);
+        CcdEvidenceRow ccdEvidenceRow = new CcdEvidenceRow();
+        ccdEvidenceRow.setType(type);
+        ccdEvidenceRow.setDescription(description);
+        return ccdEvidenceRow;
     }
 
     public Map<String, Object> buildMap() {
-        return propertiesMap;
+        return new HashMap<>(propertiesMap);
     }
 
     public CcdEvidenceRowBuilder type(CcdEvidenceType type) {

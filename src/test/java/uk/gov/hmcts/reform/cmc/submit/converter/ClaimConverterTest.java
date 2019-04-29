@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.reform.cmc.submit.domain.models.Claim;
-import uk.gov.hmcts.reform.cmc.submit.mapper.AddressMapper;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -32,7 +31,7 @@ public class ClaimConverterTest {
     @BeforeEach
     public void setup() {
 
-        AddressMapper addressMapper = new AddressMapper();
+        CommonAddressConverter addressMapper = new CommonAddressConverter();
 
         claimantConverter = new ClaimantConverter(addressMapper);
         defendantConverter = new DefendantConverter(addressMapper);

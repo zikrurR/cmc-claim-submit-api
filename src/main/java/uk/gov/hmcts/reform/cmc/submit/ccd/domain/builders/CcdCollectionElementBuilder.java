@@ -20,7 +20,11 @@ public class CcdCollectionElementBuilder<E> implements Builder<CcdCollectionElem
 
     @Override
     public CcdCollectionElement<E> build() {
-        return new CcdCollectionElement<>(id, value.build());
+        CcdCollectionElement<E> ccdCollectionElement = new CcdCollectionElement<>();
+        ccdCollectionElement.setId(id);
+        ccdCollectionElement.setValue(value.build());
+
+        return ccdCollectionElement;
     }
 
     @Override

@@ -73,41 +73,44 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
 
     @Override
     public CcdCase build() {
+        CcdCase ccdCase = new CcdCase();
 
-        return new CcdCase(externalId,
-                           referenceNumber,
-                           reason,
-                           amountType,
-                           amountLowerValue,
-                           amountHigherValue,
-                           listBuilderForList(amountBreakDown),
-                           totalAmount,
-                           interestType,
-                           interestBreakDownAmount,
-                           interestBreakDownExplanation,
-                           interestRate,
-                           interestReason,
-                           interestSpecificDailyAmount,
-                           interestDateType,
-                           interestClaimStartDate,
-                           interestStartDateReason,
-                           interestEndDateType,
-                           paymentId,
-                           paymentAmount,
-                           paymentReference,
-                           paymentStatus,
-                           paymentDateCreated,
-                           feeAccountNumber,
-                           preferredCourt,
-                           personalInjuryGeneralDamages,
-                           housingDisrepairCostOfRepairDamages,
-                           housingDisrepairOtherDamages,
-                           sotSignerName,
-                           sotSignerRole,
-                           listBuilderForList(applicants),
-                           listBuilderForList(respondents),
-                           listBuilderForList(timeline),
-                           listBuilderForList(evidence));
+        ccdCase.setExternalId(externalId);
+        ccdCase.setReferenceNumber(referenceNumber);
+        ccdCase.setReason(reason);
+        ccdCase.setAmountType(amountType);
+        ccdCase.setAmountLowerValue(amountLowerValue);
+        ccdCase.setAmountHigherValue(amountHigherValue);
+        ccdCase.setAmountBreakDown(listBuilderForList(amountBreakDown));
+        ccdCase.setTotalAmount(totalAmount);
+        ccdCase.setInterestType(interestType);
+        ccdCase.setInterestBreakDownAmount(interestBreakDownAmount);
+        ccdCase.setInterestBreakDownExplanation(interestBreakDownExplanation);
+        ccdCase.setInterestRate(interestRate);
+        ccdCase.setInterestReason(interestReason);
+        ccdCase.setInterestSpecificDailyAmount(interestSpecificDailyAmount);
+        ccdCase.setInterestDateType(interestDateType);
+        ccdCase.setInterestClaimStartDate(interestClaimStartDate);
+        ccdCase.setInterestStartDateReason(interestStartDateReason);
+        ccdCase.setInterestEndDateType(interestEndDateType);
+        ccdCase.setPaymentId(paymentId);
+        ccdCase.setPaymentAmount(paymentAmount);
+        ccdCase.setPaymentReference(paymentReference);
+        ccdCase.setPaymentStatus(paymentStatus);
+        ccdCase.setPaymentDateCreated(paymentDateCreated);
+        ccdCase.setFeeAccountNumber(feeAccountNumber);
+        ccdCase.setPreferredCourt(preferredCourt);
+        ccdCase.setPersonalInjuryGeneralDamages(personalInjuryGeneralDamages);
+        ccdCase.setHousingDisrepairCostOfRepairDamages(housingDisrepairCostOfRepairDamages);
+        ccdCase.setHousingDisrepairOtherDamages(housingDisrepairOtherDamages);
+        ccdCase.setSotSignerName(sotSignerName);
+        ccdCase.setSotSignerRole(sotSignerRole);
+        ccdCase.setApplicants(listBuilderForList(applicants));
+        ccdCase.setRespondents(listBuilderForList(respondents));
+        ccdCase.setTimeline(listBuilderForList(timeline));
+        ccdCase.setEvidence(listBuilderForList(evidence));
+
+        return ccdCase;
     }
 
     private static <T extends CcdCollectionElementBuilder<R>, R> List<CcdCollectionElement<R>> listBuilderForList(List<T> listToBuild) {

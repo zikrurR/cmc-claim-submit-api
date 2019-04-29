@@ -2,10 +2,11 @@ package uk.gov.hmcts.reform.cmc.submit.merger;
 
 import org.springframework.stereotype.Component;
 
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCase;
-import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdEvidenceRow;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdEvidenceType;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCaseBuilder;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdCollectionElementBuilder;
+import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdEvidenceRowBuilder;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 
@@ -18,11 +19,11 @@ import java.util.stream.Collectors;
 class MergeCaseDataEvidence implements MergeCaseDataDecorator {
 
     @Override
-    public void merge(CcdCase ccdCase, ClaimInput claim) {
-        ccdCase.setEvidence(to(claim.getEvidences()));
+    public void merge(CcdCaseBuilder ccdCaseBuilder, ClaimInput claim) {
+        ccdCaseBuilder.evidence(to(claim.getEvidences()));
     }
 
-    public List<CcdCollectionElement<CcdEvidenceRow>> to(List<Evidence> evidences) {
+    public List<CcdCollectionElementBuilder<CcdEvidenceRow>> to(List<Evidence> evidences) {
         if (evidences == null) {
             return new ArrayList<>();
         }
@@ -34,20 +35,18 @@ class MergeCaseDataEvidence implements MergeCaseDataDecorator {
                 .collect(Collectors.toList());
     }
 
-    public CcdCollectionElement<CcdEvidenceRow> to(Evidence evidence) {
+    public CcdCollectionElementBuilder<CcdEvidenceRow> to(Evidence evidence) {
         if (evidence == null) {
             return null;
         }
 
-        CcdEvidenceRow ccdEvidenceRow = CcdEvidenceRow.builder()
+        CcdEvidenceRowBuilder ccdEvidenceRow = CcdEvidenceRowBuilder.builder()
                            .type(CcdEvidenceType.valueOf(evidence.getType().name()))
-                           .description(evidence.getDescription())
-                           .build();
+                           .description(evidence.getDescription());
 
-        return CcdCollectionElement.<CcdEvidenceRow>builder()
+        return CcdCollectionElementBuilder.<CcdEvidenceRow>builder()
                 .value(ccdEvidenceRow)
-                .id(evidence.getId())
-                .build();
+                .id(evidence.getId());
     }
 
 }
