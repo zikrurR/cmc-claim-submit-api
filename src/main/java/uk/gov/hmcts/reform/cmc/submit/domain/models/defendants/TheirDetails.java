@@ -11,7 +11,6 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -31,9 +30,6 @@ import javax.validation.constraints.NotNull;
 public abstract class TheirDetails {
 
     private String id;
-
-    @NotBlank
-    private String name;
 
     @Valid
     @NotNull
