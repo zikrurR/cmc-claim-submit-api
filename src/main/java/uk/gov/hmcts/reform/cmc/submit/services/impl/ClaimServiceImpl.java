@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.cmc.submit.services.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.springframework.stereotype.Service;
@@ -100,7 +98,7 @@ public class ClaimServiceImpl implements ClaimService {
         StartEventResponse startEventResponse = coreCaseDataService.startCase();
 
         Map<String, Object> data = startEventResponse.getCaseDetails().getData();
-        Map<String, JsonNode> caseData = mergeCaseData.merge(data, claimData);
+        Map<String, Object> caseData = mergeCaseData.merge(data, claimData);
 
         CaseDetails caseDetails = coreCaseDataService.submitCase(startEventResponse, caseData);
 

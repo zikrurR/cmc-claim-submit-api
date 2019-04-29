@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.cmc.submit.merger;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +36,12 @@ public class MergeCaseData implements MergeCaseDataDecorator {
         this.objectMapper = mergerObjectMapper;
     }
 
-    public Map<String, JsonNode> merge(Map<String, Object> data, ClaimInput claim) {
+    public Map<String, Object> merge(Map<String, Object> data, ClaimInput claim) {
         CcdCaseBuilder ccdCaseBuilder = objectMapper.convertValue(data, CcdCaseBuilder.class);
 
         merge(ccdCaseBuilder, claim);
 
-        return objectMapper.convertValue(ccdCaseBuilder, new TypeReference<Map<String, JsonNode>>() {});
+        return ccdCaseBuilder.buildMap();
     }
 
     @Override

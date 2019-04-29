@@ -16,9 +16,6 @@ public abstract class BaseSmokeTest {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
 
-    protected User citizen;
-
-
     @Value("${cmc.api.submit.url}")
     protected String baseUrl;
 

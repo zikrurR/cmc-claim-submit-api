@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.cmc.submit.services.impl;
 
-import com.fasterxml.jackson.databind.JsonNode;
-
 import io.jsonwebtoken.Jwt;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.impl.DefaultClaims;
@@ -48,7 +46,7 @@ public class CoreCaseDataServiceImpl implements CoreCaseDataService {
     }
 
     @Override
-    public CaseDetails submitCase(StartEventResponse startEventResponse, Map<String, JsonNode> ccdCase) {
+    public CaseDetails submitCase(StartEventResponse startEventResponse, Map<String, Object> ccdCase) {
 
         CaseDataContent caseDataContent = CaseDataContent.builder()
                 .eventToken(startEventResponse.getToken())
