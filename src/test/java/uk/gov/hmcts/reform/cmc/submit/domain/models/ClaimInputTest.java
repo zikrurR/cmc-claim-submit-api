@@ -86,7 +86,7 @@ public class ClaimInputTest {
 
         Set<String> errors = validate(claimData);
 
-        assertThat(errors).containsOnly("defendants[0].name : must not be blank");
+        assertThat(errors).containsOnly("defendants[0].firstName : must not be blank");
     }
 
     @Test

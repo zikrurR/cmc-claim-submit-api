@@ -16,7 +16,9 @@ public class SampleTheirDetails {
 
     public static final String DEFENDANT_EMAIL = "j.smith@example.com";
 
-    private String name = "John Smith";
+    private String name = "John";
+    private String firstName = "John";
+    private String lastName = "Smith";
     private Address address = SampleAddress.validDefaults();
     private String email = DEFENDANT_EMAIL;
     private String contactPerson = "Arnold Schwarzenegger";
@@ -30,6 +32,16 @@ public class SampleTheirDetails {
 
     public static SampleTheirDetails builder() {
         return new SampleTheirDetails();
+    }
+
+    public SampleTheirDetails withFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public SampleTheirDetails withLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
     }
 
     public SampleTheirDetails withName(String name) {
@@ -101,8 +113,9 @@ public class SampleTheirDetails {
         individualDetails.setDateOfBirth(builder.dateOfBirth);
         individualDetails.setEmail(builder.email);
         individualDetails.setId(builder.collectionId);
-        individualDetails.setFirstName(builder.name);
-        individualDetails.setLastName(builder.name);
+        individualDetails.setFirstName(builder.firstName);
+        individualDetails.setLastName(builder.lastName);
+        individualDetails.setTitle(builder.title);
         individualDetails.setRepresentative(builder.representative);
         individualDetails.setServiceAddress(builder.serviceAddress);
 
@@ -163,8 +176,8 @@ public class SampleTheirDetails {
         soleTraderDetails.setBusinessName(builder.businessName);
         soleTraderDetails.setEmail(builder.email);
         soleTraderDetails.setId(builder.collectionId);
-        soleTraderDetails.setFirstName(builder.name);
-        soleTraderDetails.setLastName(builder.name);
+        soleTraderDetails.setFirstName(builder.firstName);
+        soleTraderDetails.setLastName(builder.lastName);
         soleTraderDetails.setRepresentative(builder.representative);
         soleTraderDetails.setServiceAddress(builder.serviceAddress);
 
