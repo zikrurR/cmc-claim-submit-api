@@ -18,7 +18,7 @@ import uk.gov.hmcts.reform.idam.client.models.test.UserGroup;
 import javax.annotation.PostConstruct;
 
 @SpringBootTest
-public abstract class BaseTest {
+public abstract class BaseFunctionalTest {
 
     protected final Logger log = LoggerFactory.getLogger(this.getClass());
 

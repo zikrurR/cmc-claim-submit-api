@@ -43,8 +43,8 @@ class MergeCaseDataTimeline implements MergeCaseDataDecorator {
                                                     .description(timelineEvent.getDescription());
 
         return CcdCollectionElementBuilder.<CcdTimelineEvent>builder()
-            .value(ccdTimelineEvent)
-            .id(timelineEvent.getId());
+                    .value(ccdTimelineEvent)
+                    .id(timelineEvent.getId());
     }
 
 

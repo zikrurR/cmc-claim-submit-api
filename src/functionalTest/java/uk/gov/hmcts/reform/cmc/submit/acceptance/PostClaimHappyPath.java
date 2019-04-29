@@ -12,12 +12,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import uk.gov.hmcts.reform.cmc.submit.BaseTest;
+import uk.gov.hmcts.reform.cmc.submit.BaseFunctionalTest;
 import uk.gov.hmcts.reform.cmc.submit.utils.ResourceReader;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class PostClaimHappyPath extends BaseTest {
+public class PostClaimHappyPath extends BaseFunctionalTest {
 
     RestTemplate restTemplate = new RestTemplate();
 

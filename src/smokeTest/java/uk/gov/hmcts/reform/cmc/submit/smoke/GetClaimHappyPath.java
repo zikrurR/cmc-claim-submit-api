@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cmc.submit.acceptance;
+package uk.gov.hmcts.reform.cmc.submit.smoke;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -13,11 +13,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import uk.gov.hmcts.reform.cmc.submit.BaseFunctionalTest;
+import uk.gov.hmcts.reform.cmc.submit.BaseSmokeTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GetClaimHappyPath extends BaseFunctionalTest {
+public class GetClaimHappyPath extends BaseSmokeTest {
 
     RestTemplate restTemplate = new RestTemplate();
 
@@ -30,7 +30,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
+        headers.set(HttpHeaders.AUTHORIZATION, citizenToken());
 
         HttpEntity<String> entity = new HttpEntity<>(headers);
         ResponseEntity<String> claimOutput = restTemplate.exchange(getClaimEndPoint,

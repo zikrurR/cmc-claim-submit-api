@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: 'claim-submit-api functional test'
+idam:
+  api:
+    url: ${IDAM_API_URL:http://localhost:8080}
+  s2s-auth:
+    totp_secret: ${IDAM_S2S_KEY:AAAAAAAAAAAAAAAA}
+    microservice: ${IDAM_S2S_MICROSERVICE:cmc_claim_submit_api}
+    url: ${IDAM_S2S_URL:http://localhost:4552}
+  client:
+    redirect_uri: 'http://localhost:3451/oauth2redirect'
+    id: 'ccd_gateway'
+    secret: '123456'
+cmc:
+  api:
+    submit:
+      url: ${CMC_SUBMIT_API_URL:http://localhost:4550}
