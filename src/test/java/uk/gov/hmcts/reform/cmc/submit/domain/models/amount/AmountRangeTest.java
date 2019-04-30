@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.domain.models.amount;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAmountRange;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAmount;
 
 import java.util.Set;
 
@@ -14,7 +14,7 @@ public class AmountRangeTest {
     @Test
     public void shouldBeSuccessfulValidationForValidAmountDetails() {
         //given
-        AmountRange amountRow = SampleAmountRange.validDefaults();
+        AmountRange amountRow = SampleAmount.validAmountRange();
         //when
         Set<String> errors = validate(amountRow);
         //then
@@ -24,7 +24,7 @@ public class AmountRangeTest {
     @Test
     public void shouldBeSuccessfulValidationForMaximumValue() {
         //given
-        AmountRange amountRow = SampleAmountRange.validDefaults();
+        AmountRange amountRow = SampleAmount.validAmountRange();
         amountRow.setHigherValue(valueOf(9999999.99));
         amountRow.setLowerValue(valueOf(9999999.99));
 
@@ -37,7 +37,7 @@ public class AmountRangeTest {
     @Test
     public void shouldBeSuccessfulValidationForMinimum() {
         //given
-        AmountRange amountRow = SampleAmountRange.validDefaults();
+        AmountRange amountRow = SampleAmount.validAmountRange();
         amountRow.setHigherValue(valueOf(0.01));
         amountRow.setLowerValue(valueOf(0.01));
 
@@ -50,7 +50,7 @@ public class AmountRangeTest {
     @Test
     public void shouldHaveErrorsForValueHigherThanMaximum() {
         //given
-        AmountRange amountRow = SampleAmountRange.validDefaults();
+        AmountRange amountRow = SampleAmount.validAmountRange();
         amountRow.setHigherValue(valueOf(10000000));
 
         //when
@@ -62,7 +62,7 @@ public class AmountRangeTest {
     @Test
     public void shouldHaveErrorsForValueLowerThanMinimum() {
         //given
-        AmountRange amountRow = SampleAmountRange.validDefaults();
+        AmountRange amountRow = SampleAmount.validAmountRange();
         amountRow.setHigherValue(valueOf(0));
         amountRow.setLowerValue(valueOf(0));
 

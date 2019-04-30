@@ -2,7 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.domain.models.amount;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAmountBreakdown;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleAmount;
 
 import java.util.Set;
 
@@ -14,7 +14,7 @@ public class AmountBreakDownTest {
     @Test
     public void shouldBeSuccessfulValidationForFullAmountDetails() {
         //given
-        AmountBreakDown amountBreakDown = SampleAmountBreakdown.validDefaults();
+        AmountBreakDown amountBreakDown = SampleAmount.validAmountBreakDown();
         //when
         Set<String> validationMessages = validate(amountBreakDown);
         //then
@@ -24,7 +24,7 @@ public class AmountBreakDownTest {
     @Test
     public void shouldReturnValidationMessageWhenAmountBreakDownHasNullRows() {
         //given
-        AmountBreakDown amountBreakDown = SampleAmountBreakdown.validDefaults();
+        AmountBreakDown amountBreakDown = SampleAmount.validAmountBreakDown();
         amountBreakDown.setRows(null);
 
         //when

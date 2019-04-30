@@ -29,12 +29,12 @@ public class ClaimInput {
     @Valid
     @NotEmpty
     @EachNotNull
-    private List<Party> claimants;
+    private List<? extends Party> claimants;
 
     @Valid
     @NotEmpty
     @EachNotNull
-    private List<TheirDetails> defendants;
+    private List<? extends TheirDetails> defendants;
 
     @Valid
     private Payment payment;

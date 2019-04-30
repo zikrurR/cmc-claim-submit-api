@@ -43,7 +43,7 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
 
     }
 
-    private List<CcdCollectionElementBuilder<CcdRespondent>> to(List<TheirDetails> theirDetails) {
+    private List<CcdCollectionElementBuilder<CcdRespondent>> to(List<? extends TheirDetails> theirDetails) {
         if (theirDetails == null) {
             return new ArrayList<>();
         }

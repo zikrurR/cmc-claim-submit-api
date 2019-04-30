@@ -16,18 +16,8 @@ public class SampleParty {
         super();
     }
 
-    public static Party party() {
+    public static Party validDefaults() {
         return individual();
-    }
-
-    public static List<Party> individualDetails(int count) {
-        List<Party> individualDetailsList = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            individualDetailsList.add(
-                    individual()
-            );
-        }
-        return individualDetailsList;
     }
 
     public static Individual individual() {
@@ -37,15 +27,6 @@ public class SampleParty {
         individual.setDateOfBirth(LocalDate.of(1968, 1, 2));
 
         return individual;
-    }
-
-    private static void defaultParty(Party party) {
-        party.setAddress(SampleAddress.validDefaults());
-        party.setCorrespondenceAddress(SampleAddress.validDefaults());
-        party.setId("acd82549-d279-4adc-b38c-d195dd0db0d6");
-        party.setName("John Rambo");
-        party.setMobilePhone("07873727165");
-        party.setRepresentative(SampleRepresentative.validDefaults());
     }
 
     public static SoleTrader soleTrader() {
@@ -76,4 +57,21 @@ public class SampleParty {
         return company;
     }
 
+    private static void defaultParty(Party party) {
+        party.setAddress(SampleAddress.validDefaults());
+        party.setCorrespondenceAddress(SampleAddress.validDefaults());
+        party.setId("acd82549-d279-4adc-b38c-d195dd0db0d6");
+        party.setName("John Rambo");
+        party.setMobilePhone("07873727165");
+        party.setRepresentative(SampleRepresentative.validDefaults());
+    }
+
+    public static List<Individual> individuals(int count) {
+        List<Individual> individualList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            individualList.add(individual()
+            );
+        }
+        return individualList;
+    }
 }

@@ -120,7 +120,7 @@ public class ClaimInputTest {
     @Test
     public void shouldBeValidWhenGivenTwentyClaimants() {
         ClaimInput claimData = SampleClaimImput.validDefaults();
-        claimData.setClaimants(SampleParty.individualDetails(20));
+        claimData.setClaimants(SampleParty.individuals(20));
 
         Set<String> errors = validate(claimData);
 

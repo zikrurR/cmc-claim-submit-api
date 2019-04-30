@@ -14,7 +14,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnValidationErrorsWhenNameIsNull() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setName(null);
 
         Set<String> validationErrors = validate(party);
@@ -26,7 +26,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnValidationErrorsWhenNameIsEmpty() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setName("");
 
         Set<String> validationErrors = validate(party);
@@ -38,7 +38,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnValidationErrorsWhenNameIsTooLong() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setName(StringUtils.repeat("nana", 200));
 
         Set<String> validationErrors = validate(party);
@@ -50,7 +50,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnValidationErrorsWhenGivenNullAddress() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setAddress(null);
 
         Set<String> validationErrors = validate(party);
@@ -62,7 +62,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnValidationErrorsWhenGivenInvalidAddress() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.getAddress().setPostcode("");
 
         Set<String> validationErrors = validate(party);
@@ -72,7 +72,7 @@ public class PartyTest {
 
     @Test
     public void shouldBeValidWhenGivenNotGivenCorrespondenceAddress() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setCorrespondenceAddress(null);
 
         Set<String> validationErrors = validate(party);
@@ -82,7 +82,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnNoValidationErrorsWhenGivenNullMobilePhone() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setMobilePhone(null);
 
         Set<String> validationErrors = validate(party);
@@ -93,7 +93,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnNoValidationErrorsWhenGivenValidMobilePhone() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setMobilePhone("07987654321");
 
         Set<String> validationErrors = validate(party);
@@ -104,7 +104,7 @@ public class PartyTest {
 
     @Test
     public void shouldReturnValidationErrorsWhenGivenInvalidMobilePhone() {
-        Party party = SampleParty.party();
+        Party party = SampleParty.validDefaults();
         party.setMobilePhone("1234567890123456789012345678901");
 
         Set<String> validationErrors = validate(party);

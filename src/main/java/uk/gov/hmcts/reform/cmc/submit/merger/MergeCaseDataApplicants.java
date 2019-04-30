@@ -39,7 +39,7 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
         ccdCaseBuilder.applicants(to(claim.getClaimants()));
     }
 
-    private List<CcdCollectionElementBuilder<CcdApplicant>> to(List<Party> parties) {
+    private List<CcdCollectionElementBuilder<CcdApplicant>> to(List<? extends Party> parties) {
         if (parties == null) {
             return new ArrayList<>();
         }

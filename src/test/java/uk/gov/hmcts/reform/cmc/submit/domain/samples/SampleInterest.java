@@ -11,43 +11,44 @@ public class SampleInterest {
     }
 
     public static Interest validDefaults() {
+        return different();
+    }
+
+    public static Interest different() {
         Interest interest = new Interest();
 
-        interest.setInterestBreakdown(null);
+        interest.setType(Interest.InterestType.DIFFERENT);
         interest.setInterestDate(SampleInterestDate.validDefaults());
         interest.setRate(new BigDecimal(11));
         interest.setReason("A reason");
-        interest.setSpecificDailyAmount(null);
-        interest.setType(Interest.InterestType.DIFFERENT);
 
         return interest;
     }
 
     public static Interest standard() {
-        Interest noInterest = validDefaults();
-        noInterest.setType(Interest.InterestType.STANDARD);
-        noInterest.setRate(new BigDecimal("8"));
-        noInterest.setReason(null);
-        return noInterest;
+        Interest standard = new Interest();
+
+        standard.setType(Interest.InterestType.STANDARD);
+        standard.setInterestDate(SampleInterestDate.validDefaults());
+        standard.setRate(new BigDecimal("8"));
+        return standard;
     }
 
     public static Interest noInterest() {
-        Interest noInterest = validDefaults();
+        Interest noInterest = new Interest();
+
         noInterest.setType(Interest.InterestType.NO_INTEREST);
-        noInterest.setRate(null);
-        noInterest.setReason(null);
+        noInterest.setInterestDate(SampleInterestDate.validDefaults());
 
         return noInterest;
     }
 
     public static Interest breakdownOnly() {
-        Interest breakdownInterest = validDefaults();
+        Interest breakdownInterest = new Interest();
 
         breakdownInterest.setType(Interest.InterestType.BREAKDOWN);
-
+        breakdownInterest.setInterestDate(SampleInterestDate.validDefaults());
         breakdownInterest.setInterestBreakdown(SampleInterestBreakdown.validDefaults());
-        breakdownInterest.setRate(null);
-        breakdownInterest.setReason(null);
 
         return breakdownInterest;
     }
