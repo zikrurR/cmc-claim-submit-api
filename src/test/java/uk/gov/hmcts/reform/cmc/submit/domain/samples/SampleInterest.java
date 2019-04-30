@@ -38,7 +38,6 @@ public class SampleInterest {
         Interest noInterest = new Interest();
 
         noInterest.setType(Interest.InterestType.NO_INTEREST);
-        noInterest.setInterestDate(SampleInterestDate.validDefaults());
 
         return noInterest;
     }

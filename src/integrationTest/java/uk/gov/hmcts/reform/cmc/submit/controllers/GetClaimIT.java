@@ -221,7 +221,7 @@ public class GetClaimIT {
         builder.paymentAmount(referencePayment.getAmount());
         builder.paymentReference(referencePayment.getReference());
         builder.paymentStatus(referencePayment.getStatus());
-        builder.paymentDateCreated(LocalDate.parse(referencePayment.getDateCreated()));
+        builder.paymentDateCreated(referencePayment.getDateCreated());
         builder.preferredCourt(validDefaults.getPreferredCourt());
         builder.personalInjuryGeneralDamages("MORE_THAN_THOUSAND_POUNDS");
         builder.housingDisrepairCostOfRepairDamages("MORE_THAN_THOUSAND_POUNDS");

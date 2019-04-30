@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.cmc.submit.domain.models;
 
 import lombok.Data;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.constraints.EachNotNull;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.Amount;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
@@ -28,15 +27,14 @@ public class ClaimInput {
 
     @Valid
     @NotEmpty
-    @EachNotNull
     private List<? extends Party> claimants;
 
     @Valid
     @NotEmpty
-    @EachNotNull
     private List<? extends TheirDetails> defendants;
 
     @Valid
+    @NotNull
     private Payment payment;
 
     @Valid
@@ -44,6 +42,7 @@ public class ClaimInput {
     private Amount amount;
 
     @Valid
+    @NotNull
     private Interest interest;
 
     @Valid

@@ -17,9 +17,6 @@ class MergeCaseDataInterest implements MergeCaseDataDecorator {
     @Override
     public void merge(CcdCaseBuilder ccdCaseBuilder, ClaimInput claim) {
         Interest interest = claim.getInterest();
-        if (interest == null) {
-            return;
-        }
 
         ccdCaseBuilder.interestSpecificDailyAmount(interest.getSpecificDailyAmount());
         interestBreakdown(interest.getInterestBreakdown(), ccdCaseBuilder);

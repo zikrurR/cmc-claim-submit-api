@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,7 +22,7 @@ public class ReferencePayment implements Payment {
     private BigDecimal amount;
 
     @JsonProperty("date_created")
-    private String dateCreated;
+    private LocalDate dateCreated;
 
     private String status;
 

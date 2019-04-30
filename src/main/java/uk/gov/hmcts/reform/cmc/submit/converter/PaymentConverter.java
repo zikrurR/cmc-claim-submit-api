@@ -7,7 +7,6 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.AccountPayment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.ReferencePayment;
 
-import static java.time.format.DateTimeFormatter.ISO_DATE;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
@@ -31,7 +30,7 @@ class PaymentConverter {
             payment.setId(ccdCase.getPaymentId());
             payment.setAmount(ccdCase.getPaymentAmount());
             payment.setReference(ccdCase.getPaymentReference());
-            payment.setDateCreated(ccdCase.getPaymentDateCreated() != null ? ccdCase.getPaymentDateCreated().format(ISO_DATE) : null);
+            payment.setDateCreated(ccdCase.getPaymentDateCreated());
             payment.setStatus(ccdCase.getPaymentStatus());
 
             return payment;
