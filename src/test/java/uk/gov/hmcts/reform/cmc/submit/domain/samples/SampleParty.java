@@ -5,26 +5,12 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Organisation;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Party;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.SoleTrader;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Address;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.common.Representative;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SampleParty {
-
-    private static String name = "John Rambo";
-    private static String businessName = "Trading as name";
-    private static String contactPerson = "Steven Seagal";
-    private static Address address = SampleAddress.validDefaults();
-    private static Address correspondenceAddress = SampleAddress.validDefaults();
-    private static String title = "Dr.";
-    private static String mobilePhone = "07873727165";
-    private static LocalDate dateOfBirth = LocalDate.of(1968, 1, 2);
-    private static Representative representative = SampleRepresentative.validDefaults();
-    private static String companiesHouseNumber;
-    private static String collectionId = "acd82549-d279-4adc-b38c-d195dd0db0d6";
 
     private SampleParty() {
         super();
@@ -47,56 +33,45 @@ public class SampleParty {
     public static Individual individual() {
         Individual individual = new Individual();
 
-        individual.setAddress(address);
-        individual.setCorrespondenceAddress(correspondenceAddress);
-        individual.setDateOfBirth(dateOfBirth);
-        individual.setId(collectionId);
-        individual.setMobilePhone(mobilePhone);
-        individual.setName(name);
-        individual.setRepresentative(representative);
+        defaultParty(individual);
+        individual.setDateOfBirth(LocalDate.of(1968, 1, 2));
 
         return individual;
     }
 
+    private static void defaultParty(Party party) {
+        party.setAddress(SampleAddress.validDefaults());
+        party.setCorrespondenceAddress(SampleAddress.validDefaults());
+        party.setId("acd82549-d279-4adc-b38c-d195dd0db0d6");
+        party.setName("John Rambo");
+        party.setMobilePhone("07873727165");
+        party.setRepresentative(SampleRepresentative.validDefaults());
+    }
+
     public static SoleTrader soleTrader() {
         SoleTrader soleTrader = new SoleTrader();
+        defaultParty(soleTrader);
 
-        soleTrader.setAddress(address);
-        soleTrader.setCorrespondenceAddress(correspondenceAddress);
-        soleTrader.setTitle(title);
-        soleTrader.setBusinessName(businessName);
-        soleTrader.setId(collectionId);
-        soleTrader.setMobilePhone(mobilePhone);
-        soleTrader.setName(name);
-        soleTrader.setRepresentative(representative);
+        soleTrader.setTitle("Dr.");
+        soleTrader.setBusinessName("Trading as name");
 
         return soleTrader;
     }
 
     public static Company company() {
         Company company = new Company();
+        defaultParty(company);
 
-        company.setAddress(address);
-        company.setCorrespondenceAddress(correspondenceAddress);
-        company.setContactPerson(contactPerson);
-        company.setId(collectionId);
-        company.setMobilePhone(mobilePhone);
-        company.setName(name);
-        company.setRepresentative(representative);
-
+        company.setContactPerson("Steven Seagal");
         return company;
     }
 
     public static Organisation organisation() {
         Organisation company = new Organisation();
 
-        company.setAddress(address);
-        company.setCorrespondenceAddress(correspondenceAddress);
-        company.setContactPerson(contactPerson);
-        company.setCompaniesHouseNumber(companiesHouseNumber);
-        company.setId(collectionId);
-        company.setMobilePhone(mobilePhone);
-        company.setName(name);
+        company.setContactPerson("Steven Seagal");
+        company.setCompaniesHouseNumber("2344546");
+        company.setRepresentative(null);
 
         return company;
     }
