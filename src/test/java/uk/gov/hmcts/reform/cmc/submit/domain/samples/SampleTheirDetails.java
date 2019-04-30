@@ -6,7 +6,6 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.OrganisationDetai
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.SoleTraderDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.TheirDetails;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class SampleTheirDetails {
         IndividualDetails individualDetails = new IndividualDetails();
 
         defaultTheirDetails(individualDetails);
-        individualDetails.setDateOfBirth(LocalDate.of(1972, 1, 2));
+        individualDetails.setDateOfBirth(null);
         individualDetails.setFirstName("John");
         individualDetails.setLastName("Smith");
         individualDetails.setTitle("Dr.");
