@@ -35,6 +35,7 @@ public class SampleParty {
 
         soleTrader.setTitle("Dr.");
         soleTrader.setBusinessName("Trading as name");
+        soleTrader.setMobilePhone(null);
 
         return soleTrader;
     }
@@ -43,6 +44,7 @@ public class SampleParty {
         Company company = new Company();
         defaultParty(company);
 
+        company.setRepresentative(SampleRepresentative.partialDetails());
         company.setContactPerson("Steven Seagal");
         return company;
     }
