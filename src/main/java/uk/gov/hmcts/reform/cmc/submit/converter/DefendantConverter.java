@@ -94,9 +94,6 @@ class DefendantConverter {
     }
 
     private SoleTraderDetails soleTraderDetailsFrom(CcdCollectionElement<CcdRespondent> collectionElement) {
-        if (collectionElement == null) {
-            return null;
-        }
 
         CcdRespondent ccdDefendant = collectionElement.getValue();
         CcdParty claimantProvidedDetail = ccdDefendant.getClaimantProvidedDetail();
@@ -118,9 +115,6 @@ class DefendantConverter {
     }
 
     private OrganisationDetails organisationDetailsFrom(CcdCollectionElement<CcdRespondent> collectionElement) {
-        if (collectionElement == null) {
-            return null;
-        }
 
         CcdRespondent ccdDefendant = collectionElement.getValue();
         CcdParty claimantProvidedDetail = ccdDefendant.getClaimantProvidedDetail();
@@ -139,39 +133,39 @@ class DefendantConverter {
         return organisationDetails;
     }
 
-    private Representative representativeFrom(CcdRespondent ccdDefendant) {
-        if (isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationName())
-            && ccdDefendant.getClaimantProvidedRepresentativeOrganisationAddress() == null
-            && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationPhone())
-            && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationDxAddress())
-            && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationEmail())
+    private Representative representativeFrom(CcdRespondent ccdRespondent) {
+        if (isBlank(ccdRespondent.getClaimantProvidedRepresentativeOrganisationName())
+            && ccdRespondent.getClaimantProvidedRepresentativeOrganisationAddress() == null
+            && isBlank(ccdRespondent.getClaimantProvidedRepresentativeOrganisationPhone())
+            && isBlank(ccdRespondent.getClaimantProvidedRepresentativeOrganisationDxAddress())
+            && isBlank(ccdRespondent.getClaimantProvidedRepresentativeOrganisationEmail())
         ) {
             return null;
         }
 
-        CcdAddress claimantProvidedRepOrgAddress = ccdDefendant.getClaimantProvidedRepresentativeOrganisationAddress();
+        CcdAddress claimantProvidedRepOrgAddress = ccdRespondent.getClaimantProvidedRepresentativeOrganisationAddress();
 
         Representative representative = new Representative();
-        representative.setOrganisationName(ccdDefendant.getClaimantProvidedRepresentativeOrganisationName());
+        representative.setOrganisationName(ccdRespondent.getClaimantProvidedRepresentativeOrganisationName());
         representative.setOrganisationAddress(addressConverter.from(claimantProvidedRepOrgAddress));
-        representative.setOrganisationContactDetails(contactDetailsFrom(ccdDefendant));
+        representative.setOrganisationContactDetails(contactDetailsFrom(ccdRespondent));
 
         return representative;
     }
 
-    private ContactDetails contactDetailsFrom(CcdRespondent ccdDefendant) {
-        if (isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationPhone())
-            && isBlank(ccdDefendant.getClaimantProvidedRepresentativeOrganisationEmail())
-            && ccdDefendant.getClaimantProvidedRepresentativeOrganisationDxAddress() == null
+    private ContactDetails contactDetailsFrom(CcdRespondent ccdRespondent) {
+        if (isBlank(ccdRespondent.getClaimantProvidedRepresentativeOrganisationPhone())
+            && isBlank(ccdRespondent.getClaimantProvidedRepresentativeOrganisationEmail())
+            && ccdRespondent.getClaimantProvidedRepresentativeOrganisationDxAddress() == null
         ) {
             return null;
         }
 
         ContactDetails build = new ContactDetails();
 
-        build.setPhone(ccdDefendant.getClaimantProvidedRepresentativeOrganisationPhone());
-        build.setEmail(ccdDefendant.getClaimantProvidedRepresentativeOrganisationEmail());
-        build.setDxAddress(ccdDefendant.getClaimantProvidedRepresentativeOrganisationDxAddress());
+        build.setPhone(ccdRespondent.getClaimantProvidedRepresentativeOrganisationPhone());
+        build.setEmail(ccdRespondent.getClaimantProvidedRepresentativeOrganisationEmail());
+        build.setDxAddress(ccdRespondent.getClaimantProvidedRepresentativeOrganisationDxAddress());
 
         return build;
     }
