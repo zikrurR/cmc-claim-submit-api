@@ -47,7 +47,6 @@ public class SampleClaimImput {
         claimData.setPersonalInjury(SamplePersonalInjury.validDefaults());
         claimData.setHousingDisrepair(SampleHousingDisrepair.validDefaults());
         claimData.setReason("reason");
-        claimData.setStatementOfTruth(SampleStatementOfTruth.validDefaults());
         claimData.setPreferredCourt("LONDON COUNTY COUNCIL");
         claimData.setTimeline(Arrays.asList(SampleTimelineEvent.validDefaults()));
         claimData.setEvidences(Arrays.asList(SampleEvidence.validDefaults()));
@@ -66,7 +65,6 @@ public class SampleClaimImput {
         claimData.setAmount(SampleAmount.validNotKnown());
         claimData.setInterest(SampleInterest.noInterest());
         claimData.setPersonalInjury(SamplePersonalInjury.validDefaults());
-        claimData.setHousingDisrepair(SampleHousingDisrepair.validDefaults());
         claimData.setReason("reason");
         claimData.setStatementOfTruth(SampleStatementOfTruth.validDefaults());
         claimData.setPreferredCourt("LONDON COUNTY COUNCIL");
@@ -86,7 +84,6 @@ public class SampleClaimImput {
         claimData.setPayment(SamplePayment.validAccountPayment());
         claimData.setAmount(SampleAmount.validAmountBreakDown());
         claimData.setInterest(SampleInterest.standard());
-        claimData.setPersonalInjury(SamplePersonalInjury.validDefaults());
         claimData.setHousingDisrepair(SampleHousingDisrepair.validDefaults());
         claimData.setReason("reason");
         claimData.setStatementOfTruth(SampleStatementOfTruth.validDefaults());
