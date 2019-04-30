@@ -51,10 +51,6 @@ class MergeCaseDataAmount implements MergeCaseDataDecorator {
     }
 
     private CcdCollectionElementBuilder<CcdAmountRow> amountRange(AmountRow amountRow) {
-        if (amountRow.getAmount() == null) {
-            return null;
-        }
-
         return CcdCollectionElementBuilder.<CcdAmountRow>builder()
                 .id(amountRow.getId())
                 .value(CcdAmountRowBuilder.builder()
