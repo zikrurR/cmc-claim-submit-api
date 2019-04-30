@@ -50,7 +50,7 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.ReferencePayment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -117,7 +117,7 @@ public class GetClaimIT {
     @Test
     public void mappingDataTest() throws Exception {
 
-        ClaimInput validDefaults = SampleClaimData.validDefaults();
+        ClaimInput validDefaults = SampleClaimImput.validDefaults();
 
         // mock ccd call
         CcdCaseBuilder builder = CcdCaseBuilder.builder();

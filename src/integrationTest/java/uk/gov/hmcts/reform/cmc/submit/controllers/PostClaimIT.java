@@ -24,7 +24,7 @@ import uk.gov.hmcts.reform.ccd.client.CoreCaseDataApi;
 import uk.gov.hmcts.reform.ccd.client.model.CaseDetails;
 import uk.gov.hmcts.reform.ccd.client.model.StartEventResponse;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimOutput;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
 
 import java.util.Date;
 import java.util.Map;
@@ -97,7 +97,7 @@ public class PostClaimIT {
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn(SERVICE_AUTHORIZATION_TOKEN);
 
-        String claimData = objectMapper.writeValueAsString(SampleClaimData.validDefaults());
+        String claimData = objectMapper.writeValueAsString(SampleClaimImput.validDefaults());
         MvcResult response = mockMvc
                 .perform(post("/claim/")
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)

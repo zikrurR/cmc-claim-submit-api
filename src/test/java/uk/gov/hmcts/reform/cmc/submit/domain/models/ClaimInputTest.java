@@ -5,13 +5,15 @@ import org.junit.jupiter.api.Test;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterest;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterestDate;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleParty;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleTheirDetails;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -32,9 +34,10 @@ public class ClaimInputTest {
                 .withInterestDate(SampleInterestDate.validDefaults())
                 .withSpecificDailyAmount(null)
                 .build();
-        ClaimInput claimData = SampleClaimData.builder()
-            .withInterest(validInterest)
-            .build();
+
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setInterest(validInterest);
+
         //when
         Set<String> errors = validate(claimData);
         //then
@@ -43,9 +46,8 @@ public class ClaimInputTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNullDefendants() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .withDefendants(null)
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setDefendants(null);
 
         Set<String> errors = validate(claimData);
 
@@ -54,9 +56,8 @@ public class ClaimInputTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNoDefendants() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .clearDefendants()
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setDefendants(new ArrayList<>());
 
         Set<String> errors = validate(claimData);
 
@@ -64,24 +65,12 @@ public class ClaimInputTest {
     }
 
     @Test
-    public void shouldBeInvalidWhenGivenNullDefendant() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .withDefendant(null)
-            .build();
-
-        Set<String> errors = validate(claimData);
-
-        assertThat(errors).containsOnly("defendants : each element must be not null");
-    }
-
-    @Test
     public void shouldBeInvalidWhenGivenInvalidDefendant() {
         IndividualDetails individualDetails = SampleTheirDetails.individualDetails();
         individualDetails.setFirstName("");
 
-        ClaimInput claimData = SampleClaimData.builder()
-            .withDefendant(individualDetails)
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setDefendants(Arrays.asList(individualDetails));
 
 
         Set<String> errors = validate(claimData);
@@ -91,10 +80,8 @@ public class ClaimInputTest {
 
     @Test
     public void shouldBeValidWhenGivenTwentyDefendants() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .clearDefendants()
-            .addDefendants(SampleTheirDetails.individualDetails(20))
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setDefendants(SampleTheirDetails.individualDetails(20));
 
         Set<String> errors = validate(claimData);
 
@@ -102,21 +89,9 @@ public class ClaimInputTest {
     }
 
     @Test
-    public void shouldBeInvalidWhenGivenNullClaimants() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .withClaimants(null)
-            .build();
-
-        Set<String> errors = validate(claimData);
-
-        assertThat(errors).containsOnly("claimants : must not be empty");
-    }
-
-    @Test
     public void shouldBeInvalidWhenGivenNoClaimants() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .clearClaimants()
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setClaimants(new ArrayList<>());
 
         Set<String> errors = validate(claimData);
 
@@ -125,13 +100,12 @@ public class ClaimInputTest {
 
     @Test
     public void shouldBeInvalidWhenGivenNullClaimant() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .withClaimant(null)
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setClaimants(null);
 
         Set<String> errors = validate(claimData);
 
-        assertThat(errors).containsOnly("claimants : each element must be not null");
+        assertThat(errors).containsOnly("claimants : must not be empty");
     }
 
     @Test
@@ -139,9 +113,8 @@ public class ClaimInputTest {
         Individual individual = SampleParty.individual();
         individual.setName("");
 
-        ClaimInput claimData = SampleClaimData.builder()
-            .withClaimant(individual)
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setClaimants(Arrays.asList(individual));
 
         Set<String> errors = validate(claimData);
 
@@ -152,9 +125,8 @@ public class ClaimInputTest {
     public void shouldBeInvalidWhenGivenInvalidClaimantAddress() {
         Individual individual = SampleParty.individual();
         individual.setAddress(null);
-        ClaimInput claimData = SampleClaimData.builder()
-            .withClaimant(individual)
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setClaimants(Arrays.asList(individual));
 
         Set<String> errors = validate(claimData);
 
@@ -163,10 +135,8 @@ public class ClaimInputTest {
 
     @Test
     public void shouldBeValidWhenGivenTwentyClaimants() {
-        ClaimInput claimData = SampleClaimData.builder()
-            .clearClaimants()
-            .addClaimants(SampleParty.individualDetails(20))
-            .build();
+        ClaimInput claimData = SampleClaimImput.validDefaults();
+        claimData.setClaimants(SampleParty.individualDetails(20));
 
         Set<String> errors = validate(claimData);
 

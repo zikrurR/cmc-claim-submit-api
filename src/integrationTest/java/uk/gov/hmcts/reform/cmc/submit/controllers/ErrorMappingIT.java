@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -35,7 +35,7 @@ public class ErrorMappingIT {
     @Test
     public void happyPathPostClaim() throws Exception {
 
-        ClaimInput claim = SampleClaimData.validDefaults();
+        ClaimInput claim = SampleClaimImput.validDefaults();
 
         // set the claimant name to blank to generate the fail
         claim.getClaimants().get(0).setName("");

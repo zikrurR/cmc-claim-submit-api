@@ -14,6 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import uk.gov.hmcts.reform.cmc.submit.BaseFunctionalTest;
+import uk.gov.hmcts.reform.cmc.submit.utils.ResourceReader;
+
+import java.io.IOException;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -24,21 +28,51 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @DisplayName("Happy path should return the claim requested in CCD")
+    @DisplayName("Happy path, should return the claim created in CCD via the reference number")
     @Test
-    public void getClaimHappyPath() {
+    public void getClaimViaReferenceNumberHappyPath() throws IOException {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
 
-        HttpEntity<String> entity = new HttpEntity<>(headers);
-        ResponseEntity<String> claimOutput = restTemplate.exchange(getClaimEndPoint,
+        String json = new ResourceReader().read("/claim-application.json");
+        String externalIdFromFile = "9f49d8df-b734-4e86-aeb6-e22f0c2ca78d";
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+        ResponseEntity<String> claimOutput = restTemplate.postForEntity(postClaimEndPoint, entity, String.class);
+
+        Map readValue = objectMapper.readValue(claimOutput.getBody(), Map.class);
+        entity = new HttpEntity<>(headers);
+        ResponseEntity<String> claim = restTemplate.exchange(getClaimEndPoint,
                                                                    HttpMethod.GET,
                                                                    entity,
                                                                    String.class,
-                                                                   "test");
+                                                                   readValue.get("referenceNumber"));
 
-        assertThat(claimOutput.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
+        assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
+    }
+
+
+    @DisplayName("Failed path, should retrieve the claim created in CCD via the externalId")
+    @Test
+    public void getClaimViaExternalIdFailedPath() throws IOException {
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
+
+        String json = new ResourceReader().read("/claim-application.json");
+        String externalIdFromFile = "9f49d8df-b734-4e86-aeb6-e22f0c2ca78d";
+        HttpEntity<String> entity = new HttpEntity<>(json, headers);
+        restTemplate.postForEntity(postClaimEndPoint, entity, String.class);
+
+        entity = new HttpEntity<>(headers);
+        ResponseEntity<String> claim = restTemplate.exchange(getClaimEndPoint,
+                                                                   HttpMethod.GET,
+                                                                   entity,
+                                                                   String.class,
+                                                                   externalIdFromFile);
+
+        assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
     }
 }

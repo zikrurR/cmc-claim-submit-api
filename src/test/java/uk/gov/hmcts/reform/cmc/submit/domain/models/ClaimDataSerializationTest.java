@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.cmc.submit.domain.models.serialization;
+package uk.gov.hmcts.reform.cmc.submit.domain.models;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,10 +9,9 @@ import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 import org.junit.jupiter.api.Test;
 
-import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimData;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterestDate;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleParty;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleTheirDetails;
@@ -20,6 +19,7 @@ import uk.gov.hmcts.reform.cmc.submit.domain.utils.ResourceReader;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,24 +46,22 @@ public class ClaimDataSerializationTest {
         defendent.setServiceAddress(null);
         defendent.setDateOfBirth(null);
 
-        ClaimInput other = SampleClaimData.builder()
-            .withExternalId(UUID.fromString("9f49d8df-b734-4e86-aeb6-e22f0c2ca78d"))
-            .withInterest(
+        ClaimInput other = SampleClaimImput.validDefaults();
+        other.setExternalId(UUID.fromString("9f49d8df-b734-4e86-aeb6-e22f0c2ca78d"));
+
+        other.setInterest(
                 standardInterestBuilder()
                     .withInterestDate(
                         SampleInterestDate.builder()
                             .withDate(LocalDate.of(2015, 2, 2))
-                            .build())
-                    .build())
-            .withPreferredCourt(null)
-            .withHousingDisrepair(null)
-            .withPersonalInjury(null)
-            .withStatementOfTruth(null)
-            .clearClaimants()
-            .addClaimant(claimant)
-            .clearDefendants()
-            .addDefendant(defendent)
-            .build();
+                            .build()).build());
+
+        other.setPreferredCourt(null);
+        other.setHousingDisrepair(null);
+        other.setPersonalInjury(null);
+        other.setStatementOfTruth(null);
+        other.setClaimants(Arrays.asList(claimant));
+        other.setDefendants(Arrays.asList(defendent));
 
         String input = new ResourceReader().read("/claim-application.json");
         ObjectMapper mapper = objectMapper();

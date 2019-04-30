@@ -61,7 +61,12 @@ public class ClaimServiceImpl implements ClaimService {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
         searchBuilder.query(QueryBuilders.matchQuery("referenceNumber", reference));
 
-        SearchResult result = coreCaseDataService.searchCase(searchBuilder.toString());
+        SearchResult result;
+        try {
+            result = coreCaseDataService.searchCase(searchBuilder.toString());
+        } catch (Exception e) {
+            throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
+        }
 
         if (result.getTotal() < 1) {
             throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
@@ -79,7 +84,12 @@ public class ClaimServiceImpl implements ClaimService {
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
         searchBuilder.query(QueryBuilders.matchQuery("case.externalId", externalId));
 
-        SearchResult result = coreCaseDataService.searchCase(searchBuilder.toString());
+        SearchResult result;
+        try {
+            result = coreCaseDataService.searchCase(searchBuilder.toString());
+        } catch (Exception e) {
+            throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
+        }
 
         if (result.getTotal() < 1) {
             throw new ApplicationException(ApplicationErrorCode.CASE_ID_DOES_NOT_EXIST);
