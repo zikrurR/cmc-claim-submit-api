@@ -161,12 +161,12 @@ class DefendantConverter {
             return null;
         }
 
-        ContactDetails build = new ContactDetails();
+        ContactDetails contractDetails = new ContactDetails();
 
-        build.setPhone(ccdRespondent.getClaimantProvidedRepresentativeOrganisationPhone());
-        build.setEmail(ccdRespondent.getClaimantProvidedRepresentativeOrganisationEmail());
-        build.setDxAddress(ccdRespondent.getClaimantProvidedRepresentativeOrganisationDxAddress());
+        contractDetails.setPhone(ccdRespondent.getClaimantProvidedRepresentativeOrganisationPhone());
+        contractDetails.setEmail(ccdRespondent.getClaimantProvidedRepresentativeOrganisationEmail());
+        contractDetails.setDxAddress(ccdRespondent.getClaimantProvidedRepresentativeOrganisationDxAddress());
 
-        return build;
+        return contractDetails;
     }
 }

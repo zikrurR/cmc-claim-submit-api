@@ -10,7 +10,6 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdEvidenceRowBuilder;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -20,25 +19,20 @@ class MergeCaseDataEvidence implements MergeCaseDataDecorator {
 
     @Override
     public void merge(CcdCaseBuilder ccdCaseBuilder, ClaimInput claim) {
+        if (claim.getEvidences() == null) {
+            return;
+        }
         ccdCaseBuilder.evidence(to(claim.getEvidences()));
     }
 
-    public List<CcdCollectionElementBuilder<CcdEvidenceRow>> to(List<Evidence> evidences) {
-        if (evidences == null) {
-            return new ArrayList<>();
-        }
-
-
+    private List<CcdCollectionElementBuilder<CcdEvidenceRow>> to(List<Evidence> evidences) {
         return evidences.stream()
                 .filter(Objects::nonNull)
                 .map(this::to)
                 .collect(Collectors.toList());
     }
 
-    public CcdCollectionElementBuilder<CcdEvidenceRow> to(Evidence evidence) {
-        if (evidence == null) {
-            return null;
-        }
+    private CcdCollectionElementBuilder<CcdEvidenceRow> to(Evidence evidence) {
 
         CcdEvidenceRowBuilder ccdEvidenceRow = CcdEvidenceRowBuilder.builder()
                            .type(CcdEvidenceType.valueOf(evidence.getType().name()))

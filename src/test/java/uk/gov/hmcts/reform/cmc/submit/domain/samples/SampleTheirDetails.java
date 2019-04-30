@@ -60,6 +60,7 @@ public class SampleTheirDetails {
         organisationDetails.setContactPerson("Arnold Schwarzenegger");
         organisationDetails.setName("John");
         organisationDetails.setCompaniesHouseNumber("1223456");
+        organisationDetails.setRepresentative(SampleRepresentative.partialDetails());
 
         return organisationDetails;
     }

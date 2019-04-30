@@ -54,7 +54,7 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
                 .collect(Collectors.toList());
     }
 
-    public CcdCollectionElementBuilder<CcdRespondent> to(TheirDetails theirDetails) {
+    private CcdCollectionElementBuilder<CcdRespondent> to(TheirDetails theirDetails) {
         requireNonNull(theirDetails, "theirDetails must not be null");
 
         CcdRespondentBuilder builder = CcdRespondentBuilder.builder();
@@ -66,7 +66,7 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
             .id(theirDetails.getId());
     }
 
-    public void theirDetails(TheirDetails theirDetails, CcdRespondentBuilder builder) {
+    private void theirDetails(TheirDetails theirDetails, CcdRespondentBuilder builder) {
 
         CcdPartyBuilder partyDetailBuilder = CcdPartyBuilder.builder();
 
@@ -109,7 +109,7 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
         }
     }
 
-    public void representative(Representative representative, CcdRespondentBuilder builder) {
+    private void representative(Representative representative, CcdRespondentBuilder builder) {
         if (representative == null) {
             return;
         }
@@ -121,7 +121,10 @@ class MergeCaseDataRespondents implements MergeCaseDataDecorator {
         builder.claimantProvidedRepresentativeOrganisationAddress(orgAddress);
     }
 
-    public void defendantContactDetails(ContactDetails contactDetails, CcdRespondentBuilder builder) {
+    private void defendantContactDetails(ContactDetails contactDetails, CcdRespondentBuilder builder) {
+        if (contactDetails == null) {
+            return;
+        }
 
         builder.claimantProvidedRepresentativeOrganisationEmail(contactDetails.getEmail());
         builder.claimantProvidedRepresentativeOrganisationPhone(contactDetails.getPhone());

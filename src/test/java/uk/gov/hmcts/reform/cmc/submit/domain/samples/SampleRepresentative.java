@@ -16,4 +16,12 @@ public class SampleRepresentative {
 
         return representative;
     }
+
+    public static Representative partialDetails() {
+        Representative representative = new Representative();
+        representative.setOrganisationName("Trading ltd");
+        representative.setOrganisationAddress(SampleAddress.validDefaults());
+
+        return representative;
+    }
 }

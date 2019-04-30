@@ -13,30 +13,31 @@ import static org.apache.commons.lang3.StringUtils.isBlank;
 class PaymentConverter {
 
     public Payment from(CcdCase ccdCase) {
+        Payment payment;
 
-        if (!isBlank(ccdCase.getFeeAccountNumber())) {
-            AccountPayment payment = new AccountPayment();
-            payment.setFeeAccountNumber(ccdCase.getFeeAccountNumber());
-
-            return payment;
-        } else if (!(isBlank(ccdCase.getPaymentId())
-                    && ccdCase.getPaymentAmount() == null
-                    && isBlank(ccdCase.getPaymentReference())
-                    && ccdCase.getPaymentDateCreated() == null
-                    && isBlank(ccdCase.getPaymentStatus()))) {
-
-            ReferencePayment payment = new ReferencePayment();
-
-            payment.setId(ccdCase.getPaymentId());
-            payment.setAmount(ccdCase.getPaymentAmount());
-            payment.setReference(ccdCase.getPaymentReference());
-            payment.setDateCreated(ccdCase.getPaymentDateCreated());
-            payment.setStatus(ccdCase.getPaymentStatus());
-
-            return payment;
+        if (isBlank(ccdCase.getFeeAccountNumber())) {
+            payment = referencePayment(ccdCase);
+        } else {
+            payment = accountPayment(ccdCase);
         }
+        return payment;
+    }
 
-        return null;
+    private AccountPayment accountPayment(CcdCase ccdCase) {
+        AccountPayment payment = new AccountPayment();
+        payment.setFeeAccountNumber(ccdCase.getFeeAccountNumber());
+        return payment;
+    }
+
+    private ReferencePayment referencePayment(CcdCase ccdCase) {
+        ReferencePayment payment = new ReferencePayment();
+
+        payment.setId(ccdCase.getPaymentId());
+        payment.setAmount(ccdCase.getPaymentAmount());
+        payment.setReference(ccdCase.getPaymentReference());
+        payment.setDateCreated(ccdCase.getPaymentDateCreated());
+        payment.setStatus(ccdCase.getPaymentStatus());
+        return payment;
     }
 
 }
