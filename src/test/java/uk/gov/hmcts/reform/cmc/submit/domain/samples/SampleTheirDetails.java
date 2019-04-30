@@ -14,110 +14,42 @@ import java.util.List;
 
 public class SampleTheirDetails {
 
+    private SampleTheirDetails() {
+        super();
+    }
+
     public static final String DEFENDANT_EMAIL = "j.smith@example.com";
 
-    private String name = "John";
-    private String firstName = "John";
-    private String lastName = "Smith";
-    private Address address = SampleAddress.validDefaults();
-    private String email = DEFENDANT_EMAIL;
-    private String contactPerson = "Arnold Schwarzenegger";
-    private String businessName = "Sole Trading & Sons";
-    private String title = "Dr.";
-    private Representative representative;
-    private String companiesHouseNumber;
-    private Address serviceAddress;
-    private LocalDate dateOfBirth;
-    private String collectionId = "3d0bc933-0d46-4564-94bd-79e6e69b838b";
-
-    public static SampleTheirDetails builder() {
-        return new SampleTheirDetails();
-    }
-
-    public SampleTheirDetails withFirstName(String firstName) {
-        this.firstName = firstName;
-        return this;
-    }
-
-    public SampleTheirDetails withLastName(String lastName) {
-        this.lastName = lastName;
-        return this;
-    }
-
-    public SampleTheirDetails withName(String name) {
-        this.name = name;
-        return this;
-    }
-
-    public SampleTheirDetails withAddress(Address address) {
-        this.address = address;
-        return this;
-    }
-
-    public SampleTheirDetails withEmail(String email) {
-        this.email = email;
-        return this;
-    }
-
-    public SampleTheirDetails withTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public SampleTheirDetails withRepresentative(Representative representative) {
-        this.representative = representative;
-        return this;
-    }
-
-    public SampleTheirDetails withServiceAddress(Address serviceAddress) {
-        this.serviceAddress = serviceAddress;
-        return this;
-    }
-
-    public SampleTheirDetails withContactPerson(String contactPerson) {
-        this.contactPerson = contactPerson;
-        return this;
-    }
-
-    public SampleTheirDetails withBusinessName(String businessName) {
-        this.businessName = businessName;
-        return this;
-    }
-
-    public SampleTheirDetails withCompaniesHouseNumber(String companiesHouseNumber) {
-        this.companiesHouseNumber = companiesHouseNumber;
-        return this;
-    }
-
-    public SampleTheirDetails withDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-        return this;
-    }
-
-    public SampleTheirDetails withCollectionId(String collectionId) {
-        this.collectionId = collectionId;
-        return this;
-    }
-
+    private static String name = "John";
+    private static String firstName = "John";
+    private static String lastName = "Smith";
+    private static Address address = SampleAddress.validDefaults();
+    private static String email = DEFENDANT_EMAIL;
+    private static String contactPerson = "Arnold Schwarzenegger";
+    private static String businessName = "Sole Trading & Sons";
+    private static String title = "Dr.";
+    private static Representative representative;
+    private static String companiesHouseNumber;
+    private static Address serviceAddress;
+    private static LocalDate dateOfBirth;
+    private static String collectionId = "3d0bc933-0d46-4564-94bd-79e6e69b838b";
 
     public static TheirDetails partyDetails() {
         return individualDetails();
     }
 
     public static IndividualDetails individualDetails() {
-
-        SampleTheirDetails builder = builder();
         IndividualDetails individualDetails = new IndividualDetails();
 
-        individualDetails.setAddress(builder.address);
-        individualDetails.setDateOfBirth(builder.dateOfBirth);
-        individualDetails.setEmail(builder.email);
-        individualDetails.setId(builder.collectionId);
-        individualDetails.setFirstName(builder.firstName);
-        individualDetails.setLastName(builder.lastName);
-        individualDetails.setTitle(builder.title);
-        individualDetails.setRepresentative(builder.representative);
-        individualDetails.setServiceAddress(builder.serviceAddress);
+        individualDetails.setAddress(address);
+        individualDetails.setDateOfBirth(dateOfBirth);
+        individualDetails.setEmail(email);
+        individualDetails.setId(collectionId);
+        individualDetails.setFirstName(firstName);
+        individualDetails.setLastName(lastName);
+        individualDetails.setTitle(title);
+        individualDetails.setRepresentative(representative);
+        individualDetails.setServiceAddress(serviceAddress);
 
         return individualDetails;
     }
@@ -135,51 +67,48 @@ public class SampleTheirDetails {
 
     public static CompanyDetails companyDetails() {
 
-        SampleTheirDetails builder = builder();
         CompanyDetails companyDetails = new CompanyDetails();
 
-        companyDetails.setAddress(builder.address);
-        companyDetails.setContactPerson(builder.contactPerson);;
-        companyDetails.setEmail(builder.email);
-        companyDetails.setId(builder.collectionId);
-        companyDetails.setName(builder.name);
-        companyDetails.setRepresentative(builder.representative);
-        companyDetails.setServiceAddress(builder.serviceAddress);
+        companyDetails.setAddress(address);
+        companyDetails.setContactPerson(contactPerson);;
+        companyDetails.setEmail(email);
+        companyDetails.setId(collectionId);
+        companyDetails.setName(name);
+        companyDetails.setRepresentative(representative);
+        companyDetails.setServiceAddress(serviceAddress);
 
         return companyDetails;
     }
 
     public static OrganisationDetails organisationDetails() {
 
-        SampleTheirDetails builder = builder();
         OrganisationDetails organisationDetails = new OrganisationDetails();
 
-        organisationDetails.setAddress(builder.address);
-        organisationDetails.setContactPerson(builder.contactPerson);;
-        organisationDetails.setEmail(builder.email);
-        organisationDetails.setId(builder.collectionId);
-        organisationDetails.setName(builder.name);
-        organisationDetails.setRepresentative(builder.representative);
-        organisationDetails.setServiceAddress(builder.serviceAddress);
-        organisationDetails.setCompaniesHouseNumber(builder.companiesHouseNumber);
+        organisationDetails.setAddress(address);
+        organisationDetails.setContactPerson(contactPerson);;
+        organisationDetails.setEmail(email);
+        organisationDetails.setId(collectionId);
+        organisationDetails.setName(name);
+        organisationDetails.setRepresentative(representative);
+        organisationDetails.setServiceAddress(serviceAddress);
+        organisationDetails.setCompaniesHouseNumber(companiesHouseNumber);
 
         return organisationDetails;
     }
 
     public static SoleTraderDetails soleTraderDetails() {
 
-        SampleTheirDetails builder = builder();
         SoleTraderDetails soleTraderDetails = new SoleTraderDetails();
 
-        soleTraderDetails.setAddress(builder.address);
-        soleTraderDetails.setTitle(builder.title);
-        soleTraderDetails.setBusinessName(builder.businessName);
-        soleTraderDetails.setEmail(builder.email);
-        soleTraderDetails.setId(builder.collectionId);
-        soleTraderDetails.setFirstName(builder.firstName);
-        soleTraderDetails.setLastName(builder.lastName);
-        soleTraderDetails.setRepresentative(builder.representative);
-        soleTraderDetails.setServiceAddress(builder.serviceAddress);
+        soleTraderDetails.setAddress(address);
+        soleTraderDetails.setTitle(title);
+        soleTraderDetails.setBusinessName(businessName);
+        soleTraderDetails.setEmail(email);
+        soleTraderDetails.setId(collectionId);
+        soleTraderDetails.setFirstName(firstName);
+        soleTraderDetails.setLastName(lastName);
+        soleTraderDetails.setRepresentative(representative);
+        soleTraderDetails.setServiceAddress(serviceAddress);
 
         return soleTraderDetails;
     }

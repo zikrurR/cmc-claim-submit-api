@@ -11,8 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
+import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterestDate;
+import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterest;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleParty;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleTheirDetails;
 import uk.gov.hmcts.reform.cmc.submit.domain.utils.ResourceReader;
@@ -23,7 +24,6 @@ import java.util.Arrays;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterest.standardInterestBuilder;
 
 public class ClaimDataSerializationTest {
 
@@ -49,12 +49,9 @@ public class ClaimDataSerializationTest {
         ClaimInput other = SampleClaimImput.validDefaults();
         other.setExternalId(UUID.fromString("9f49d8df-b734-4e86-aeb6-e22f0c2ca78d"));
 
-        other.setInterest(
-                standardInterestBuilder()
-                    .withInterestDate(
-                        SampleInterestDate.builder()
-                            .withDate(LocalDate.of(2015, 2, 2))
-                            .build()).build());
+        Interest standard = SampleInterest.standard();
+        standard.getInterestDate().setDate(LocalDate.of(2015, 2, 2));
+        other.setInterest(standard);
 
         other.setPreferredCourt(null);
         other.setHousingDisrepair(null);

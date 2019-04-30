@@ -13,7 +13,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.submit.domain.BeanValidator.validate;
 import static uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest.InterestType.BREAKDOWN;
 import static uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest.InterestType.DIFFERENT;
-import static uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest.InterestType.NO_INTEREST;
 import static uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest.InterestType.STANDARD;
 
 public class InterestTest {
@@ -21,15 +20,8 @@ public class InterestTest {
     @Test
     public void shouldBeInvalidWhenAllFieldsAreNull() {
         //given
-        Interest interest = SampleInterest
-                .builder()
-                .withType(null)
-                .withRate(null)
-                .withReason(null)
-                .withInterestBreakdown(null)
-                .withInterestDate(null)
-                .build();
-        //when
+        Interest interest = new Interest();
+
         Set<String> errors = validate(interest);
         //then
         assertThat(errors)
@@ -39,14 +31,8 @@ public class InterestTest {
     @Test
     public void withNoInterestType_shouldBeSuccessful() {
         //given
-        Interest interest = SampleInterest
-                .builder()
-                .withType(NO_INTEREST)
-                .withRate(null)
-                .withReason(null)
-                .withInterestBreakdown(null)
-                .withInterestDate(null)
-                .build();
+        Interest interest = SampleInterest.noInterest();
+
         //when
         Set<String> errors = validate(interest);
         //then
@@ -56,15 +42,14 @@ public class InterestTest {
     @Test
     public void withStandardInterestType_shouldBeSuccessful() {
         //given
-        Interest interest = SampleInterest
-                .builder()
-                .withType(STANDARD)
-                .withRate(new BigDecimal(8))
-                .withReason(null)
-                .withInterestBreakdown(null)
-                .withInterestDate(SampleInterestDate.validDefaults())
-                .withSpecificDailyAmount(null)
-                .build();
+        Interest interest = SampleInterest.validDefaults();
+        interest.setType(STANDARD);
+        interest.setInterestDate(SampleInterestDate.validDefaults());
+        interest.setInterestBreakdown(null);
+        interest.setReason(null);
+        interest.setRate(new BigDecimal(8));
+        interest.setSpecificDailyAmount(null);
+
         //when
         Set<String> errors = validate(interest);
         //then
@@ -74,15 +59,14 @@ public class InterestTest {
     @Test
     public void withDifferentInterestType_shouldBeSuccessful() {
         //given
-        Interest interest = SampleInterest
-                .builder()
-                .withType(DIFFERENT)
-                .withRate(new BigDecimal(8))
-                .withReason("reason")
-                .withInterestDate(SampleInterestDate.validDefaults())
-                .withInterestBreakdown(null)
-                .withSpecificDailyAmount(null)
-                .build();
+        Interest interest = SampleInterest.validDefaults();
+        interest.setType(DIFFERENT);
+        interest.setInterestDate(SampleInterestDate.validDefaults());
+        interest.setInterestBreakdown(null);
+        interest.setReason("reason");
+        interest.setRate(new BigDecimal(8));
+        interest.setSpecificDailyAmount(null);
+
         //when
         Set<String> errors = validate(interest);
         //then
@@ -91,19 +75,16 @@ public class InterestTest {
 
     @Test
     public void withBreakdownInterestTypeAndSettleOrJudgmentEndDateType_shouldBeSuccessfulWhenRateProvided() {
-        InterestDate interestDateOfTypeSettledOrJudgment = SampleInterestDate
-                .builder()
-                .withEndDateType(InterestDate.InterestEndDateType.SETTLED_OR_JUDGMENT)
-                .build();
-        Interest interest = SampleInterest
-                .builder()
-                .withType(BREAKDOWN)
-                .withInterestDate(interestDateOfTypeSettledOrJudgment)
-                .withInterestBreakdown(SampleInterestBreakdown.validDefaults())
-                .withReason(null)
-                .withRate(new BigDecimal(8))
-                .withSpecificDailyAmount(null)
-                .build();
+        InterestDate interestDateOfTypeSettledOrJudgment = SampleInterestDate.validDefaults();
+        interestDateOfTypeSettledOrJudgment.setEndDateType(InterestDate.InterestEndDateType.SETTLED_OR_JUDGMENT);
+
+        Interest interest = SampleInterest.validDefaults();
+        interest.setType(BREAKDOWN);
+        interest.setInterestDate(interestDateOfTypeSettledOrJudgment);
+        interest.setInterestBreakdown(SampleInterestBreakdown.validDefaults());
+        interest.setReason(null);
+        interest.setRate(new BigDecimal(8));
+        interest.setSpecificDailyAmount(null);
 
         Set<String> errors = validate(interest);
 
@@ -112,19 +93,16 @@ public class InterestTest {
 
     @Test
     public void withBreakdownInterestTypeAndSettleOrJudgmentEndDateType_shouldBeSuccessfulWhenSpecDailyAmntProvided() {
-        InterestDate interestDateOfTypeSettledOrJudgment = SampleInterestDate
-                .builder()
-                .withEndDateType(InterestDate.InterestEndDateType.SETTLED_OR_JUDGMENT)
-                .build();
-        Interest interest = SampleInterest
-                .builder()
-                .withType(BREAKDOWN)
-                .withInterestDate(interestDateOfTypeSettledOrJudgment)
-                .withInterestBreakdown(SampleInterestBreakdown.validDefaults())
-                .withReason(null)
-                .withRate(null)
-                .withSpecificDailyAmount(new BigDecimal(10))
-                .build();
+        InterestDate interestDateOfTypeSettledOrJudgment = SampleInterestDate.validDefaults();
+        interestDateOfTypeSettledOrJudgment.setEndDateType(InterestDate.InterestEndDateType.SETTLED_OR_JUDGMENT);
+
+        Interest interest = SampleInterest.validDefaults();
+        interest.setType(BREAKDOWN);
+        interest.setInterestDate(interestDateOfTypeSettledOrJudgment);
+        interest.setInterestBreakdown(SampleInterestBreakdown.validDefaults());
+        interest.setReason(null);
+        interest.setRate(null);
+        interest.setSpecificDailyAmount(new BigDecimal(10));
 
         Set<String> errors = validate(interest);
 
@@ -133,19 +111,16 @@ public class InterestTest {
 
     @Test
     public void withBreakdownInterestTypeAndSubmissionEndDateType_shouldBeSuccessful() {
-        InterestDate interestDateOfTypeSubmission = SampleInterestDate
-                .builder()
-                .withEndDateType(InterestDate.InterestEndDateType.SUBMISSION)
-                .build();
-        Interest interest = SampleInterest
-                .builder()
-                .withType(BREAKDOWN)
-                .withInterestDate(interestDateOfTypeSubmission)
-                .withInterestBreakdown(SampleInterestBreakdown.validDefaults())
-                .withReason(null)
-                .withRate(null)
-                .withSpecificDailyAmount(null)
-                .build();
+        InterestDate interestDateOfTypeSubmission = SampleInterestDate.validDefaults();
+        interestDateOfTypeSubmission.setEndDateType(InterestDate.InterestEndDateType.SUBMISSION);
+
+        Interest interest = SampleInterest.validDefaults();
+        interest.setType(BREAKDOWN);
+        interest.setInterestDate(interestDateOfTypeSubmission);
+        interest.setInterestBreakdown(SampleInterestBreakdown.validDefaults());
+        interest.setReason(null);
+        interest.setRate(null);
+        interest.setSpecificDailyAmount(null);
 
         Set<String> errors = validate(interest);
 

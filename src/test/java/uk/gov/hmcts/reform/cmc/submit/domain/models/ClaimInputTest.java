@@ -4,39 +4,23 @@ import org.junit.jupiter.api.Test;
 
 import uk.gov.hmcts.reform.cmc.submit.domain.models.claimants.Individual;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.defendants.IndividualDetails;
-import uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleClaimImput;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterest;
-import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleInterestDate;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleParty;
 import uk.gov.hmcts.reform.cmc.submit.domain.samples.SampleTheirDetails;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static uk.gov.hmcts.reform.cmc.submit.domain.BeanValidator.validate;
-import static uk.gov.hmcts.reform.cmc.submit.domain.models.interest.Interest.InterestType.STANDARD;
 
 public class ClaimInputTest {
 
     @Test
-    public void shouldBeValidWhenGivenInterestIsValid() {
-        //given
-        Interest validInterest = SampleInterest
-                .builder()
-                .withType(STANDARD)
-                .withRate(new BigDecimal(8))
-                .withReason(null)
-                .withInterestBreakdown(null)
-                .withInterestDate(SampleInterestDate.validDefaults())
-                .withSpecificDailyAmount(null)
-                .build();
+    public void shouldBeValidWhenGivenValidClaim() {
 
         ClaimInput claimData = SampleClaimImput.validDefaults();
-        claimData.setInterest(validInterest);
 
         //when
         Set<String> errors = validate(claimData);
