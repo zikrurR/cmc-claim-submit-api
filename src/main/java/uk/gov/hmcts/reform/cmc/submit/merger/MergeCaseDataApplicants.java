@@ -94,9 +94,11 @@ class MergeCaseDataApplicants implements MergeCaseDataDecorator {
         }
         ContactDetails contactDetails = representative.getOrganisationContactDetails();
 
-        builder.representativeOrganisationEmail(contactDetails.getEmail());
-        builder.representativeOrganisationPhone(contactDetails.getPhone());
-        builder.representativeOrganisationDxAddress(contactDetails.getDxAddress());
+        if (contactDetails != null) {
+            builder.representativeOrganisationEmail(contactDetails.getEmail());
+            builder.representativeOrganisationPhone(contactDetails.getPhone());
+            builder.representativeOrganisationDxAddress(contactDetails.getDxAddress());
+        }
 
         builder.representativeOrganisationName(representative.getOrganisationName());
         builder.representativeOrganisationAddress(addressBuilderConverter.to(representative.getOrganisationAddress()));
