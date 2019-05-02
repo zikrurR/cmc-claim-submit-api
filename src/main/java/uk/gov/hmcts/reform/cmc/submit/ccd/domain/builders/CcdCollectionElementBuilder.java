@@ -22,7 +22,9 @@ public class CcdCollectionElementBuilder<E> implements Builder<CcdCollectionElem
     public CcdCollectionElement<E> build() {
         CcdCollectionElement<E> ccdCollectionElement = new CcdCollectionElement<>();
         ccdCollectionElement.setId(id);
-        ccdCollectionElement.setValue(value.build());
+        if (value != null) {
+            ccdCollectionElement.setValue(value.build());
+        }
 
         return ccdCollectionElement;
     }

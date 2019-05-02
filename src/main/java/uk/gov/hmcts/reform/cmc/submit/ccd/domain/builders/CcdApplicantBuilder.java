@@ -28,13 +28,18 @@ public class CcdApplicantBuilder implements Builder<CcdApplicant> {
     public CcdApplicant build() {
 
         CcdApplicant ccdApplicant = new CcdApplicant();
-        ccdApplicant.setPartyDetail(partyDetail.build());
         ccdApplicant.setPartyName(partyName);
         ccdApplicant.setRepresentativeOrganisationName(representativeOrganisationName);
-        ccdApplicant.setRepresentativeOrganisationAddress(representativeOrganisationAddress.build());
         ccdApplicant.setRepresentativeOrganisationPhone(representativeOrganisationPhone);
         ccdApplicant.setRepresentativeOrganisationEmail(representativeOrganisationEmail);
         ccdApplicant.setRepresentativeOrganisationDxAddress(representativeOrganisationDxAddress);
+
+        if (partyDetail != null) {
+            ccdApplicant.setPartyDetail(partyDetail.build());
+        }
+        if (representativeOrganisationAddress != null) {
+            ccdApplicant.setRepresentativeOrganisationAddress(representativeOrganisationAddress.build());
+        }
 
         return ccdApplicant;
     }

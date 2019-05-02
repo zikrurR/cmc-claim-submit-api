@@ -45,13 +45,20 @@ public class CcdPartyBuilder implements Builder<CcdParty> {
         ccdParty.setFirstName(firstName);
         ccdParty.setLastName(lastName);
         ccdParty.setDateOfBirth(dateOfBirth);
-        ccdParty.setPrimaryAddress(primaryAddress.build());
         ccdParty.setEmailAddress(emailAddress);
-        ccdParty.setTelephoneNumber(telephoneNumber.build());
-        ccdParty.setCorrespondenceAddress(correspondenceAddress.build());
         ccdParty.setBusinessName(businessName);
         ccdParty.setContactPerson(contactPerson);
         ccdParty.setCompaniesHouseNumber(companiesHouseNumber);
+
+        if (primaryAddress != null) {
+            ccdParty.setPrimaryAddress(primaryAddress.build());
+        }
+        if (telephoneNumber != null) {
+            ccdParty.setTelephoneNumber(telephoneNumber.build());
+        }
+        if (correspondenceAddress != null) {
+            ccdParty.setCorrespondenceAddress(correspondenceAddress.build());
+        }
 
         return ccdParty;
     }

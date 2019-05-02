@@ -16,7 +16,7 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
-public class ReverseMappingTest {
+public class ReverseMappingMapObjectTest {
 
     @Autowired
     private MergeCaseData mergeCaseData;

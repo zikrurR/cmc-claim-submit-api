@@ -81,7 +81,6 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         ccdCase.setAmountType(amountType);
         ccdCase.setAmountLowerValue(amountLowerValue);
         ccdCase.setAmountHigherValue(amountHigherValue);
-        ccdCase.setAmountBreakDown(listBuilderForList(amountBreakDown));
         ccdCase.setTotalAmount(totalAmount);
         ccdCase.setInterestType(interestType);
         ccdCase.setInterestBreakDownAmount(interestBreakDownAmount);
@@ -105,10 +104,22 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         ccdCase.setHousingDisrepairOtherDamages(housingDisrepairOtherDamages);
         ccdCase.setSotSignerName(sotSignerName);
         ccdCase.setSotSignerRole(sotSignerRole);
-        ccdCase.setApplicants(listBuilderForList(applicants));
-        ccdCase.setRespondents(listBuilderForList(respondents));
-        ccdCase.setTimeline(listBuilderForList(timeline));
-        ccdCase.setEvidence(listBuilderForList(evidence));
+
+        if (amountBreakDown != null) {
+            ccdCase.setAmountBreakDown(listBuilderForList(amountBreakDown));
+        }
+        if (applicants != null) {
+            ccdCase.setApplicants(listBuilderForList(applicants));
+        }
+        if (respondents != null) {
+            ccdCase.setRespondents(listBuilderForList(respondents));
+        }
+        if (timeline != null) {
+            ccdCase.setTimeline(listBuilderForList(timeline));
+        }
+        if (evidence != null) {
+            ccdCase.setEvidence(listBuilderForList(evidence));
+        }
 
         return ccdCase;
     }

@@ -30,14 +30,17 @@ public class CcdRespondentBuilder implements Builder<CcdRespondent> {
     public CcdRespondent build() {
         CcdRespondent ccdRespondent = new CcdRespondent();
 
-        ccdRespondent.setClaimantProvidedDetail(claimantProvidedDetail.build());
         ccdRespondent.setClaimantProvidedPartyName(claimantProvidedPartyName);
         ccdRespondent.setClaimantProvidedRepresentativeOrganisationName(claimantProvidedRepresentativeOrganisationName);
-        ccdRespondent.setClaimantProvidedRepresentativeOrganisationAddress(claimantProvidedRepresentativeOrganisationAddress.build());
         ccdRespondent.setClaimantProvidedRepresentativeOrganisationPhone(claimantProvidedRepresentativeOrganisationPhone);
         ccdRespondent.setClaimantProvidedRepresentativeOrganisationEmail(claimantProvidedRepresentativeOrganisationEmail);
         ccdRespondent.setClaimantProvidedRepresentativeOrganisationDxAddress(claimantProvidedRepresentativeOrganisationDxAddress);
-
+        if (claimantProvidedDetail != null) {
+            ccdRespondent.setClaimantProvidedDetail(claimantProvidedDetail.build());
+        }
+        if (claimantProvidedRepresentativeOrganisationAddress != null) {
+            ccdRespondent.setClaimantProvidedRepresentativeOrganisationAddress(claimantProvidedRepresentativeOrganisationAddress.build());
+        }
         return ccdRespondent;
     }
 
