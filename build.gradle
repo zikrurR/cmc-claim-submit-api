@@ -86,7 +86,7 @@ project.tasks['sonarqube'].dependsOn test, integration
 
 sonarqube {
   properties {
-    property "sonar.projectName", "Reform :: cmc-claim-submit-api"
+    property "sonar.projectName", "CMC :: Claim Submit API"
     property "sonar.projectKey", "uk.gov.hmcts.reform:cmc-claim-submit-api"
     property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
     property "sonar.jacoco.itReportPath", "${project.buildDir}/jacoco/integration.exec"
