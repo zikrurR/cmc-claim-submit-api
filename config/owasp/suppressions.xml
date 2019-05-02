@@ -14,4 +14,12 @@
     <cpe>cpe:/a:pivotal_software:spring_security</cpe>
     <cve>CVE-2018-1258</cve>
   </suppress>
+  
+  <suppress>
+    <notes><![CDATA[
+      When running on Windows with enableCmdLineArguments enabled, the CGI Servlet in Apache Tomcat 9.0.0.M1 to 9.0.17, 8.5.0 to 8.5.39 and 7.0.0 to 7.0.93 is vulnerable to Remote Code Execution due to a bug in the way the JRE passes command line arguments to Windows. The CGI Servlet is disabled by default
+    ]]></notes>
+    <gav regex="true">^org\.apache\.tomcat\.embed:tomcat-embed-.*:.*$</gav>
+    <cve>CVE-2019-0232</cve>
+  </suppress>
 </suppressions>
