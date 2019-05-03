@@ -59,7 +59,7 @@ public class ClaimServiceImpl implements ClaimService {
     private Claim getClaimByReference(String reference) throws ApplicationException {
 
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
-        searchBuilder.query(QueryBuilders.matchQuery("referenceNumber", reference));
+        searchBuilder.query(QueryBuilders.matchQuery("reference", reference));
 
         SearchResult result;
         try {
@@ -82,7 +82,7 @@ public class ClaimServiceImpl implements ClaimService {
     private Claim getClaimByExternalId(String externalId) throws ApplicationException {
 
         SearchSourceBuilder searchBuilder = new SearchSourceBuilder();
-        searchBuilder.query(QueryBuilders.matchQuery("case.externalId", externalId));
+        searchBuilder.query(QueryBuilders.matchQuery("data.externalId", externalId));
 
         SearchResult result;
         try {
