@@ -10,7 +10,7 @@ def secrets = [
     'cmc-${env}': [
     ],
     's2s-${env}': [
-        secret('microservicekey-cmc-claim-external-api', 'CMC_S2S_SECRET')
+        secret('microservicekey-cmc-claim-external-api', 'IDAM_S2S_KEY')
     ],
     'rpa-aat': [
     

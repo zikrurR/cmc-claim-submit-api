@@ -59,6 +59,9 @@ import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -251,5 +254,41 @@ public class GetClaimIT {
     }
 
 
+    @DisplayName("Happy path should return a claim via the externalId requested with 200 response code")
+    @Test
+    public void happyPathGetClaimViaExternalId() throws Exception {
+
+        // mock ccd call
+        Map<String,Object> mandatoryData = Maps.newHashMap();
+        String externalId = UUID.randomUUID().toString();
+        mandatoryData.put("externalId", externalId);
+        mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("referenceNumber", "random_reference_number");
+
+        when(coreCaseDataApi.searchCases(any(), any(), any(), contains("reference")))
+            .thenReturn(SearchResult.builder().total(0)
+                                          .cases(Arrays.asList())
+                                          .build());
+
+        when(coreCaseDataApi.searchCases(any(), any(), any(), contains("externalId")))
+             .thenReturn(SearchResult.builder().total(1)
+                                               .cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()))
+                                               .build());
+
+        // mock idam call
+        when(authTokenGenerator.generate()).thenReturn("aaa");
+
+        MvcResult response = mockMvc
+                .perform(get("/claim/{externalId}",externalId)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
+                    .andExpect(status().isOk())
+                    .andReturn();
+
+        Claim claim = objectMapper.readValue(response.getResponse().getContentAsString(), Claim.class);
+
+        verify(coreCaseDataApi, times(2)).searchCases(any(), any(), any(), any());
+        assertThat(claim.getAmount().getClass()).isEqualTo(NotKnown.class);
+    }
 
 }
