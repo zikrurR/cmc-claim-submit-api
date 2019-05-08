@@ -29,10 +29,10 @@ module "cmc-claim-submit-api" {
 
 data "azurerm_key_vault" "s2s_key_vault" {
   name = "s2s-${var.env}"
-  resource_group_name = "s2s-${var.env}"
+  resource_group_name = "rpe-service-auth-provider-${local.local_env}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
   name = "microservicekey-cmc-claim-external-api"
-  vault_uri = "${data.azurerm_key_vault.s2s_key_vault.vault_uri}"
+  key_vault_id = "${data.azurerm_key_vault.s2s_key_vault.id}"
 }
