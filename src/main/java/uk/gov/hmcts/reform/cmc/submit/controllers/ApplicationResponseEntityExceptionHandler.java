@@ -35,7 +35,7 @@ public class ApplicationResponseEntityExceptionHandler extends ResponseEntityExc
 
         return new ResponseEntity<>(((ApplicationException) ex).getMessage(),
                                     new HttpHeaders(),
-                                    HttpStatus.BAD_REQUEST);
+                                    HttpStatus.NOT_FOUND);
     }
 
 }

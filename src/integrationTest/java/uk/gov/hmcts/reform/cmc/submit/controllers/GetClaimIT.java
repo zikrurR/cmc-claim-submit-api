@@ -254,9 +254,9 @@ public class GetClaimIT {
     }
 
 
-    @DisplayName("Happy path should return a claim via the externalId requested with 200 response code")
+    @DisplayName("Should return a claim via the externalId requested with 200 response code")
     @Test
-    public void happyPathGetClaimViaExternalId() throws Exception {
+    public void findClaimViaExternalId() throws Exception {
 
         // mock ccd call
         Map<String,Object> mandatoryData = Maps.newHashMap();
@@ -289,6 +289,40 @@ public class GetClaimIT {
 
         verify(coreCaseDataApi, times(2)).searchCases(any(), any(), any(), any());
         assertThat(claim.getAmount().getClass()).isEqualTo(NotKnown.class);
+    }
+
+    @DisplayName("Should return a correct json error with 404 response code when the claim can't be found")
+    @Test
+    public void claimNotFound() throws Exception {
+
+        // mock ccd call
+        Map<String,Object> mandatoryData = Maps.newHashMap();
+        String externalId = UUID.randomUUID().toString();
+        mandatoryData.put("externalId", externalId);
+        mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("referenceNumber", "random_reference_number");
+
+        when(coreCaseDataApi.searchCases(any(), any(), any(), contains("reference")))
+            .thenReturn(SearchResult.builder().total(0)
+                                          .cases(Arrays.asList())
+                                          .build());
+
+        when(coreCaseDataApi.searchCases(any(), any(), any(), contains("externalId")))
+             .thenReturn(SearchResult.builder().total(0)
+                                               .cases(Arrays.asList())
+                                               .build());
+
+        // mock idam call
+        when(authTokenGenerator.generate()).thenReturn("aaa");
+
+        mockMvc.perform(get("/claim/{externalId}",externalId)
+                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                        .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
+                    .andExpect(status().isNotFound())
+                    .andReturn();
+
+        verify(coreCaseDataApi, times(2)).searchCases(any(), any(), any(), any());
+
     }
 
 }
