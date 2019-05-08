@@ -4,7 +4,6 @@ locals {
   ase_name       = "${data.terraform_remote_state.core_apps_compute.ase_name[0]}"
   s2s_url        = "http://rpe-service-auth-provider-${var.env}.service.${local.ase_name}.internal"
   ccd_url        = "http://ccd-data-store-api-${var.env}.service.${local.ase_name}.internal"
-  cmc_vault_name = "${var.raw_product}-${var.env}"
 }
 
 module "cmc-claim-submit-api" {
@@ -28,12 +27,12 @@ module "cmc-claim-submit-api" {
   }
 }
 
-data "azurerm_key_vault" "cmc_key_vault" {
-  name = "${local.cmc_vault_name}"
-  resource_group_name = "${local.cmc_vault_name}"
+data "azurerm_key_vault" "s2s_key_vault" {
+  name = "s2s-${var.env}"
+  resource_group_name = "s2s-${var.env}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
-  name = "claim-store-s2s-secret"
-  vault_uri = "${data.azurerm_key_vault.cmc_key_vault.vault_uri}"
+  name = "microservicekey-cmc-claim-external-api"
+  vault_uri = "${data.azurerm_key_vault.s2s_key_vault.vault_uri}"
 }

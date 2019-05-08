@@ -7,11 +7,16 @@ def product = "cmc"
 def component = "claim-submit-api"
 
 def secrets = [
-  'cmc-${env}':
-    [
-
+    'cmc-${env}': [
+    ],
+    's2s-${env}': [
+        secret('microservicekey-cmc-claim-external-api', 'CMC_S2S_SECRET')
+    ],
+    'rpa-aat': [
+    
     ]
 ]
+
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
   [$class     : 'AzureKeyVaultSecret',
@@ -24,7 +29,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 
 withPipeline(type, product, component) {
 
-  //loadVaultSecrets(secrets)
+  loadVaultSecrets(secrets)
   //enableSlackNotifications('#cmc-tech-notification')
   enableDockerBuild()
   installCharts()
