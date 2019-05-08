@@ -61,8 +61,8 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
 
     private List<CcdCollectionElementBuilder<CcdApplicant>> applicants = new ArrayList<>();
     private List<CcdCollectionElementBuilder<CcdRespondent>> respondents = new ArrayList<>();
-    private List<CcdCollectionElementBuilder<CcdTimelineEvent>> timeline = new ArrayList<>();
-    private List<CcdCollectionElementBuilder<CcdEvidenceRow>> evidence = new ArrayList<>();
+    private List<CcdCollectionElementBuilder<CcdTimelineEvent>> timeline;
+    private List<CcdCollectionElementBuilder<CcdEvidenceRow>> evidence;
 
     public static CcdCaseBuilder builder() {
         return new CcdCaseBuilder();

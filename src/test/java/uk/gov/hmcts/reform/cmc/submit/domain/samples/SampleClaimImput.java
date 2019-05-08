@@ -49,7 +49,6 @@ public class SampleClaimImput {
         claimData.setReason("reason");
         claimData.setPreferredCourt("LONDON COUNTY COUNCIL");
         claimData.setTimeline(Arrays.asList(SampleTimelineEvent.validDefaults()));
-        claimData.setEvidences(Arrays.asList(SampleEvidence.validDefaults()));
 
         return claimData;
     }
@@ -68,7 +67,6 @@ public class SampleClaimImput {
         claimData.setReason("reason");
         claimData.setStatementOfTruth(SampleStatementOfTruth.validDefaults());
         claimData.setPreferredCourt("LONDON COUNTY COUNCIL");
-        claimData.setTimeline(Arrays.asList(SampleTimelineEvent.validDefaults()));
         claimData.setEvidences(Arrays.asList(SampleEvidence.validDefaults()));
 
         return claimData;

@@ -9,8 +9,8 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders.CcdTimelineEventBuilde
 import uk.gov.hmcts.reform.cmc.submit.domain.models.ClaimInput;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -18,25 +18,21 @@ class MergeCaseDataTimeline implements MergeCaseDataDecorator {
 
     @Override
     public void merge(CcdCaseBuilder ccdCase, ClaimInput claim) {
+        if (claim.getTimeline() == null) {
+            return;
+        }
 
         ccdCase.timeline(to(claim.getTimeline()));
-
     }
 
     private List<CcdCollectionElementBuilder<CcdTimelineEvent>> to(List<TimelineEvent> timeline) {
-        if (timeline == null) {
-            return new ArrayList<>();
-        }
-
         return timeline.stream()
+                .filter(Objects::nonNull)
                 .map(this::to)
                 .collect(Collectors.toList());
     }
 
     private CcdCollectionElementBuilder<CcdTimelineEvent> to(TimelineEvent timelineEvent) {
-        if (timelineEvent == null) {
-            return null;
-        }
 
         CcdTimelineEventBuilder ccdTimelineEvent = CcdTimelineEventBuilder.builder()
                                                     .date(timelineEvent.getDate())

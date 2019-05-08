@@ -6,7 +6,6 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdCollectionElement;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdTimelineEvent;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.timeline.TimelineEvent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,7 @@ class TimelineConverter {
 
     public List<TimelineEvent> from(List<CcdCollectionElement<CcdTimelineEvent>> ccdTimeline) {
         if (ccdTimeline == null) {
-            return new ArrayList<>();
+            return null;
         }
 
         return ccdTimeline.stream()

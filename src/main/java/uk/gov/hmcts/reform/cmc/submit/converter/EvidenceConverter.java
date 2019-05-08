@@ -7,7 +7,6 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdEvidenceRow;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.Evidence;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.evidence.EvidenceType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -18,7 +17,7 @@ class EvidenceConverter {
 
     public List<Evidence> from(List<CcdCollectionElement<CcdEvidenceRow>> ccdEvidence) {
         if (ccdEvidence == null) {
-            return new ArrayList<>();
+            return null;
         }
 
         return ccdEvidence.stream()
