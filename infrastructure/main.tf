@@ -29,7 +29,7 @@ module "cmc-claim-submit-api" {
 
 data "azurerm_key_vault" "s2s_key_vault" {
   name = "s2s-${var.env}"
-  resource_group_name = "rpe-service-auth-provider-${local.local_env}"
+  resource_group_name = "rpe-service-auth-provider-${var.env}"
 }
 
 data "azurerm_key_vault_secret" "s2s_secret" {
