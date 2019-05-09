@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.cmc.submit;
 
-import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +36,7 @@ public abstract class BaseSmokeTest {
     protected IdamClient idamClient;
 
     @Autowired // httpClient form Feign.
-    protected CloseableHttpClient httpClient;
+    protected HttpClient httpClient;
 
     @PostConstruct
     public void init() {

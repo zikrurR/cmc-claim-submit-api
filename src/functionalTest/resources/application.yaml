@@ -16,3 +16,8 @@ cmc:
   api:
     submit:
       url: ${TEST_URL:http://localhost:4550}
+  test:
+    smoke:
+      username: ${FUNCTIONAL_TEST_CITIZEN_USERNAME}
+      password: ${FUNCTIONAL_TEST_USER_PASSWORD}
+      

@@ -20,3 +20,6 @@ cmc:
     smoke:
       username: ${SMOKE_TEST_CITIZEN_USERNAME}
       password: ${SMOKE_TEST_USER_PASSWORD}
+feign:
+  httpclient:
+    disableSslValidation: true
