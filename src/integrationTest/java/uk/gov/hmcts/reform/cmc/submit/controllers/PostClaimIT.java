@@ -89,10 +89,10 @@ public class PostClaimIT {
                 .build());
 
         Map<String,Object> mandatoryData = Maps.newHashMap();
-        mandatoryData.put("referenceNumber", "ramdom_reference_number");
+        long reference = 123456L;
 
         when(coreCaseDataApi.submitForCitizen(any(), any(), any(), any(), any(), anyBoolean(), any()))
-            .thenReturn(CaseDetails.builder().data(mandatoryData).build());
+            .thenReturn(CaseDetails.builder().id(reference).data(mandatoryData).build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn(SERVICE_AUTHORIZATION_TOKEN);
@@ -114,7 +114,7 @@ public class PostClaimIT {
                                           caseType.capture(),
                                           eventId.capture());
 
-        assertThat(claimResponse.getReferenceNumber()).isEqualTo("ramdom_reference_number");
+        assertThat(claimResponse.getReferenceNumber()).isEqualTo(Long.toString(reference));
 
         assertThat(authorizationToken.getValue()).isEqualTo(AUTHORIZATION_TOKEN);
         assertThat(serviceAuthorization.getValue()).isEqualTo(SERVICE_AUTHORIZATION_TOKEN);

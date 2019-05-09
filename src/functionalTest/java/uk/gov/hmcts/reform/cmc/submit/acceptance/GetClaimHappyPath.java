@@ -37,7 +37,6 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
         headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
 
         String json = new ResourceReader().read("/claim-application.json");
-        String externalIdFromFile = "9f49d8df-b734-4e86-aeb6-e22f0c2ca78d";
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
         ResponseEntity<String> claimOutput = restTemplate.postForEntity(postClaimEndPoint, entity, String.class);
 
@@ -49,11 +48,10 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
                                                                    String.class,
                                                                    readValue.get("referenceNumber"));
 
-        assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
+        assertThat(claim.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
-
-    @DisplayName("Failed path, should retrieve the claim created in CCD via the externalId")
+    @DisplayName("Failing path, should retrieve the claim created in CCD via the externalId")
     @Test
     public void getClaimViaExternalIdFailedPath() throws IOException {
 

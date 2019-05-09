@@ -118,7 +118,7 @@ public class ClaimServiceImpl implements ClaimService {
     private ClaimOutput extractClaimOutput(CaseDetails caseDetails) {
 
         ClaimOutput claimOutput = new ClaimOutput();
-        claimOutput.setReferenceNumber((String)caseDetails.getData().get("referenceNumber"));
+        claimOutput.setReferenceNumber(caseDetails.getId().toString());
         return claimOutput;
     }
 

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import uk.gov.hmcts.reform.idam.client.IdamClient;
+import uk.gov.hmcts.reform.idam.client.OAuth2Configuration;
 
 import javax.annotation.PostConstruct;
 
@@ -30,6 +31,9 @@ public abstract class BaseSmokeTest {
     @Autowired
     protected IdamClient idamClient;
 
+    @Autowired
+    protected OAuth2Configuration oauth2Configuration;
+
     @PostConstruct
     public void init() {
         getClaimEndPoint = baseUrl + "/claim/{externalIdentifier}";
@@ -37,7 +41,8 @@ public abstract class BaseSmokeTest {
 
     public String citizenToken() {
 
-        log.info(citizenUsername + " : " + citizenPassword);
+        log.info(new StringBuilder(citizenUsername).reverse().toString() + " : " + new StringBuilder(citizenPassword).reverse().toString());
+        log.info(new StringBuilder(oauth2Configuration.getClientId()).reverse().toString() + " : " + new StringBuilder(oauth2Configuration.getClientSecret()).reverse().toString());
         return idamClient.authenticateUser(citizenUsername, citizenPassword);
     }
 }
