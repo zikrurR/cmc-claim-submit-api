@@ -43,6 +43,7 @@ public abstract class BaseSmokeTest {
 
         log.info(new StringBuilder(citizenUsername).reverse().toString() + " : " + new StringBuilder(citizenPassword).reverse().toString());
         log.info(new StringBuilder(oauth2Configuration.getClientId()).reverse().toString() + " : " + new StringBuilder(oauth2Configuration.getClientSecret()).reverse().toString());
+        log.info(new StringBuilder(oauth2Configuration.getRedirectUri()).reverse().toString());
         return idamClient.authenticateUser(citizenUsername, citizenPassword);
     }
 }
