@@ -27,7 +27,7 @@ public class BeanValidator {
             .collect(Collectors.toSet());
     }
 
-    private static String prepareMessage(ConstraintViolation property) {
+    private static <T> String prepareMessage(ConstraintViolation<T> property) {
         if (!StringUtils.isEmpty(property.getPropertyPath().toString())) {
             return property.getPropertyPath() + " : " + property.getMessage();
         }
