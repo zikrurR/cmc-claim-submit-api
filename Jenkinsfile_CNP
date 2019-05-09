@@ -13,7 +13,7 @@ def secrets = [
         secret('microservicekey-cmc-claim-external-api', 'IDAM_S2S_KEY')
     ],
     'rpa-aat': [
-    	secret('papi-oauth2-client-id', 'IDAM_OAUTH2_CLIENT_ID')
+    	secret('papi-oauth2-client-id', 'IDAM_OAUTH2_CLIENT_ID'),
     	secret('papi-oauth2-client-key', 'IDAM_OAUTH2_CLIENT_SECRET')
     ]
 ]
