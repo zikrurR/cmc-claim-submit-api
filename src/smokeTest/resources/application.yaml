@@ -15,7 +15,7 @@ idam:
 cmc:
   api:
     submit:
-      url: ${CMC_SUBMIT_API_URL:http://localhost:4550}
+      url: ${TEST_URL:http://localhost:4550}
   test:
     smoke:
       username: ${SMOKE_TEST_CITIZEN_USERNAME}
