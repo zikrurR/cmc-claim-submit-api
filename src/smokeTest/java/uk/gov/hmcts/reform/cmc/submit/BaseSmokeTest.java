@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import uk.gov.hmcts.reform.idam.client.IdamClient;
-import uk.gov.hmcts.reform.idam.client.models.test.CreateUserRequest;
 
 import javax.annotation.PostConstruct;
 
@@ -18,6 +17,12 @@ public abstract class BaseSmokeTest {
 
     @Value("${cmc.api.submit.url}")
     protected String baseUrl;
+
+    @Value("${cmc.test.smoke.username}")
+    protected String citizenUsername;
+
+    @Value("${cmc.test.smoke.password}")
+    protected String citizenPassword;
 
     protected String postClaimEndPoint;
     protected String getClaimEndPoint;
@@ -31,9 +36,7 @@ public abstract class BaseSmokeTest {
     }
 
     public String citizenToken() {
-        String citizenEmail = "cmc-claim-submit-api-ccd-citizen@hmcts.net";
-        String defaultPassword = CreateUserRequest.DEFAULT_PASSWORD;
 
-        return idamClient.authenticateUser(citizenEmail, defaultPassword);
+        return idamClient.authenticateUser(citizenUsername, citizenPassword);
     }
 }
