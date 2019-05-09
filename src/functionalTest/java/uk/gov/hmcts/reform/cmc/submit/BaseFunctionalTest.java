@@ -2,17 +2,12 @@ package uk.gov.hmcts.reform.cmc.submit;
 
 import feign.FeignException;
 
-import org.apache.http.conn.ssl.NoopHostnameVerifier;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
-import org.springframework.web.client.RestTemplate;
 
 import uk.gov.hmcts.reform.idam.client.IdamClient;
 import uk.gov.hmcts.reform.idam.client.IdamTestApi;
@@ -42,19 +37,10 @@ public abstract class BaseFunctionalTest {
     @Autowired
     protected IdamTestApi idamTestApi;
 
-
-    protected RestTemplate restTemplate;
-
     @PostConstruct
     public void init() {
         postClaimEndPoint = baseUrl + "/claim";
         getClaimEndPoint = baseUrl + "/claim/{externalIdentifier}";
-
-        CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(new NoopHostnameVerifier()).build();
-        HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-        requestFactory.setHttpClient(httpClient);
-        restTemplate = new RestTemplate(requestFactory);
-
     }
 
     public User citizen() {

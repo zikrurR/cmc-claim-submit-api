@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import uk.gov.hmcts.reform.cmc.submit.BaseFunctionalTest;
 import uk.gov.hmcts.reform.cmc.submit.utils.ResourceReader;
@@ -21,6 +22,8 @@ import java.util.Map;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetClaimHappyPath extends BaseFunctionalTest {
+
+    RestTemplate restTemplate = new RestTemplate();
 
     @Autowired
     ObjectMapper objectMapper;
