@@ -37,6 +37,7 @@ public abstract class BaseSmokeTest {
 
     public String citizenToken() {
 
+        log.info(citizenUsername + " : " + citizenPassword);
         return idamClient.authenticateUser(citizenUsername, citizenPassword);
     }
 }
