@@ -9,9 +9,9 @@ idam:
     microservice: ${IDAM_S2S_MICROSERVICE:cmc_claim_external_api}
     url: ${IDAM_S2S_URL:http://localhost:4552}
   client:
-    redirect_uri: 'http://localhost:3451/oauth2redirect'
-    id: 'ccd_gateway'
-    secret: '123456'
+    redirect_uri: ${IDAM_OAUTH2_REDIRECT_URI:http://localhost:3451/oauth2redirect}
+    id: ${IDAM_OAUTH2_CLIENT_ID:ccd_gateway}
+    secret: ${IDAM_OAUTH2_CLIENT_SECRET:123456}
 cmc:
   api:
     submit:
