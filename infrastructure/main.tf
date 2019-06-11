@@ -57,12 +57,12 @@ resource "random_string" "key_value" {
 
 resource "azurerm_key_vault_secret" "username" {
   name = "functional-test-citizen-username"
-  value = "cmc-claim-submit-api-ccd-citizen@hmcts.net"
+  value = "cmc-claim-submit-api-cmc-citizen@hmcts.net"
   key_vault_id = "${data.azurerm_key_vault.cmc_key_vault.id}"
 }
 
 resource "azurerm_key_vault_secret" "password" {
-  name = "functional-test-user-password"
-  value = "${random_string.key_value.result}"
+  name = "functional-test-solicitor-username"
+  value = "cmc-claim-submit-api-cmc-solicitor@hmcts.net"
   key_vault_id = "${data.azurerm_key_vault.cmc_key_vault.id}"
 }
