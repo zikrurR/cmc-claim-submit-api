@@ -36,33 +36,3 @@ data "azurerm_key_vault_secret" "s2s_secret" {
   name = "microservicekey-cmc-claim-external-api"
   key_vault_id = "${data.azurerm_key_vault.s2s_key_vault.id}"
 }
-
-// generate vault
-
-data "azurerm_key_vault" "cmc_key_vault" {
-  name = "cmc-aat"
-  resource_group_name = "cmc-aat"
-}
-
-resource "random_string" "key_value" {
-  length  = 16
-  special = true
-  upper   = true
-  lower   = true
-  number  = true
-  lifecycle {
-    ignore_changes = ["*"]
-  }
-}
-
-resource "azurerm_key_vault_secret" "username" {
-  name = "functional-test-solicitor-username"
-  value = "${random_string.key_value.result}"
-  key_vault_id = "${data.azurerm_key_vault.cmc_key_vault.id}"
-}
-
-resource "azurerm_key_vault_secret" "password" {
-  name = "functional-test-solicitor-password"
-  value = "cmc-claim-submit-api-cmc-solicitor@hmcts.net"
-  key_vault_id = "${data.azurerm_key_vault.cmc_key_vault.id}"
-}
