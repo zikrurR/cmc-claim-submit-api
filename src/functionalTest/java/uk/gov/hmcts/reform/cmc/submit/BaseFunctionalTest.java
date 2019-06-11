@@ -28,6 +28,12 @@ public abstract class BaseFunctionalTest {
     @Value("${cmc.api.submit.url}")
     protected String baseUrl;
 
+    @Value("${cmc.test.functional.username}")
+    protected String citizenUsername;
+
+    @Value("${cmc.test.functional.password}")
+    protected String citizenPassword;
+
     protected String postClaimEndPoint;
     protected String getClaimEndPoint;
 
@@ -44,11 +50,11 @@ public abstract class BaseFunctionalTest {
     }
 
     public User citizen() {
-        String citizenEmail = "cmc-claim-submit-api-ccd-citizen@hmcts.net";
         try {
             idamTestApi.createUser(CreateUserRequest.builder()
-                    .email(citizenEmail)
+                    .email(citizenUsername)
                     .userGroup(new UserGroup("citizens"))
+                    .password(citizenPassword)
                     .build());
         } catch (FeignException e) {
             if (e.status() == HttpStatus.BAD_REQUEST.value()) {
@@ -58,7 +64,7 @@ public abstract class BaseFunctionalTest {
             }
         }
 
-        String token = idamClient.authenticateUser(citizenEmail, CreateUserRequest.DEFAULT_PASSWORD);
+        String token = idamClient.authenticateUser(citizenUsername, citizenPassword);
         UserDetails userDetails = idamClient.getUserDetails(token);
 
         return new User(token, userDetails);

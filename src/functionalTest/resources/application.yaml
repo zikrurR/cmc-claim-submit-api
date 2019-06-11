@@ -17,7 +17,7 @@ cmc:
     submit:
       url: ${TEST_URL:http://localhost:4550}
   test:
-    smoke:
+    functional:
       username: ${FUNCTIONAL_TEST_CITIZEN_USERNAME}
       password: ${FUNCTIONAL_TEST_USER_PASSWORD}
       
