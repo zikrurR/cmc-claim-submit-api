@@ -36,6 +36,6 @@ public class GetClaimHappyPath extends BaseSmokeTest {
                                                                    String.class,
                                                                    "test");
 
-        assertThat(claimOutput.getStatusCodeValue()).isEqualTo(HttpStatus.NOT_FOUND);
+        assertThat(claimOutput.getStatusCode()).isEqualTo(HttpStatus.NOT_FOUND);
     }
 }

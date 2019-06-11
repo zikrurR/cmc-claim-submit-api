@@ -6,10 +6,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import uk.gov.hmcts.reform.idam.client.IdamClient;
+
+import java.io.IOException;
 
 import javax.annotation.PostConstruct;
 
@@ -37,6 +41,14 @@ public abstract class BaseSmokeTest {
     @Autowired // httpClient form Feign.
     protected HttpClient httpClient;
 
+
+    // Might be better to use TestRestTemplate how ever it does the same
+    private static class NoOpResponseErrorHandler extends DefaultResponseErrorHandler {
+        @Override
+        public void handleError(ClientHttpResponse response) throws IOException {
+        }
+    }
+
     @PostConstruct
     public void init() {
         getClaimEndPoint = baseUrl + "/claim/{externalIdentifier}";
@@ -44,6 +56,7 @@ public abstract class BaseSmokeTest {
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
         requestFactory.setHttpClient(httpClient);
         restTemplate = new RestTemplate(requestFactory);
+        restTemplate.setErrorHandler(new NoOpResponseErrorHandler());
 
     }
 
