@@ -27,7 +27,6 @@ public abstract class BaseSmokeTest {
     @Value("${cmc.test.smoke.password}")
     protected String citizenPassword;
 
-    protected String postClaimEndPoint;
     protected String getClaimEndPoint;
 
     protected RestTemplate restTemplate;
