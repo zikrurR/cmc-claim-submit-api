@@ -1,6 +1,6 @@
 spring:
   application:
-    name: 'claim-submit-api functional test'
+    name: 'claim-submit-api smoke test'
 idam:
   api:
     url: ${IDAM_API_URL:http://localhost:8080}
@@ -20,6 +20,4 @@ cmc:
     smoke:
       username: ${SMOKE_TEST_CITIZEN_USERNAME}
       password: ${SMOKE_TEST_USER_PASSWORD}
-feign:
-  httpclient:
-    disableSslValidation: true
+
