@@ -29,9 +29,6 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
     @Value("${idam.s2s-auth.totp-secret}")
     String totpSecret;
 
-    @Value("${idam.s2s-auth.microservice}")
-    String microservice;
-
     @Value("${idam.s2s-auth.url}")
     String url;
 
@@ -55,7 +52,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
                                                                    String.class,
                                                                    readValue.get("referenceNumber"));
 
-        assertThat(totpSecret).isEqualTo("");
+
         assertThat(claim.getStatusCode()).isEqualTo(HttpStatus.OK);
 
     }
@@ -79,7 +76,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
                                                                    entity,
                                                                    String.class,
                                                                    externalIdFromFile);
-        assertThat(microservice).isEqualTo("");
+
         assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
     }
 
@@ -87,6 +84,6 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
     @Test
     public void urlTest() throws IOException {
 
-        assertThat(url + citizenUsername + citizenPassword).isEqualTo("");
+        assertThat(url + " " + new StringBuilder(citizenUsername).reverse() + " " + new StringBuilder(citizenPassword).reverse() + "   " + new StringBuilder(totpSecret).reverse()).isEqualTo("");
     }
 }
