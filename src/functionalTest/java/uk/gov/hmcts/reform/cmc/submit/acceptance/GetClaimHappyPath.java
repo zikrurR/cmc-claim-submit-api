@@ -11,7 +11,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import uk.gov.hmcts.reform.cmc.submit.BaseFunctionalTest;
 import uk.gov.hmcts.reform.cmc.submit.utils.ResourceReader;
@@ -23,8 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class GetClaimHappyPath extends BaseFunctionalTest {
 
-    RestTemplate restTemplate = new RestTemplate();
-
     @Autowired
     ObjectMapper objectMapper;
 
@@ -34,7 +31,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
+        headers.set(HttpHeaders.AUTHORIZATION, citizenToken());
 
         String json = new ResourceReader().read("/claim-application.json");
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
@@ -57,7 +54,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
+        headers.set(HttpHeaders.AUTHORIZATION, citizenToken());
 
         String json = new ResourceReader().read("/claim-application.json");
         String externalIdFromFile = "9f49d8df-b734-4e86-aeb6-e22f0c2ca78d";

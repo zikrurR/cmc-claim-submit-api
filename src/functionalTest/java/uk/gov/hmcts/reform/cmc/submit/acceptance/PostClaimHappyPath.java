@@ -30,7 +30,7 @@ public class PostClaimHappyPath extends BaseFunctionalTest {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        headers.set(HttpHeaders.AUTHORIZATION, citizen().getAuthToken());
+        headers.set(HttpHeaders.AUTHORIZATION, citizenToken());
 
         String json = new ResourceReader().read("/claim-application.json");
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
