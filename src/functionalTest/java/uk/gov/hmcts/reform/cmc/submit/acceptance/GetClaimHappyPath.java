@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -24,6 +25,15 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
 
     @Autowired
     ObjectMapper objectMapper;
+
+    @Value("${idam.s2s-auth.totp-secret}")
+    String totpSecret;
+
+    @Value("${idam.s2s-auth.microservice}")
+    String microservice;
+
+    @Value("${idam.s2s-auth.url}")
+    String url;
 
     @DisplayName("Happy path, should return the claim created in CCD via the reference number")
     @Test
@@ -45,7 +55,9 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
                                                                    String.class,
                                                                    readValue.get("referenceNumber"));
 
+        assertThat(totpSecret).isEqualTo("");
         assertThat(claim.getStatusCode()).isEqualTo(HttpStatus.OK);
+
     }
 
     @DisplayName("Failing path, should retrieve the claim created in CCD via the externalId")
@@ -67,7 +79,14 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
                                                                    entity,
                                                                    String.class,
                                                                    externalIdFromFile);
-
+        assertThat(microservice).isEqualTo("");
         assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
+    }
+
+    @DisplayName("Failing path, should retrieve the claim created in CCD via the externalId")
+    @Test
+    public void urlTest() throws IOException {
+
+        assertThat(url + citizenUsername + citizenPassword).isEqualTo("");
     }
 }
