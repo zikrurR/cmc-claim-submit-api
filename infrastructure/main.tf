@@ -21,9 +21,9 @@ module "cmc-claim-submit-api" {
   app_settings = {
     LOGBACK_REQUIRE_ALERT_LEVEL = "false"
     LOGBACK_REQUIRE_ERROR_CODE  = "false"
-    IDAM_S2S_URL                = "${locals.s2s_url}"
+    IDAM_S2S_URL                = "${local.s2s_url}"
     IDAM_S2S_KEY                = "${data.azurerm_key_vault_secret.s2s_secret.value}"
-    CORE_CASE_DATA_API_URL      = "${locals.ccd_url}"
+    CORE_CASE_DATA_API_URL      = "${local.ccd_url}"
   }
 }
 
