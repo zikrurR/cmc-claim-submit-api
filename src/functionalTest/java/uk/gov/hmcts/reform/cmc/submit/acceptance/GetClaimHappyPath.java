@@ -2,11 +2,9 @@ package uk.gov.hmcts.reform.cmc.submit.acceptance;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.junit.Ignore;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -27,15 +25,8 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
     @Autowired
     ObjectMapper objectMapper;
 
-    @Value("${idam.s2s-auth.totp-secret}")
-    String totpSecret;
-
-    @Value("${idam.s2s-auth.url}")
-    String url;
-
     @DisplayName("Happy path, should return the claim created in CCD via the reference number")
     @Test
-    @Ignore
     public void getClaimViaReferenceNumberHappyPath() throws IOException {
 
         HttpHeaders headers = new HttpHeaders();
@@ -61,7 +52,6 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
 
     @DisplayName("Failing path, should retrieve the claim created in CCD via the externalId")
     @Test
-    @Ignore
     public void getClaimViaExternalIdFailedPath() throws IOException {
 
         HttpHeaders headers = new HttpHeaders();
@@ -83,11 +73,4 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
         assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
     }
 
-    @DisplayName("Failing path, should retrieve the claim created in CCD via the externalId")
-    @Test
-    public void urlTest() throws IOException {
-
-        String actual = url + " " + new StringBuilder(citizenUsername).reverse() + " " + new StringBuilder(citizenPassword).reverse() + "   " + new StringBuilder(totpSecret).reverse();
-        assertThat(actual).isEqualTo("");
-    }
 }
