@@ -1,17 +1,23 @@
 package uk.gov.hmcts.reform.cmc.submit;
 
+import feign.FeignException;
+
 import org.apache.http.client.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import uk.gov.hmcts.reform.idam.client.IdamClient;
+import uk.gov.hmcts.reform.idam.client.IdamTestApi;
+import uk.gov.hmcts.reform.idam.client.models.test.CreateUserRequest;
+import uk.gov.hmcts.reform.idam.client.models.test.UserGroup;
 
 import java.io.IOException;
 
@@ -38,6 +44,9 @@ public abstract class BaseSmokeTest {
     @Autowired
     protected IdamClient idamClient;
 
+    @Autowired
+    protected IdamTestApi idamTestApi;
+
     @Autowired // httpClient form Feign.
     protected HttpClient httpClient;
 
@@ -61,6 +70,20 @@ public abstract class BaseSmokeTest {
     }
 
     public String citizenToken() {
+
+        try {
+            idamTestApi.createUser(CreateUserRequest.builder()
+                    .email(citizenUsername)
+                    .password(citizenPassword)
+                    .userGroup(new UserGroup("citizens"))
+                    .build());
+        } catch (FeignException e) {
+            if (e.status() == HttpStatus.FORBIDDEN.value()) {
+                log.info("Bad request from idam, probably user already exists, continuing");
+            } else {
+                throw e;
+            }
+        }
 
         return idamClient.authenticateUser(citizenUsername, citizenPassword);
     }

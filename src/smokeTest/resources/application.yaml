@@ -3,23 +3,23 @@ spring:
     name: 'claim-submit-api smoke test'
 idam:
   api:
-    url: ${IDAM_API_URL:http://localhost:8080}
+    url: ${IDAM_API_URL:http://localhost:5000}
   s2s-auth:
     totp_secret: ${IDAM_S2S_KEY:AAAAAAAAAAAAAAAA}
     microservice: ${IDAM_S2S_MICROSERVICE:cmc_claim_external_api}
     url: ${IDAM_S2S_URL:http://localhost:4552}
   client:
-    redirect_uri: ${IDAM_OAUTH2_REDIRECT_URI:http://localhost:3451/oauth2redirect}
-    id: ${IDAM_OAUTH2_CLIENT_ID:ccd_gateway}
-    secret: ${IDAM_OAUTH2_CLIENT_SECRET:123456}
+    redirect_uri: ${IDAM_OAUTH2_REDIRECT_URI:https://localhost:3000/receiver}
+    id: ${IDAM_OAUTH2_CLIENT_ID:cmc_citizen}
+    secret: ${IDAM_OAUTH2_CLIENT_SECRET:12345678}
 cmc:
   api:
     submit:
       url: ${TEST_URL:http://localhost:4550}
   test:
     smoke:
-      username: ${SMOKE_TEST_CITIZEN_USERNAME}
-      password: ${SMOKE_TEST_USER_PASSWORD}
+      username: ${SMOKE_TEST_CITIZEN_USERNAME:cmc-claim-submit-api-test-citizen@hmcts.net}
+      password: ${SMOKE_TEST_USER_PASSWORD:Password12}
 feign:
   httpclient:
     disableSslValidation: true
