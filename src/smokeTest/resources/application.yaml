@@ -15,7 +15,7 @@ idam:
 cmc:
   api:
     submit:
-      url: ${TEST_URL:http://localhost:4550}
+      url: ${TEST_URL:http://localhost:4554}
   test:
     smoke:
       username: ${SMOKE_TEST_CITIZEN_USERNAME:cmc-claim-submit-api-test-citizen@hmcts.net}
