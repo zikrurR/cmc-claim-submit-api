@@ -70,7 +70,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
                                                                    String.class,
                                                                    externalIdFromFile);
 
-        assertThat(claim.getStatusCodeValue()).isEqualTo(HttpStatus.OK);
+        assertThat(claim.getStatusCode()).isEqualTo(HttpStatus.OK);
     }
 
 }

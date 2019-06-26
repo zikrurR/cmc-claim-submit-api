@@ -22,14 +22,6 @@ import java.util.Map;
 @Service("claimService")
 public class ClaimServiceImpl implements ClaimService {
 
-
-    public static final String JURISDICTION_ID = "CMC";
-    public static final String CREATE_NEW_CASE = "CreateClaim";
-    public static final String CASE_TYPE_ID = "MoneyClaimCase";
-    public static final String CMC_CASE_CREATE_SUMMARY = "CMC case issue";
-    public static final String SUBMITTING_CMC_CASE_ISSUE_DESCRIPTION = "Submitting CMC case issue";
-    public static final String CCD_STORING_FAILURE_MESSAGE = "Failed storing claim in CCD store for case id %s on event %s";
-
     private final ClaimConverter claimConverter;
     private final MergeCaseData mergeCaseData;
     private final CoreCaseDataService coreCaseDataService;
