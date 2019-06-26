@@ -65,7 +65,6 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
         String json = new ResourceReader().read("/claim-application.json");
         HttpEntity<String> entity = new HttpEntity<>(json, headers);
         restTemplate.postForEntity(postClaimEndPoint, entity, String.class);
-        TimeUnit.SECONDS.sleep(60);
 
         String externalIdFromFile = "9f49d8df-b734-4e86-aeb6-e22f0c2ca78d";
         entity = new HttpEntity<>(headers);
