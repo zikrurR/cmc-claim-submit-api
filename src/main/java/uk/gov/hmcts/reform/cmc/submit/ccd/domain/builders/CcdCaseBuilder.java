@@ -46,11 +46,11 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
     private String interestStartDateReason;
     private CcdInterestEndDateType interestEndDateType;
 
-    private String paymentId;
-    private BigInteger paymentAmount;
-    private String paymentReference;
-    private String paymentStatus;
-    private LocalDate paymentDateCreated;
+    private String builderPaymentId;
+    private BigInteger builderPaymentAmount;
+    private String builderPaymentReference;
+    private String builderPaymentStatus;
+    private LocalDate builderPaymentDateCreated;
     private String feeAccountNumber;
 
     private String preferredCourt;
@@ -93,11 +93,11 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         ccdCase.setInterestClaimStartDate(interestClaimStartDate);
         ccdCase.setInterestStartDateReason(interestStartDateReason);
         ccdCase.setInterestEndDateType(interestEndDateType);
-        ccdCase.setPaymentId(paymentId);
-        ccdCase.setPaymentAmount(paymentAmount);
-        ccdCase.setPaymentReference(paymentReference);
-        ccdCase.setPaymentStatus(paymentStatus);
-        ccdCase.setPaymentDateCreated(paymentDateCreated);
+        ccdCase.setPaymentId(builderPaymentId);
+        ccdCase.setPaymentAmount(builderPaymentAmount);
+        ccdCase.setPaymentReference(builderPaymentReference);
+        ccdCase.setPaymentStatus(builderPaymentStatus);
+        ccdCase.setPaymentDateCreated(builderPaymentDateCreated);
         ccdCase.setFeeAccountNumber(feeAccountNumber);
         ccdCase.setPreferredCourt(preferredCourt);
         ccdCase.setPersonalInjuryGeneralDamages(personalInjuryGeneralDamages);
@@ -267,31 +267,31 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
     }
 
     public CcdCaseBuilder paymentId(String paymentId) {
-        this.paymentId = paymentId;
+        this.builderPaymentId = paymentId;
         propertiesMap.put("paymentId", paymentId);
         return this;
     }
 
     public CcdCaseBuilder paymentAmount(BigInteger paymentAmount) {
-        this.paymentAmount = paymentAmount;
+        this.builderPaymentAmount = paymentAmount;
         propertiesMap.put("paymentAmount", paymentAmount.toString());
         return this;
     }
 
     public CcdCaseBuilder paymentReference(String paymentReference) {
-        this.paymentReference = paymentReference;
+        this.builderPaymentReference = paymentReference;
         propertiesMap.put("paymentReference", paymentReference);
         return this;
     }
 
     public CcdCaseBuilder paymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
+        this.builderPaymentStatus = paymentStatus;
         propertiesMap.put("paymentStatus", paymentStatus);
         return this;
     }
 
     public CcdCaseBuilder paymentDateCreated(LocalDate paymentDateCreated) {
-        this.paymentDateCreated = paymentDateCreated;
+        this.builderPaymentDateCreated = paymentDateCreated;
         propertiesMap.put("paymentDateCreated", paymentDateCreated);
         return this;
     }
