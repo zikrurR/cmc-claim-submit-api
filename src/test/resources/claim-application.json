@@ -30,7 +30,7 @@
       {
         "id": "359fda9d-e5fd-4d6e-9525-238642d0157d",
         "reason": "reason",
-        "amount": 40
+        "amount": 40.00
       }
     ]
   },
@@ -63,7 +63,7 @@
   ],
   "payment": {
   	"type": "referencePayment",
-    "amount": 4000,
+    "amount": 40.00,
     "reference": "RC-1524-6488-1670-7520",
     "status": "success",
     "id": "PaymentId",
