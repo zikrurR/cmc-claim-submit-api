@@ -35,16 +35,16 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
     private List<CcdCollectionElementBuilder<CcdAmountRow>> amountBreakDown = new ArrayList<>();
     private BigInteger totalAmount;
 
-    private CcdInterestType interestType;
-    private BigDecimal interestBreakDownAmount;
-    private String interestBreakDownExplanation;
-    private BigDecimal interestRate;
-    private String interestReason;
-    private BigDecimal interestSpecificDailyAmount;
-    private CcdInterestDateType interestDateType;
-    private LocalDate interestClaimStartDate;
-    private String interestStartDateReason;
-    private CcdInterestEndDateType interestEndDateType;
+    private CcdInterestType builderInterestType;
+    private BigDecimal builderInterestBreakDownAmount;
+    private String builderInterestBreakDownExplanation;
+    private BigDecimal builderInterestRate;
+    private String builderInterestReason;
+    private BigDecimal builderInterestSpecificDailyAmount;
+    private CcdInterestDateType builderInterestDateType;
+    private LocalDate builderInterestClaimStartDate;
+    private String builderInterestStartDateReason;
+    private CcdInterestEndDateType builderInterestEndDateType;
 
     private String builderPaymentId;
     private BigInteger builderPaymentAmount;
@@ -83,16 +83,16 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         ccdCase.setAmountLowerValue(amountLowerValue);
         ccdCase.setAmountHigherValue(amountHigherValue);
         ccdCase.setTotalAmount(totalAmount);
-        ccdCase.setInterestType(interestType);
-        ccdCase.setInterestBreakDownAmount(interestBreakDownAmount);
-        ccdCase.setInterestBreakDownExplanation(interestBreakDownExplanation);
-        ccdCase.setInterestRate(interestRate);
-        ccdCase.setInterestReason(interestReason);
-        ccdCase.setInterestSpecificDailyAmount(interestSpecificDailyAmount);
-        ccdCase.setInterestDateType(interestDateType);
-        ccdCase.setInterestClaimStartDate(interestClaimStartDate);
-        ccdCase.setInterestStartDateReason(interestStartDateReason);
-        ccdCase.setInterestEndDateType(interestEndDateType);
+        ccdCase.setInterestType(builderInterestType);
+        ccdCase.setInterestBreakDownAmount(builderInterestBreakDownAmount);
+        ccdCase.setInterestBreakDownExplanation(builderInterestBreakDownExplanation);
+        ccdCase.setInterestRate(builderInterestRate);
+        ccdCase.setInterestReason(builderInterestReason);
+        ccdCase.setInterestSpecificDailyAmount(builderInterestSpecificDailyAmount);
+        ccdCase.setInterestDateType(builderInterestDateType);
+        ccdCase.setInterestClaimStartDate(builderInterestClaimStartDate);
+        ccdCase.setInterestStartDateReason(builderInterestStartDateReason);
+        ccdCase.setInterestEndDateType(builderInterestEndDateType);
         ccdCase.setPaymentId(builderPaymentId);
         ccdCase.setPaymentAmount(builderPaymentAmount);
         ccdCase.setPaymentReference(builderPaymentReference);
@@ -207,61 +207,61 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
     }
 
     public CcdCaseBuilder interestType(CcdInterestType interestType) {
-        this.interestType = interestType;
+        this.builderInterestType = interestType;
         propertiesMap.put("interestType", interestType);
         return this;
     }
 
     public CcdCaseBuilder interestBreakDownAmount(BigDecimal interestBreakDownAmount) {
-        this.interestBreakDownAmount = interestBreakDownAmount;
+        this.builderInterestBreakDownAmount = interestBreakDownAmount;
         propertiesMap.put("interestBreakDownAmount", interestBreakDownAmount);
         return this;
     }
 
     public CcdCaseBuilder interestBreakDownExplanation(String interestBreakDownExplanation) {
-        this.interestBreakDownExplanation = interestBreakDownExplanation;
+        this.builderInterestBreakDownExplanation = interestBreakDownExplanation;
         propertiesMap.put("interestBreakDownExplanation", interestBreakDownExplanation);
         return this;
     }
 
     public CcdCaseBuilder interestRate(BigDecimal interestRate) {
-        this.interestRate = interestRate;
+        this.builderInterestRate = interestRate;
         propertiesMap.put("interestRate", interestRate);
         return this;
     }
 
     public CcdCaseBuilder interestReason(String interestReason) {
-        this.interestReason = interestReason;
+        this.builderInterestReason = interestReason;
         propertiesMap.put("interestReason", interestReason);
         return this;
     }
 
     public CcdCaseBuilder interestSpecificDailyAmount(BigDecimal interestSpecificDailyAmount) {
-        this.interestSpecificDailyAmount = interestSpecificDailyAmount;
+        this.builderInterestSpecificDailyAmount = interestSpecificDailyAmount;
         propertiesMap.put("interestSpecificDailyAmount", interestSpecificDailyAmount);
         return this;
     }
 
     public CcdCaseBuilder interestDateType(CcdInterestDateType interestDateType) {
-        this.interestDateType = interestDateType;
+        this.builderInterestDateType = interestDateType;
         propertiesMap.put("interestDateType", interestDateType);
         return this;
     }
 
     public CcdCaseBuilder interestClaimStartDate(LocalDate interestClaimStartDate) {
-        this.interestClaimStartDate = interestClaimStartDate;
+        this.builderInterestClaimStartDate = interestClaimStartDate;
         propertiesMap.put("interestClaimStartDate", interestClaimStartDate);
         return this;
     }
 
     public CcdCaseBuilder interestStartDateReason(String interestStartDateReason) {
-        this.interestStartDateReason = interestStartDateReason;
+        this.builderInterestStartDateReason = interestStartDateReason;
         propertiesMap.put("interestStartDateReason", interestStartDateReason);
         return this;
     }
 
     public CcdCaseBuilder interestEndDateType(CcdInterestEndDateType interestEndDateType) {
-        this.interestEndDateType = interestEndDateType;
+        this.builderInterestEndDateType = interestEndDateType;
         propertiesMap.put("interestEndDateType", interestEndDateType);
         return this;
     }
