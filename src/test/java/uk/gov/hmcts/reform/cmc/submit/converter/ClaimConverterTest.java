@@ -67,7 +67,8 @@ public class ClaimConverterTest {
         mandatoryData.put("referenceNumber", "random_reference_number");
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("reason", "raison");
-        mandatoryData.put("amountType", "RANGE");
+        mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("paymentAmount", "1000");
         Claim convert = claimConverter.convert(mandatoryData);
 
         assertThat(convert.getReason()).isEqualTo("raison");
