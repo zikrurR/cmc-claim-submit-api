@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.acceptance;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.junit.Ignore;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class GetClaimHappyPath extends BaseFunctionalTest {
     }
 
     @DisplayName("Failing path, should retrieve the claim created in CCD via the externalId")
-    @Ignore // more then one claim return for the same externalId - duplication issue 
+    @Ignore // more then one claim return for the same externalId - duplication issue
     @Test
     public void getClaimViaExternalIdFailedPath() throws IOException, InterruptedException {
 
