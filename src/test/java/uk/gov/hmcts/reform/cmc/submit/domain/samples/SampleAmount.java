@@ -28,7 +28,7 @@ public class SampleAmount {
         AmountRow amountRow = new AmountRow();
         amountRow.setId("359fda9d-e5fd-4d6e-9525-238642d0157d");
         amountRow.setReason("reason");
-        amountRow.setAmount(new BigDecimal("40"));
+        amountRow.setAmount(new BigDecimal("40.00"));
 
         AmountBreakDown amountBreakDown = new AmountBreakDown();
         amountBreakDown.setRows(singletonList(amountRow));
@@ -37,8 +37,8 @@ public class SampleAmount {
 
     public static AmountRange validAmountRange() {
         AmountRange amountRange = new AmountRange();
-        amountRange.setLowerValue(BigDecimal.valueOf(100L));
-        amountRange.setHigherValue(BigDecimal.valueOf(99000L));
+        amountRange.setLowerValue(new BigDecimal("100.00"));
+        amountRange.setHigherValue(new BigDecimal("990.00"));
 
         return amountRange;
 

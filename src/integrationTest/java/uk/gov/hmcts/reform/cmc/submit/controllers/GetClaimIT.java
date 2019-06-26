@@ -93,6 +93,7 @@ public class GetClaimIT {
         String externalId = UUID.randomUUID().toString();
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("paymentAmount", "1000");
         mandatoryData.put("referenceNumber", "random_reference_number");
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), any()))
@@ -263,6 +264,7 @@ public class GetClaimIT {
         String externalId = UUID.randomUUID().toString();
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("paymentAmount", "1000");
         mandatoryData.put("referenceNumber", "random_reference_number");
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), contains("reference")))
@@ -300,6 +302,7 @@ public class GetClaimIT {
         String externalId = UUID.randomUUID().toString();
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("amountType", "NOT_KNOWN");
+        mandatoryData.put("paymentAmount", "1000");
         mandatoryData.put("referenceNumber", "random_reference_number");
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), contains("reference")))

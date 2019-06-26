@@ -19,7 +19,7 @@ public class SamplePayment {
     public static ReferencePayment validReferencePayment() {
         ReferencePayment payment = new ReferencePayment();
         payment.setReference("RC-1524-6488-1670-7520");
-        payment.setAmount(BigDecimal.valueOf(4000));
+        payment.setAmount(new BigDecimal("40.00"));
         payment.setDateCreated(LocalDate.of(2019, 01, 01));
         payment.setId("PaymentId");
         payment.setStatus("success");
