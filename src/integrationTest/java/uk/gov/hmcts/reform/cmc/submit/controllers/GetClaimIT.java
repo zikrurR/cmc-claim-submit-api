@@ -175,7 +175,7 @@ public class GetClaimIT {
                 .id(amountRow.getId())
                 .value(CcdAmountRowBuilder.builder()
                         .reason(amountRow.getReason())
-                        .amount(amountRow.getAmount()))
+                        .amount(amountRow.getAmount().movePointRight(2).toBigInteger()))
                 ));
 
         TimelineEvent timeline = validDefaults.getTimeline().get(0);
@@ -221,7 +221,7 @@ public class GetClaimIT {
         builder.interestStartDateReason(interest.getInterestDate().getReason());
         builder.interestEndDateType(CcdInterestEndDateType.valueOf(interest.getInterestDate().getEndDateType().name()));
         builder.paymentId(referencePayment.getId());
-        builder.paymentAmount(referencePayment.getAmount());
+        builder.paymentAmount(referencePayment.getAmount().movePointRight(2).toBigInteger());
         builder.paymentReference(referencePayment.getReference());
         builder.paymentStatus(referencePayment.getStatus());
         builder.paymentDateCreated(referencePayment.getDateCreated());

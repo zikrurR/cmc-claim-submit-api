@@ -2,14 +2,14 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.domain.builders;
 
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdAmountRow;
 
-import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class CcdAmountRowBuilder implements Builder<CcdAmountRow> {
     private String reason;
-    private BigDecimal amount;
+    private BigInteger amount;
 
     private Map<String, Object> propertiesMap = new HashMap<>();
 
@@ -39,9 +39,9 @@ public class CcdAmountRowBuilder implements Builder<CcdAmountRow> {
         return this;
     }
 
-    public CcdAmountRowBuilder amount(BigDecimal amount) {
+    public CcdAmountRowBuilder amount(BigInteger amount) {
         this.amount = amount;
-        propertiesMap.put("amount", amount);
+        propertiesMap.put("amount", amount.toString());
         return this;
     }
 

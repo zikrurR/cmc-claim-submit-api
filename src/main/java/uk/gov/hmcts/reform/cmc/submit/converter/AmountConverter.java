@@ -12,6 +12,7 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.AmountRow;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.amount.NotKnown;
 import uk.gov.hmcts.reform.cmc.submit.mapper.exception.MappingException;
 
+import java.math.BigDecimal;
 import java.util.stream.Collectors;
 
 @Component
@@ -34,8 +35,8 @@ class AmountConverter {
     public AmountRange amountRangeFrom(CcdCase ccdAmountRange) {
 
         AmountRange amountRange = new AmountRange();
-        amountRange.setHigherValue(ccdAmountRange.getAmountHigherValue());
-        amountRange.setLowerValue(ccdAmountRange.getAmountLowerValue());
+        amountRange.setHigherValue(new BigDecimal(ccdAmountRange.getAmountHigherValue(), 2));
+        amountRange.setLowerValue(new BigDecimal(ccdAmountRange.getAmountLowerValue(), 2));
 
         return amountRange;
     }
@@ -56,7 +57,7 @@ class AmountConverter {
         AmountRow amountRow = new AmountRow();
         amountRow.setId(collectionElement.getId());
         amountRow.setReason(ccdAmountRow.getReason());
-        amountRow.setAmount(ccdAmountRow.getAmount());
+        amountRow.setAmount(new BigDecimal(ccdAmountRow.getAmount(), 2));
 
         return amountRow;
     }

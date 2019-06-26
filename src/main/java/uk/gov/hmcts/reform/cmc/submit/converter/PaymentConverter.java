@@ -7,6 +7,8 @@ import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.AccountPayment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.Payment;
 import uk.gov.hmcts.reform.cmc.submit.domain.models.payment.ReferencePayment;
 
+import java.math.BigDecimal;
+
 import static org.apache.commons.lang3.StringUtils.isBlank;
 
 @Component
@@ -33,7 +35,7 @@ class PaymentConverter {
         ReferencePayment payment = new ReferencePayment();
 
         payment.setId(ccdCase.getPaymentId());
-        payment.setAmount(ccdCase.getPaymentAmount());
+        payment.setAmount(new BigDecimal(ccdCase.getPaymentAmount(), 2));
         payment.setReference(ccdCase.getPaymentReference());
         payment.setDateCreated(ccdCase.getPaymentDateCreated());
         payment.setStatus(ccdCase.getPaymentStatus());

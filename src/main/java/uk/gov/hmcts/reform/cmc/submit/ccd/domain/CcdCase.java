@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.cmc.submit.ccd.domain;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,10 +15,10 @@ public class CcdCase {
     private String reason;
 
     private AmountType amountType;
-    private BigDecimal amountLowerValue;
-    private BigDecimal amountHigherValue;
+    private BigInteger amountLowerValue;
+    private BigInteger amountHigherValue;
     private List<CcdCollectionElement<CcdAmountRow>> amountBreakDown;
-    private BigDecimal totalAmount;
+    private BigInteger totalAmount;
 
     private CcdInterestType interestType;
     private BigDecimal interestBreakDownAmount;
@@ -31,7 +32,7 @@ public class CcdCase {
     private CcdInterestEndDateType interestEndDateType;
 
     private String paymentId;
-    private BigDecimal paymentAmount;
+    private BigInteger paymentAmount;
     private String paymentReference;
     private String paymentStatus;
     private LocalDate paymentDateCreated;

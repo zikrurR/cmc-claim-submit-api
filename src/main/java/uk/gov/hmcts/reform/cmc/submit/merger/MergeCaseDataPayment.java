@@ -24,7 +24,7 @@ class MergeCaseDataPayment implements MergeCaseDataDecorator {
 
     private void toReferencePayment(ReferencePayment payment, CcdCaseBuilder ccdCaseBuilder) {
 
-        ccdCaseBuilder.paymentAmount(payment.getAmount());
+        ccdCaseBuilder.paymentAmount(payment.getAmount().movePointRight(2).toBigInteger());
         ccdCaseBuilder.paymentId(payment.getId());
         ccdCaseBuilder.paymentReference(payment.getReference());
         ccdCaseBuilder.paymentStatus(payment.getStatus());

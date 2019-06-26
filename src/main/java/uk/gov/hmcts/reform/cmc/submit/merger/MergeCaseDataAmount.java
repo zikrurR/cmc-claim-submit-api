@@ -55,12 +55,12 @@ class MergeCaseDataAmount implements MergeCaseDataDecorator {
                 .id(amountRow.getId())
                 .value(CcdAmountRowBuilder.builder()
                         .reason(amountRow.getReason())
-                        .amount(amountRow.getAmount()));
+                        .amount(amountRow.getAmount().movePointRight(2).toBigInteger()));
     }
 
     public void amountRange(AmountRange amountRange, CcdCaseBuilder ccdCaseBuilder) {
-        ccdCaseBuilder.amountLowerValue(amountRange.getLowerValue());
-        ccdCaseBuilder.amountHigherValue(amountRange.getHigherValue());
+        ccdCaseBuilder.amountLowerValue(amountRange.getLowerValue().movePointRight(2).toBigInteger());
+        ccdCaseBuilder.amountHigherValue(amountRange.getHigherValue().movePointRight(2).toBigInteger());
     }
 
 }

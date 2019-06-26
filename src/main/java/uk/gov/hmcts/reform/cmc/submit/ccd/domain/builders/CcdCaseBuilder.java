@@ -13,6 +13,7 @@ import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdRespondent;
 import uk.gov.hmcts.reform.cmc.submit.ccd.domain.CcdTimelineEvent;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,10 +30,10 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
     private String reason;
 
     private AmountType amountType;
-    private BigDecimal amountLowerValue;
-    private BigDecimal amountHigherValue;
+    private BigInteger amountLowerValue;
+    private BigInteger amountHigherValue;
     private List<CcdCollectionElementBuilder<CcdAmountRow>> amountBreakDown = new ArrayList<>();
-    private BigDecimal totalAmount;
+    private BigInteger totalAmount;
 
     private CcdInterestType interestType;
     private BigDecimal interestBreakDownAmount;
@@ -46,7 +47,7 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
     private CcdInterestEndDateType interestEndDateType;
 
     private String paymentId;
-    private BigDecimal paymentAmount;
+    private BigInteger paymentAmount;
     private String paymentReference;
     private String paymentStatus;
     private LocalDate paymentDateCreated;
@@ -182,15 +183,15 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         return this;
     }
 
-    public CcdCaseBuilder amountLowerValue(BigDecimal amountLowerValue) {
+    public CcdCaseBuilder amountLowerValue(BigInteger amountLowerValue) {
         this.amountLowerValue = amountLowerValue;
         propertiesMap.put("amountLowerValue", amountLowerValue);
         return this;
     }
 
-    public CcdCaseBuilder amountHigherValue(BigDecimal amountHigherValue) {
+    public CcdCaseBuilder amountHigherValue(BigInteger amountHigherValue) {
         this.amountHigherValue = amountHigherValue;
-        propertiesMap.put("amountHigherValue", amountHigherValue);
+        propertiesMap.put("amountHigherValue", amountHigherValue.toString());
         return this;
     }
 
@@ -199,9 +200,9 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         return this;
     }
 
-    public CcdCaseBuilder totalAmount(BigDecimal totalAmount) {
+    public CcdCaseBuilder totalAmount(BigInteger totalAmount) {
         this.totalAmount = totalAmount;
-        propertiesMap.put("totalAmount", totalAmount);
+        propertiesMap.put("totalAmount", totalAmount.toString());
         return this;
     }
 
@@ -271,9 +272,9 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         return this;
     }
 
-    public CcdCaseBuilder paymentAmount(BigDecimal paymentAmount) {
+    public CcdCaseBuilder paymentAmount(BigInteger paymentAmount) {
         this.paymentAmount = paymentAmount;
-        propertiesMap.put("paymentAmount", paymentAmount);
+        propertiesMap.put("paymentAmount", paymentAmount.toString());
         return this;
     }
 
