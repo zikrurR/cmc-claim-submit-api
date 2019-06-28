@@ -17,8 +17,7 @@ def secrets = [
         secret('microservicekey-cmc-claim-external-api', 'IDAM_S2S_KEY')
     ],
     'rpa-${env}': [
-    	secret('papi-oauth2-client-id', 'IDAM_OAUTH2_CLIENT_ID'),
-    	secret('papi-oauth2-client-key', 'IDAM_OAUTH2_CLIENT_SECRET')
+    	secret('citizen-oauth-client-secret', 'IDAM_OAUTH2_CLIENT_SECRET')
     ]
 ]
 
@@ -40,7 +39,7 @@ withPipeline(type, product, component) {
   installCharts()
   
   // use only with the automatic test.
-  env.IDAM_OAUTH2_REDIRECT_URI = 'https://rpa-professional-api-portal-aat.portal.azure-api.net/docs/services/sidam/console/oauth2/authorizationcode/callback'
-  env.IDAM_API_URL = 'https://idam-api.aat.platform.hmcts.net'
-  env.IDAM_S2S_URL = 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal'
+  env.IDAM_OAUTH2_REDIRECT_URI = 'https://moneyclaims.${env}.platform.hmcts.net/receiver'
+  env.IDAM_API_URL = 'https://idam-api.${env}.platform.hmcts.net'
+  env.IDAM_S2S_URL = 'http://rpe-service-auth-provider-${env}.service.core-compute-${env}.internal'
 }
