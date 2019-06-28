@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.cmc.submit.smoke;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class GetClaimHappyPath extends BaseSmokeTest {
 
     @DisplayName("Happy path should return the claim requested in CCD")
     @Test
+    @Disabled
     public void getClaimHappyPath() {
 
         HttpHeaders headers = new HttpHeaders();
