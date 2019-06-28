@@ -11,13 +11,11 @@ def secrets = [
       secret('smoke-test-citizen-username', 'SMOKE_TEST_CITIZEN_USERNAME'),
       secret('smoke-test-user-password', 'SMOKE_TEST_USER_PASSWORD'),
       secret('functional-test-citizen-username', 'FUNCTIONAL_TEST_CITIZEN_USERNAME'),
-      secret('functional-test-user-password', 'FUNCTIONAL_TEST_USER_PASSWORD')
+      secret('functional-test-user-password', 'FUNCTIONAL_TEST_USER_PASSWORD'),
+   	  secret('citizen-oauth-client-secret', 'IDAM_OAUTH2_CLIENT_SECRET')
     ],
     's2s-${env}': [
         secret('microservicekey-cmc-claim-external-api', 'IDAM_S2S_KEY')
-    ],
-    'rpa-${env}': [
-    	secret('citizen-oauth-client-secret', 'IDAM_OAUTH2_CLIENT_SECRET')
     ]
 ]
 
