@@ -89,7 +89,7 @@ public class GetClaimIT {
     public void happyPathGetClaim() throws Exception {
 
         // mock ccd call
-        Map<String,Object> mandatoryData = Maps.newHashMap();
+        Map<String, Object> mandatoryData = Maps.newHashMap();
         String externalId = UUID.randomUUID().toString();
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("amountType", "NOT_KNOWN");
@@ -97,19 +97,19 @@ public class GetClaimIT {
         mandatoryData.put("referenceNumber", "random_reference_number");
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), any()))
-             .thenReturn(SearchResult.builder().total(1)
-                                               .cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()))
-                                               .build());
+                .thenReturn(SearchResult.builder().total(1)
+                        .cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()))
+                        .build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");
 
         MvcResult response = mockMvc
-                .perform(get("/claim/{externalId}",externalId)
+                .perform(get("/claim/{externalId}", externalId)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
-                    .andExpect(status().isOk())
-                    .andReturn();
+                .andExpect(status().isOk())
+                .andReturn();
 
         Claim claim = objectMapper.readValue(response.getResponse().getContentAsString(), Claim.class);
 
@@ -126,7 +126,7 @@ public class GetClaimIT {
         // mock ccd call
         CcdCaseBuilder builder = CcdCaseBuilder.builder();
 
-        Individual individual = (Individual)validDefaults.getClaimants().get(0);
+        Individual individual = (Individual) validDefaults.getClaimants().get(0);
         builder.applicants(Arrays.asList(CcdCollectionElementBuilder.<CcdApplicant>builder()
                 .id(individual.getId())
                 .value(CcdApplicantBuilder.builder()
@@ -158,10 +158,10 @@ public class GetClaimIT {
                                         .addressLine3("Salford")
                                         .postTown("Manchester")
                                         .postCode("DF1 3LJ"))
-                                )
                         )
+                )
 
-                ));
+        ));
 
         Evidence evidence = validDefaults.getEvidences().get(0);
         builder.evidence(Arrays.asList(CcdCollectionElementBuilder.<CcdEvidenceRow>builder()
@@ -169,15 +169,15 @@ public class GetClaimIT {
                 .value(CcdEvidenceRowBuilder.builder()
                         .type(CcdEvidenceType.CORRESPONDENCE)
                         .description(evidence.getDescription()))
-                ));
+        ));
 
-        AmountRow amountRow = ((AmountBreakDown)validDefaults.getAmount()).getRows().get(0);
+        AmountRow amountRow = ((AmountBreakDown) validDefaults.getAmount()).getRows().get(0);
         builder.amountBreakDown(Arrays.asList(CcdCollectionElementBuilder.<CcdAmountRow>builder()
                 .id(amountRow.getId())
                 .value(CcdAmountRowBuilder.builder()
                         .reason(amountRow.getReason())
                         .amount(amountRow.getAmount().movePointRight(2).toBigInteger()))
-                ));
+        ));
 
         TimelineEvent timeline = validDefaults.getTimeline().get(0);
         builder.timeline(Arrays.asList(CcdCollectionElementBuilder.<CcdTimelineEvent>builder()
@@ -185,9 +185,9 @@ public class GetClaimIT {
                 .value(CcdTimelineEventBuilder.builder()
                         .description(timeline.getDescription())
                         .date(timeline.getDate()))
-                ));
+        ));
 
-        IndividualDetails individualDetails = (IndividualDetails)validDefaults.getDefendants().get(0);
+        IndividualDetails individualDetails = (IndividualDetails) validDefaults.getDefendants().get(0);
         builder.respondents(Arrays.asList(CcdCollectionElementBuilder.<CcdRespondent>builder()
                 .id(individualDetails.getId())
                 .value(CcdRespondentBuilder.builder()
@@ -203,11 +203,11 @@ public class GetClaimIT {
                                 .lastName("Smith")
                                 .firstName("John")
                                 .title("Dr.")
-                                ))
+                        ))
 
-                ));
+        ));
 
-        ReferencePayment referencePayment = (ReferencePayment)validDefaults.getPayment();
+        ReferencePayment referencePayment = (ReferencePayment) validDefaults.getPayment();
         Interest interest = validDefaults.getInterest();
 
         builder.externalId(validDefaults.getExternalId().toString());
@@ -233,10 +233,12 @@ public class GetClaimIT {
         builder.sotSignerName(validDefaults.getStatementOfTruth().getSignerName());
         builder.sotSignerRole(validDefaults.getStatementOfTruth().getSignerRole());
 
-        when(coreCaseDataApi.searchCases(any(), any(), any(), any()))
-             .thenReturn(SearchResult.builder().total(1)
-                                               .cases(Arrays.asList(CaseDetails.builder().data(builder.buildMap()).build()))
-                                               .build());
+        when(coreCaseDataApi.searchCases(any(), any(), any(), any())).thenReturn(
+                SearchResult.builder()
+                        .total(1)
+                        .cases(Arrays.asList(CaseDetails.builder().data(builder.buildMap()).build()))
+                        .build()
+        );
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");
@@ -246,8 +248,8 @@ public class GetClaimIT {
                 .perform(get("/claim/{externalId}", validDefaults.getExternalId().toString())
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
-                    .andExpect(status().isOk())
-                    .andReturn();
+                .andExpect(status().isOk())
+                .andReturn();
 
         Claim claim = objectMapper.readValue(response.getResponse().getContentAsString(), Claim.class);
 
@@ -260,7 +262,7 @@ public class GetClaimIT {
     public void findClaimViaExternalId() throws Exception {
 
         // mock ccd call
-        Map<String,Object> mandatoryData = Maps.newHashMap();
+        Map<String, Object> mandatoryData = Maps.newHashMap();
         String externalId = UUID.randomUUID().toString();
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("amountType", "NOT_KNOWN");
@@ -268,24 +270,24 @@ public class GetClaimIT {
         mandatoryData.put("referenceNumber", "random_reference_number");
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), contains("reference")))
-            .thenReturn(SearchResult.builder().total(0)
-                                          .cases(Arrays.asList())
-                                          .build());
+                .thenReturn(SearchResult.builder().total(0)
+                        .cases(Arrays.asList())
+                        .build());
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), contains("externalId")))
-             .thenReturn(SearchResult.builder().total(1)
-                                               .cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()))
-                                               .build());
+                .thenReturn(SearchResult.builder().total(1)
+                        .cases(Arrays.asList(CaseDetails.builder().data(mandatoryData).build()))
+                        .build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");
 
         MvcResult response = mockMvc
-                .perform(get("/claim/{externalId}",externalId)
+                .perform(get("/claim/{externalId}", externalId)
                         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                         .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
-                    .andExpect(status().isOk())
-                    .andReturn();
+                .andExpect(status().isOk())
+                .andReturn();
 
         Claim claim = objectMapper.readValue(response.getResponse().getContentAsString(), Claim.class);
 
@@ -298,7 +300,7 @@ public class GetClaimIT {
     public void claimNotFound() throws Exception {
 
         // mock ccd call
-        Map<String,Object> mandatoryData = Maps.newHashMap();
+        Map<String, Object> mandatoryData = Maps.newHashMap();
         String externalId = UUID.randomUUID().toString();
         mandatoryData.put("externalId", externalId);
         mandatoryData.put("amountType", "NOT_KNOWN");
@@ -306,23 +308,23 @@ public class GetClaimIT {
         mandatoryData.put("referenceNumber", "random_reference_number");
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), contains("reference")))
-            .thenReturn(SearchResult.builder().total(0)
-                                          .cases(Arrays.asList())
-                                          .build());
+                .thenReturn(SearchResult.builder().total(0)
+                        .cases(Arrays.asList())
+                        .build());
 
         when(coreCaseDataApi.searchCases(any(), any(), any(), contains("externalId")))
-             .thenReturn(SearchResult.builder().total(0)
-                                               .cases(Arrays.asList())
-                                               .build());
+                .thenReturn(SearchResult.builder().total(0)
+                        .cases(Arrays.asList())
+                        .build());
 
         // mock idam call
         when(authTokenGenerator.generate()).thenReturn("aaa");
 
-        mockMvc.perform(get("/claim/{externalId}",externalId)
-                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-                        .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
-                    .andExpect(status().isNotFound())
-                    .andReturn();
+        mockMvc.perform(get("/claim/{externalId}", externalId)
+                .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                .header(HttpHeaders.AUTHORIZATION, AUTHORISATION_TOKEN))
+                .andExpect(status().isNotFound())
+                .andReturn();
 
         verify(coreCaseDataApi, times(2)).searchCases(any(), any(), any(), any());
 

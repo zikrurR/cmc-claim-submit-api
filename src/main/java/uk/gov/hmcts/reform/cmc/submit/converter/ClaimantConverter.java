@@ -120,7 +120,9 @@ class ClaimantConverter {
 
         Representative representative = new Representative();
         representative.setOrganisationName(ccdClaimant.getRepresentativeOrganisationName());
-        representative.setOrganisationAddress(addressConverter.from(ccdClaimant.getRepresentativeOrganisationAddress()));
+        representative.setOrganisationAddress(
+                addressConverter.from(ccdClaimant.getRepresentativeOrganisationAddress())
+        );
         representative.setOrganisationContactDetails(contactDetailsFrom(ccdClaimant));
 
         return representative;

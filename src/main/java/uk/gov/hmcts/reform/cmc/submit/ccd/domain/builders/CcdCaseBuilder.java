@@ -125,16 +125,20 @@ public class CcdCaseBuilder implements Builder<CcdCase> {
         return ccdCase;
     }
 
-    private static <T extends CcdCollectionElementBuilder<R>, R> List<CcdCollectionElement<R>> listBuilderForList(List<T> listToBuild) {
+    private static <T extends CcdCollectionElementBuilder<R>, R> List<CcdCollectionElement<R>> listBuilderForList(
+            List<T> listToBuild
+    ) {
         return listToBuild.stream()
-                          .map(x -> x.build())
-                          .collect(Collectors.toList());
+                .map(x -> x.build())
+                .collect(Collectors.toList());
     }
 
-    private static <T extends CcdCollectionElementBuilder<R>, R> List<Map<String, Object>> listBuilderForMap(List<T> listToBuild) {
+    private static <T extends CcdCollectionElementBuilder<R>, R> List<Map<String, Object>> listBuilderForMap(
+            List<T> listToBuild
+    ) {
         return listToBuild.stream()
-                          .map(x -> x.buildMap())
-                          .collect(Collectors.toList());
+                .map(x -> x.buildMap())
+                .collect(Collectors.toList());
     }
 
     public Map<String, Object> buildMap() {

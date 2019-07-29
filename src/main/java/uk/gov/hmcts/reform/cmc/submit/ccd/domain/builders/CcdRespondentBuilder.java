@@ -31,15 +31,25 @@ public class CcdRespondentBuilder implements Builder<CcdRespondent> {
         CcdRespondent ccdRespondent = new CcdRespondent();
 
         ccdRespondent.setClaimantProvidedPartyName(claimantProvidedPartyName);
-        ccdRespondent.setClaimantProvidedRepresentativeOrganisationName(claimantProvidedRepresentativeOrganisationName);
-        ccdRespondent.setClaimantProvidedRepresentativeOrganisationPhone(claimantProvidedRepresentativeOrganisationPhone);
-        ccdRespondent.setClaimantProvidedRepresentativeOrganisationEmail(claimantProvidedRepresentativeOrganisationEmail);
-        ccdRespondent.setClaimantProvidedRepresentativeOrganisationDxAddress(claimantProvidedRepresentativeOrganisationDxAddress);
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationName(
+                claimantProvidedRepresentativeOrganisationName
+        );
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationPhone(
+                claimantProvidedRepresentativeOrganisationPhone
+        );
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationEmail(
+                claimantProvidedRepresentativeOrganisationEmail
+        );
+        ccdRespondent.setClaimantProvidedRepresentativeOrganisationDxAddress(
+                claimantProvidedRepresentativeOrganisationDxAddress
+        );
         if (claimantProvidedDetail != null) {
             ccdRespondent.setClaimantProvidedDetail(claimantProvidedDetail.build());
         }
         if (claimantProvidedRepresentativeOrganisationAddress != null) {
-            ccdRespondent.setClaimantProvidedRepresentativeOrganisationAddress(claimantProvidedRepresentativeOrganisationAddress.build());
+            ccdRespondent.setClaimantProvidedRepresentativeOrganisationAddress(
+                    claimantProvidedRepresentativeOrganisationAddress.build()
+            );
         }
         return ccdRespondent;
     }
@@ -50,7 +60,10 @@ public class CcdRespondentBuilder implements Builder<CcdRespondent> {
             hashMap.put("claimantProvidedDetail", claimantProvidedDetail.buildMap());
         }
         if (claimantProvidedRepresentativeOrganisationAddress != null) {
-            hashMap.put("claimantProvidedRepresentativeOrganisationAddress", claimantProvidedRepresentativeOrganisationAddress.buildMap());
+            hashMap.put(
+                    "claimantProvidedRepresentativeOrganisationAddress",
+                    claimantProvidedRepresentativeOrganisationAddress.buildMap()
+            );
         }
         return hashMap;
     }
@@ -66,32 +79,54 @@ public class CcdRespondentBuilder implements Builder<CcdRespondent> {
         return this;
     }
 
-    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationName(String claimantProvidedRepresentativeOrganisationName) {
+    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationName(
+            String claimantProvidedRepresentativeOrganisationName
+    ) {
         this.claimantProvidedRepresentativeOrganisationName = claimantProvidedRepresentativeOrganisationName;
-        propertiesMap.put("claimantProvidedRepresentativeOrganisationName", claimantProvidedRepresentativeOrganisationName);
+        propertiesMap.put(
+                "claimantProvidedRepresentativeOrganisationName",
+                claimantProvidedRepresentativeOrganisationName
+        );
         return this;
     }
 
-    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationAddress(CcdAddressBuilder claimantProvidedRepresentativeOrganisationAddress) {
+    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationAddress(
+            CcdAddressBuilder claimantProvidedRepresentativeOrganisationAddress
+    ) {
         this.claimantProvidedRepresentativeOrganisationAddress = claimantProvidedRepresentativeOrganisationAddress;
         return this;
     }
 
-    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationPhone(String claimantProvidedRepresentativeOrganisationPhone) {
+    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationPhone(
+            String claimantProvidedRepresentativeOrganisationPhone
+    ) {
         this.claimantProvidedRepresentativeOrganisationPhone = claimantProvidedRepresentativeOrganisationPhone;
-        propertiesMap.put("claimantProvidedRepresentativeOrganisationPhone", claimantProvidedRepresentativeOrganisationPhone);
+        propertiesMap.put(
+                "claimantProvidedRepresentativeOrganisationPhone",
+                claimantProvidedRepresentativeOrganisationPhone
+        );
         return this;
     }
 
-    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationEmail(String claimantProvidedRepresentativeOrganisationEmail) {
+    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationEmail(
+            String claimantProvidedRepresentativeOrganisationEmail
+    ) {
         this.claimantProvidedRepresentativeOrganisationEmail = claimantProvidedRepresentativeOrganisationEmail;
-        propertiesMap.put("claimantProvidedRepresentativeOrganisationEmail", claimantProvidedRepresentativeOrganisationEmail);
+        propertiesMap.put(
+                "claimantProvidedRepresentativeOrganisationEmail",
+                claimantProvidedRepresentativeOrganisationEmail
+        );
         return this;
     }
 
-    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationDxAddress(String claimantProvidedRepresentativeOrganisationDxAddress) {
+    public CcdRespondentBuilder claimantProvidedRepresentativeOrganisationDxAddress(
+            String claimantProvidedRepresentativeOrganisationDxAddress
+    ) {
         this.claimantProvidedRepresentativeOrganisationDxAddress = claimantProvidedRepresentativeOrganisationDxAddress;
-        propertiesMap.put("claimantProvidedRepresentativeOrganisationDxAddress", claimantProvidedRepresentativeOrganisationDxAddress);
+        propertiesMap.put(
+                "claimantProvidedRepresentativeOrganisationDxAddress",
+                claimantProvidedRepresentativeOrganisationDxAddress
+        );
         return this;
     }
 }
