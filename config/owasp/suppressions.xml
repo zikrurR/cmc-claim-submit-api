@@ -17,15 +17,6 @@
 
   <suppress>
     <notes><![CDATA[
-   file name: jackson-databind-2.9.8.jar fix in 2.9.9 but not yet in springboot
-   ]]></notes>
-    <gav regex="true">com.fasterxml.jackson.core:jackson-databind:2.9.8</gav>
-    <cpe>cpe:/a:fasterxml:jackson:2.9.8, cpe:/a:fasterxml:jackson-databind:2.9.8, com.fasterxml.jackson.core:jackson-databind:2.9.8</cpe>
-    <cve>CVE-2019-12086</cve>
-  </suppress>
-
-  <suppress>
-    <notes><![CDATA[
          Shadowed dependency from AppInsights-Core. Unfortunately, not propagating and applying an override for transitive dependencies.
          Anyway, this is specific to deserialisation of AtomicDoubleArray and CompoundOrdering classes: https://github.com/google/guava/wiki/CVE-2018-10237
         ]]></notes>
