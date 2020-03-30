@@ -33,7 +33,6 @@ withPipeline(type, product, component) {
 
   loadVaultSecrets(secrets)
   //enableSlackNotifications('#cmc-tech-notification')
-  enableDockerBuild()
   installCharts()
   
   // use only with the automatic test.
